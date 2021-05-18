@@ -18,21 +18,78 @@
     </nav>
     <main class="content">
 
+        
+
+        <div class="py-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+                    <li class="breadcrumb-item"><a href="#"><span class="fas fa-home"></span></a></li>
+                    <li class="breadcrumb-item"><a href="#">Community</a></li>
+                </ol>
+            </nav>
+            <div class="d-flex justify-content-between w-100 flex-wrap">
+                <div class="mb-3 mb-lg-0">
+                    <h1 class="h4">Community</h1>
+                    <p class="mb-0">자유롭게 소통해요.</p>
+                </div>
+                
+            </div>
+        </div>
+
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
             <div class="btn-toolbar dropdown">
                 <button class="btn btn-dark btn-sm me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="fas fa-plus me-2"></span>글쓰기
                 </button>
-                <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-0">
-                    <a class="dropdown-item fw-normal rounded-top" href="#"><span class="fas fa-tasks"></span>New Task</a>
-                    <a class="dropdown-item fw-normal" href="#"><span class="fas fa-cloud-upload-alt"></span>Upload Files</a>
-                    <a class="dropdown-item fw-normal" href="#"><span class="fas fa-user-shield"></span>Preview Security</a>
-                    <div role="separator" class="dropdown-divider my-0"></div>
-                    <a class="dropdown-item fw-normal rounded-bottom" href="#"><span class="fas fa-rocket text-danger"></span>Upgrade to Pro</a>
+                
+            </div>
+        </div>
+        
+        <!--table-->
+        <div class="card border-light shadow-sm mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="col">
+                        <table class="table table-centered table-nowrap mb-0 rounded">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="width: 10%;">번호</th>
+                                    <th scope="col" style="width: 60%;">제목</th>
+                                    <th scope="col">조회수</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td id="notice1-title">test1</td>
+                                    <td id="notice1-clicks">37</td>
+                                    <td><button id="notice1" data-toggle="modal" data-target="#notice-modal"
+                                            class="btn btn-warning">조회</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">2</td>
+                                    <td id="notice2-title">test2</td>
+                                    <td id="notice2-clicks">5</td>
+                                    <td><button id="notice2" class="btn btn-warning">조회</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">3</td>
+                                    <td id="notice2-title">test3</td>
+                                    <td id="notice2-clicks">210</td>
+                                    <td><button id="notice3" class="btn btn-warning">조회</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--table end-->
                 </div>
             </div>
-            
         </div>
+
+        
+
+        
 
     </main>
 </body>
