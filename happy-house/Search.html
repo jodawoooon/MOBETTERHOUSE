@@ -19,65 +19,98 @@
   <body>
     <!-- side bar -->
     <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
-      <ul class="nav flex-column pt-3 pt-md-0 mt-auto">
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <span class="sidebar-icon"><span class="bi bi-lightbulb-fill"></span></span> <span class="sidebar-text">Notice</span>
-          </a>
-        </li>
-        <li class="nav-item active">
-          <a href="Search.html" class="nav-link">
-            <span class="sidebar-icon"><span class="bi bi-map-fill"></span></span> <span class="sidebar-text">Search</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <span class="sidebar-icon"><span class="bi bi-chat-dots-fill"></span></span> <span class="sidebar-text">Community</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <div class="sidebar-inner px-2 pt-3">
+          <ul class="nav flex-column pt-3 pt-md-0">
+              
+              <li class="nav-item  active ">
+                <a href="./Search.html" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-search"></span></span>
+                  <span class="sidebar-text">Search</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="#" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-thumbtack"></span></span>
+                  <span class="sidebar-text">Bookmark</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="./Community.html" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-clipboard"></span></span>
+                  <span class="sidebar-text">Community</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="./MyPage.html" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-user"></span></span>
+                  <span class="sidebar-text">My Page</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="./Index.html" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-sign-out-alt"></span></span>
+                  <span class="sidebar-text">Logout</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="./Contact.html" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-phone"></span></span>
+                  <span class="sidebar-text">Contact</span>
+                </a>
+              </li>
+              
+
+            </ul>
+      </div>
+  </nav>
     <main class="content">
       <div class="py-4">
-      <!-- NavBar start  -->
-      <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
-        <div class="container-fluid px-0">
-          <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
-            <div class="d-flex">
-              <button id="btnSsafyLogo" class="navbar-brand btn">
-                <img class="img-fluid" style="width: 80px; height: 80px" src="./img/ssafy_logo.png" alt="" />
-              </button>
-            </div>
-            <ul class="navbar-nav align-items-center">
-              <li class="nav-item active" id="navItem1">
-                <a class="nav-link" href="#">공지 사항<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active" style="display: none" id="navItem2">
-                <a class="nav-link text-light" href="#">오늘의 뉴스<span class="sr-only">(current)</span> </a>
-              </li>
-              <li class="nav-item active" style="display: none" id="navItem3">
-                <a class="nav-link text-light" href="#">커뮤니티<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active" id="navItem4" style="display: none">
-                <button id="signUp" class="nav-item btn btn-light"><i class="fa fa-user"></i> Sign Up</button>
-              </li>
-              <li class="nav-item active" id="navItem5" style="display: none">
-                <button id="login" class="nav-item btn btn-light"><i class="fa fa-lock"></i> Login</button>
-              </li>
-              <li class="nav-item active" id="navItem6" >
-                <button id="logout" class="nav-item btn btn-light"><i class="bi bi-person-x-fill"></i> Logout</button>
-              </li>
-              <li class="nav-item active" id="navItem7" >
-                <button id="myPage" class="nav-item btn btn-light"><i class="bi bi-person-square"></i> My Page</button>
-              </li>
-            </ul>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+            <li class="breadcrumb-item">
+              <a href="./Main.html"><span class="fas fa-home"></span></a>
+            </li>
+            <li class="breadcrumb-item"><a href="./Search.html">Search</a></li>
+          </ol>
+        </nav>
+        <div class="d-flex justify-content-between w-100 flex-wrap">
+          <div class="mb-3 mb-lg-0">
+            <h1 class="h4">매물 / 거래정보 검색</h1>
+            <p class="mb-0">원하는 지역의 매물정보를 확인해보세요.</p>
           </div>
         </div>
-      </nav>
-      <hr />
-      <!-- NavBar end -->
+
+        
+      </div>
+
+       
+
       <!-- AptList start -->
       <div class="main bg-light p-4">
+
+        <!-- selectbar start  -->
+       <div class="col row">
+        <div class="col">
+          <select id="selectSido" class="form-select form-select-sm" aria-label="시">
+            <option selected disabled>시/도</option>
+          </select>
+        </div>
+        <div class="col">
+          <select id="selectGugun" class="form-select form-select-sm" aria-label="구">
+            <option selected disabled>구/군</option>
+          </select>
+        </div>
+        <div class="col">
+          <select id="selectDong" class="form-select form-select-sm" aria-label="동">
+            <option selected disabled>동</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="button" id="btnSearch" class="btn btn-warning ml-3" value="검색" disabled />
+        </div>
+      </div>
+      <!-- selectbar end  -->
+      
         <div class="row m-1">
           <div class="col-4" id="apartInfo">
             <!-- tempInfo start -->
@@ -145,36 +178,7 @@
       <div id="paginationWrapper" class="align-self-center">PaginationWrapper</div>
       <div class="mt-4"></div>
       <!-- AptList end -->
-      <!-- Footer start-->
-      <div class="row mt-2">
-        <div class="col-1 d-flex justify-content-center">
-          <img style="width: 50px; height: 50px" src="./img/ssafy_logo.png" alt="" />
-        </div>
-        <div class="col-11">
-          <div class="row">
-            <div style="width: 50%">
-              <h4 class="font-weight-normal">Find Us</h4>
-              <hr class="hr2" />
-            </div>
-          </div>
-          <div class="row">
-            <i class="fa fa-map-marker d-flex justify-content-center" style="width: 30px"></i>
-            <h6>(SSAFY) 서울시 강남구 테헤란로 멀티캠퍼스</h6>
-          </div>
-          <div class="row">
-            <i class="fa fa-phone d-flex justify-content-center" style="width: 30px"></i>
-            <h6>1544-9001</h6>
-          </div>
-          <div class="row">
-            <i class="fa fa-envelope d-flex justify-content-center" style="width: 30px"></i>
-            <h6>
-              <a href="#">admin@ssafy.com</a>
-            </h6>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Footer end-->
+      
     </div>
     </main>
   </body>
