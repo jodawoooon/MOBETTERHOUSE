@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c805a6524d.js" crossorigin="anonymous"></script>
+    
+    <!-- Volt CSS -->
+    <link type="text/css" href="./css/volt.css" rel="stylesheet">
+    <title>Happy House - Main</title>
+</head>
+<body>
+    
+    <!-- side bar -->
+    <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
+    </nav>
+    <main class="content">
+
+        
+
+        <div class="py-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+                    <li class="breadcrumb-item"><a href="#"><span class="fas fa-home"></span></a></li>
+                    <li class="breadcrumb-item"><a href="#">Community</a></li>
+                </ol>
+            </nav>
+            <div class="d-flex justify-content-between w-100 flex-wrap">
+                <div class="mb-3 mb-lg-0">
+                    <h1 class="h4">Community</h1>
+                    <p class="mb-0">자유롭게 소통해요.</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+            <div class="btn-toolbar dropdown">
+                <button class="btn btn-dark btn-sm me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="fas fa-plus me-2"></span>글쓰기
+                </button>
+                
+            </div>
+        </div>
+        
+        <!--table-->
+        <div class="card border-light shadow-sm mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="col">
+                        <table class="table table-centered table-nowrap mb-0 rounded">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="width: 10%;">번호</th>
+                                    <th scope="col" style="width: 60%;">제목</th>
+                                    <th scope="col">조회수</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">1</td>
+                                    <td id="notice1-title">test1</td>
+                                    <td id="notice1-clicks">37</td>
+                                    <td><button id="notice1" data-toggle="modal" data-target="#notice-modal"
+                                            class="btn btn-warning">조회</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">2</td>
+                                    <td id="notice2-title">test2</td>
+                                    <td id="notice2-clicks">5</td>
+                                    <td><button id="notice2" class="btn btn-warning">조회</button></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">3</td>
+                                    <td id="notice2-title">test3</td>
+                                    <td id="notice2-clicks">210</td>
+                                    <td><button id="notice3" class="btn btn-warning">조회</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--table end-->
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+
+    </main>
+</body>
+</html>
