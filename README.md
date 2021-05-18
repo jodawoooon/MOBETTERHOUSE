@@ -1,12 +1,12 @@
 # 13pairVue
 
-Main
-
 Login
 
 Join
 
 MyPage
+
+SearchMap
 
 DongSelectBar
 
