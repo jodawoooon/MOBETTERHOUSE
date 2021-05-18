@@ -18,5 +18,5 @@ AptListItem
 
 NavBar
 
-Footer
+Contact
 
