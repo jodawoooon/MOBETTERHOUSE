@@ -10,7 +10,7 @@ MyPage
 
 apart-div
 
-Selector
+DongSelectBar
 
 Community
 
