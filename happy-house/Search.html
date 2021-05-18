@@ -17,56 +17,52 @@
     <title>Happy House - Search</title>
   </head>
   <body>
-    <!-- side bar -->
+    <!-- side bar start -->
     <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
       <div class="sidebar-inner px-2 pt-3">
-
-          <ul class="nav flex-column pt-3 pt-md-0">
-              
-              <li class="nav-item  active ">
-                <a href="./Search.html" class="nav-link">
-                  <span class="sidebar-icon"><span class="fas fa-search"></span></span>
-                  <span class="sidebar-text">Search</span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="#" class="nav-link">
-                  <span class="sidebar-icon"><span class="fas fa-thumbtack"></span></span>
-                  <span class="sidebar-text">Bookmark</span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="./Community.html" class="nav-link">
-                  <span class="sidebar-icon"><span class="fas fa-clipboard"></span></span>
-                  <span class="sidebar-text">Community</span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="./MyPage.html" class="nav-link">
-                  <span class="sidebar-icon"><span class="fas fa-user"></span></span>
-                  <span class="sidebar-text">My Page</span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="./Index.html" class="nav-link">
-                  <span class="sidebar-icon"><span class="fas fa-sign-out-alt"></span></span>
-                  <span class="sidebar-text">Logout</span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a href="./Contact.html" class="nav-link">
-                  <span class="sidebar-icon"><span class="fas fa-phone"></span></span>
-                  <span class="sidebar-text">Contact</span>
-                </a>
-              </li>
-              
-
-            </ul>
+        <ul class="nav flex-column pt-3 pt-md-0">
+          <li class="nav-item active">
+            <a href="./Search.html" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-search"></span></span>
+              <span class="sidebar-text">Search</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-thumbtack"></span></span>
+              <span class="sidebar-text">Bookmark</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./Community.html" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-clipboard"></span></span>
+              <span class="sidebar-text">Community</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./MyPage.html" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-user"></span></span>
+              <span class="sidebar-text">My Page</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./Index.html" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-sign-out-alt"></span></span>
+              <span class="sidebar-text">Logout</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./Contact.html" class="nav-link">
+              <span class="sidebar-icon"><span class="fas fa-phone"></span></span>
+              <span class="sidebar-text">Contact</span>
+            </a>
+          </li>
+        </ul>
       </div>
-  </nav>
+    </nav>
 
     <main class="content">
-      <div class="py-4">
+      <div class="py-4 p-4">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
             <li class="breadcrumb-item">
@@ -76,45 +72,38 @@
           </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
-          <div class="mb-3 mb-lg-0">
-
+          <div class="mb-3 mb-lg-0 ">
             <h1 class="h4">매물 / 거래정보 검색</h1>
             <p class="mb-0">원하는 지역의 매물정보를 확인해보세요.</p>
           </div>
         </div>
-
-        
       </div>
-
-       
-
 
       <!-- AptList start -->
       <div class="main bg-light p-4">
-
         <!-- selectbar start  -->
-       <div class="col row">
-        <div class="col">
-          <select id="selectSido" class="form-select form-select-sm" aria-label="시">
-            <option selected disabled>시/도</option>
-          </select>
+        <div class="col row">
+          <div class="col">
+            <select id="selectSido" class="form-select form-select-sm" aria-label="시">
+              <option selected disabled>시/도</option>
+            </select>
+          </div>
+          <div class="col">
+            <select id="selectGugun" class="form-select form-select-sm" aria-label="구">
+              <option selected disabled>구/군</option>
+            </select>
+          </div>
+          <div class="col">
+            <select id="selectDong" class="form-select form-select-sm" aria-label="동">
+              <option selected disabled>동</option>
+            </select>
+          </div>
+          <div class="col">
+            <input type="button" id="btnSearch" class="btn btn-warning ml-3" value="검색" disabled />
+          </div>
         </div>
-        <div class="col">
-          <select id="selectGugun" class="form-select form-select-sm" aria-label="구">
-            <option selected disabled>구/군</option>
-          </select>
-        </div>
-        <div class="col">
-          <select id="selectDong" class="form-select form-select-sm" aria-label="동">
-            <option selected disabled>동</option>
-          </select>
-        </div>
-        <div class="col">
-          <input type="button" id="btnSearch" class="btn btn-warning ml-3" value="검색" disabled />
-        </div>
-      </div>
-      <!-- selectbar end  -->
-      
+        <!-- selectbar end  -->
+
         <div class="row m-1">
           <div class="col-4" id="apartInfo">
             <!-- tempInfo start -->
@@ -176,13 +165,13 @@
             <hr />
             <!-- tempInfo end -->
           </div>
-          <div id="map" class="col-8 border" style="height: 550px">Map</div>
+          <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
         </div>
       </div>
       <div id="paginationWrapper" class="align-self-center">PaginationWrapper</div>
       <div class="mt-4"></div>
       <!-- AptList end -->
-      
+
     </main>
   </body>
 </html>
