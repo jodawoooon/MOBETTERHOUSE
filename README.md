@@ -8,14 +8,15 @@ Join
 
 MyPage
 
-apart-div
-
 DongSelectBar
 
 AptSearch
 
 Community
 
+AptListItem
+
 NavBar
 
 Footer
+
