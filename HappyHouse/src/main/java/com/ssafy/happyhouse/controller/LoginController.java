@@ -29,7 +29,8 @@ import com.ssafy.happyhouse.service.LoginService;
 		
 		@PostMapping(value="/login")
 		public ResponseEntity<UserDto> login(@RequestBody UserDto dto, HttpSession session){
-			
+			System.out.println(dto);
+			System.out.println(session);
 			UserDto userDto = service.login(dto);
 			if( userDto != null ) {
 				session.setAttribute("userDto", userDto);

@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'; // installed module
 
 Vue.use(VueRouter);
 
-import Search from '@/components/Search.vue';
+import MainPage from '@/components/MainPage.vue';
+import SearchDong from '@/components/SearchDong.vue';
+import SearchApt from '@/components/SearchApt.vue';
 import Bookmark from '@/components/Bookmark.vue';
 import Community from '@/components/Community.vue';
 import Contact from '@/components/Contact.vue';
@@ -15,11 +17,19 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      component: Search,
+      component: MainPage,
     },
     {
-      path: '/house',
-      component: Search,
+      path: '/mainPage',
+      component: MainPage,
+    },
+    {
+      path: '/searchDong',
+      component: SearchDong,
+    },
+    {
+      path: '/searchApt',
+      component: SearchApt,
     },
     {
       path: '/bookmark',

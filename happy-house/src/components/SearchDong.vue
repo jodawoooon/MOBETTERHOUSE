@@ -53,8 +53,21 @@
 
 <script>
 export default {
-  name: 'Search',
+  name: 'SearchDong',
+  data() {
+    return {
+      breadCrumbInfo: {
+        title: 'SearchDong',
+        subTitle: '동으로 매물 / 거래정보 검색',
+        desc: '원하는 지역의 매물정보를 확인해보세요.',
+      },
+    };
+  },
+  mounted() {
+    this.$emit('change-page', this.breadCrumbInfo);
+  },
 };
+
 </script>
 
 <style></style>

@@ -2,9 +2,10 @@
   <div id="app">
 
     <side-bar @change-page="changePage"></side-bar>
+
     <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
     <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
-    <router-view></router-view>
+    <router-view @change-page="changePage"></router-view>
   </div>
 </template>
 
@@ -19,15 +20,14 @@ export default {
   data() {
     return {
       isLogin: true,
-      curPage: 'Search',
       userInfo: {
         userName: '손동우',
         userEmail: 'ssafy@ssafy.com',
       },
       breadCrumbInfo: {
-        title: 'Search',
-        subTitle: '매물 / 거래정보 검색',
-        desc: '원하는 지역의 매물정보를 확인해보세요.',
+        title: '',
+        subTitle: '',
+        desc: '',
       },
     };
   },
@@ -38,11 +38,9 @@ export default {
     BreadCrumb,
   },
   methods: {
-    changePage(pageInfo) {
-      console.log(pageInfo.page);
-      console.log(pageInfo.breadCrumbInfo);
-      this.curPage = pageInfo.page;
-      this.breadCrumbInfo = pageInfo.breadCrumbInfo;
+    changePage(breadCrumbInfo) {
+      console.log(breadCrumbInfo);
+      this.breadCrumbInfo = breadCrumbInfo;
     },
     loginSuccess( userInfo ){
       this.isLogin = true;

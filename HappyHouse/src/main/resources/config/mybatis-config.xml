@@ -10,5 +10,6 @@
 	<mappers>
 		<mapper resource="mapper/house_query.xml" />
 		<mapper resource="mapper/user_query.xml" />
+		<mapper resource="mapper/login_query.xml" />
 	</mappers>
 </configuration>
