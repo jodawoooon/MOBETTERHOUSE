@@ -9,6 +9,26 @@ public class UserDto {
 	private String userEmail;
 	private String userProfileImageUrl;
 	private Date userRegisterDate;
+	private String userRank;
+	private String userMessage;
+	
+	
+	
+	public String getUserRank() {
+		return userRank;
+	}
+
+	public void setUserRank(String userRank) {
+		this.userRank = userRank;
+	}
+
+	public String getUserMessage() {
+		return userMessage;
+	}
+
+	public void setUserMessage(String userMessage) {
+		this.userMessage = userMessage;
+	}
 
 	public int getUserSeq() {
 		return userSeq;
