@@ -5,6 +5,6 @@ import java.util.List;
 import com.ssafy.happyhouse.dto.UserDto;
 
 public interface UserService {
-	public List<UserDto> boardList();
+	public List<UserDto> userList();
 	
 }

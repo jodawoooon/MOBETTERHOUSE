@@ -9,6 +9,6 @@ import com.ssafy.happyhouse.dto.UserDto;
 
 @Mapper
 public interface UserDao {
-	public List<UserDto> boardList();
+	public List<UserDto> userList();
 	
 }
