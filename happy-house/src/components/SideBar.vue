@@ -9,13 +9,8 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <div @click="changePage('search')">
-            <span
-              class="nav-link d-flex justify-content-between align-items-center"
-              :class="{ collapsed: curPage != 'search' && curPage != 'searchDong' }"
-              data-bs-toggle="collapse"
-              data-bs-target="#submenu-app"
-            >
+          <div @click="changeIsSearch">
+            <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
                 <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
                 <span class="sidebar-text">Search</span>
@@ -23,7 +18,7 @@
               <span class="link-arrow"><font-awesome-icon :icon="['fas', 'chevron-right']"/></span>
             </span>
           </div>
-          <div class="multi-level collapse" :class="{ show: curPage == 'search' || curPage == 'searchDong' || curPage == 'searchApt' }" role="list" id="submenu-app" aria-expanded="false">
+          <div class="multi-level collapse" id="searchSub">
             <ul class="flex-column nav">
               <li class="nav-item" :class="{ active: curPage == 'searchDong' }" @click="changePage('searchDong')">
                 <router-link to="/searchDong" class="nav-link">
@@ -69,12 +64,16 @@ export default {
   data() {
     return {
       curPage: 'MainPage',
+      isSearch: false,
     };
   },
   methods: {
     changePage(page) {
       console.log('changePage : ' + page);
       this.curPage = page;
+    },
+    changeIsSearch() {
+      this.isSearch = !this.isSearch;
     },
   },
 };
