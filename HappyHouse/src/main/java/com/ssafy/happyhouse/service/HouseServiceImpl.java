@@ -23,4 +23,14 @@ public class HouseServiceImpl implements HouseService {
 	public int houseListTotalCount() {
 		return houseDao.houseListTotalCount();
 	}
+
+	@Override
+	public List<HouseDto> houseSearchApt(HouseParamDto param) {
+		return houseDao.houseSearchApt(param);
+	}
+
+	@Override
+	public int houseSearchAptTotalCount(String searchWord) {
+		return houseDao.houseSearchAptTotalCount(searchWord);
+	}
 }
