@@ -1,5 +1,5 @@
 <template>
-  <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
+  <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white " data-simplebar>
     <div class="sidebar-inner px-2 pt-3">
       <ul class="nav flex-column pt-3 pt-md-0">
         <li class="nav-item" :class="{ active: curPage == 'search' }" @click="changePage('search')">
@@ -57,6 +57,7 @@ export default {
         subTitle: '문의',
         desc: '자유롭게 문의하세요.',
       },
+      
     };
   },
   methods: {
@@ -66,6 +67,8 @@ export default {
       else if (page === 'bookmark') this.$emit('change-page', { page: page, breadCrumbInfo: this.bookmarkBreadCrumb });
       else if (page === 'community') this.$emit('change-page', { page: page, breadCrumbInfo: this.communityBreadCrumb });
       else if (page === 'contact') this.$emit('change-page', { page: page, breadCrumbInfo: this.contactBreadCrumb });
+      
+     
     },
   },
 };

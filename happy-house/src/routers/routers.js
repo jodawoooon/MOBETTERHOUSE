@@ -7,6 +7,9 @@ import Search from '@/components/Search.vue';
 import Bookmark from '@/components/Bookmark.vue';
 import Community from '@/components/Community.vue';
 import Contact from '@/components/Contact.vue';
+import Login from '@/components/Login.vue';
+import Join from '@/components/Join.vue';
+import MyPage from '@/components/MyPage.vue';
 
 export default new VueRouter({
   routes: [
@@ -30,5 +33,19 @@ export default new VueRouter({
       path: '/contact',
       component: Contact,
     },
+    {
+      path: '/login',
+      component : Login
+    },
+    {
+      path: '/join',
+      component : Join
+    },
+    {
+      path: '/mypage',
+      component : MyPage
+    },
+    
+    
   ],
 });

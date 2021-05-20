@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  naem: 'Search',
+  name: 'Search',
 };
 </script>
 

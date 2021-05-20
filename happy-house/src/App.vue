@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <side-bar @change-page="changePage"></side-bar>
     <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
     <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
@@ -11,6 +12,8 @@
 import SideBar from './components/SideBar.vue';
 import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
+//import Index from './components/Index.vue';
+
 export default {
   name: 'App',
   data() {
@@ -29,6 +32,7 @@ export default {
     };
   },
   components: {
+    //Index,
     SideBar,
     NavBar,
     BreadCrumb,
@@ -40,6 +44,10 @@ export default {
       this.curPage = pageInfo.page;
       this.breadCrumbInfo = pageInfo.breadCrumbInfo;
     },
+    loginSuccess( userInfo ){
+      this.isLogin = true;
+      this.userInfo = userInfo;
+    }
   },
 };
 </script>
