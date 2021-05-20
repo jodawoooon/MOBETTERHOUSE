@@ -1777,3 +1777,113 @@ Caused by: java.lang.ClassNotFoundException: HouseReulstDto
 2021-05-20 14:13:57 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
 2021-05-20 14:13:57 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.833 seconds (JVM running for 64.381) 
 2021-05-20 14:13:58 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-20 14:13:59 [Thread-14] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-20 14:14:00 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 46178 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-20 14:14:00 [restartedMain] DEBUG c.s.h.HappyHouseApplication - Running with Spring Boot v2.4.5, Spring v5.3.6 
+2021-05-20 14:14:00 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-20 14:14:01 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-20 14:14:01 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-20 14:14:01 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-20 14:14:01 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-20 14:14:01 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-20 14:14:01 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 847 ms 
+2021-05-20 14:14:01 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-20 14:14:01 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$102120d1.addInterceptors() 
+2021-05-20 14:14:01 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$102120d1.addInterceptors() 
+2021-05-20 14:14:01 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$102120d1.addInterceptors() 
+2021-05-20 14:14:01 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$102120d1.addInterceptors() 
+2021-05-20 14:14:01 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-20 14:14:01 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-20 14:14:01 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-20 14:14:01 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 1.455 seconds (JVM running for 67.928) 
+2021-05-20 14:14:01 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 3 ms 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy101.houseSearchApt() 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy101.houseSearchApt() 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-2 - Starting... 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-2 - Start completed. 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchApt - ==>  Preparing: SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG FROM HOUSEDEAL d, HOUSEINFO i WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG AND d.APTNAME like CONCAT('%', ?, '%') ORDER BY d.NO DESC LIMIT ? OFFSET ? 
+2021-05-20 14:14:01 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchApt - ==> Parameters: 현대(String), 10(Integer), 0(Integer) 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchApt - <==      Total: 10 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy101.houseSearchApt() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy101.houseSearchApt() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy101.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy101.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchAptTotalCount - ==>  Preparing: SELECT COUNT(*) FROM HOUSEDEAL d WHERE d.APTNAME like CONCAT('%', ?, '%') 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchAptTotalCount - ==> Parameters: 현대(String) 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchAptTotalCount - <==      Total: 1 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy101.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy101.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:02 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:04 [RMI TCP Connection(9)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2021-05-20 14:14:04 [RMI TCP Connection(9)-127.0.0.1] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-20 14:14:04 [RMI TCP Connection(9)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown initiated... 
+2021-05-20 14:14:04 [RMI TCP Connection(9)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-2 - Shutdown completed. 
+2021-05-20 14:14:07 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 46220 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-20 14:14:07 [restartedMain] DEBUG c.s.h.HappyHouseApplication - Running with Spring Boot v2.4.5, Spring v5.3.6 
+2021-05-20 14:14:07 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-20 14:14:07 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+2021-05-20 14:14:07 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+2021-05-20 14:14:08 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-20 14:14:08 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-20 14:14:08 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-20 14:14:08 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-20 14:14:08 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-20 14:14:08 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1233 ms 
+2021-05-20 14:14:09 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-20 14:14:09 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$380f0b2f.addInterceptors() 
+2021-05-20 14:14:09 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$380f0b2f.addInterceptors() 
+2021-05-20 14:14:09 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$380f0b2f.addInterceptors() 
+2021-05-20 14:14:09 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$380f0b2f.addInterceptors() 
+2021-05-20 14:14:09 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-20 14:14:09 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-20 14:14:09 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-20 14:14:09 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 2.759 seconds (JVM running for 3.578) 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 4 ms 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy73.houseSearchApt() 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy73.houseSearchApt() 
+2021-05-20 14:14:19 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-1 - Starting... 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.z.h.HikariDataSource - HikariPool-1 - Start completed. 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchApt - ==>  Preparing: SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG FROM HOUSEDEAL d, HOUSEINFO i WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG AND d.APTNAME like CONCAT('%', ?, '%') ORDER BY d.NO DESC LIMIT ? OFFSET ? 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchApt - ==> Parameters: 현대(String), 10(Integer), 0(Integer) 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchApt - <==      Total: 10 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy73.houseSearchApt() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy73.houseSearchApt() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchApt() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy73.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy73.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchAptTotalCount - ==>  Preparing: SELECT COUNT(*) FROM HOUSEDEAL d WHERE d.APTNAME like CONCAT('%', ?, '%') 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchAptTotalCount - ==> Parameters: 현대(String) 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.d.H.houseSearchAptTotalCount - <==      Total: 1 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy73.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy73.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed. 

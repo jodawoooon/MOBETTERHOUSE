@@ -1,8 +1,23 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './routers/routers.js';
 
-Vue.config.productionTip = false
+// for bootstrap 5
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+
+//fort-awesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch, faStar, faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faSearch, faStar, faCommentDots);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  render: (h) => h(App),
+  router,
+}).$mount('#app');
