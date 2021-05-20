@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <side-bar></side-bar>
+    <side-bar :curPage="curPage"></side-bar>
     <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
     <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
   </div>
@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       isLogin: true,
+      curPage: 'search',
       userInfo: {
         userName: '손동우',
         userEmail: 'ssafy@ssafy.com',

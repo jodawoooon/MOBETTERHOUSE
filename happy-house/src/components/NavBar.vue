@@ -10,13 +10,13 @@
               </button>
             </div>
             <ul class="navbar-nav align-items-center">
-              <li class="nav-item active" id="navItem1">
+              <li class="nav-item" id="navItem1">
                 <strong>{{ userInfo.userName }}({{ userInfo.userEmail }})</strong>님 환영합니다.
               </li>
-              <li class="nav-item active" id="navItem2">
+              <li class="nav-item" id="navItem2">
                 <button id="logout" class="nav-item btn btn-light"><i class="bi bi-person-x-fill"></i> Logout</button>
               </li>
-              <li class="nav-item active" id="navItem3">
+              <li class="nav-item" id="navItem3">
                 <button id="myPage" class="nav-item btn btn-light"><i class="bi bi-person-square"></i> My Page</button>
               </li>
             </ul>
