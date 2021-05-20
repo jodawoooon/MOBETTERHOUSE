@@ -1,5 +1,4 @@
 <template>
-  <!-- side bar -->
   <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
     <div class="sidebar-inner px-2 pt-3">
       <ul class="nav flex-column pt-3 pt-md-0">
