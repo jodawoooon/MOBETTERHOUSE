@@ -1,1 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.dao.HouseDao">
+	<select id="houseList" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
+	SELECT d.NO no, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG
+		FROM HOUSEDEAL d, HOUSEINFO i
+  		WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG
+  		ORDER BY d.NO DESC
+  		LIMIT #{limit} OFFSET #{offset};
+	</select>
+</mapper>

@@ -1,0 +1,46 @@
+2021-05-20 13:26:21 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 41281 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-20 13:26:21 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-20 13:26:22 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-20 13:26:22 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-20 13:26:22 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-20 13:26:22 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-20 13:26:22 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-20 13:26:22 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 285 ms 
+2021-05-20 13:26:22 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-20 13:26:22 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$f5c7f2b4.addInterceptors() 
+2021-05-20 13:26:22 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$f5c7f2b4.addInterceptors() 
+2021-05-20 13:26:22 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-20 13:26:22 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-20 13:26:22 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-20 13:26:22 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.843 seconds (JVM running for 5287.667) 
+2021-05-20 13:26:22 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.controller.HouseContoller.houseList() 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseList() 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy126.houseList() 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-5 - Starting... 
+2021-05-20 13:26:30 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-5 - Start completed. 
+2021-05-20 13:26:31 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy126.houseList() 
+2021-05-20 13:26:31 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseList() 
+2021-05-20 13:26:31 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.HouseContoller.houseList() 
+2021-05-20 13:26:38 [Thread-74] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-20 13:26:38 [Thread-74] INFO c.z.h.HikariDataSource - HikariPool-5 - Shutdown initiated... 
+2021-05-20 13:26:38 [Thread-74] INFO c.z.h.HikariDataSource - HikariPool-5 - Shutdown completed. 
+2021-05-20 13:26:38 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 41281 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-20 13:26:38 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-20 13:26:38 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-20 13:26:38 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-20 13:26:38 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-20 13:26:38 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-20 13:26:38 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-20 13:26:38 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 213 ms 
+2021-05-20 13:26:38 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-20 13:26:38 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$f5c7f2b4.addInterceptors() 
+2021-05-20 13:26:38 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$f5c7f2b4.addInterceptors() 
+2021-05-20 13:26:39 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-20 13:26:39 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-20 13:26:39 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-20 13:26:39 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.79 seconds (JVM running for 5304.122) 
+2021-05-20 13:26:39 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
