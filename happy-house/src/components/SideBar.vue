@@ -2,11 +2,43 @@
   <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
     <div class="sidebar-inner px-2 pt-3">
       <ul class="nav flex-column pt-3 pt-md-0">
-        <li class="nav-item" :class="{ active: curPage == 'search' }" @click="changePage('search')">
-          <router-link to="/house" class="nav-link">
-            <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
-            <span class="sidebar-text">Search</span>
+        <li class="nav-item" :class="{ active: curPage == 'MainPage' }" @click="changePage('MainPage')">
+          <router-link to="/mainPage" class="nav-link">
+            <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'home']"/></span>
+            <span class="sidebar-text">MainPage</span>
           </router-link>
+        </li>
+        <li class="nav-item">
+          <div @click="changePage('search')">
+            <span
+              class="nav-link d-flex justify-content-between align-items-center"
+              :class="{ collapsed: curPage != 'search' && curPage != 'searchDong' }"
+              data-bs-toggle="collapse"
+              data-bs-target="#submenu-app"
+            >
+              <span>
+                <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
+                <span class="sidebar-text">Search</span>
+              </span>
+              <span class="link-arrow"><font-awesome-icon :icon="['fas', 'chevron-right']"/></span>
+            </span>
+          </div>
+          <div class="multi-level collapse" :class="{ show: curPage == 'search' || curPage == 'searchDong' || curPage == 'searchApt' }" role="list" id="submenu-app" aria-expanded="false">
+            <ul class="flex-column nav">
+              <li class="nav-item" :class="{ active: curPage == 'searchDong' }" @click="changePage('searchDong')">
+                <router-link to="/searchDong" class="nav-link">
+                  <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'map-marked-alt']"/></span>
+                  <span class="sidebar-text">SearchDong</span>
+                </router-link>
+              </li>
+              <li class="nav-item" :class="{ active: curPage == 'searchApt' }" @click="changePage('searchApt')">
+                <router-link to="/searchApt" class="nav-link">
+                  <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'building']"/></span>
+                  <span class="sidebar-text">SearchApt</span>
+                </router-link>
+              </li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item" :class="{ active: curPage == 'bookmark' }" @click="changePage('bookmark')">
           <router-link to="/bookmark" class="nav-link">
@@ -36,36 +68,13 @@ export default {
   name: 'SideBar',
   data() {
     return {
-      curPage: 'search',
-      searchBreadCrumb: {
-        title: 'Search',
-        subTitle: '매물 / 거래정보 검색',
-        desc: '원하는 지역의 매물정보를 확인해보세요.',
-      },
-      bookmarkBreadCrumb: {
-        title: 'Bookmark',
-        subTitle: '관심 매물 / 관심 지역 검색',
-        desc: '관심 매물 혹은 관심 지역의 매물정보를 확인해보세요.',
-      },
-      communityBreadCrumb: {
-        title: 'Community',
-        subTitle: '커뮤니티',
-        desc: '커뮤니티에서 자유롭게 소통하세요.',
-      },
-      contactBreadCrumb: {
-        title: 'Contact',
-        subTitle: '문의',
-        desc: '자유롭게 문의하세요.',
-      },
+      curPage: 'MainPage',
     };
   },
   methods: {
     changePage(page) {
+      console.log('changePage : ' + page);
       this.curPage = page;
-      if (page === 'search') this.$emit('change-page', { page: page, breadCrumbInfo: this.searchBreadCrumb });
-      else if (page === 'bookmark') this.$emit('change-page', { page: page, breadCrumbInfo: this.bookmarkBreadCrumb });
-      else if (page === 'community') this.$emit('change-page', { page: page, breadCrumbInfo: this.communityBreadCrumb });
-      else if (page === 'contact') this.$emit('change-page', { page: page, breadCrumbInfo: this.contactBreadCrumb });
     },
   },
 };
