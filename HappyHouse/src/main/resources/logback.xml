@@ -18,7 +18,7 @@
 
 	<!-- 내가 개발한 application -->
 	<!-- console 에만 -->
-	<logger name="com.mycom.myboard" level="DEBUG" appender-ref="console" />
+	<logger name="com.ssafy.happyhouse" level="DEBUG" appender-ref="console" />
 
     <root level="INFO">
     	<appender-ref ref="console" />
