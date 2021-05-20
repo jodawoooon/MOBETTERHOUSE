@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <side-bar :curPage="curPage"></side-bar>
+    <side-bar @change-page="changePage"></side-bar>
     <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
     <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -15,7 +16,7 @@ export default {
   data() {
     return {
       isLogin: true,
-      curPage: 'search',
+      curPage: 'Search',
       userInfo: {
         userName: '손동우',
         userEmail: 'ssafy@ssafy.com',
@@ -31,6 +32,14 @@ export default {
     SideBar,
     NavBar,
     BreadCrumb,
+  },
+  methods: {
+    changePage(pageInfo) {
+      console.log(pageInfo.page);
+      console.log(pageInfo.breadCrumbInfo);
+      this.curPage = pageInfo.page;
+      this.breadCrumbInfo = pageInfo.breadCrumbInfo;
+    },
   },
 };
 </script>
