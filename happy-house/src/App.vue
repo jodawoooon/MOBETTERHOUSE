@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <side-bar></side-bar>
-    <nav-bar></nav-bar>
+    <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
     <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
   </div>
 </template>
