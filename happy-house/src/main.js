@@ -8,10 +8,10 @@ import 'bootstrap';
 
 //fort-awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faStar, faCommentDots, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faStar, faCommentDots, faHome, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faSearch, faStar, faCommentDots, faHome);
+library.add(faSearch, faStar, faCommentDots, faHome, faPhone);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
