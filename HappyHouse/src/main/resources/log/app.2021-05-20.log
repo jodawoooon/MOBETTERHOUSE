@@ -1883,3 +1883,7 @@ Caused by: java.lang.ClassNotFoundException: HouseReulstDto
 2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseSearchAptTotalCount() 
 2021-05-20 14:14:20 [http-nio-8080-exec-1] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
 2021-05-20 14:14:20 [http-nio-8080-exec-1] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.controller.HouseContoller.houseSearchApt() 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown initiated... 
+2021-05-20 16:03:45 [RMI TCP Connection(119)-127.0.0.1] INFO c.z.h.HikariDataSource - HikariPool-1 - Shutdown completed. 
