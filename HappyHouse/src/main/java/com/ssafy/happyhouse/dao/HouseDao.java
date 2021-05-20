@@ -10,4 +10,6 @@ import com.ssafy.happyhouse.dto.HouseParamDto;
 @Mapper
 public interface HouseDao {
 	public List<HouseDto> houseList(HouseParamDto param);
+	
+	public int houseListTotalCount();
 }
