@@ -14,7 +14,7 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public UserDto login(UserDto dto) {
-		
+		System.out.println(dto);
 		UserDto userDto = loginDao.login(dto.getUserEmail());
 		
 		if( userDto != null && userDto.getUserPassword().equals(dto.getUserPassword())) {

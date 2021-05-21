@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  naem: 'SearchDong',
+  name: 'SearchDong',
   data() {
     return {
       breadCrumbInfo: {
@@ -67,6 +67,7 @@ export default {
     this.$emit('change-page', this.breadCrumbInfo);
   },
 };
+
 </script>
 
 <style></style>

@@ -1,5 +1,5 @@
 <template>
-  <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
+  <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white " data-simplebar>
     <div class="sidebar-inner px-2 pt-3">
       <ul class="nav flex-column pt-3 pt-md-0">
         <li class="nav-item" :class="{ active: curPage == 'MainPage' }" @click="changePage('MainPage')">
@@ -63,8 +63,10 @@ export default {
   name: 'SideBar',
   data() {
     return {
+
       curPage: 'MainPage',
       isSearch: false,
+
     };
   },
   methods: {
@@ -74,6 +76,7 @@ export default {
     },
     changeIsSearch() {
       this.isSearch = !this.isSearch;
+
     },
   },
 };
