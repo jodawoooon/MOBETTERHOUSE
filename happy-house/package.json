@@ -18,10 +18,12 @@
     "bootstrap": "^5.0.1",
     "core-js": "^3.6.5",
     "fa-icons": "^0.2.0",
+    "node-pre-gyp": "^0.17.0",
     "vue": "^2.6.11",
     "vue-alertify": "^1.1.0",
     "vue-router": "^3.5.1",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
