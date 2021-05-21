@@ -2,8 +2,16 @@
   <main class="content">
     <div class="main bg-light p-4">
       <!-- searchBar start -->
-      <input type="text" />
-      <button>검색</button>
+      <div class="row mb-3">
+        <div class="col-3"></div>
+        <div class="col-4">
+          <input type="text" class="form-control" id="searchText" />
+        </div>
+        <div class="col-2">
+          <input type="button" id="btnSearch" class="btn btn-warning ml-3" value="검색" />
+        </div>
+        <div class="col-3"></div>
+      </div>
       <!-- searchBar end -->
 
       <div class="row m-1">
@@ -35,18 +43,17 @@
 
 <script>
 export default {
-  naem: 'SearchDong',
+  naem: 'SearchApt',
   data() {
-    return {
-      breadCrumbInfo: {
-        title: 'SearchApt',
-        subTitle: '아파트 이름으로 매물 / 거래정보 검색',
-        desc: '원하는 지역의 매물정보를 확인해보세요.',
-      },
-    };
+    return {};
   },
   mounted() {
-    this.$emit('change-page', this.breadCrumbInfo);
+    this.$store.commit('SET_BREADCRUMB_INFO', {
+      title: 'SearchApt',
+      subTitle: '아파트 이름으로 매물 / 거래정보 검색',
+      desc: '원하는 지역의 매물정보를 확인해보세요.',
+    });
+    this.$store.commit('SET_CUR_PAGE', 'searchApt');
   },
 };
 </script>

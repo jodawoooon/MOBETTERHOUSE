@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <side-bar></side-bar>
-    <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
-    <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
-    <router-view @change-page="changePage"></router-view>
+    <side-bar v-if="getIsLogin" ></side-bar>
+
+    <nav-bar v-if="getIsLogin" />
+    <bread-crumb v-if="getIsLogin" ></bread-crumb>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -11,35 +12,32 @@
 import SideBar from './components/SideBar.vue';
 import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
+//import Index from './components/Index.vue';
+
+// for bootstrap 5
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'App',
   data() {
-    return {
-      isLogin: true,
-      userInfo: {
-        userName: '손동우',
-        userEmail: 'ssafy@ssafy.com',
-      },
-      breadCrumbInfo: {
-        title: '',
-        subTitle: '',
-        desc: '',
-      },
-    };
+    return {};
   },
   components: {
+    //Index,
     SideBar,
     NavBar,
     BreadCrumb,
   },
-  methods: {
-    changePage(breadCrumbInfo) {
-      console.log(breadCrumbInfo);
-      this.breadCrumbInfo = breadCrumbInfo;
-    },
+  computed: {
+    ...mapGetters(['getIsLogin']),
   },
+  methods: {},
 };
 </script>
 
-<style src="./assets/css/volt.css"></style>
-<style></style>
+<style>
+@import "./assets/css/volt.css"
+</style>
