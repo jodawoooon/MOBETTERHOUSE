@@ -27,12 +27,12 @@
       <div class="row m-1">
         <div class="col-4" id="apartInfo">
           <!-- tempInfo start -->
-          <div v-for="i in 5" :key="i" class="apart row" id="apartInfo - ' + (i + 1) + '">
+          <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="apartInfo - (index + 1)">
             <div class="col-8">
-              <h5>Apartment Name {{ i }}</h5>
-              <p class="m-0">거래금액: dealAmount</p>
-              <p class="m-0">전용면적: area</p>
-              <p class="m-0">등록일: dealDate</p>
+              <h5>{{ house.aptName }}</h5>
+              <p class="m-0">거래금액: {{ house.dealAmount }}</p>
+              <p class="m-0">전용면적: {{ house.area }}</p>
+              <p class="m-0">등록일: {{ house.dealDate }}</p>
             </div>
             <div class="col align-self-center" style="text-align: center">
               <i class="bi bi-star bookmarkStar" id="bookmarkStar' + (i + 1) + '" aria-hidden="true" style="color: rgb(255, 226, 95); font-size: 25px">
@@ -52,10 +52,47 @@
 </template>
 
 <script>
+import http from '@/common/axios.js';
+import router from '@/routers/routers.js';
+
 export default {
   name: 'SearchDong',
   data() {
-    return {};
+    return {
+      houseList: [],
+      houseListCount: 0,
+      limit: 10,
+      offset: 0,
+      searchWord: '',
+    };
+  },
+  methods: {
+    searchList() {
+      console.log('searchList() is called!!!!!!');
+      if (this.searchWord == '') {
+        console.log('searchWord is empty');
+        http
+          .get('/house', {
+            params: {
+              limit: this.limit,
+              offset: this.offset,
+            },
+          })
+          .then(({ data }) => {
+            console.log('searchList : ');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            } else {
+              this.houseList = data.list;
+              this.houseListCount = data.count;
+            }
+          });
+      }
+    },
+  },
+  created() {
+    this.searchList();
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {

@@ -3,9 +3,6 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-// import http from '@/common/axios.js';
-// import router from '@/routers/routers.js';
-
 export default new Vuex.Store({
   state: {
     userInfo: {
