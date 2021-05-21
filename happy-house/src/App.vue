@@ -1,11 +1,10 @@
 <template>
   <div id="app">
+    <side-bar></side-bar>
 
-    <side-bar @change-page="changePage"></side-bar>
-
-    <nav-bar :isLogin="isLogin" :userInfo="userInfo"></nav-bar>
-    <bread-crumb :breadCrumbInfo="breadCrumbInfo"></bread-crumb>
-    <router-view @change-page="changePage"></router-view>
+    <nav-bar />
+    <bread-crumb></bread-crumb>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -18,18 +17,7 @@ import BreadCrumb from './components/BreadCrumb.vue';
 export default {
   name: 'App',
   data() {
-    return {
-      isLogin: true,
-      userInfo: {
-        userName: '손동우',
-        userEmail: 'ssafy@ssafy.com',
-      },
-      breadCrumbInfo: {
-        title: '',
-        subTitle: '',
-        desc: '',
-      },
-    };
+    return {};
   },
   components: {
     //Index,
@@ -37,16 +25,8 @@ export default {
     NavBar,
     BreadCrumb,
   },
-  methods: {
-    changePage(breadCrumbInfo) {
-      console.log(breadCrumbInfo);
-      this.breadCrumbInfo = breadCrumbInfo;
-    },
-    loginSuccess( userInfo ){
-      this.isLogin = true;
-      this.userInfo = userInfo;
-    }
-  },
+  computed: {},
+  methods: {},
 };
 </script>
 

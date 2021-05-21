@@ -55,19 +55,17 @@
 export default {
   name: 'SearchDong',
   data() {
-    return {
-      breadCrumbInfo: {
-        title: 'SearchDong',
-        subTitle: '동으로 매물 / 거래정보 검색',
-        desc: '원하는 지역의 매물정보를 확인해보세요.',
-      },
-    };
+    return {};
   },
   mounted() {
-    this.$emit('change-page', this.breadCrumbInfo);
+    this.$store.commit('SET_BREADCRUMB_INFO', {
+      title: 'SearchDong',
+      subTitle: '동으로 매물 / 거래정보 검색',
+      desc: '원하는 지역의 매물정보를 확인해보세요.',
+    });
+    this.$store.commit('SET_CUR_PAGE', 'searchDong');
   },
 };
-
 </script>
 
 <style></style>

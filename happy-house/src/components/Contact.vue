@@ -27,16 +27,15 @@
 export default {
   name: 'Contact',
   data() {
-    return {
-      breadCrumbInfo: {
-        title: 'Contact',
-        subTitle: '문의',
-        desc: '자유롭게 문의하세요.',
-      },
-    };
+    return {};
   },
   mounted() {
-    this.$emit('change-page', this.breadCrumbInfo);
+    this.$store.commit('SET_BREADCRUMB_INFO', {
+      title: 'Contact',
+      subTitle: '문의',
+      desc: '자유롭게 문의하세요.',
+    });
+    this.$store.commit('SET_CUR_PAGE', 'contact');
   },
 };
 </script>

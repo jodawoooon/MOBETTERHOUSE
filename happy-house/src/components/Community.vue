@@ -17,7 +17,12 @@ export default {
     };
   },
   mounted() {
-    this.$emit('change-page', this.breadCrumbInfo);
+    this.$store.commit('SET_BREADCRUMB_INFO', {
+      title: 'Community',
+      subTitle: '커뮤니티',
+      desc: '커뮤니티에서 자유롭게 소통하세요.',
+    });
+    this.$store.commit('SET_CUR_PAGE', 'community');
   },
 };
 </script>
