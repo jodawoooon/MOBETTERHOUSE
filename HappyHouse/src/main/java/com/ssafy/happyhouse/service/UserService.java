@@ -6,8 +6,8 @@ import com.ssafy.happyhouse.dto.UserResultDto;
 
 public interface UserService {
 	public UserDto userRegister(UserDto userDto);
-	public UserResultDto userEdit(UserDto userDto);
-	public UserDto userFindPass(UserDto userDto);
-	public UserResultDto userSecession(UserDto userDto);
+	public UserDto userEdit(UserDto userDto);
+	public UserDto userFindPass(String userEmail);
+	public UserResultDto userSecession(String userEmail);
 	public UserDto userInfo(String userEmail);
 }

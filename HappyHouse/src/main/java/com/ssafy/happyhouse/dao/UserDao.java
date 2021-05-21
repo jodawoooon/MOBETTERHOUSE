@@ -8,8 +8,8 @@ import com.ssafy.happyhouse.dto.UserDto;
 public interface UserDao {
 	public int userRegister(UserDto userDto);
 	public int userEdit(UserDto userDto);
-	public UserDto userFindPass(UserDto userDto);
-	public int userSecession(UserDto userDto);
+	public UserDto userFindPass(String userEmail);
+	public int userSecession(String userEmail);
 	public UserDto userInfo(String userEmail);
 	
 }

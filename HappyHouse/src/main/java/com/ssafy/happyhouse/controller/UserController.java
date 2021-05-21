@@ -43,19 +43,19 @@ public class UserController {
 	public ResponseEntity<UserDto> userRegister(@RequestBody UserDto dto, HttpSession session){
 		
 		UserDto userDto = service.userRegister(dto);
-		
-		if( userDto != null ) {
-			session.setAttribute("userDto", userDto);
-			return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+		UserDto resultDto = service.userInfo(userDto.getUserEmail());
+		if( resultDto != null ) {
+			session.setAttribute("userDto", resultDto);
+			return new ResponseEntity<UserDto>(resultDto, HttpStatus.OK);
 		}
-		return new ResponseEntity<UserDto>(userDto, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<UserDto>(resultDto, HttpStatus.NOT_FOUND);
 	}
 	
 	
-	@DeleteMapping(value = "/user")
-	public ResponseEntity<UserResultDto> userSecession(@RequestBody UserDto dto, HttpSession session){
+	@DeleteMapping(value = "/user/{userEmail}")
+	public ResponseEntity<UserResultDto> userSecession(@PathVariable String userEmail, HttpSession session){
 		
-		UserResultDto userResultDto = service.userSecession(dto);
+		UserResultDto userResultDto = service.userSecession(userEmail);
 		
 		if( userResultDto.getResult() == SUCCESS ) {
 			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.OK);
@@ -64,16 +64,16 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping(value = "/user/{userId}")
-	public ResponseEntity<UserResultDto> userEdit(UserDto dto, HttpSession session){
+	@PostMapping(value = "/user/{userEmail}")
+	public ResponseEntity<UserDto> userEdit(@PathVariable String userEmail,@RequestBody UserDto userDto, HttpSession session){
 		
-		UserResultDto userResultDto = service.userEdit(dto);
+		UserDto resultDto = service.userEdit(userDto);
 		
-		if( userResultDto.getResult() == SUCCESS ) {
-			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+		if( resultDto != null ) {
+			session.setAttribute("userDto", resultDto);
+			return new ResponseEntity<UserDto>(resultDto, HttpStatus.OK);
 		}
+		return new ResponseEntity<UserDto>(resultDto, HttpStatus.NOT_FOUND);
 	}
 	
 	@GetMapping(value = "/user/{userEmail}")
@@ -89,11 +89,11 @@ public class UserController {
 		
 	}
 	
-	@GetMapping(value = "/user/find")
-	public UserDto userFindPass(UserDto userDto) {
-		System.out.println(userDto.getUserEmail());
-		UserDto findDto = service.userFindPass(userDto);
-		System.out.println(findDto);
+	@GetMapping(value = "/user/find/{userEmail}")
+	public UserDto userFindPass(@PathVariable String userEmail, HttpSession session) {
+		System.out.println(userEmail);
+		UserDto findDto = service.userFindPass(userEmail);
+		
 		if (findDto != null) {
 			return findDto;
 		} else {
