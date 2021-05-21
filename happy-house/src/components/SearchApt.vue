@@ -2,8 +2,16 @@
   <main class="content">
     <div class="main bg-light p-4">
       <!-- searchBar start -->
-      <input type="text" />
-      <button>검색</button>
+      <div class="row mb-3">
+        <div class="col-3"></div>
+        <div class="col-4">
+          <input type="text" class="form-control" id="searchText" />
+        </div>
+        <div class="col-2">
+          <input type="button" id="btnSearch" class="btn btn-warning ml-3" value="검색" />
+        </div>
+        <div class="col-3"></div>
+      </div>
       <!-- searchBar end -->
 
       <div class="row m-1">

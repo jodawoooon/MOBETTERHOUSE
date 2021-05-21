@@ -1,6 +1,25 @@
 <template>
   <main class="content">
-    <h1>This is Contact.vue</h1>
+    <div class="row">
+      <span>
+        <span class="d-inline-block"><font-awesome-icon :icon="['fas', 'map-marker']" class="d-flex justify-content-center" style="width:30px"/></span>
+        <span class="d-inline-block"><h6>(SSAFY) 서울시 강남구 테헤란로 멀티캠퍼스</h6></span>
+      </span>
+    </div>
+    <div class="row">
+      <span>
+        <span class="d-inline-block"><font-awesome-icon :icon="['fas', 'phone']" class="d-flex justify-content-center" style="width:30px"/></span>
+        <span class="d-inline-block"><h6>1544-9001</h6></span>
+      </span>
+    </div>
+    <div class="row">
+      <span>
+        <span class="d-inline-block"><font-awesome-icon :icon="['fas', 'envelope']" class="d-flex justify-content-center" style="width:30px"/></span>
+        <span class="d-inline-block">
+          <h6><a href="#">admin@ssafy.com</a></h6>
+        </span>
+      </span>
+    </div>
   </main>
 </template>
 
