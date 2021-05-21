@@ -49,16 +49,18 @@
                             
                         </div>
 
-                        <div class="row" style="float: right;">
-                            <div class="col-md-6 mb-3">
+                        <div class="row">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <button type="submit" @click="saveInfo" class="btn btn-dark">수정</button>
+                                   
+                                    <button type="submit" @click="saveInfo" class="btn btn-dark"><font-awesome-icon :icon="['fas', 'user-edit']"/> 수정</button>
                                     
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <button type="submit"  @click="deleteInfo" class="btn btn-danger">탈퇴</button>
+                                    
+                                    <button type="submit"  @click="deleteInfo" class="btn btn-danger"><font-awesome-icon :icon="['fas', 'eraser']"/> 탈퇴</button>
                                     
                                 </div>
                             </div>

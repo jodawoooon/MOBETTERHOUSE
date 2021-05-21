@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userInfo: {
-      isLogin: true,
+      isLogin: false,
       userEmail: 'ssafy@ssafy.com',
       userPassword: '1234',
       userName: '손동우',
@@ -31,7 +31,7 @@ export default new Vuex.Store({
       state.curPage = curPage;
     },
     SET_LOGIN(state, payload) {
-      state.userInfo.isLogin = payload.isLogin;
+      state.userInfo.isLogin = true;
       state.userInfo.userPassword = payload.userPassword;
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
@@ -40,8 +40,8 @@ export default new Vuex.Store({
       state.userInfo.userRank = payload.userRank;
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
-    SET_LOGOUT(state, payload) {
-      state.userInfo.isLogin = payload.isLogin;
+    SET_LOGOUT(state) {
+      state.userInfo.isLogin = false;
     },
     SET_INFO(state, payload) {
       state.userInfo.userPassword = payload.userPassword;

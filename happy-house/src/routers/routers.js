@@ -56,5 +56,9 @@ export default new VueRouter({
       path: '/mypage',
       component: MyPage,
     },
+    {
+      path: '/index',
+      component : Index,
+    }
   ],
 });
