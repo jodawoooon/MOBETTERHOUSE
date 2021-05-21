@@ -14,6 +14,10 @@ import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
 //import Index from './components/Index.vue';
 
+// for bootstrap 5
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
+
 import { mapGetters } from 'vuex';
 
 export default {
@@ -34,5 +38,6 @@ export default {
 };
 </script>
 
-<style src="./assets/css/volt.css"></style>
-<style></style>
+<style>
+@import "./assets/css/volt.css"
+</style>
