@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ssafy.happyhouse.dao.UserDao">
 
-    <!-- <insert id="userRegister" parameterType="com.ssafy.happyhouse.dto.UserDto">
+    <insert id="userRegister" parameterType="com.ssafy.happyhouse.dto.UserDto">
         insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date)
         values (#{userName}, #{userPassword}, #{userEmail}, '', now())
     </insert>
@@ -29,11 +29,8 @@
 	<select id="userFind" parameterType="com.ssafy.happyhouse.dto.UserDto">
 		select user_seq, user_name, user_password, user_email, user_profile_image_url, user_register_date 
 		from user where user_email = #{userEmail} and user_name = #{userName}
-	</select> -->
-	
-	<select id="userList" resultType="com.ssafy.happyhouse.dto.UserDto">
-		select user_seq, user_name, user_password, user_email, user_profile_image_url, user_register_date 
-		from user
 	</select>
+	
+	
 	
 </mapper>

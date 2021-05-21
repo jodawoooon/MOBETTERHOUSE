@@ -17,15 +17,14 @@ public class UserServiceImpl implements UserService{
 	private static final int FAIL = -1;
 	
 	@Override
-	public UserResultDto userRegister(UserDto userDto) {
-		UserResultDto userResultDto = new UserResultDto();
-		if( userDao.userRegister(userDto) == 1 ) {
-			userResultDto.setResult(SUCCESS);
+	public UserDto userRegister(UserDto userDto) {
+		
+		if( userDto != null && userDao.userRegister(userDto) == 1 ) {
+			return userDto;
 		}else {
-			userResultDto.setResult(FAIL);
+			return null;
 		}
 		
-		return userResultDto;
 	}
 	
 	@Override
