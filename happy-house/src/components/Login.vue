@@ -32,10 +32,7 @@
                                 <!-- End of Form -->
                                 <div class="d-flex justify-content-between align-items-top mb-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="remember">
-                                        <label class="form-check-label mb-0" for="remember">
-                                          자동 로그인
-                                        </label>
+                                       
                                     </div>
                                     <div><button class="small text-right" @click="showPwFindModal">비밀번호 찾기</button></div>
                                 </div>

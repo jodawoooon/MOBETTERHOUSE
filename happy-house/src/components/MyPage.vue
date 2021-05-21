@@ -50,20 +50,17 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3">
+                            
+                            <div class="col mb-3">
                                 <div class="form-group">
                                    
-                                    <button type="submit" @click="saveInfo" class="btn btn-dark"><font-awesome-icon :icon="['fas', 'user-edit']"/> 수정</button>
+                                    <button type="submit" style="float:right;" @click="saveInfo" class="btn btn-dark"><font-awesome-icon :icon="['fas', 'user-edit']"/> 수정</button>
+                                    <button type="submit"  style="float:right;" @click="deleteInfo" class="btn btn-danger me-3"><font-awesome-icon :icon="['fas', 'eraser']"/> 탈퇴</button>
                                     
+
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    
-                                    <button type="submit"  @click="deleteInfo" class="btn btn-danger"><font-awesome-icon :icon="['fas', 'eraser']"/> 탈퇴</button>
-                                    
-                                </div>
-                            </div>
+                            
                         </div>
                         
                         
