@@ -10,7 +10,7 @@
           </div>
 
           <ul class="navbar-nav align-items-center">
-            <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="$store.state.userInfo.userProfileImageUrl" />
+            <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="requireImg" />
 
             <li class="nav-item m-2" id="navItem1">
               <strong>{{ $store.state.userInfo.userName }}({{ $store.state.userInfo.userEmail }})</strong>님 환영합니다.
@@ -54,6 +54,18 @@ export default {
       this.$router.push("/");
     }
   },
+  computed : {
+        requireImg : function(){
+      
+            if( this.$store.state.userInfo.userProfileImageUrl == '' ) {
+                return require('../assets/img/noProfile.png')
+            }else{
+                return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+            }
+        },
+        
+    },
+  
 };
 </script>
 

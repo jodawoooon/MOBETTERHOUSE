@@ -104,11 +104,15 @@ export default {
           console.log("JoinVue - data : ");
           console.log(data);
 
-          // join -> login 성공 전달
+          // join 성공 전달
           this.$store.commit('SET_LOGIN', {
             isLogin : true,
             userName: data.userName,
             userEmail : data.userEmail,
+            userMessage : data.userMessage,
+            userPassword : data.userPassword,
+            userPhone : data.userPhone,
+            userRank : data.userRank,
             userProfileImageUrl: data.userProfileImageUrl,
           });
           // home 로 이동
