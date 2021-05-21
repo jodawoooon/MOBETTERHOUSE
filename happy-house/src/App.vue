@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <side-bar></side-bar>
+    <side-bar v-if="getIsLogin" ></side-bar>
 
     <nav-bar v-if="getIsLogin" />
-    <bread-crumb></bread-crumb>
+    <bread-crumb v-if="getIsLogin" ></bread-crumb>
     <router-view></router-view>
   </div>
 </template>

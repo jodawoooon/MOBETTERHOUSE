@@ -16,7 +16,7 @@
               <strong>{{ $store.state.userInfo.userName }}({{ $store.state.userInfo.userEmail }})</strong>님 환영합니다.
             </li>
             <li class="nav-item" id="navItem2">
-              <button id="logout" class="nav-item btn btn-light"><i class="bi bi-person-x-fill"></i> Logout</button>
+              <button id="logout" @click="logout" class="nav-item btn btn-light"><i class="bi bi-person-x-fill"></i> Logout</button>
             </li>
             <li class="nav-item" id="navItem3" :class="{ active: $store.state.curPage == 'mypage' }" @click="changePage('mypage')">
               <router-link to="/mypage" id="myPage" class="nav-item btn btn-light"> <i class="bi bi-person-square"></i> My Page </router-link>
@@ -45,6 +45,14 @@ export default {
     changePage(page) {
       if (page === 'mypage') this.$emit('change-page', { page: page, breadCrumbInfo: this.mypageBreadCrumb });
     },
+    logout(){
+      this.$store.commit('SET_LOGOUT', {
+            isLogin : false,
+            
+          });
+
+      this.$router.push("/");
+    }
   },
 };
 </script>

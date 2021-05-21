@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userInfo: {
-      isLogin: true,
+      isLogin: false,
       userEmail: 'ssafy@ssafy.com',
       userPassword: '1234',
       userName: '손동우',
@@ -26,6 +26,14 @@ export default new Vuex.Store({
     SET_CUR_PAGE(state, curPage) {
       state.curPage = curPage;
     },
+    SET_LOGIN(state, payload){
+      state.userInfo.isLogin = payload.isLogin;
+      state.userInfo.userName = payload.userName;
+      state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
+    },
+    SET_LOGOUT(state, payload) {
+      state.userInfo.isLogin = payload.isLogin;
+    }
   },
   actions: {},
   getters: {

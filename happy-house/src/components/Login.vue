@@ -92,12 +92,13 @@ export default {
           console.log(data);
 
           // login 성공 전달
-          this.$emit("call-parent-loginSuccess", {
+          this.$store.commit('SET_LOGIN', {
+            isLogin : true,
             userName: data.userName,
             userProfileImageUrl: data.userProfileImageUrl,
           });
-          // board 로 이동
-          this.$router.push("/search");
+          // home 로 이동
+          this.$router.push("/home");
         })
         .catch((error) => {
           console.log("LoginVue: error : ");
