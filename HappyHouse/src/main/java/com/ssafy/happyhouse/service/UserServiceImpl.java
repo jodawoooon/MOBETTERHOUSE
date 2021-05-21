@@ -28,27 +28,26 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public UserResultDto userEdit(UserDto userDto) {
-		UserResultDto userResultDto = new UserResultDto();
-		if( userDao.userEdit(userDto) == 1 ) {
-			userResultDto.setResult(SUCCESS);
+	public UserDto userEdit(UserDto userDto) {
+		
+		if( userDto != null && userDao.userEdit(userDto) == 1 ) {
+			return userDto;
 		}else {
-			userResultDto.setResult(FAIL);
+			return null;
 		}
 		
-		return userResultDto;
 	}
 	
 	@Override
-	public UserDto userFindPass(UserDto userDto) {
+	public UserDto userFindPass(String userEmail) {
 		// TODO Auto-generated method stub
-		return userDao.userFindPass(userDto);
+		return userDao.userFindPass(userEmail);
 	}
 	
 	@Override
-	public UserResultDto userSecession(UserDto userDto) {
+	public UserResultDto userSecession(String userEmail) {
 		UserResultDto userResultDto = new UserResultDto();
-		if( userDao.userSecession(userDto) == 1 ) {
+		if( userDao.userSecession(userEmail) == 1 ) {
 			userResultDto.setResult(SUCCESS);
 		}else {
 			userResultDto.setResult(FAIL);

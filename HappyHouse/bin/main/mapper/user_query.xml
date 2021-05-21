@@ -4,24 +4,26 @@
 <mapper namespace="com.ssafy.happyhouse.dao.UserDao">
 
     <insert id="userRegister" parameterType="com.ssafy.happyhouse.dto.UserDto">
-        insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date)
+        insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date, )
         values (#{userName}, #{userPassword}, #{userEmail}, '', now())
     </insert>
     
-    <update id="userEdit" parameterType="com.ssafy.happyhouse.dto.UserDto">
+    <update id="userEdit" parameterType="com.ssafy.happyhouse.dto.UserDto"  >
 		update user set
 		user_name = #{userName},
-		user_password = #{userPassword}
+		user_password = #{userPassword},
+		user_rank = #{userRank},
+		user_message = #{userMessage}
 		where user_email = #{userEmail}
 	</update>
 	
-	<select id="userFindPass" parameterType="com.ssafy.happyhouse.dto.UserDto" resultType="com.ssafy.happyhouse.dto.UserDto">
+	<select id="userFindPass"  parameterType="String" resultType="com.ssafy.happyhouse.dto.UserDto">
 		select *
 		from user 
 		where user_email = #{userEmail} and user_name = #{userName}
 	</select>
 	
-	<delete id="userSecession" parameterType="com.ssafy.happyhouse.dto.UserDto">
+	<delete id="userSecession"  parameterType="String">
 		delete from user
 		where user_email = #{userEmail}
 	</delete>
