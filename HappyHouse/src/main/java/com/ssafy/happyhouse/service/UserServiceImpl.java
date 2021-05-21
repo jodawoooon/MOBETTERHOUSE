@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public UserDto userInfo(UserDto userDto) {
+	public UserDto userInfo(String userEmail) {
 		// TODO Auto-generated method stub
-		return userDao.userInfo(userDto);
+		return userDao.userInfo(userEmail);
 	}
 	
 }

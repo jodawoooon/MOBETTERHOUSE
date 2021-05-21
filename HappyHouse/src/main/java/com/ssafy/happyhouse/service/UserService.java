@@ -9,5 +9,5 @@ public interface UserService {
 	public UserResultDto userEdit(UserDto userDto);
 	public UserDto userFindPass(UserDto userDto);
 	public UserResultDto userSecession(UserDto userDto);
-	public UserDto userInfo(UserDto userDto);
+	public UserDto userInfo(String userEmail);
 }

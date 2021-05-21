@@ -10,6 +10,6 @@ public interface UserDao {
 	public int userEdit(UserDto userDto);
 	public UserDto userFindPass(UserDto userDto);
 	public int userSecession(UserDto userDto);
-	public UserDto userInfo(UserDto userDto);
+	public UserDto userInfo(String userEmail);
 	
 }

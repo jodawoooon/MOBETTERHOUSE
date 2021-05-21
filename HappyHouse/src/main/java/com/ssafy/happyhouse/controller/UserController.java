@@ -76,21 +76,16 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping(value = "/user")
-	public UserDto userInfo(HttpSession session, HttpServletResponse response) {
+	@GetMapping(value = "/user/{userEmail}")
+	public ResponseEntity<UserDto> userInfo(@PathVariable String userEmail, HttpSession session) {
+	
+		UserDto userDto = service.userInfo(userEmail);
 		
-		UserDto userDto = (UserDto) session.getAttribute("userDto");
-		
-		//System.out.println(res);
-//		Gson gson = new Gson();
-//		JsonObject jsonObject = new JsonObject();
-//		jsonObject.addProperty("Email", userDto.getUserEmail());
-//		jsonObject.addProperty("Name", userDto.getUserName());
-//		String jsonStr = gson.toJson(jsonObject);
-//		
-		
-		//System.out.println(jsonStr);
-		return userDto;
+		if( userDto != null ) {
+			session.setAttribute("userDto", userDto);
+			return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+		}
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.NOT_FOUND);
 		
 	}
 	
