@@ -25,7 +25,7 @@
                                 <div class="form-group mb-4">
                                     <label for="password">Password</label>
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon2"><font-awesome-icon :icon="['fas', 'unlock']"/></span>
+                                        <span class="input-group-text" id="basic-addon2"><font-awesome-icon :icon="['fas', 'key']"/></span>
                                         <input type="password" placeholder="Password" v-model="userPassword" class="form-control" id="password" required>
                                     </div>  
                                 </div>
@@ -34,11 +34,22 @@
                                     <div class="form-check">
                                        
                                     </div>
-                                    <div><button class="small text-right" @click="showPwFindModal">비밀번호 찾기</button></div>
+                                    <div><button class="btn btn-sm text-right" @click="showPwFindModal">비밀번호 찾기</button></div>
                                 </div>
                             </div>
                             <div class="d-grid">
                                 <button class="btn btn-dark"  @click="login">Sign in</button>
+                            </div>
+                            <div class="mt-3 mb-4 text-center">
+                                <span class="fw-normal">or</span>
+                            </div>
+                            <div class="d-flex justify-content-center my-4">
+                              <img src="../assets/img/kakao_login_medium_wide.png">
+                                <!-- <a href="#" class="btn btn-icon-only btn-pill btn-outline-gray-400 text-facebook me-2" type="button" aria-label="kakao button" title="kakao button">
+                                    <font-awesome-icon :icon="['fas', 'facebook']"/> 
+                                    
+                                </a> -->
+                                
                             </div>
                         </form>
                         

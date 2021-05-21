@@ -94,18 +94,18 @@
                     </div>
                     <div class="col-12">
                         <div class="card card-body shadow-sm mb-4">
-                            <h2 class="h5 mb-4">Select profile photo</h2>
+                            <h2 class="h5 mb-4">프로필 사진 선택</h2>
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
                                     <!-- Avatar -->
                                     <div class="user-avatar xl-avatar">
-                                        <img class="rounded" :src="requireImg" alt="change avatar">
+                                        <img class="rounded" v-bind:src="file" alt="change avatar">
                                     </div>
                                 </div>
                                 <div class="file-field">
                                     <div class="d-flex justify-content-xl-center ms-xl-3">
                                        <div class="d-flex">
-                                          <span class="icon icon-md"><span class="fas fa-paperclip me-3"></span></span> <input type="file">
+                                          <span class="icon icon-md"><font-awesome-icon :icon="['fas', 'paperclip']" class="me-3"/></span> <input @change="changeFile" type="file" id="inputFileUploadInsert">
                                           <div class="d-md-block text-left">
                                              <div class="fw-normal text-dark mb-1">Choose Image</div>
                                              <div class="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
@@ -138,11 +138,55 @@ export default {
             name : this.$store.state.userInfo.userName,
             password : this.$store.state.userInfo.userPassword,
             rank : this.$store.state.userInfo.userRank,
-            message : this.$store.state.userInfo.userMessage
+            message : this.$store.state.userInfo.userMessage,
+            file : '',
         }
     },
     methods: 
     {
+        changeFile(fileEvent) {
+
+
+            if( fileEvent.target.files && fileEvent.target.files.length > 0 ){
+
+            const file = fileEvent.target.file;
+            this.file = URL.createObjectURL(file);
+          
+        }
+
+        var formData = new FormData();
+        formData.append("userEmail", this.$store.state.userInfo.userEmail);
+
+        // file upload
+        var attachFiles = document.querySelector("#inputFileUploadInsert");
+        console.log("InsertProfileImg: data 1 : ");
+        console.log(attachFiles);
+
+        formData.append("file", attachFiles.file);
+        
+
+        http.post(
+          '/user/profile',
+            formData,
+          { headers: { 'Content-Type': 'multipart/form-data' } })
+        
+          .then(({ data }) => {
+            console.log("InsertProfileImg: data : ");
+            console.log(data);
+            if( data.result == 'login' ){
+              this.$router.push("/login")
+            }else{
+              this.$alertify.success('프로필 사진이 등록되었습니다');
+              
+            }
+          })
+          .catch((error) => {
+            console.log("InsertProfileImg: error ");
+            console.log(error);
+          });
+
+
+      },
         updateName : function(event){
             var updatedText = event.target.value;
             this.name = updatedText;

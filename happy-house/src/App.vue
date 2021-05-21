@@ -45,4 +45,5 @@ export default {
 
 <style>
 @import './assets/css/volt.css';
+
 </style>

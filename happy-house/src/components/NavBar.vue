@@ -10,16 +10,41 @@
           </div>
 
           <ul class="navbar-nav align-items-center">
-            <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="requireImg" />
-
-            <li class="nav-item m-2" id="navItem1">
+            
+            <!-- 기존 nav바 -->
+            <!-- <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="requireImg" />
+            
+            <li class="nav-item m-2" id="navItem1" >
               <strong>{{ $store.state.userInfo.userName }}({{ $store.state.userInfo.userEmail }})</strong>님 환영합니다.
             </li>
+            
             <li class="nav-item" id="navItem2">
               <button id="logout" @click="logout" class="nav-item btn btn-light"><font-awesome-icon :icon="['fas', 'sign-out-alt']"/> Logout</button>
             </li>
             <li class="nav-item" id="navItem3" :class="{ active: $store.state.curPage == 'mypage' }" @click="changePage('mypage')">
               <router-link to="/mypage" id="myPage" class="nav-item btn btn-light"> <font-awesome-icon :icon="['fas', 'user-circle']"/> My Page </router-link>
+            </li> -->
+
+
+            <!-- dropdown nav바 -->
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="media d-flex align-items-center">
+                <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="requireImg">
+                <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+                  <span class="mb-0 fw-bold"><strong>{{ $store.state.userInfo.userName }}({{ $store.state.userInfo.userEmail }})</strong></span>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-0">
+              <li class="dropdown-item rounded-top fw-bold" id="navItem3" :class="{ active: $store.state.curPage == 'mypage' }" @click="changePage('mypage')">
+              <router-link to="/mypage" id="myPage" class="nav-item btn btn-light"> <font-awesome-icon :icon="['fas', 'user-circle']"/> My Page </router-link>
+            </li>
+                <div role="separator" class="dropdown-divider my-0"></div>
+                <li class="dropdown-item rounded-bottom fw-bold" id="navItem2">
+              <button id="logout" @click="logout" class="nav-item btn btn-light"><font-awesome-icon :icon="['fas', 'sign-out-alt']" class="text-danger"/> Logout</button>
+            </li>
+            </div>
             </li>
           </ul>
         </div>
