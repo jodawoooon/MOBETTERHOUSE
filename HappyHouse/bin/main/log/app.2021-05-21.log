@@ -485,3 +485,47 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 2021-05-21 17:01:10 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
 2021-05-21 17:01:10 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
 2021-05-21 17:01:10 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-21 17:01:10 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.583 seconds (JVM running for 377.351) 
+2021-05-21 17:01:10 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-21 17:01:12 [Thread-56] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-21 17:01:12 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 5245 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-21 17:01:12 [restartedMain] DEBUG c.s.h.HappyHouseApplication - Running with Spring Boot v2.4.5, Spring v5.3.6 
+2021-05-21 17:01:12 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-21 17:01:12 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-21 17:01:12 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-21 17:01:12 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-21 17:01:12 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-21 17:01:12 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-21 17:01:12 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 190 ms 
+2021-05-21 17:01:12 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-21 17:01:12 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:01:12 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:01:12 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:01:12 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:01:13 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-21 17:01:13 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-21 17:01:13 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-21 17:01:13 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.764 seconds (JVM running for 379.611) 
+2021-05-21 17:01:13 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-21 17:02:19 [Thread-63] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-21 17:02:19 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 5245 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-21 17:02:19 [restartedMain] DEBUG c.s.h.HappyHouseApplication - Running with Spring Boot v2.4.5, Spring v5.3.6 
+2021-05-21 17:02:19 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-21 17:02:19 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-21 17:02:19 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-21 17:02:19 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-21 17:02:19 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-21 17:02:19 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-21 17:02:19 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 223 ms 
+2021-05-21 17:02:19 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-21 17:02:19 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:02:19 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:02:19 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:02:19 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a17b4bd1.addInterceptors() 
+2021-05-21 17:02:19 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-21 17:02:19 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-21 17:02:19 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-21 17:02:19 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.65 seconds (JVM running for 446.298) 
+2021-05-21 17:02:19 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-21 17:02:21 [RMI TCP Connection(24)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2021-05-21 17:02:21 [RMI TCP Connection(24)-127.0.0.1] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
