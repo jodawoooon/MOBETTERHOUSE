@@ -9,8 +9,17 @@
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <div>
-                                    <label for="name">Name</label>
-                                    <input class="form-control" id="name" type="text" placeholder="Enter your name" required>
+                                    <label for="userName">Name</label>
+                                    <input :value="this.$store.state.userInfo.userName" class="form-control" id="userName" type="text" placeholder="Enter your name" required>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="userEmail">Email</label>
+                                    <input :value="this.$store.state.userInfo.userEmail" class="form-control" id="userEmail" type="email" placeholder="ssafy@ssafy.com" required>
                                 </div>
                             </div>
                             
@@ -18,28 +27,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
-                                    <label for="userid">ID</label>
-                                    <input class="form-control" id="userid" type="text" placeholder="Enter your id" required>
+                                    <label for="userPassword">Password</label>
+                                    <input :value="this.$store.state.userInfo.userPassword" class="form-control" id="userPassword" type="password" placeholder="********" required>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input class="form-control" id="password" type="password" placeholder="********" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input class="form-control" id="email" type="email" placeholder="ssafy@ssafy.com" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input class="form-control" id="phone" type="number" placeholder="012-1234-4910" required>
+                                    <label for="userRank">Rank</label>
+                                    <input :value="this.$store.state.userInfo.userRank" class="form-control" id="userRank" type="text" placeholder="일반회원" required>
                                 </div>
                             </div>
                         </div>
@@ -47,8 +42,8 @@
                         <div class="row">
                             <div class="col-sm-12 mb-3">
                                 <div class="form-group">
-                                    <label for="message">Profile Message</label>
-                                    <input class="form-control" id="message" type="text" placeholder="프로필 메세지...." required>
+                                    <label for="userMessage">Profile Message</label>
+                                    <input :value="this.$store.state.userInfo.userMessage" class="form-control" id="userMessage" type="text" placeholder="프로필 메세지...." required>
                                 </div>
                             </div>
                             
@@ -57,7 +52,7 @@
                         <div class="row">
                             <div class="col-md-2 mt-3">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-dark">Save</button>
+                                    <button type="submit" @click="getInfo" class="btn btn-dark">Save</button>
                                 </div>
                             </div>
                             
@@ -73,9 +68,9 @@
                             <div class="profile-cover rounded-top" data-background="../assets/img/profile-cover.jpg"></div>
                             <div class="card-body pb-5">
                                 <img :src="$store.state.userInfo.userProfileImageUrl" class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4" alt="Neil Portrait">
-                                <h4 class="h3">USER NAME</h4>
+                                <h4 class="h3">{{this.$store.state.userInfo.userName}}</h4>
                                 
-                                <p class="text-gray mb-4">프로필메세지 ...........</p>
+                                <p class="text-gray mb-4">{{this.$store.state.userInfo.userMessage}}</p>
                                 
                             </div>
                          </div>
@@ -113,8 +108,64 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueAlertify from "vue-alertify";
+Vue.use(VueAlertify);
+
+import http from "@/common/axios.js";
+
 export default {
     name : 'MyPage',
+    data(){
+        return{
+            userName : '',
+            userPassword : '',
+            userEmail : '',
+           
+            userMessage : '',
+            userProfileImageUrl : '',
+        }
+    },
+    methods: 
+    {
+        getInfo(){
+      
+      http.get("/user/"+ this.userEmail
+          
+         
+
+        )
+        .then(({ data }) => {
+          console.log("UserVue Info - data : ");
+          console.log(data);
+
+          // info 데이터 가져오기
+          this.$store.commit('SET_INFO', {
+            userPassword : data.userPassword,
+            userName: data.userName,
+            userEmail : data.userEmail,
+            userMessage : data.userMessage,
+            
+            userProfileImageUrl: data.userProfileImageUrl,
+          });
+          // home 로 이동
+          this.$router.push("mypage");
+        })
+        .catch((error) => {
+          console.log("UserInfo: error : ");
+          console.log(error);
+          if (error.response.status == "404") {
+            this.$alertify.error("정보확인에 실패했습니다.");
+          } else {
+            this.$alertify.error("Opps!! 서버에 문제가 발생했습니다.");
+          }
+        });
+    },
+    
+    },
+    mounted() {
+       
+    }
 }
 </script>
 

@@ -103,6 +103,11 @@ export default {
           this.$store.commit('SET_LOGIN', {
             isLogin : true,
             userName: data.userName,
+            userEmail : data.userEmail,
+            userMessage : data.userMessage,
+            userPassword : data.userPassword,
+            userPhone : data.userPhone,
+            userRank : data.userRank,
             userProfileImageUrl: data.userProfileImageUrl,
           });
           // home 로 이동

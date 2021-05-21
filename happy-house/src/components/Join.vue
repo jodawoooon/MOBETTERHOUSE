@@ -10,6 +10,16 @@
                                 <h1 class="mb-0 h3">Create account</h1>
                             </div>
                             <form action="#">
+                              <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="userName">name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><i class="fas fa-envelope"></i></span>
+                                        <input type="text" class="form-control" v-model="userName" placeholder="김싸피" id="userName" autofocus required>
+                                    </div>  
+                                </div>
+                                <!-- End of Form -->
+                                
                                 <!-- Form -->
                                 <div class="form-group mb-4">
                                     <label for="email">Email</label>
@@ -82,34 +92,39 @@ export default {
     };
   },
   methods: {
-    login() {
+    join(){
+      
       http
-        .post("/login", {
+        .post("/user", {
+          userName : this.userName,
           userEmail: this.userEmail,
           userPassword: this.userPassword,
         })
         .then(({ data }) => {
-          console.log("LoginVue: data : ");
+          console.log("JoinVue - data : ");
           console.log(data);
 
-          // login 성공 전달
-          this.$emit("call-parent-loginSuccess", {
+          // join -> login 성공 전달
+          this.$store.commit('SET_LOGIN', {
+            isLogin : true,
             userName: data.userName,
+            userEmail : data.userEmail,
             userProfileImageUrl: data.userProfileImageUrl,
           });
-          // board 로 이동
-          this.$router.push("/board");
+          // home 로 이동
+          this.$router.push("/home");
         })
         .catch((error) => {
           console.log("LoginVue: error : ");
           console.log(error);
           if (error.response.status == "404") {
-            this.$alertify.error("이메일 또는 비밀번호를 확인하세요.");
+            this.$alertify.error("회원가입에 실패했습니다.");
           } else {
             this.$alertify.error("Opps!! 서버에 문제가 발생했습니다.");
           }
         });
     },
+    
   },
 };
 </script>
