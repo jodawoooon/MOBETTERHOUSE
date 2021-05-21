@@ -9,10 +9,11 @@ import 'bootstrap';
 
 //fort-awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faStar, faCommentDots, faHome, faPhone, faChevronRight, faBuilding, faMapMarkedAlt, faMapMarker, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faStar as fasStar, faCommentDots, faHome, faPhone, faChevronRight, faBuilding, faMapMarkedAlt, faMapMarker, faEnvelope, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faSearch, faStar, faCommentDots, faHome, faPhone, faChevronRight, faBuilding, faMapMarkedAlt, faMapMarker, faEnvelope);
+library.add(faSearch, fasStar, farStar, faCommentDots, faHome, faPhone, faChevronRight, faBuilding, faMapMarkedAlt, faMapMarker, faEnvelope, faSpinner);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

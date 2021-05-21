@@ -23,7 +23,28 @@
 	</select>
 	
 	<select id="houseSearchAptTotalCount" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="int">
-		SELECT COUNT(*) FROM HOUSEDEAL d
+		SELECT COUNT(*)
+		  FROM HOUSEDEAL d
   		  WHERE d.APTNAME like CONCAT('%', #{searchWord}, '%')
+	</select>
+	
+	<select id="sidoList" resultType="map">
+		SELECT CODE AS SIDO_CODE, NAME AS SIDO_NAME
+		FROM SIDO_CODE
+		ORDER BY NAME ASC
+	</select>
+	
+	<select id="gugunList" parameterType="string" resultType="map">
+		SELECT CODE AS GUGUN_CODE, NAME AS GUGUN_NAME
+		  FROM GUGUN_CODE
+		  WHERE SIDO_CODE=#{sidoCode}
+		  ORDER BY NAME ASC
+	</select>
+	
+	<select id="dongList" parameterType="map" resultType="map">
+		SELECT CODE AS DONG_CODE, NAME AS DONG_NAME
+		  FROM DONG_CODE
+		  WHERE CITY_CODE=#{sidoCode} AND GUGUN_CODE=#{gugunCode}
+		  ORDER BY NAME ASC;
 	</select>
 </mapper>

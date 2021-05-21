@@ -3,7 +3,7 @@
     <side-bar v-if="getIsLogin" ></side-bar>
 
     <nav-bar v-if="getIsLogin" />
-    <bread-crumb v-if="getIsLogin" ></bread-crumb>
+    <bread-crumb></bread-crumb>
     <router-view></router-view>
   </div>
 </template>
@@ -23,7 +23,9 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'App',
   data() {
-    return {};
+    return {
+      size: '5',
+    };
   },
   components: {
     //Index,
@@ -32,7 +34,7 @@ export default {
     BreadCrumb,
   },
   computed: {
-    ...mapGetters(['getIsLogin']),
+    ...mapGetters(['getIsLogin', 'getIsLoading']),
   },
   methods: {},
 };

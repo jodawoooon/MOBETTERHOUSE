@@ -1,11 +1,14 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,53 +30,107 @@ public class HouseContoller {
 	HouseService houseService;
 
 	@GetMapping("/house")
-	public HouseResultDto houseList(@RequestParam int limit, @RequestParam int offset) {
-		System.out.println("/houseList!!!!");
+	public HouseResultDto houseList(int limit, int offset, String searchWord) {
+		System.out.println("/house1!!!!!!");
 		HouseParamDto param = new HouseParamDto();
 		param.setLimit(limit);
 		param.setOffset(offset);
 
 		HouseResultDto result = new HouseResultDto();
-		List<HouseDto> list = houseService.houseList(param);
-		int count = houseService.houseListTotalCount();
-		if (list != null) {
-			result.setResult(1);
-			result.setList(list);
-			result.setCount(count);
-
-			for (HouseDto dto : list) {
+		if (searchWord.equals("")) {
+			System.out.println("/house2!!!!!!");
+			List<HouseDto> list = houseService.houseList(param);
+			for (HouseDto dto : list)
 				System.out.println(dto);
+			int count = houseService.houseListTotalCount();
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
 			}
-			System.out.println("count : " + count);
-		} else {
-			result.setResult(0);
 		}
 		return result;
 	}
 
-	@GetMapping("/house/{searchWord}")
-	public HouseResultDto houseSearchApt(@PathVariable String searchWord) {
-		System.out.println("/houseSearchApt!!!");
-		HouseParamDto param = new HouseParamDto();
-		param.setLimit(10);
-		param.setOffset(0);
-		param.setSearchWord(searchWord);
+//	@GetMapping("/house/{")
+//	public HouseResultDto houseSearchApt(@RequestParam String searchWord) {
+//		System.out.println("/houseSearchApt!!!");
+//		HouseParamDto param = new HouseParamDto();
+//		param.setLimit(10);
+//		param.setOffset(0);
+//		param.setSearchWord(searchWord);
+//
+//		HouseResultDto result = new HouseResultDto();
+//		List<HouseDto> list = houseService.houseSearchApt(param);
+//		int count = houseService.houseSearchAptTotalCount(searchWord);
+//		if (list != null) {
+//			result.setResult(1);
+//			result.setList(list);
+//			result.setCount(count);
+//
+//			for (HouseDto dto : list) {
+//				System.out.println(dto);
+//			}
+//			System.out.println("count : " + count);
+//		} else {
+//			result.setResult(0);
+//		}
+//		return result;
+//	}
 
-		HouseResultDto result = new HouseResultDto();
-		List<HouseDto> list = houseService.houseSearchApt(param);
-		int count = houseService.houseSearchAptTotalCount(searchWord);
-		if (list != null) {
-			result.setResult(1);
-			result.setList(list);
-			result.setCount(count);
-
-			for (HouseDto dto : list) {
-				System.out.println(dto);
-			}
-			System.out.println("count : " + count);
+	@GetMapping("/sido")
+	public ResponseEntity<List<Map<String, String>>> sidoList() {
+		System.out.println("/sidoList!!!");
+		List<Map<String, String>> ret = houseService.sidoList();
+		if (ret.isEmpty() || ret == null) {
+			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
-			result.setResult(0);
+			for (Map<String, String> sido : ret) {
+				System.out.println(sido);
+			}
+			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 		}
-		return result;
+	}
+
+	@GetMapping("/gugun")
+	public ResponseEntity<List<Map<String, String>>> gugunList(String sidoCode) {
+		System.out.println("/gugunList!!!!");
+		System.out.println(sidoCode);
+		List<Map<String, String>> ret = houseService.gugunList(sidoCode);
+		if (ret.isEmpty() || ret == null) {
+			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			for (Map<String, String> gugun : ret) {
+				System.out.println(gugun);
+			}
+			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping("/dong")
+	public ResponseEntity<List<Map<String, String>>> dongList(String sidoCode, String gugunCode) {
+		System.out.println("/dongList!!!!");
+		System.out.println(sidoCode + " / " + gugunCode);
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sidoCode", sidoCode);
+		map.put("gugunCode", gugunCode);
+
+		List<Map<String, String>> ret = houseService.dongList(map);
+		if (ret.isEmpty() || ret == null) {
+			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			for (Map<String, String> dong : ret) {
+				System.out.println(dong);
+			}
+			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		}
 	}
 }
