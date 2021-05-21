@@ -22,7 +22,7 @@
           </select>
         </div>
         <div class="col">
-          <input type="button" class="btn btn-warning ml-3" value="검색" disabled />
+          <input type="button" class="btn btn-warning ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty'" />
         </div>
       </div>
       <!-- selectbar end  -->
@@ -54,8 +54,9 @@
         <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
       </div>
     </div>
-    <div id="paginationWrapper" class="align-self-center">PaginationWrapper</div>
-    <div class="mt-4"></div>
+    <div class="mt-4" v-if="loadingCount == 0">
+      <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
+    </div>
   </main>
 </template>
 
@@ -63,11 +64,13 @@
 import http from '@/common/axios.js';
 import router from '@/routers/routers.js';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import Pagination from './Pagination.vue';
 
 export default {
   name: 'SearchDong',
   components: {
     PulseLoader,
+    Pagination,
   },
   data() {
     return {
@@ -77,6 +80,11 @@ export default {
       houseListCount: 0,
       limit: 10,
       offset: 0,
+
+      // pagination
+      listRowCount: 10,
+      pageLinkCount: 10,
+      currentPageIndex: 1,
 
       selectSidoList: [],
       selectGugunList: [],
@@ -104,6 +112,31 @@ export default {
               limit: this.limit,
               offset: this.offset,
               searchWord: '',
+              searchType: '',
+            },
+          })
+          .then(({ data }) => {
+            console.log('searchList : ');
+            console.log(data);
+            this.loadingCountDown();
+            if (data.result == 'login') {
+              router.push('/login');
+            } else {
+              this.houseList = data.list;
+              this.houseListCount = data.count;
+              // this.kakaoMap(list);
+            }
+          });
+      } else {
+        console.log('this.selectedDongCode is not empty');
+        this.loadingCountUp();
+        http
+          .get('/house', {
+            params: {
+              limit: this.limit,
+              offset: this.offset,
+              searchWord: this.selectedDongCode,
+              searchType: 'dong',
             },
           })
           .then(({ data }) => {
@@ -119,6 +152,62 @@ export default {
           });
       }
     },
+    // kakaoMap(list) {
+    //   var mapContainer = document.querySelector('#map');
+    //   var options = {
+    //     center: new kakao.maps.LatLng(list[1].lat, list[1].lng),
+    //     level: 4,
+    //   };
+
+    //   var map = new kakao.maps.Map(mapContainer, options);
+    //   // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+    //   var mapTypeControl = new kakao.maps.MapTypeControl();
+
+    //   // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+    //   // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+    //   map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+    //   // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+    //   var zoomControl = new kakao.maps.ZoomControl();
+    //   map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    //   var positions = [];
+    //   for (var i = 0; i < list.length; i++) {
+    //     positions.push({
+    //       content: document.getElementById('apartInfo-' + String(i + 1)).innerHTML,
+    //       latlng: new kakao.maps.LatLng(list[i].lat, list[i].lng),
+    //     });
+    //   }
+
+    //   for (var i = 0; i < positions.length; i++) {
+    //     var marker = new kakao.maps.Marker({
+    //       map: map,
+    //       position: positions[i].latlng, // 마커를 표시할 위치
+    //     });
+
+    //     var infowindow = new kakao.maps.InfoWindow({
+    //       content: positions[i].content, // 인포윈도우에 표시할 내용
+    //     });
+
+    //     kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+    //     kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+    //   }
+
+    //   // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    //   function makeOverListener(map, marker, infowindow) {
+    //     return function() {
+    //       infowindow.open(map, marker);
+    //     };
+    //   }
+
+    //   // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    //   function makeOutListener(infowindow) {
+    //     return function() {
+    //       infowindow.close();
+    //     };
+    //   }
+    // },
+
     sidoList() {
       console.log('sidoList() is called!!!!!!');
       this.loadingCountUp();
@@ -173,6 +262,14 @@ export default {
             this.selectDongList = data;
           }
         });
+    },
+    // pagination
+    movePage(pageIndex) {
+      console.log('SearchDong.vue : movePage : pageIndex : ' + pageIndex);
+      this.offset = (pageIndex - 1) * this.listRowCount;
+      this.currentPageIndex = pageIndex;
+
+      this.searchList();
     },
   },
   created() {

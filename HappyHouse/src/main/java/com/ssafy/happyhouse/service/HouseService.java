@@ -11,13 +11,17 @@ public interface HouseService {
 
 	public int houseListTotalCount();
 
+	public List<HouseDto> houseSearchDong(HouseParamDto param);
+
+	public int houseSearchDongTotalCount(String searchWord);
+
 	public List<HouseDto> houseSearchApt(HouseParamDto param);
 
 	public int houseSearchAptTotalCount(String searchWord);
-	
-	public List<Map<String,String>> sidoList();
-	
-	public List<Map<String,String>> gugunList(String sidoCode);
-	
-	public List<Map<String,String>> dongList(Map<String,String> map);
+
+	public List<Map<String, String>> sidoList();
+
+	public List<Map<String, String>> gugunList(String sidoCode);
+
+	public List<Map<String, String>> dongList(Map<String, String> map);
 }

@@ -14,6 +14,20 @@
 		SELECT COUNT(*) FROM HOUSEDEAL
 	</select>
 	
+	<select id="houseSearchDong" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
+		SELECT d.NO, d.APTNAME, d.CODE GUGUN_CODE, d.DONG, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG
+			  FROM HOUSEDEAL d, HOUSEINFO i, (SELECT NAME AS DONG_NAME, GUGUN_CODE FROM DONG_CODE WHERE CODE= #{searchWord}) c
+			  WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG AND d.DONG=c.DONG_NAME
+			  ORDER BY d.NO DESC
+		 	  LIMIT #{limit} OFFSET #{offset};
+	</select>
+	
+	<select id="houseSearchDongTotalCount" parameterType="string" resultType="int">
+		SELECT count(*)
+			FROM HOUSEDEAL d, (SELECT NAME AS DONG_NAME, GUGUN_CODE FROM DONG_CODE WHERE CODE=#{searchWord}) c
+			WHERE d.dong = c.dong_name
+	</select>
+	
 	<select id="houseSearchApt" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
 		SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG
 		  FROM HOUSEDEAL d, HOUSEINFO i
@@ -22,7 +36,7 @@
 	 	  LIMIT #{limit} OFFSET #{offset}
 	</select>
 	
-	<select id="houseSearchAptTotalCount" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="int">
+	<select id="houseSearchAptTotalCount" parameterType="string" resultType="int">
 		SELECT COUNT(*)
 		  FROM HOUSEDEAL d
   		  WHERE d.APTNAME like CONCAT('%', #{searchWord}, '%')

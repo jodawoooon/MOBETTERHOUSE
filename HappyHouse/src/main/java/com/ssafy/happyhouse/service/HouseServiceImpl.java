@@ -14,15 +14,25 @@ import com.ssafy.happyhouse.dto.HouseParamDto;
 public class HouseServiceImpl implements HouseService {
 	@Autowired
 	HouseDao houseDao;
-	
+
 	@Override
-	public List<HouseDto> houseList(HouseParamDto param){
+	public List<HouseDto> houseList(HouseParamDto param) {
 		return houseDao.houseList(param);
 	}
-	
+
 	@Override
 	public int houseListTotalCount() {
 		return houseDao.houseListTotalCount();
+	}
+
+	@Override
+	public List<HouseDto> houseSearchDong(HouseParamDto param) {
+		return houseDao.houseSearchDong(param);
+	}
+
+	@Override
+	public int houseSearchDongTotalCount(String searchWord) {
+		return houseDao.houseSearchDongTotalCount(searchWord);
 	}
 
 	@Override
@@ -36,17 +46,18 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public List<Map<String,String>> sidoList() {
+	public List<Map<String, String>> sidoList() {
 		return houseDao.sidoList();
 	}
-	
+
 	@Override
-	public List<Map<String,String>> gugunList(String sidoCode) {
+	public List<Map<String, String>> gugunList(String sidoCode) {
 		return houseDao.gugunList(sidoCode);
 	}
-	
+
 	@Override
-	public List<Map<String,String>> dongList(Map<String,String> map) {
+	public List<Map<String, String>> dongList(Map<String, String> map) {
 		return houseDao.dongList(map);
 	}
+
 }

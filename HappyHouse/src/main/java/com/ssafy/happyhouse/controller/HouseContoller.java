@@ -30,7 +30,7 @@ public class HouseContoller {
 	HouseService houseService;
 
 	@GetMapping("/house")
-	public HouseResultDto houseList(int limit, int offset, String searchWord) {
+	public HouseResultDto houseList(int limit, int offset, String searchWord, String searchType) {
 		System.out.println("/house1!!!!!!");
 		HouseParamDto param = new HouseParamDto();
 		param.setLimit(limit);
@@ -43,6 +43,25 @@ public class HouseContoller {
 			for (HouseDto dto : list)
 				System.out.println(dto);
 			int count = houseService.houseListTotalCount();
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
+		} else if (searchType.equals("dong")) {
+			System.out.println("/house searchDong!!!!");
+			param.setSearchWord(searchWord);
+			List<HouseDto> list = houseService.houseSearchDong(param);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.houseSearchDongTotalCount(searchWord);
 			if (list != null) {
 				result.setResult(1);
 				result.setList(list);

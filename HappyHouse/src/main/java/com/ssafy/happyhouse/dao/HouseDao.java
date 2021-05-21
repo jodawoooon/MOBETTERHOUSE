@@ -14,6 +14,10 @@ public interface HouseDao {
 
 	public int houseListTotalCount();
 
+	public List<HouseDto> houseSearchDong(HouseParamDto param);
+	
+	public int houseSearchDongTotalCount(String searchWord);
+	
 	public List<HouseDto> houseSearchApt(HouseParamDto param);
 
 	public int houseSearchAptTotalCount(String searchWord);
