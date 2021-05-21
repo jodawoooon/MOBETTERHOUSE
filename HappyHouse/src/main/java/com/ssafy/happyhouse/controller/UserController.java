@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,16 +40,17 @@ public class UserController {
 	
 
 	@PostMapping(value="/user")
-	public ResponseEntity<UserResultDto> userRegister(@RequestBody UserDto dto, HttpSession session){
+	public ResponseEntity<UserDto> userRegister(@RequestBody UserDto dto, HttpSession session){
 		
-		UserResultDto userResultDto = service.userRegister(dto);
+		UserDto userDto = service.userRegister(dto);
 		
-		if( userResultDto.getResult() == SUCCESS ) {
-			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.INTERNAL_SERVER_ERROR);
+		if( userDto != null ) {
+			session.setAttribute("userDto", userDto);
+			return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 		}
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.NOT_FOUND);
 	}
+	
 	
 	@DeleteMapping(value = "/user")
 	public ResponseEntity<UserResultDto> userSecession(@RequestBody UserDto dto, HttpSession session){
@@ -62,8 +64,8 @@ public class UserController {
 		}
 	}
 	
-	@PutMapping(value = "/user")
-	public ResponseEntity<UserResultDto> userEdit(@RequestBody UserDto dto, HttpSession session){
+	@PostMapping(value = "/user/{userId}")
+	public ResponseEntity<UserResultDto> userEdit(UserDto dto, HttpSession session){
 		
 		UserResultDto userResultDto = service.userEdit(dto);
 		
@@ -74,21 +76,16 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping(value = "/user")
-	public UserDto userInfo(HttpSession session, HttpServletResponse response) {
+	@GetMapping(value = "/user/{userEmail}")
+	public ResponseEntity<UserDto> userInfo(@PathVariable String userEmail, HttpSession session) {
+	
+		UserDto userDto = service.userInfo(userEmail);
 		
-		UserDto userDto = (UserDto) session.getAttribute("userDto");
-		
-		//System.out.println(res);
-//		Gson gson = new Gson();
-//		JsonObject jsonObject = new JsonObject();
-//		jsonObject.addProperty("Email", userDto.getUserEmail());
-//		jsonObject.addProperty("Name", userDto.getUserName());
-//		String jsonStr = gson.toJson(jsonObject);
-//		
-		
-		//System.out.println(jsonStr);
-		return userDto;
+		if( userDto != null ) {
+			session.setAttribute("userDto", userDto);
+			return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+		}
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.NOT_FOUND);
 		
 	}
 	

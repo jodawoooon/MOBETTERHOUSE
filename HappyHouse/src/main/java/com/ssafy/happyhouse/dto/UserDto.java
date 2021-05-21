@@ -7,6 +7,7 @@ public class UserDto {
 	private String userName;
 	private String userPassword;
 	private String userEmail;
+	
 	private String userProfileImageUrl;
 	private Date userRegisterDate;
 	private String userRank;

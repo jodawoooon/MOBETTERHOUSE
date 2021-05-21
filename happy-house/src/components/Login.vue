@@ -3,7 +3,7 @@
       <!-- Section -->
      <section class="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
         <div class="container">
-            <p class="text-center"><a href="./Index.html" class="text-gray-700"><i class="fas fa-angle-left me-2"></i>이전 페이지로</a></p>
+            <p class="text-center"><router-link to="/" class="text-gray-700"><i class="fas fa-angle-left me-2"></i>이전 페이지로</router-link></p>
             <div class="row justify-content-center form-bg-image" style="background-image: url(./img/illustrations/signin.svg);">
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
@@ -37,7 +37,7 @@
                                           자동 로그인
                                         </label>
                                     </div>
-                                    <div><a class="small text-right">비밀번호 찾기</a></div>
+                                    <div><button class="small text-right" @click="showPwFindModal">비밀번호 찾기</button></div>
                                 </div>
                             </div>
                             <div class="d-grid">
@@ -58,21 +58,29 @@
             </div>
         </div>
     </section>
+
+   
    </div>
 </template>
 
 <script>
 import Vue from "vue";
 import VueAlertify from "vue-alertify";
+
+import { Modal } from 'bootstrap';
+
 Vue.use(VueAlertify);
 
 import http from "@/common/axios.js";
 
-export default {
-  name: "Login",
 
+export default {
+  
+  name: "Login",
+ 
   data() {
     return {
+      pwFindModal : null,
       userEmail: "daun@daun.net",
       userPassword: "1234",
 
@@ -92,12 +100,18 @@ export default {
           console.log(data);
 
           // login 성공 전달
-          this.$emit("call-parent-loginSuccess", {
+          this.$store.commit('SET_LOGIN', {
+            isLogin : true,
             userName: data.userName,
+            userEmail : data.userEmail,
+            userMessage : data.userMessage,
+            userPassword : data.userPassword,
+            userPhone : data.userPhone,
+            userRank : data.userRank,
             userProfileImageUrl: data.userProfileImageUrl,
           });
-          // board 로 이동
-          this.$router.push("/search");
+          // home 로 이동
+          this.$router.push("/home");
         })
         .catch((error) => {
           console.log("LoginVue: error : ");
@@ -109,7 +123,16 @@ export default {
           }
         });
     },
+    showPwFindModal(){
+      this.pwFindModal.show();
+    },
+    closePwFindModal(){
+      this.pwFindModal.hide();
+    }
   },
+  mounted(){
+    this.pwFindModal = new Modal(document.getElementById('pwFindModal'));
+  }
 };
 </script>
 

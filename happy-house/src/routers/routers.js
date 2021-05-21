@@ -12,12 +12,13 @@ import Contact from '@/components/Contact.vue';
 import Login from '@/components/Login.vue';
 import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
+import Index from '@/components/Index.vue';
 
 export default new VueRouter({
   routes: [
     {
       path: '/',
-      component: Home,
+      component: Index,
     },
     {
       path: '/home',

@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <side-bar></side-bar>
+    <side-bar v-if="getIsLogin" ></side-bar>
 
     <nav-bar v-if="getIsLogin" />
     <bread-crumb></bread-crumb>
-    <!-- <pulse-loader :loading="getIsLoading" :size="size"></pulse-loader> -->
     <router-view></router-view>
   </div>
 </template>
@@ -14,6 +13,10 @@ import SideBar from './components/SideBar.vue';
 import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
 //import Index from './components/Index.vue';
+
+// for bootstrap 5
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 
 import { mapGetters } from 'vuex';
 
@@ -37,5 +40,6 @@ export default {
 };
 </script>
 
-<style src="./assets/css/volt.css"></style>
-<style></style>
+<style>
+@import "./assets/css/volt.css"
+</style>
