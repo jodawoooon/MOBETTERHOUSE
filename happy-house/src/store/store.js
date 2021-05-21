@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userInfo: {
-      isLogin: false,
+      isLogin: true,
       userEmail: 'ssafy@ssafy.com',
       userPassword: '1234',
       userName: '손동우',
@@ -33,7 +33,7 @@ export default new Vuex.Store({
   actions: {},
   getters: {
     getIsLogin(state) {
-      return state.login.isLogin;
+      return state.userInfo.isLogin;
     },
     getCurPage(state) {
       return state.curPage;

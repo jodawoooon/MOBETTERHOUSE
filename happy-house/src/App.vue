@@ -2,7 +2,7 @@
   <div id="app">
     <side-bar></side-bar>
 
-    <nav-bar />
+    <nav-bar v-if="getIsLogin" />
     <bread-crumb></bread-crumb>
     <router-view></router-view>
   </div>
@@ -13,6 +13,8 @@ import SideBar from './components/SideBar.vue';
 import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
 //import Index from './components/Index.vue';
+
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
@@ -25,7 +27,9 @@ export default {
     NavBar,
     BreadCrumb,
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['getIsLogin']),
+  },
   methods: {},
 };
 </script>
