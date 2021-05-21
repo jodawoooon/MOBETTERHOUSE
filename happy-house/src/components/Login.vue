@@ -37,7 +37,7 @@
                                           자동 로그인
                                         </label>
                                     </div>
-                                    <div><a class="small text-right">비밀번호 찾기</a></div>
+                                    <div><button class="small text-right" @click="showPwFindModal">비밀번호 찾기</button></div>
                                 </div>
                             </div>
                             <div class="d-grid">
@@ -58,21 +58,29 @@
             </div>
         </div>
     </section>
+
+   
    </div>
 </template>
 
 <script>
 import Vue from "vue";
 import VueAlertify from "vue-alertify";
+
+import { Modal } from 'bootstrap';
+
 Vue.use(VueAlertify);
 
 import http from "@/common/axios.js";
 
-export default {
-  name: "Login",
 
+export default {
+  
+  name: "Login",
+ 
   data() {
     return {
+      pwFindModal : null,
       userEmail: "daun@daun.net",
       userPassword: "1234",
 
@@ -110,7 +118,16 @@ export default {
           }
         });
     },
+    showPwFindModal(){
+      this.pwFindModal.show();
+    },
+    closePwFindModal(){
+      this.pwFindModal.hide();
+    }
   },
+  mounted(){
+    this.pwFindModal = new Modal(document.getElementById('pwFindModal'));
+  }
 };
 </script>
 
