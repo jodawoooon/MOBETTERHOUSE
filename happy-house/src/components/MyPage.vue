@@ -174,32 +174,49 @@ export default {
             var formData = new FormData();
             
             // file upload
-            var attachFile = document.querySelector("#inputFileUploadInsert");
+            var attachFiles = document.querySelector("#inputFileUploadInsert");
             console.log("InsertImg: data 1 : ");
-            console.log(attachFile);
+            console.log(attachFiles);
 
+             var cnt = attachFiles.files.length;
+          for (var i = 0; i < cnt; i++) {
+            formData.append("file", attachFiles.files[i]);
+          }
             
-            formData.append("file", attachFile);
             
 
-        // http.post(
-        //   '/user/'+this.$store.state.userInfo.userEmail,
-        //   formData,
-        //   { headers: { 'Content-Type': 'multipart/form-data' } })
-        //   .then(({ data }) => {
-        //     console.log("InsertModalVue: data : ");
-        //     console.log(data);
-        //     if( data.result == 'login' ){
-        //       this.$router.push("/login")
-        //     }else{
-        //       this.$alertify.success('사진이 등록되었습니다.');
-        //       this.closeModal();
-        //     }
-        //   })
-        //   .catch((error) => {
-        //     console.log("InsertModalVue: error ");
-        //     console.log(error);
-        //   });
+        http.post(
+          '/user/profile/'+this.$store.state.userInfo.userEmail,
+          formData,
+          { headers: { 'Content-Type': 'multipart/form-data' } })
+          .then(({ data }) => {
+            console.log("UserProfileImageSend: data : ");
+            console.log(data);
+            if( data.result == 'login' ){
+              this.$router.push("/login")
+            }else{
+                 // info 데이터 가져오기
+          this.$store.commit('SET_INFO', {
+            userPassword : data.userPassword,
+            userName: data.userName,
+            userEmail : data.userEmail,
+            userMessage : data.userMessage,
+            
+            userProfileImageUrl: data.userProfileImageUrl,
+          });
+
+              this.$swal({
+                icon: 'success',
+                title: '성공적으로 등록되었습니다.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            }
+          })
+          .catch((error) => {
+            console.log("UserProfileImageSend: error ");
+            console.log(error);
+          });
             
             
 
@@ -307,6 +324,7 @@ export default {
     });
     this.$store.commit('SET_CUR_PAGE', 'MyPage');
   },
+  
 }
 </script>
 
