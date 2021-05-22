@@ -1,7 +1,7 @@
 <template>
   <!-- Hero -->
   <main>
-    <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+    <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white" :style="{ backgroundImage: 'url(' + require('@/assets/img/illustrations/signin.svg') + ')'}" style="background-size:cover; ">
         <div class="container">
           <div class="row mt-10">
             <div class="col-12 text-center">
@@ -9,8 +9,8 @@
               <h1 class="fw-bolder mb-4" style="font-size : 60px;">Happy House</h1>
               
               
-              <h2 class="lead fw-normal text-muted mb-2">원하는 조건의 집을 한눈에 확인하세요!</h2>
-              <h2 class="lead fw-normal text-muted mb-5">똑똑한 내 집 마련의 시작. Happy House</h2>
+              <h2 class="lead fw-normal text-muted mb-2 bg-primary ">원하는 조건의 집을 한눈에 확인하세요!</h2>
+              <h2 class="lead fw-normal text-muted mb-5 bg-primary ">똑똑한 내 집 마련의 시작. Happy House</h2>
               <!-- Button Modal -->
               <div class="d-flex align-items-center justify-content-center mb-5">
                   <router-link to="/login" class="btn btn-lg btn-secondary text-dark me-4" >
@@ -43,7 +43,8 @@ export default {
         join(){
 
         }
-    }
+    },
+    
 }
 </script>
 
