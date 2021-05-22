@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ssafy.happyhouse.dto.UserDto;
 import com.ssafy.happyhouse.dto.UserResultDto;
@@ -51,6 +52,18 @@ public class UserController {
 		return new ResponseEntity<UserDto>(resultDto, HttpStatus.NOT_FOUND);
 	}
 	
+	@PostMapping(value="/user/profile")
+	public ResponseEntity<UserDto> insertProfileImage(@RequestBody UserDto dto, MultipartHttpServletRequest request, HttpSession session){
+		
+		UserDto userDto = service.insertUserProfileImage(dto, request);
+		UserDto resultDto = service.userInfo(userDto.getUserEmail());
+		if( resultDto != null ) {
+			session.setAttribute("userDto", resultDto);
+			return new ResponseEntity<UserDto>(resultDto, HttpStatus.OK);
+		}
+		return new ResponseEntity<UserDto>(resultDto, HttpStatus.NOT_FOUND);
+	}
+	
 	
 	@DeleteMapping(value = "/user/{userEmail}")
 	public ResponseEntity<UserResultDto> userSecession(@PathVariable String userEmail, HttpSession session){
@@ -67,8 +80,8 @@ public class UserController {
 	@PostMapping(value = "/user/{userEmail}")
 	public ResponseEntity<UserDto> userEdit(@PathVariable String userEmail,@RequestBody UserDto userDto, HttpSession session){
 		
-		UserDto resultDto = service.userEdit(userDto);
-		
+		UserDto dto = service.userEdit(userDto);
+		UserDto resultDto = service.userInfo(dto.getUserEmail());
 		if( resultDto != null ) {
 			session.setAttribute("userDto", resultDto);
 			return new ResponseEntity<UserDto>(resultDto, HttpStatus.OK);

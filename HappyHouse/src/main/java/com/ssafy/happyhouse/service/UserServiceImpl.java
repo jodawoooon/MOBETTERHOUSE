@@ -1,7 +1,14 @@
 package com.ssafy.happyhouse.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ssafy.happyhouse.dao.UserDao;
 import com.ssafy.happyhouse.dto.UserDto;
@@ -10,8 +17,21 @@ import com.ssafy.happyhouse.dto.UserResultDto;
 @Service
 public class UserServiceImpl implements UserService{
 	
+	
 	@Autowired
 	UserDao userDao;
+	String uploadFolder = "upload";
+
+	/* for production code */
+	//uploadPath = getServletContext().getRealPath("/");
+	// F:\SSAFY\ssafy5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\BoardWebFileUpload\
+	
+	/* for eclipse development code */
+	String uploadPath = "D:/2021ssafy/java_eclipse/SSAFY/Boot/SpringBootMyBatisBoardFileUpload" 
+			+ File.separator + "src" 
+			+ File.separator + "main"
+			+ File.separator + "resources"
+			+ File.separator + "static";
 	
 	private static final int SUCCESS = 1;
 	private static final int FAIL = -1;
@@ -60,6 +80,43 @@ public class UserServiceImpl implements UserService{
 	public UserDto userInfo(String userEmail) {
 		// TODO Auto-generated method stub
 		return userDao.userInfo(userEmail);
+	}
+
+	@Override
+	public UserDto insertUserProfileImage(UserDto userDto, MultipartHttpServletRequest request) {
+		
+		UserDto resultDto = new UserDto();
+		
+		try {
+			
+			MultipartFile file = request.getFile("file");
+			File uploadDir = new File(uploadPath + File.separator + uploadFolder);
+			if (!uploadDir.exists()) uploadDir.mkdir();
+			
+			String fileName = file.getOriginalFilename();
+			
+			UUID uuid = UUID.randomUUID();
+			
+			//file extension
+			String extension = FilenameUtils.getExtension(fileName); // vs FilenameUtils.getBaseName()
+		
+			String savingFileName = uuid + "." + extension;
+		
+			File destFile = new File(uploadPath + File.separator + uploadFolder + File.separator + savingFileName);
+			
+			System.out.println(uploadPath + File.separator + uploadFolder + File.separator + savingFileName);
+			file.transferTo(destFile);
+			
+			String boardFileUrl = uploadFolder + "/" + savingFileName;
+			userDto.setUserProfileImageUrl(boardFileUrl);
+			userDao.insertUserProfileImage(userDto);
+			
+			
+		}catch(IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return resultDto;
 	}
 	
 }

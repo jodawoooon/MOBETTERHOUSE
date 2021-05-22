@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ssafy.happyhouse.dto.UserDto;
 
@@ -11,5 +12,5 @@ public interface UserDao {
 	public UserDto userFindPass(String userEmail);
 	public int userSecession(String userEmail);
 	public UserDto userInfo(String userEmail);
-	
+	public int insertUserProfileImage(UserDto userDto);
 }
