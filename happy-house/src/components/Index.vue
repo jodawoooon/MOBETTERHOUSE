@@ -7,14 +7,14 @@
             <div class="col-12 text-center">
               <div class="bootstrap-big-icon d-none d-lg-block"></div>
               <div class="mb-4">
-                <span class="fw-bolder shadowText" style="font-size : 60px;">Happy House</span>
+                <span class="fw-bolder shadowText" style="font-size : 65px;">Happy House</span>
               </div>
               
               <div class="mb-2 ">
-                <span class="lead fw-normal text-muted shadowText">원하는 조건의 집을 한눈에 확인하세요!</span>
+                <span class="lead fw-normal text-muted shadowText"  style="font-size : 30px;">원하는 조건의 집을 한눈에 확인하세요!</span>
               </div>
               <div class="mb-5  ">
-                <span class="lead fw-normal text-muted shadowText ">똑똑한 내 집 마련의 시작. Happy House</span>
+                <span class="lead fw-normal text-muted shadowText"  style="font-size : 30px;">똑똑한 내 집 마련의 시작. Happy House</span>
               </div>
 
               <!-- Button Modal -->

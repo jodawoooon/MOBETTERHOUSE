@@ -154,177 +154,187 @@ Vue.use(VueAlertify);
 import http from "@/common/axios.js";
 
 export default {
-    name : 'MyPage',
-    components : {  SecessionModal },
-    data(){
-        return{
-            
-            secessionModal : null,
-            name : this.$store.state.userInfo.userName,
-            password : this.$store.state.userInfo.userPassword,
-            rank : this.$store.state.userInfo.userRank,
-            message : this.$store.state.userInfo.userMessage,
-            file : '',
-            imageUrl: null,
+    name: 'MyPage',
+    components: {
+        SecessionModal
+    },
+    data() {
+        return {
+
+            secessionModal: null,
+            name: this.$store.state.userInfo.userName,
+            password: this.$store.state.userInfo.userPassword,
+            rank: this.$store.state.userInfo.userRank,
+            message: this.$store.state.userInfo.userMessage,
+            file: '',
+            imageUrl: null
         }
     },
-    methods: 
-    {
+    methods: {
         onClickImageSend() {
             var formData = new FormData();
-            
+
             // file upload
             var attachFiles = document.querySelector("#inputFileUploadInsert");
             console.log("InsertImg: data 1 : ");
             console.log(attachFiles);
 
-             var cnt = attachFiles.files.length;
-          for (var i = 0; i < cnt; i++) {
-            formData.append("file", attachFiles.files[i]);
-          }
-            
-            
-
-        http.post(
-          '/user/profile/'+this.$store.state.userInfo.userEmail,
-          formData,
-          { headers: { 'Content-Type': 'multipart/form-data' } })
-          .then(({ data }) => {
-            console.log("UserProfileImageSend: data : ");
-            console.log(data);
-            if( data.result == 'login' ){
-              this.$router.push("/login")
-            }else{
-                 // info 데이터 가져오기
-          this.$store.commit('SET_INFO', {
-            userPassword : data.userPassword,
-            userName: data.userName,
-            userEmail : data.userEmail,
-            userMessage : data.userMessage,
-            
-            userProfileImageUrl: data.userProfileImageUrl,
-          });
-
-              this.$swal({
-                icon: 'success',
-                title: '성공적으로 등록되었습니다.',
-                showConfirmButton: false,
-                timer: 1500
-            });
+            var cnt = attachFiles.files.length;
+            for (var i = 0; i < cnt; i++) {
+                formData.append("file", attachFiles.files[i]);
             }
-          })
-          .catch((error) => {
-            console.log("UserProfileImageSend: error ");
-            console.log(error);
-          });
-            
-            
 
-      },
-      onClickImageUpload() {
-            this.$refs.imageInput.click();
+            http
+                .post('/user/profile/' + this.$store.state.userInfo.userEmail, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(({data}) => {
+                    console.log("UserProfileImageSend: data : ");
+                    console.log(data);
+                    if (data.result == 'login') {
+                        this
+                            .$router
+                            .push("/login")
+                    } else {
+                        // info 데이터 가져오기
+                        this
+                            .$store
+                            .commit('SET_INFO', {
+                                userPassword: data.userPassword,
+                                userName: data.userName,
+                                userEmail: data.userEmail,
+                                userMessage: data.userMessage,
+
+                                userProfileImageUrl: data.userProfileImageUrl
+                            });
+
+                        this.$swal(
+                            {icon: 'success', title: '성공적으로 등록되었습니다.', showConfirmButton: false, timer: 1500}
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.log("UserProfileImageSend: error ");
+                    console.log(error);
+                });
+
         },
-        onChangeImages(e){
+        onClickImageUpload() {
+            this
+                .$refs
+                .imageInput
+                .click();
+        },
+        onChangeImages(e) {
             console.log(e.target.files)
-            const file = e.target.files[0];
+            const file = e
+                .target
+                .files[0];
             this.imageUrl = URL.createObjectURL(file);
         },
-        updateName : function(event){
+        updateName: function (event) {
             var updatedText = event.target.value;
             this.name = updatedText;
         },
-        updatePassword : function(event){
+        updatePassword: function (event) {
             var updatedText = event.target.value;
             this.password = updatedText;
         },
-        updateRank : function(event){
+        updateRank: function (event) {
             var updatedText = event.target.value;
             this.rank = updatedText;
         },
-        updateMessage : function(event){
+        updateMessage: function (event) {
             var updatedText = event.target.value;
             this.message = updatedText;
         },
-        showDeleteModal(){
-            this.secessionModal.show();
+        showDeleteModal() {
+            this
+                .secessionModal
+                .show();
         },
-        closeAfterSecession(){
-            this.secessionModal.hide();
+        closeAfterSecession() {
+            this
+                .secessionModal
+                .hide();
         },
-        
-        
-      saveInfo(){
-      
-      http.post(
-          "/user/"+ this.$store.state.userInfo.userEmail, 
-          {
-          userName : this.name,
-          userEmail: this.$store.state.userInfo.userEmail,
-          userPassword: this.password,
-          userRank : this.rank,
-          userMessage : this.message,
+
+        saveInfo() {
+
+            http
+                .post("/user/" + this.$store.state.userInfo.userEmail, {
+                    userName: this.name,
+                    userEmail: this.$store.state.userInfo.userEmail,
+                    userPassword: this.password,
+                    userRank: this.rank,
+                    userMessage: this.message
+                })
+                .then(({data}) => {
+                    console.log("UserVue Info Edit - data : ");
+                    console.log(data);
+
+                    // info 데이터 가져오기
+                    this
+                        .$store
+                        .commit('SET_INFO', {
+                            userPassword: data.userPassword,
+                            userName: data.userName,
+                            userEmail: data.userEmail,
+                            userMessage: data.userMessage,
+
+                            userProfileImageUrl: data.userProfileImageUrl
+                        });
+
+                    this.$swal(
+                        {icon: 'success', title: '성공적으로 수정되었습니다.', showConfirmButton: false, timer: 1500}
+                    );
+
+                })
+                .catch((error) => {
+                    console.log("UserVue Info Edit - error : ");
+                    console.log(error);
+                    if (error.response.status == "404") {
+                        this
+                            .$alertify
+                            .error("정보확인에 실패했습니다.");
+                    } else {
+                        this
+                            .$alertify
+                            .error("Opps!! 서버에 문제가 발생했습니다.");
+                    }
+                });
         }
-
-        )
-        .then(({ data }) => {
-          console.log("UserVue Info Edit - data : ");
-          console.log(data);
-
-          // info 데이터 가져오기
-          this.$store.commit('SET_INFO', {
-            userPassword : data.userPassword,
-            userName: data.userName,
-            userEmail : data.userEmail,
-            userMessage : data.userMessage,
-            
-            userProfileImageUrl: data.userProfileImageUrl,
-          });
-
-          this.$swal({
-                icon: 'success',
-                title: '성공적으로 수정되었습니다.',
-                showConfirmButton: false,
-                timer: 1500
-            });
-          
-        })
-        .catch((error) => {
-          console.log("UserVue Info Edit - error : ");
-          console.log(error);
-          if (error.response.status == "404") {
-            this.$alertify.error("정보확인에 실패했습니다.");
-          } else {
-            this.$alertify.error("Opps!! 서버에 문제가 발생했습니다.");
-          }
-        });
     },
-    
-    },
-    
-    computed : {
-        requireImg : function(){
-      
-            if( this.$store.state.userInfo.userProfileImageUrl == ''  ) {
+
+    computed: {
+        requireImg: function () {
+
+            if (this.$store.state.userInfo.userProfileImageUrl == '') {
                 return require('../assets/img/noProfile.png')
-            }
-            else{
+            } else if (this.$store.state.userInfo.userProfileImageUrl == 'undefined') {
+                return require('../assets/img/noProfile.png')
+            } else {
                 return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
             }
-        },
-        
+        }
     },
     mounted() {
 
-    this.secessionModal = new Modal(document.getElementById('secessionModal'));
+        this.secessionModal = new Modal(document.getElementById('secessionModal'));
 
-    this.$store.commit('SET_BREADCRUMB_INFO', {
-       title: 'MyPage',
-        subTitle: '개인 정보 조회/수정/탈퇴',
-        desc: '개성있는 프로필 사진을 등록해보세요.',
-    });
-    this.$store.commit('SET_CUR_PAGE', 'MyPage');
-  },
-  
+        this
+            .$store
+            .commit('SET_BREADCRUMB_INFO', {
+                title: 'MyPage',
+                subTitle: '개인 정보 조회/수정/탈퇴',
+                desc: '개성있는 프로필 사진을 등록해보세요.'
+            });
+        this
+            .$store
+            .commit('SET_CUR_PAGE', 'MyPage');
+    }
 }
 </script>
 

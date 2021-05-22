@@ -82,11 +82,14 @@ export default {
 
             if( this.$store.state.userInfo.userProfileImageUrl == ''  ) {
                 return require('../assets/img/noProfile.png')
+            }else if(this.$store.state.userInfo.userProfileImageUrl=='undefined'){
+              return require('../assets/img/noProfile.png')
             }
             else{
                 return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
             }
-        },
+        }
+            ,
         
     },
   

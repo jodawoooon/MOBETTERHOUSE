@@ -58,7 +58,7 @@
                                 <span class="fw-normal">or</span>
                             </div>
                             <div class="d-flex justify-content-center my-4">
-                              <img src="../assets/img/kakao_login_medium_wide.png">
+                              <img @click="KakaoLogin" class="btn" src="../assets/img/kakao_login_medium_wide.png">
                                 <!-- <a href="#" class="btn btn-icon-only btn-pill btn-outline-gray-400 text-facebook me-2" type="button" aria-label="kakao button" title="kakao button">
                                     <font-awesome-icon :icon="['fas', 'facebook']"/> 
                                     
@@ -151,6 +151,130 @@ export default {
           }
         });
     },
+
+    KakaoLogin() {
+            console.log(window.Kakao);
+            window
+                .Kakao
+                .Auth
+                .login({
+                    scope: 'account_email, profile, gender',
+                    success: this.GetMe,
+                    fail: function (error) {
+                        console.log(error)
+                    }
+                });
+        },
+        GetMe(authObj) {
+            console.log(authObj);
+            window
+                .Kakao
+                .API
+                .request({
+                    url: '/v2/user/me',
+                    success: res => {
+                        const kakao_account = res.kakao_account;
+
+                        http
+                            .post("/login", {
+                                userName: kakao_account.profile.nickname,
+                                userEmail: kakao_account.email,
+                                userProfileImageUrl: kakao_account.profile.profile_image_url,
+                                userPassword: 'kakao'
+                            })
+                            .then(({data}) => {
+                                console.log("LoginVue: data : ");
+                                console.log(data);
+
+                                // login 성공 전달
+                                this
+                                    .$store
+                                    .commit('SET_LOGIN', {
+                                        isLogin: true,
+                                        userName: data.userName,
+                                        userEmail: data.userEmail,
+                                        userMessage: data.userMessage,
+                                        userPassword: data.userPassword,
+                                        userPhone: data.userPhone,
+                                        userRank: data.userRank,
+                                        userProfileImageUrl: data.userProfileImageUrl
+                                    });
+
+                                // home 로 이동
+                                this
+                                    .$router
+                                    .push("/home");
+                            })
+                            .catch((error) => {
+                                console.log("KaKaoLoginVue: error : ");
+                                console.log(error);
+                                if (error.response.status == "404") {
+                                    // => 카카오 회원가입
+
+                                    http
+                                        .post("/user", {
+                                            userName: kakao_account.profile.nickname,
+                                            userEmail: kakao_account.email,
+                                            userProfileImageUrl: kakao_account.profile.profile_image_url,
+                                            userPassword: 'kakao'
+                                        })
+                                        .then(({data}) => {
+                                            console.log("JoinVue - data : ");
+                                            console.log(data);
+
+                                            // join 성공 전달
+                                            this
+                                                .$store
+                                                .commit('SET_LOGIN', {
+                                                    isLogin: true,
+                                                    userName: data.userName,
+                                                    userEmail: data.userEmail,
+                                                    userMessage: data.userMessage,
+                                                    userPassword: data.userPassword,
+                                                    userPhone: data.userPhone,
+                                                    userRank: data.userRank,
+                                                    userProfileImageUrl: data.userProfileImageUrl
+                                                });
+
+                                            this.$swal(
+                                                {icon: 'success', title: '로그인 성공', showConfirmButton: false, timer: 1500}
+                                            );
+
+                                            // home 로 이동
+                                            this
+                                                .$router
+                                                .push("/home");
+
+                                        })
+                                        .catch((error) => {
+                                            console.log("LoginVue: error : ");
+                                            console.log(error);
+                                            if (error.response.status == "404") {
+                                                this
+                                                    .$alertify
+                                                    .error("카카오 로그인에 실패했습니다.");
+                                            } else {
+                                                this
+                                                    .$alertify
+                                                    .error("Opps!! 서버에 문제가 발생했습니다.");
+                                            }
+                                        });
+                                } else {
+                                    this
+                                        .$alertify
+                                        .error("Opps!! 서버에 문제가 발생했습니다.");
+                                }
+                            });
+                    },
+
+                    fail: error => {
+                        this
+                            .$router
+                            .push("/");
+                        console.log(error);
+                    }
+                })
+        }
     
   },
 };
