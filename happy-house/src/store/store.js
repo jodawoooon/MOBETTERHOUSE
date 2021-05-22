@@ -9,9 +9,9 @@ export default new Vuex.Store({
     userInfo: {
       // isLogin: true,
       isLogin: false,
-      userEmail: 'ssafy@ssafy.com',
-      userPassword: '1234',
-      userName: '손동우',
+      userEmail: '',
+      userPassword: '',
+      userName: '',
      
       userMessage: '',
       userRank: '',

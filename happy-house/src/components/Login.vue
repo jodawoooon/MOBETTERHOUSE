@@ -118,6 +118,9 @@ export default {
             userRank : data.userRank,
             userProfileImageUrl: data.userProfileImageUrl,
           });
+
+          
+            
           // home 로 이동
           this.$router.push("/home");
         })

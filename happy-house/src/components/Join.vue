@@ -127,8 +127,19 @@ export default {
             userRank : data.userRank,
             userProfileImageUrl: data.userProfileImageUrl,
           });
+
+         
+          this.$swal({
+                icon: 'success',
+                title: '회원가입 완료',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
           // home 로 이동
           this.$router.push("/home");
+
+          
         })
         .catch((error) => {
           console.log("LoginVue: error : ");

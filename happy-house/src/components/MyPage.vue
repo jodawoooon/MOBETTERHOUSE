@@ -6,10 +6,10 @@
 
         <div class="row">
             <div class="col-12 col-xl-8">
-                <div class="card card-body shadow-sm mb-4">
+                <div class="card card-body shadow-sm mb-4 ">
                    
                     <form>
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-md-12 mb-3">
                                 <div>
                                     <label for="userName">Name</label>
@@ -53,12 +53,12 @@
                             
                         </div>
 
-                        <div class="row">
+                        <div class="row mb-3 mt-3">
                             
                             <div class="col">
                                 <div class="form-group">
                                     <div class="btn-group" style="float:right;" >
-                                    <button type="submit" @click="saveInfo" class="btn btn-outline-dark"><font-awesome-icon :icon="['fas', 'user-edit']"/> 수정</button>
+                                    <button type="submit" id="successAlert" @click="saveInfo" class="btn btn-outline-dark"><font-awesome-icon :icon="['fas', 'user-edit']"/> 수정</button>
                                     </div>
 
                                 </div>
@@ -76,7 +76,7 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="btn-group " style="float:right;" >
-                            <button type="submit"  @click="deleteInfo" class="btn btn-outline-danger"><font-awesome-icon :icon="['fas', 'eraser']"/> 탈퇴</button>
+                            <button type="submit"  @click="showDeleteModal" class="btn btn-outline-danger"><font-awesome-icon :icon="['fas', 'eraser']"/> 탈퇴</button>
                             </div>
                         </div>   
                     </div>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-12">
                         <div class="card card-body shadow-sm mb-4">
-                            <h2 class="h5 mb-4">프로필 사진 선택</h2>
+                            <h2 class="h5 mb-4">Select profile photo</h2>
                             <div class="d-flex align-items-center mb-4">
                                 <div class="me-3">
                                     <!-- Avatar -->
@@ -132,20 +132,34 @@
             </div>
         </div>
     </div>
+
+        
+        <secession-modal v-on:call-parent-secession-close="closeAfterSecession" ></secession-modal>
+
     </main>
 </template>
 
 <script>
+
 import Vue from "vue";
 import VueAlertify from "vue-alertify";
+
+
+import SecessionModal from './modals/SecessionModal.vue';
+
+import { Modal } from 'bootstrap';
+
 Vue.use(VueAlertify);
 
 import http from "@/common/axios.js";
 
 export default {
     name : 'MyPage',
+    components : {  SecessionModal },
     data(){
         return{
+            
+            secessionModal : null,
             name : this.$store.state.userInfo.userName,
             password : this.$store.state.userInfo.userPassword,
             rank : this.$store.state.userInfo.userRank,
@@ -156,47 +170,38 @@ export default {
     },
     methods: 
     {
-        onClickImageSend(fileEvent) {
+        onClickImageSend() {
+            var formData = new FormData();
+            
+            // file upload
+            var attachFile = document.querySelector("#inputFileUploadInsert");
+            console.log("InsertImg: data 1 : ");
+            console.log(attachFile);
 
+            
+            formData.append("file", attachFile);
+            
 
-            if( fileEvent.target.files && fileEvent.target.files.length > 0 ){
-
-            const file = fileEvent.target.file;
-            this.file = URL.createObjectURL(file);
-          
-        }
-
-        var formData = new FormData();
-        formData.append("userEmail", this.$store.state.userInfo.userEmail);
-
-        // file upload
-        var attachFiles = document.querySelector("#inputFileUploadInsert");
-        console.log("InsertProfileImg: data 1 : ");
-        console.log(attachFiles);
-
-        formData.append("file", attachFiles.file);
-        
-
-        http.post(
-          '/user/profile',
-            formData,
-          { headers: { 'Content-Type': 'multipart/form-data' } })
-        
-          .then(({ data }) => {
-            console.log("InsertProfileImg: data : ");
-            console.log(data);
-            if( data.result == 'login' ){
-              this.$router.push("/login")
-            }else{
-              this.$alertify.success('프로필 사진이 등록되었습니다');
-              
-            }
-          })
-          .catch((error) => {
-            console.log("InsertProfileImg: error ");
-            console.log(error);
-          });
-
+        // http.post(
+        //   '/user/'+this.$store.state.userInfo.userEmail,
+        //   formData,
+        //   { headers: { 'Content-Type': 'multipart/form-data' } })
+        //   .then(({ data }) => {
+        //     console.log("InsertModalVue: data : ");
+        //     console.log(data);
+        //     if( data.result == 'login' ){
+        //       this.$router.push("/login")
+        //     }else{
+        //       this.$alertify.success('사진이 등록되었습니다.');
+        //       this.closeModal();
+        //     }
+        //   })
+        //   .catch((error) => {
+        //     console.log("InsertModalVue: error ");
+        //     console.log(error);
+        //   });
+            
+            
 
       },
       onClickImageUpload() {
@@ -223,32 +228,13 @@ export default {
             var updatedText = event.target.value;
             this.message = updatedText;
         },
-        deleteInfo(){
-            //회원삭제 기능구현
-
-            http.delete(
-                "/user/"+ this.$store.state.userInfo.userEmail
-            )
-            .then(({ data }) => {
-          console.log("UserVue Secession - data : ");
-          console.log(data);
-
-          //로그아웃
-          this.$store.commit('SET_LOGOUT');
-
-            this.$router.push("/");
-          
-        })
-        .catch((error) => {
-          console.log("UserVue Secession - error : ");
-          console.log(error);
-          if (error.response.status == "404") {
-            this.$alertify.error("로그아웃에 실패했습니다.");
-          } else {
-            this.$alertify.error("Opps!! 서버에 문제가 발생했습니다.");
-          }
-        });
+        showDeleteModal(){
+            this.secessionModal.show();
         },
+        closeAfterSecession(){
+            this.secessionModal.hide();
+        },
+        
         
       saveInfo(){
       
@@ -276,6 +262,13 @@ export default {
             
             userProfileImageUrl: data.userProfileImageUrl,
           });
+
+          this.$swal({
+                icon: 'success',
+                title: '성공적으로 수정되었습니다.',
+                showConfirmButton: false,
+                timer: 1500
+            });
           
         })
         .catch((error) => {
@@ -304,6 +297,9 @@ export default {
         
     },
     mounted() {
+
+    this.secessionModal = new Modal(document.getElementById('secessionModal'));
+
     this.$store.commit('SET_BREADCRUMB_INFO', {
        title: 'MyPage',
         subTitle: '개인 정보 조회/수정/탈퇴',

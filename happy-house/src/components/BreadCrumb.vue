@@ -13,7 +13,7 @@
       </nav>
       <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-          <h1 class="h4">{{ $store.state.breadCrumbInfo.subTitle }}</h1>
+          <p style="font-size:30px; font-weight:bold;">{{ $store.state.breadCrumbInfo.subTitle }}</p>
           <p class="mb-0">{{ $store.state.breadCrumbInfo.desc }}</p>
         </div>
       </div>
