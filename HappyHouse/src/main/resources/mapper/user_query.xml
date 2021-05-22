@@ -4,10 +4,15 @@
 <mapper namespace="com.ssafy.happyhouse.dao.UserDao">
 
     <insert id="userRegister" parameterType="com.ssafy.happyhouse.dto.UserDto">
-        insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date, )
+        insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date )
         values (#{userName}, #{userPassword}, #{userEmail}, '', now())
     </insert>
     
+    <update id="insertUserProfileImage" parameterType="com.ssafy.happyhouse.dto.UserDto"> 
+    	update user set
+    	user_profile_image_url = #{userProfileImageUrl}
+    	where user_email = #{userEmail}
+    </update>
     <update id="userEdit" parameterType="com.ssafy.happyhouse.dto.UserDto"  >
 		update user set
 		user_name = #{userName},
