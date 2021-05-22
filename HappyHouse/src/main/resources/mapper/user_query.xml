@@ -5,7 +5,7 @@
 
     <insert id="userRegister" parameterType="com.ssafy.happyhouse.dto.UserDto">
         insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date )
-        values (#{userName}, #{userPassword}, #{userEmail}, '', now())
+        values (#{userName}, #{userPassword}, #{userEmail}, #{userProfileImageUrl}, now())
     </insert>
     
     <update id="insertUserProfileImage" parameterType="com.ssafy.happyhouse.dto.UserDto"> 

@@ -52,10 +52,12 @@ public class UserController {
 		return new ResponseEntity<UserDto>(resultDto, HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping(value="/user/profile")
-	public ResponseEntity<UserDto> insertProfileImage(@RequestBody UserDto dto, MultipartHttpServletRequest request, HttpSession session){
-		
-		UserDto userDto = service.insertUserProfileImage(dto, request);
+	@PostMapping(value="/user/profile/{userEmail}")
+	public ResponseEntity<UserDto> insertProfileImage(@PathVariable String userEmail, MultipartHttpServletRequest request, HttpSession session){
+		System.out.println(userEmail);
+		System.out.println(request);
+		UserDto userDto = service.insertUserProfileImage(userEmail, request);
+		System.out.println(userDto);
 		UserDto resultDto = service.userInfo(userDto.getUserEmail());
 		if( resultDto != null ) {
 			session.setAttribute("userDto", resultDto);

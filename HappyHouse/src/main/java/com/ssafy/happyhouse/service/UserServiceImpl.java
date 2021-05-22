@@ -83,13 +83,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDto insertUserProfileImage(UserDto userDto, MultipartHttpServletRequest request) {
+	public UserDto insertUserProfileImage(String userEmail, MultipartHttpServletRequest request) {
 		
 		UserDto resultDto = new UserDto();
 		
 		try {
 			
 			MultipartFile file = request.getFile("file");
+			//System.out.println(file);
 			File uploadDir = new File(uploadPath + File.separator + uploadFolder);
 			if (!uploadDir.exists()) uploadDir.mkdir();
 			
@@ -104,12 +105,16 @@ public class UserServiceImpl implements UserService{
 		
 			File destFile = new File(uploadPath + File.separator + uploadFolder + File.separator + savingFileName);
 			
-			System.out.println(uploadPath + File.separator + uploadFolder + File.separator + savingFileName);
+			//System.out.println(uploadPath + File.separator + uploadFolder + File.separator + savingFileName);
 			file.transferTo(destFile);
 			
-			String boardFileUrl = uploadFolder + "/" + savingFileName;
-			userDto.setUserProfileImageUrl(boardFileUrl);
-			userDao.insertUserProfileImage(userDto);
+			String boardFileUrl = "/"+uploadFolder + "/" + savingFileName;
+			
+			System.out.println(boardFileUrl);
+			
+			resultDto.setUserEmail(userEmail);
+			resultDto.setUserProfileImageUrl(boardFileUrl);
+			userDao.insertUserProfileImage(resultDto);
 			
 			
 		}catch(IOException e) {

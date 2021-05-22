@@ -12,5 +12,5 @@ public interface UserService {
 	public UserDto userFindPass(String userEmail);
 	public UserResultDto userSecession(String userEmail);
 	public UserDto userInfo(String userEmail);
-	public UserDto insertUserProfileImage(UserDto userDto, MultipartHttpServletRequest request);
+	public UserDto insertUserProfileImage(String userEmail, MultipartHttpServletRequest request);
 }
