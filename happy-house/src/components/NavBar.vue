@@ -78,10 +78,12 @@ export default {
   },
   computed : {
         requireImg : function(){
-      
-            if( this.$store.state.userInfo.userProfileImageUrl == '' ) {
+            console.log(this.$store.state.userInfo.userProfileImageUrl);
+
+            if( this.$store.state.userInfo.userProfileImageUrl == ''  ) {
                 return require('../assets/img/noProfile.png')
-            }else{
+            }
+            else{
                 return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
             }
         },

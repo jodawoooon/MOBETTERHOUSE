@@ -205,6 +205,29 @@ export default {
         },
         deleteInfo(){
             //회원삭제 기능구현
+
+            http.delete(
+                "/user/"+ this.$store.state.userInfo.userEmail
+            )
+            .then(({ data }) => {
+          console.log("UserVue Secession - data : ");
+          console.log(data);
+
+          //로그아웃
+          this.$store.commit('SET_LOGOUT');
+
+            this.$router.push("/");
+          
+        })
+        .catch((error) => {
+          console.log("UserVue Secession - error : ");
+          console.log(error);
+          if (error.response.status == "404") {
+            this.$alertify.error("로그아웃에 실패했습니다.");
+          } else {
+            this.$alertify.error("Opps!! 서버에 문제가 발생했습니다.");
+          }
+        });
         },
         
       saveInfo(){
@@ -251,9 +274,10 @@ export default {
     computed : {
         requireImg : function(){
       
-            if( this.$store.state.userInfo.userProfileImageUrl == '' ) {
+            if( this.$store.state.userInfo.userProfileImageUrl == ''  ) {
                 return require('../assets/img/noProfile.png')
-            }else{
+            }
+            else{
                 return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
             }
         },

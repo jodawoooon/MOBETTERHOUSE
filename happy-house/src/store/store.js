@@ -12,10 +12,10 @@ export default new Vuex.Store({
       userEmail: 'ssafy@ssafy.com',
       userPassword: '1234',
       userName: '손동우',
-      userPhone: '',
+     
       userMessage: '',
       userRank: '',
-      userProfileImageUrl: require('../assets/img/noProfile.png'),
+      userProfileImageUrl: ''
     },
     breadCrumbInfo: {
       title: 'Home',
@@ -37,19 +37,25 @@ export default new Vuex.Store({
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
       state.userInfo.userMessage = payload.userMessage;
-      state.userInfo.userPhone = payload.userPhone;
+      
       state.userInfo.userRank = payload.userRank;
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
     SET_LOGOUT(state) {
       state.userInfo.isLogin = false;
+      state.userInfo.userPassword = '';
+      state.userInfo.userName = '';
+      state.userInfo.userEmail = '';
+      state.userInfo.userMessage = '';
+     
+      state.userInfo.userProfileImageUrl = '';
     },
     SET_INFO(state, payload) {
       state.userInfo.userPassword = payload.userPassword;
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
       state.userInfo.userMessage = payload.userMessage;
-      state.userInfo.userPhone = payload.userPhone;
+     
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
   },
