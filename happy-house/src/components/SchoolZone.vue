@@ -106,13 +106,14 @@
 
                     totalSchoolCnt: '',
                     searchDong: '',
-                    dongLat: '33.450701',
-                    dongLng: '126.570667',
+                    
+                    dongLat: '37.566426542005416',
+                    dongLng: '126.9779060206625',
                     map: null,
                     marker: null,
                     schoolList: [],
 
-
+                    markerPositions : [],
 
                     selectSidoList: [],
                     selectGugunList: [],
@@ -162,12 +163,13 @@
                         center: new kakao
                             .maps
                             .LatLng(this.dongLat, this.dongLng),
-                        level: 3
+                        level: 4
                     };
 
                     this.map = new kakao
                         .maps
                         .Map(container, options);
+
                     this.marker = new kakao
                         .maps
                         .Marker({
@@ -175,6 +177,7 @@
                                 .map
                                 .getCenter()
                         });
+
                     this
                         .marker
                         .setMap(this.map);
@@ -199,66 +202,14 @@
                     //         console.log(error);
                     //     });
                 },
-                drawMap(lat, lng) {
-                    var container = document.getElementById('map');
-                    var options = {
-                        center: new kakao
-                            .maps
-                            .LatLng(lat, lng),
-                        level: 3
-                    };
-
-                    this.map = new kakao
-                        .maps
-                        .Map(container, options);
-                    this.marker = new kakao
-                        .maps
-                        .Marker({
-                            position: this
-                                .map
-                                .getCenter()
-                        });
-                    this
-                        .marker
-                        .setMap(this.map);
-
-                },
-
+                
                 searchMap() {
                     // axios2.get('/openapi/tn_pubr_public_elesch_mskul_lc_api?serviceKey=ZR710L6m
                     // yodEEDwC%2FRmFJaTcGb0PckbFCt9LB6nNRAi6%2BLL2j%2FtXCMT%2FDv%2BM9%2BRJwkpyeR8
                     // Ji2RDYiui2Nfbmg%3D%3D&type=json') .then((response)=> {
                     // console.log(response); }).catch((error)=>{    console.log(error); });
 
-                    // axios
-                    //     .get('/v2/local/search/address.json?query=서울 ' + this.searchDong, {
-                    //         headers: {
-                    //             Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
-                    //         }
-                    //     })
-                    //     .then((response) => {
-                    //         console.log(response.data.documents[0].address);
-
-                    //         this.dongLat = response
-                    //             .data
-                    //             .documents[0]
-                    //             .y;
-                    //         this.dongLng = response
-                    //             .data
-                    //             .documents[0]
-                    //             .x;
-
-                    //         this.drawMap(this.dongLat, this.dongLng);
-
-                    //         this.searchSchool();
-
-                    //     })
-                    //     .catch((error) => {
-                    //         this.$swal(
-                    //             {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '관심있는 지역의 동 이름을 입력해주세요'}
-                    //         );
-                    //         console.dir(error);
-                    //     });
+                    
 
 
                 this.searchDong = this.selectedDongName;
@@ -287,16 +238,13 @@
                     
                     );
                     
-                    this.setMarker();
-                        // this.schoolList.forEach(){
-
-                        // }
-                    }
+                    
+                    this.findLatLng();
                     
 
                     
 
-                })
+                    }})
                 .catch((error) => {
                     console.log("SchoolZone List - error : ");
                     console.log(error);
@@ -313,11 +261,79 @@
 
                 },
 
-                setMarker(){
+                findLatLng(){
+
+                    var container = document.getElementById('map');
+                    
+                    var options = {
+                        center: new kakao
+                            .maps
+                            .LatLng(this.dongLat, this.dongLng),
+                        level: 8
+                    };
+
+                    var map = new kakao
+                        .maps
+                        .Map(container, options);
+
+                    this.schoolList.forEach(function(school){
+                            var address = school.schoolAddress1;
+                            axios
+                        .get('/v2/local/search/address.json?query=' + address, {
+                            headers: {
+                                Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
+                            }
+                        })
+                        .then((response) => {
+                            
+                            var lat = response
+                                .data
+                                .documents[0]
+                                .y;
+                            var lng = response
+                                .data
+                                .documents[0]
+                                .x;
+
+                            console.log(lat+" "+lng);
+
+                            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    
+
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+    
+        position: new kakao.maps.LatLng(lat,lng), // 마커를 표시할 위치
+        title : school.schoolName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+
+    marker.setMap(map);
+                            //this.setMarkers(school.schoolName, lat, lng);
+                            
+
+                        })
+                        .catch((error) => {
+                            
+                            console.log(error);
+                        });
+                        }
 
 
 
+                    )
+                    
+                    
                 },
+
+                
+
                 sidoList() {
       console.log('sidoList() is called!!!!!!');
       this.loadingCountUp();
