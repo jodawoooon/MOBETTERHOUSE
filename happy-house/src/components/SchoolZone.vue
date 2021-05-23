@@ -7,28 +7,31 @@
 
 
                         <!-- selectbar start  -->
-      <div class="col row">
-        <div class="col">
-          <select v-model="selectedSidoCode" @change="gugunList" class="form-select form-select-sm" aria-label="시">
+  <div class="d-flex justify-content-center mb-3" style=" height:100px;">
+        
+      <div class="row">
+        <div class="col align-self-center">
+          <select v-model="selectedSidoCode" @change="gugunList" class="form-select" aria-label="시">
             <option value="empty" selected disabled>시/도</option>
             <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
           </select>
         </div>
-        <div class="col">
-          <select v-model="selectedGugunCode" @change="dongList" class="form-select form-select-sm" aria-label="구">
+        <div class="col align-self-center">
+          <select v-model="selectedGugunCode" @change="dongList" class="form-select" aria-label="구">
             <option value="empty" selected disabled>구/군</option>
             <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
           </select>
         </div>
-        <div class="col">
-          <select v-model="selectedDongName" class="form-select form-select-sm" aria-label="동">
+        <div class="col align-self-center">
+          <select v-model="selectedDongName" class="form-select" aria-label="동">
             <option value="empty" selected disabled>동</option>
             <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_NAME">{{ dong.DONG_NAME }}</option>
           </select>
         </div>
-        <div class="col">
+        <div class="col align-self-center">
           <input type="button" class="btn btn-warning ml-3" value="검색" @click="searchMap" :disabled="selectedDongName == 'empty'" />
         </div>
+      </div>
       </div>
       <!-- selectbar end  -->
       
@@ -57,6 +60,9 @@
                             
                             <div v-if="totalSchoolCnt"><strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
                                 <div>
+
+                                결과를어떻게띄울까
+                                test
                                 검색결과
                                     <div v-for="(item, index) in schoolList" :key="index" >
                                         <p>{{ item.schoolName }}</p>
@@ -163,7 +169,7 @@
                         center: new kakao
                             .maps
                             .LatLng(this.dongLat, this.dongLng),
-                        level: 4
+                        level: 10
                     };
 
                     this.map = new kakao
@@ -269,7 +275,7 @@
                         center: new kakao
                             .maps
                             .LatLng(this.dongLat, this.dongLng),
-                        level: 8
+                        level: 10
                     };
 
                     var map = new kakao
