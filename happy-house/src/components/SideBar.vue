@@ -41,6 +41,12 @@
             <span class="sidebar-text">Bookmark</span>
           </router-link>
         </li>
+        <li class="nav-item" :class="{ active: $store.state.curPage == 'schoolZone' }">
+          <router-link to="/schoolZone" class="nav-link">
+            <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'school']"/></span>
+            <span class="sidebar-text">School Zone</span>
+          </router-link>
+        </li>
         <li class="nav-item" :class="{ active: $store.state.curPage == 'community' }">
           <router-link to="/community" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'comment-dots']"/></span>

@@ -38,7 +38,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="userRank">Rank</label>
-                                    <input :value="this.$store.state.userInfo.userRank" v-on:input="updateRank" class="form-control" id="userRank" type="text" placeholder="일반회원" required>
+                                    <input :value="this.$store.state.userInfo.userRank" v-on:input="updateRank" class="form-control" id="userRank" type="text" readonly>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +206,7 @@ export default {
                                 userName: data.userName,
                                 userEmail: data.userEmail,
                                 userMessage: data.userMessage,
-
+                               
                                 userProfileImageUrl: data.userProfileImageUrl
                             });
 
@@ -268,7 +268,7 @@ export default {
                     userName: this.name,
                     userEmail: this.$store.state.userInfo.userEmail,
                     userPassword: this.password,
-                    userRank: this.rank,
+                   
                     userMessage: this.message
                 })
                 .then(({data}) => {
@@ -283,7 +283,7 @@ export default {
                             userName: data.userName,
                             userEmail: data.userEmail,
                             userMessage: data.userMessage,
-
+                            
                             userProfileImageUrl: data.userProfileImageUrl
                         });
 

@@ -1,5 +1,7 @@
 <template>
   <main class="content">
+
+     
       <div class="col-12 col-lg-6 mb-4">
                             <div class="card border-light shadow-sm">
                                 <div class="card-header border-bottom border-light d-flex justify-content-between">
@@ -108,8 +110,14 @@ export default {
       desc: '정보 한눈에 볼 수 있는 페이지? + 우리 팀 소개',
     });
     this.$store.commit('SET_CUR_PAGE', 'Home');
+
+    
+
   },
+  
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

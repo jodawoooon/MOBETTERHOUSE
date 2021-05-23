@@ -108,7 +108,7 @@ export default {
                             userMessage: data.userMessage,
                             userPassword: data.userPassword,
                             userPhone: data.userPhone,
-                            userRank: data.userRank,
+                            userRank : data.codeName,
                             userProfileImageUrl: data.userProfileImageUrl
                         });
 
@@ -176,7 +176,7 @@ export default {
                                         userMessage: data.userMessage,
                                         userPassword: data.userPassword,
                                         userPhone: data.userPhone,
-                                        userRank: data.userRank,
+                                        userRank : data.codeName,
                                         userProfileImageUrl: data.userProfileImageUrl
                                     });
 
@@ -212,7 +212,7 @@ export default {
                                                     userMessage: data.userMessage,
                                                     userPassword: data.userPassword,
                                                     userPhone: data.userPhone,
-                                                    userRank: data.userRank,
+                                                    userRank : data.codeName,
                                                     userProfileImageUrl: data.userProfileImageUrl
                                                 });
 
