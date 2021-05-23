@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.ssafy.happyhouse.common.LoginInterceptor;
@@ -12,8 +13,9 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	@Autowired
 	private LoginInterceptor loginInterceptor;
 	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
+	// step 1 - board-vue
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
 //		registry.addInterceptor(loginInterceptor)
 //		.addPathPatterns("/**")
 //		.excludePathPatterns(
@@ -22,18 +24,22 @@ public class WebMvcConfig implements WebMvcConfigurer{
 //				"/favicon.ico", 
 //				"/css/**", 
 //				"/js/**",
-//				"/login/**", 
-//				"/register/**"); // static folder
-	}
-	
-//	@Override
-//    public void addResourceHandlers (ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/").
-//                  addResourceLocations("classpath:/static/index.html");
-//    }
-	
-//	@Override
-//	public void addViewControllers(ViewControllerRegistry registry) {
-//	    registry.addViewController("/").setViewName("forward:/index.html");
+//				"/login/**"); // static folder
 //	}
+
+	// step 2 - board-vue-vuex
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(loginInterceptor)
+		.addPathPatterns("/**")
+		.excludePathPatterns(
+				"/",
+				"/index.html", 
+				"/favicon.ico", 
+				"/css/**", 
+				"/js/**",
+				"/codes/**",
+				"/login/**", 
+				"/user/**"); // static folder
+	}
 }

@@ -10,11 +10,15 @@ public class UserDto {
 	
 	private String userProfileImageUrl;
 	private Date userRegisterDate;
-	private String userRank;
+	
 	private String userMessage;
 	
+	//회원 구분
+	private String userRank;
+	private String codeName;
 	
 	
+			
 	public String getUserRank() {
 		return userRank;
 	}
@@ -23,8 +27,17 @@ public class UserDto {
 		this.userRank = userRank;
 	}
 
+
 	public String getUserMessage() {
 		return userMessage;
+	}
+
+	public String getCodeName() {
+		return codeName;
+	}
+
+	public void setCodeName(String codeName) {
+		this.codeName = codeName;
 	}
 
 	public void setUserMessage(String userMessage) {
@@ -87,6 +100,9 @@ public class UserDto {
 	public String toString() {
 		return "UserDto [userSeq=" + userSeq + ", userName=" + userName + ", userPassword=" + userPassword
 				+ ", userEmail=" + userEmail + ", userProfileImageUrl=" + userProfileImageUrl + ", userRegisterDate="
-				+ userRegisterDate + "]";
+				+ userRegisterDate + ", userMessage=" + userMessage + ", userRank=" + userRank + ", userRankName="
+				+ codeName + "]";
 	}
+
+	
 }

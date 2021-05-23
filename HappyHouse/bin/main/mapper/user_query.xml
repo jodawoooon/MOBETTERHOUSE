@@ -4,8 +4,8 @@
 <mapper namespace="com.ssafy.happyhouse.dao.UserDao">
 
     <insert id="userRegister" parameterType="com.ssafy.happyhouse.dto.UserDto">
-        insert into user (user_name, user_password, user_email, user_profile_image_url, user_register_date )
-        values (#{userName}, #{userPassword}, #{userEmail}, #{userProfileImageUrl}, now())
+        insert into user (user_name, user_password, user_email, user_rank, user_profile_image_url, user_register_date )
+        values (#{userName}, #{userPassword}, #{userEmail}, #{userRank}, #{userProfileImageUrl}, now())
     </insert>
     
     <update id="insertUserProfileImage" parameterType="com.ssafy.happyhouse.dto.UserDto"> 
@@ -17,7 +17,7 @@
 		update user set
 		user_name = #{userName},
 		user_password = #{userPassword},
-		user_rank = #{userRank},
+		
 		user_message = #{userMessage}
 		where user_email = #{userEmail}
 	</update>
@@ -34,8 +34,9 @@
 	</delete>
 	
 	<select id="userInfo" parameterType="String" resultType="com.ssafy.happyhouse.dto.UserDto">
-		select user_seq, user_name, user_password, user_email, user_profile_image_url, user_register_date, user_rank, user_message
-		from user where user_email = #{userEmail}
+		select user_seq, user_name, user_password, user_email, user_profile_image_url, user_register_date, user_message, user_rank, code_name
+		from user, code
+		where user_email = #{userEmail} and group_code = '1' and code = user_rank
 	</select>
 	
 	

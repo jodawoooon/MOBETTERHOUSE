@@ -3,8 +3,9 @@
 <mapper namespace="com.ssafy.happyhouse.dao.LoginDao">
 
 	<select id="login" parameterType="String" resultType="com.ssafy.happyhouse.dto.UserDto">
-		select *
-		from user where user_email = #{userEmail}
+		select user_seq, user_name, user_password, user_email, user_profile_image_url, user_register_date, user_message, user_rank, code_name
+		from user, code
+		where user_email = #{userEmail} and group_code = '1' and code = user_rank
 	</select>
 
 </mapper>
