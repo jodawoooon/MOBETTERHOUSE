@@ -84,6 +84,8 @@ export default {
                 return require('../assets/img/noProfile.png')
             }else if(this.$store.state.userInfo.userProfileImageUrl=='undefined'){
               return require('../assets/img/noProfile.png')
+            }else if(this.$store.state.userInfo.userProfileImageUrl.indexOf("http://k.kakaocdn.net/") != -1){
+              return (this.$store.state.userInfo.userProfileImageUrl)
             }
             else{
                 return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
