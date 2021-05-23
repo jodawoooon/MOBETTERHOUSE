@@ -16,7 +16,14 @@
                                     <label for="userName">Name</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon3"><font-awesome-icon :icon="['fas', 'user']"/></span>
-                                        <input type="text" class="form-control" v-model="userName" placeholder="Enter your name" id="userName" autofocus required>
+                                        <input type="name" class="form-control" placeholder="Enter User Name"
+                                        :class="{ 'is-valid': isUserNameFocusAndValid , 'is-invalid': isUserNameFocusAndInvalid  }" 
+                                        v-model="userName" 
+                                        @input="validateUserName" 
+                                        @focus="isUserNameFocus = true" id="userName" />
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">올바른 이름을 입력해 주세요.</div>
+                                    
                                     </div>  
                                 </div>
                                 <!-- End of Form -->
@@ -26,7 +33,14 @@
                                     <label for="email">Email</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon3"><font-awesome-icon :icon="['fas', 'envelope']"/></span>
-                                        <input type="email" class="form-control" v-model="userEmail" placeholder="Enter your email" id="email" autofocus required>
+                                        <input type="email" class="form-control" v-model="userEmail" placeholder="Enter your email" id="email"
+                                        :class="{ 'is-valid': isUserEmailFocusAndValid , 'is-invalid': isUserEmailFocusAndInValid  }" 
+                                        @input="validateEmail" 
+                                        @focus="isUserEmailFocus = true"
+                                        />
+
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">올바른 Email 을 입력해 주세요.</div>
                                     </div>  
                                 </div>
                                 <!-- End of Form -->
@@ -36,7 +50,14 @@
                                         <label for="password">Password</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon4"><font-awesome-icon :icon="['fas', 'key']"/></span>
-                                            <input type="password" placeholder="Password" v-model="userPassword" class="form-control" id="password" required>
+                                            <input type="password" placeholder="Password" v-model="userPassword" class="form-control" id="password"
+                                            :class="{ 'is-valid': isUserPasswordFocusAndValid , 'is-invalid': isUserPasswordFocusAndInvalid  }" 
+                                            @input="validatePassword"
+                                            @focus="isUserPasswordFocus = true"
+                                            />
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">1개 이상의 특수문자, 대소문자 및 숫자를 포함하고 8자리 이상이여야 합니다.</div>
+
                                         </div>  
                                     </div>
                                     <!-- End of Form -->
@@ -45,11 +66,24 @@
                                         <label for="confirm_password">Confirm Password</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon5"><font-awesome-icon :icon="['fas', 'key']"/></span>
-                                            <input type="password" placeholder="Confirm Password" class="form-control" id="confirm_password" required>
+                                            <input type="password" placeholder="Confirm Password" class="form-control" 
+                                            :class="{ 'is-valid': isUserPassword2FocusAndValid , 'is-invalid': isUserPassword2FocusAndInvalid  }" 
+                                            v-model="userPassword2"         
+                                            @input="validatePassword2"
+                                            @focus="isUserPassword2Focus = true"/>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
                                         </div>  
                                     </div>
                                     <!-- End of Form -->
-                                    
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <div class="form-check form-check-inline" v-for="(code, index) in codeList" :key="index">
+                                        <input class="form-check-input" :value="code.code" name="code.code" type="radio" v-model="userRank">
+                                        <label class="form-check-label">{{ code.codeName}}</label>
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
                                 </div>
                                 <div class="d-grid">
                                     <button @click="join" class="btn btn-dark">Sign up</button>
@@ -98,12 +132,87 @@ export default {
     return {
       userEmail: "",
       userPassword: "",
-
+        userPassword2: '',
       userName: "",
       userProfileImageUrl: "",
+
+      // focus
+      isUserNameFocus: false,
+      isUserEmailFocus: false,
+      isUserPasswordFocus: false,
+      isUserPassword2Focus: false,
+
+      // validation
+      isUserNameValid: false,
+      isUserEmailValid: false,
+      isUserPasswordValid: false,
+      isUserPassword2Valid: false,
+
+      // 회원 구분
+      groupCode: '1',
+      codeList: [],
+      userRank: '3' // 일반회원 default
     };
   },
+  computed: {
+      
+    isUserNameFocusAndValid(){
+      return this.isUserNameFocus && this.isUserNameValid;
+    },
+    isUserNameFocusAndInvalid(){
+      return this.isUserNameFocus && ! this.isUserNameValid;
+    },
+    isUserEmailFocusAndValid(){
+      return this.isUserEmailFocus && this.isUserEmailValid;
+    },
+    isUserEmailFocusAndInValid(){
+      return this.isUserEmailFocus && ! this.isUserEmailValid;
+    },
+    isUserPasswordFocusAndValid(){
+      return this.isUserPasswordFocus && this.isUserPasswordValid;
+    },
+    isUserPasswordFocusAndInvalid(){
+      return this.isUserPasswordFocus && ! this.isUserPasswordValid;
+    },
+    isUserPassword2FocusAndValid(){
+      return this.isUserPassword2Focus && this.isUserPassword2Valid;
+    },
+    isUserPassword2FocusAndInvalid(){
+      return this.isUserPassword2Focus && ! this.isUserPassword2Valid;
+    }
+  },
   methods: {
+
+    validateUserName() {
+      this.isUserNameValid = this.userName.length > 0 ? true : false;
+      console.log(this.isUserNameValid)
+    },
+    validateEmail() {
+      // ^ 시작일치, $ 끝 일치
+      // {2, 3} 2개 ~ 3개
+      // * 0회 이상, + 1회 이상
+      // [-_.] - 또는 _ 또는 .
+      // ? 없거나 1회
+      let regexp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      this.isUserEmailValid = (regexp.test(this.userEmail)) ? true : false;
+      console.log(this.isUserEmailValid)
+    },
+    validatePassword() {
+
+      let patternEngAtListOne = new RegExp(/[a-zA-Z]+/);// + for at least one
+      let patternSpeAtListOne = new RegExp(/[~!@#$%^&*()_+|<>?:{}]+/);// + for at least one
+      let patternNumAtListOne = new RegExp(/[0-9]+/);// + for at least one
+      
+      this.isUserPasswordValid = 
+        ( patternEngAtListOne.test( this.userPassword ) 
+          && patternSpeAtListOne.test( this.userPassword )  
+          && patternNumAtListOne.test( this.userPassword )
+          && this.userPassword.length >= 8
+        ) ? true : false;
+    },
+    validatePassword2() {
+        this.isUserPassword2Valid = ( this.userPassword == this.userPassword2 ) ? true : false;
+    },
     join(){
       
       http
@@ -111,6 +220,7 @@ export default {
           userName : this.userName,
           userEmail: this.userEmail,
           userPassword: this.userPassword,
+          userRank : this.userRank,
         })
         .then(({ data }) => {
           console.log("JoinVue - data : ");
@@ -124,7 +234,7 @@ export default {
             userMessage : data.userMessage,
             userPassword : data.userPassword,
             userPhone : data.userPhone,
-            userRank : data.userRank,
+            userRank : data.codeName,
             userProfileImageUrl: data.userProfileImageUrl,
           });
 
@@ -142,7 +252,7 @@ export default {
           
         })
         .catch((error) => {
-          console.log("LoginVue: error : ");
+          console.log("JoinVue: error : ");
           console.log(error);
           if (error.response.status == "404") {
             this.$alertify.error("회원가입에 실패했습니다.");
@@ -196,7 +306,7 @@ export default {
                                         userMessage: data.userMessage,
                                         userPassword: data.userPassword,
                                         userPhone: data.userPhone,
-                                        userRank: data.userRank,
+                                        userRank : data.codeName,
                                         userProfileImageUrl: data.userProfileImageUrl
                                     });
 
@@ -232,7 +342,7 @@ export default {
                                                     userMessage: data.userMessage,
                                                     userPassword: data.userPassword,
                                                     userPhone: data.userPhone,
-                                                    userRank: data.userRank,
+                                                    userRank : data.codeName,
                                                     userProfileImageUrl: data.userProfileImageUrl
                                                 });
 
@@ -277,6 +387,25 @@ export default {
         }
     
   },
+  created(){
+    http.get(
+      "/codes",
+      {
+        // get query string
+        params: {
+          groupCode: this.groupCode
+        }
+      })
+      .then(({ data }) => {
+        console.log("RegisterVue: data : ");
+        console.log(data);
+        if( data.result == 'login' ){
+          this.$router.push("/login")
+        }else{
+          this.codeList = data;
+        }
+    });
+  }
 };
 </script>
 

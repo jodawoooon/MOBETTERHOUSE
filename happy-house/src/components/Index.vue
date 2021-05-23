@@ -11,10 +11,10 @@
               </div>
               
               <div class="mb-2 ">
-                <span class="lead fw-normal text-muted shadowText"  style="font-size : 30px;">원하는 조건의 집을 한눈에 확인하세요!</span>
+                <span class="lead fw-normal text-muted shadowText bg-primary"  style="font-size : 30px;">원하는 조건의 집을 한눈에 확인하세요!</span>
               </div>
               <div class="mb-5  ">
-                <span class="lead fw-normal text-muted shadowText"  style="font-size : 30px;">똑똑한 내 집 마련의 시작. Happy House</span>
+                <span class="lead fw-normal text-muted shadowText bg-primary"  style="font-size : 30px;">똑똑한 내 집 마련의 시작. Happy House</span>
               </div>
 
               <!-- Button Modal -->

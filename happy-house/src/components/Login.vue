@@ -85,7 +85,8 @@ export default {
     name: "Login",
 
     data() {
-        return {userEmail: "daun@daun.net", userPassword: "1234", userName: "", userProfileImageUrl: ""};
+        return {userEmail: "daun@daun.net", userPassword: "1234", userName: "", userProfileImageUrl: "", userRank: '3' // 일반회원 default 
+        };
     },
     methods: {
         login() {
@@ -108,7 +109,7 @@ export default {
                             userMessage: data.userMessage,
                             userPassword: data.userPassword,
                             userPhone: data.userPhone,
-                            userRank: data.userRank,
+                            userRank : data.codeName,
                             userProfileImageUrl: data.userProfileImageUrl
                         });
 
@@ -160,7 +161,8 @@ export default {
                                 userName: kakao_account.profile.nickname + '('+ res.id + ')',
                                 userEmail: kakao_account.email,
                                 userProfileImageUrl: kakao_account.profile.profile_image_url,
-                                userPassword: 'kakao'
+                                userPassword: 'kakao',
+                                userRank : this.userRank
                             })
                             .then(({data}) => {
                                 console.log("LoginVue: data : ");
@@ -176,7 +178,7 @@ export default {
                                         userMessage: data.userMessage,
                                         userPassword: data.userPassword,
                                         userPhone: data.userPhone,
-                                        userRank: data.userRank,
+                                        userRank : data.codeName,
                                         userProfileImageUrl: data.userProfileImageUrl
                                     });
 
@@ -196,7 +198,8 @@ export default {
                                             userName: kakao_account.profile.nickname + '('+ res.id + ')',
                                             userEmail: kakao_account.email,
                                             userProfileImageUrl: kakao_account.profile.profile_image_url,
-                                            userPassword: 'kakao'
+                                            userPassword: 'kakao',
+                                            userRank : this.userRank
                                         })
                                         .then(({data}) => {
                                             console.log("JoinVue - data : ");
@@ -212,7 +215,7 @@ export default {
                                                     userMessage: data.userMessage,
                                                     userPassword: data.userPassword,
                                                     userPhone: data.userPhone,
-                                                    userRank: data.userRank,
+                                                    userRank : data.codeName,
                                                     userProfileImageUrl: data.userProfileImageUrl
                                                 });
 

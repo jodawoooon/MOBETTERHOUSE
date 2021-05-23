@@ -13,6 +13,7 @@ import Login from '@/components/Login.vue';
 import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
 import Index from '@/components/Index.vue';
+import SchoolZone from '@/components/SchoolZone.vue';
 
 export default new VueRouter({
   routes: [
@@ -59,6 +60,10 @@ export default new VueRouter({
     {
       path: '/index',
       component : Index,
+    },
+    {
+      path: '/schoolZone',
+      component : SchoolZone,
     }
   ],
 });
