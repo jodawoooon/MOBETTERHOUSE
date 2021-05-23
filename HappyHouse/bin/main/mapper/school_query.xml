@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.dao.SchoolDao">
+
+	<select id="schoolList" parameterType="string" resultType="com.ssafy.happyhouse.dto.SchoolDto">
+		select *
+		from school
+		where school_address2 like CONCAT('%', #{dongName}, '%')
+	</select>
+	
+	<select id="schoolListCnt" parameterType="string" resultType="int">
+		select count(*)
+		from school
+		where school_address2 like CONCAT('%', #{dongName}, '%')
+	</select>
+
+</mapper>

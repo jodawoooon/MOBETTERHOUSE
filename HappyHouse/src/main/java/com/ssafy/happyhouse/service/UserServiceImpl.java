@@ -92,6 +92,7 @@ public class UserServiceImpl implements UserService{
 			MultipartFile file = request.getFile("file");
 			//System.out.println(file);
 			File uploadDir = new File(uploadPath + File.separator + uploadFolder);
+			System.out.println(uploadDir);
 			if (!uploadDir.exists()) uploadDir.mkdir();
 			
 			String fileName = file.getOriginalFilename();
