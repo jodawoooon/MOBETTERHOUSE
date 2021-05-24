@@ -92,7 +92,12 @@ export default {
                 // let fs = require('fs');
                 // let res =  fs.existSync(url);
                 // console.log(res);
-                return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+                try{
+                    return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+                }catch(e){
+                    return require('../assets/img/noProfile.png')
+                }
+                
             }
         }
             ,

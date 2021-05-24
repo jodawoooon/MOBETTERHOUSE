@@ -331,7 +331,11 @@ export default {
               return (this.$store.state.userInfo.userProfileImageUrl)
             }
             else {
-                return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+                 try{
+                    return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+                }catch(e){
+                    return require('../assets/img/noProfile.png')
+                }
             }
         }
     },

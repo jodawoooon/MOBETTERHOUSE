@@ -7,34 +7,34 @@
 
 
                         <!-- selectbar start  -->
-  <div class="d-flex justify-content-center mb-3" style=" height:100px;">
-        
-      <div class="row">
-        <div class="col align-self-center">
-          <select v-model="selectedSidoCode" @change="gugunList" class="form-select" aria-label="시">
-            <option value="empty" selected disabled>시/도</option>
-            <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
-          </select>
-        </div>
-        <div class="col align-self-center">
-          <select v-model="selectedGugunCode" @change="dongList" class="form-select" aria-label="구">
-            <option value="empty" selected disabled>구/군</option>
-            <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
-          </select>
-        </div>
-        <div class="col align-self-center">
-          <select v-model="selectedDongName" class="form-select" aria-label="동">
-            <option value="empty" selected disabled>동</option>
-            <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_NAME">{{ dong.DONG_NAME }}</option>
-          </select>
-        </div>
-        <div class="col align-self-center">
-          <input type="button" class="btn btn-warning ml-3" value="검색" @click="searchMap" :disabled="selectedDongName == 'empty'" />
-        </div>
-      </div>
-      </div>
-      <!-- selectbar end  -->
-      
+                    <div class="d-flex justify-content-center mb-3" style=" height:100px;">
+                            
+                        <div class="row">
+                            <div class="col align-self-center">
+                            <select v-model="selectedSidoCode" @change="gugunList" class="form-select" aria-label="시">
+                                <option value="empty" selected disabled>시/도</option>
+                                <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
+                            </select>
+                            </div>
+                            <div class="col align-self-center">
+                            <select v-model="selectedGugunCode" @change="dongList" class="form-select" aria-label="구">
+                                <option value="empty" selected disabled>구/군</option>
+                                <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
+                            </select>
+                            </div>
+                            <div class="col align-self-center">
+                            <select v-model="selectedDongName" class="form-select" aria-label="동">
+                                <option value="empty" selected disabled>동</option>
+                                <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_NAME">{{ dong.DONG_NAME }}</option>
+                            </select>
+                            </div>
+                            <div class="col align-self-center">
+                            <input type="button" class="btn btn-warning ml-3" value="검색" @click="searchMap" :disabled="selectedDongName == 'empty'" />
+                            </div>
+                        </div>
+                        </div>
+                        <!-- selectbar end  -->
+                        
                         <!-- searchBar start -->
                         <!-- <div class="row mb-3">
                             <div class="col-3"></div>
@@ -72,6 +72,7 @@
                                         <p> {{item.schoolAddress1}} + {{item.schoolAddress2}} </p>
                                         <p> {{item.schoolPhone}}</p>
                                         <p>{{item.schoolEstDate}}</p>
+                                        <hr>
                                     </div>
 
                                 </div>
@@ -318,21 +319,21 @@
                             var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
     
 
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new kakao.maps.Size(24, 35); 
-    
-    // 마커 이미지를 생성합니다    
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-    
-        position: new kakao.maps.LatLng(lat,lng), // 마커를 표시할 위치
-        title : school.schoolName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage // 마커 이미지 
-    });
+                            // 마커 이미지의 이미지 크기 입니다
+                            var imageSize = new kakao.maps.Size(24, 35); 
+                            
+                            // 마커 이미지를 생성합니다    
+                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+                            
+                            // 마커를 생성합니다
+                            var marker = new kakao.maps.Marker({
+                            
+                                position: new kakao.maps.LatLng(lat,lng), // 마커를 표시할 위치
+                                title : school.schoolName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                                image : markerImage // 마커 이미지 
+                            });
 
-    marker.setMap(map);
+                            marker.setMap(map);
                             //this.setMarkers(school.schoolName, lat, lng);
                             
 
@@ -372,66 +373,66 @@
                 
 
                 sidoList() {
-      console.log('sidoList() is called!!!!!!');
-      this.loadingCountUp();
-      http.get('/sido').then(({ data }) => {
-        console.log('sidoList : ');
-        console.log(data);
-        this.loadingCountDown();
-        if (data.result == 'login') {
-          this.$router.push('/login');
-        } else {
-          this.selectSidoList = data;
-        }
-      });
-    },
-    gugunList() {
-      console.log('gugunList() is called!!!!!!');
-      this.loadingCountUp();
-      http
-        .get('/gugun', {
-          params: {
-            sidoCode: this.selectedSidoCode,
-          },
-        })
-        .then(({ data }) => {
-          console.log('gugunList : ');
-          console.log(data);
-          this.loadingCountDown();
-          if (data.result == 'login') {
-            this.$router.push('/login');
-          } else {
-            this.selectGugunList = data;
-          }
-        });
-    },
-    dongList() {
-      console.log('dongList() is called!!!!!!!');
-      this.loadingCountUp();
-      http
-        .get('/dong', {
-          params: {
-            sidoCode: this.selectedSidoCode,
-            gugunCode: this.selectedGugunCode,
-          },
-        })
-        .then(({ data }) => {
-          console.log('dongList : ');
-          console.log(data);
-          this.loadingCountDown();
-          if (data.result == 'login') {
-            this.$router.push('/login');
-          } else {
-            this.selectDongList = data;
-          }
-        });
-    },
-    loadingCountUp() {
-      this.loadingCount++;
-    },
-    loadingCountDown() {
-      this.loadingCount--;
-    },
+                    console.log('sidoList() is called!!!!!!');
+                    this.loadingCountUp();
+                    http.get('/sido').then(({ data }) => {
+                        console.log('sidoList : ');
+                        console.log(data);
+                        this.loadingCountDown();
+                        if (data.result == 'login') {
+                        this.$router.push('/login');
+                        } else {
+                        this.selectSidoList = data;
+                        }
+                    });
+                },
+                gugunList() {
+                    console.log('gugunList() is called!!!!!!');
+                    this.loadingCountUp();
+                    http
+                    .get('/gugun', {
+                    params: {
+                        sidoCode: this.selectedSidoCode,
+                    },
+                    })
+                    .then(({ data }) => {
+                    console.log('gugunList : ');
+                    console.log(data);
+                    this.loadingCountDown();
+                    if (data.result == 'login') {
+                        this.$router.push('/login');
+                    } else {
+                        this.selectGugunList = data;
+                    }
+                    });
+                },
+                dongList() {
+                    console.log('dongList() is called!!!!!!!');
+                    this.loadingCountUp();
+                    http
+                    .get('/dong', {
+                    params: {
+                        sidoCode: this.selectedSidoCode,
+                        gugunCode: this.selectedGugunCode,
+                    },
+                    })
+                    .then(({ data }) => {
+                    console.log('dongList : ');
+                    console.log(data);
+                    this.loadingCountDown();
+                    if (data.result == 'login') {
+                        this.$router.push('/login');
+                    } else {
+                        this.selectDongList = data;
+                    }
+                    });
+                },
+                loadingCountUp() {
+                    this.loadingCount++;
+                },
+                loadingCountDown() {
+                    this.loadingCount--;
+                },
             }
         }
 </script>
