@@ -11,6 +11,7 @@ export default new Vuex.Store({
 
       isKakao: false,
       isLogin: false,
+      userSeq : 0,
       userEmail: '',
       userPassword: '',
       userName: '',
