@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,11 +32,12 @@ public class HouseContoller {
 	HouseService houseService;
 
 	@GetMapping("/house")
-	public HouseResultDto houseList(int limit, int offset, String searchWord, String searchType) {
+	public HouseResultDto houseList(int limit, int offset, String searchWord, String searchType, int userSeq) {
 		System.out.println("/house1!!!!!!");
 		HouseParamDto param = new HouseParamDto();
 		param.setLimit(limit);
 		param.setOffset(offset);
+		param.setUserSeq(userSeq);
 
 		HouseResultDto result = new HouseResultDto();
 		if (searchWord.equals("")) {
@@ -97,32 +100,6 @@ public class HouseContoller {
 		return result;
 	}
 
-//	@GetMapping("/house/{")
-//	public HouseResultDto houseSearchApt(@RequestParam String searchWord) {
-//		System.out.println("/houseSearchApt!!!");
-//		HouseParamDto param = new HouseParamDto();
-//		param.setLimit(10);
-//		param.setOffset(0);
-//		param.setSearchWord(searchWord);
-//
-//		HouseResultDto result = new HouseResultDto();
-//		List<HouseDto> list = houseService.houseSearchApt(param);
-//		int count = houseService.houseSearchAptTotalCount(searchWord);
-//		if (list != null) {
-//			result.setResult(1);
-//			result.setList(list);
-//			result.setCount(count);
-//
-//			for (HouseDto dto : list) {
-//				System.out.println(dto);
-//			}
-//			System.out.println("count : " + count);
-//		} else {
-//			result.setResult(0);
-//		}
-//		return result;
-//	}
-
 	@GetMapping("/sido")
 	public ResponseEntity<List<Map<String, String>>> sidoList() {
 		System.out.println("/sidoList!!!");
@@ -170,5 +147,34 @@ public class HouseContoller {
 			}
 			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 		}
+	}
+
+	@PostMapping("/bookmark")
+	public ResponseEntity<Integer> insertBookmark(int userSeq, int dealNo) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("userSeq", userSeq);
+		map.put("dealNo", dealNo);
+
+		int ret = houseService.insertBookmark(map);
+		if (ret != 0) {
+			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
+		}
+	}
+	
+	@DeleteMapping("/bookmark")
+	public ResponseEntity<Integer> deleteBookmark(int userSeq, int dealNo){
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("userSeq", userSeq);
+		map.put("dealNo", dealNo);
+
+		int ret = houseService.deleteBookmark(map);
+		if (ret != 0) {
+			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
+		}
+		
 	}
 }
