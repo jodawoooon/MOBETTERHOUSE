@@ -135,6 +135,7 @@ export default {
         },
       });
     },
+
     GetMe(authObj) {
       console.log(authObj);
       window.Kakao.API.request({
@@ -142,11 +143,13 @@ export default {
         success: (res) => {
           const kakao_account = res.kakao_account;
 
-          console.log(kakao_account);
-
           http
             .post('/login', {
+              userName: kakao_account.profile.nickname + '(' + res.id + ')',
               userEmail: kakao_account.email,
+              userProfileImageUrl: kakao_account.profile.profile_image_url,
+              userPassword: 'kakao',
+              userRank: this.userRank,
             })
             .then(({ data }) => {
               console.log('LoginVue: data : ');
@@ -163,6 +166,8 @@ export default {
                 userRank: data.codeName,
                 userProfileImageUrl: data.userProfileImageUrl,
               });
+
+              this.$store.commit('SET_KAKAO');
 
               // home 로 이동
               this.$router.push('/home');
@@ -198,7 +203,7 @@ export default {
                     });
 
                     this.$swal({ icon: 'success', title: '로그인 성공', showConfirmButton: false, timer: 1500 });
-
+                    this.$store.commit('SET_KAKAO');
                     // home 로 이동
                     this.$router.push('/home');
                   })

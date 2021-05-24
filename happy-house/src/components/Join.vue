@@ -382,8 +382,7 @@ export default {
           this.$router.push('/login');
         } else {
           this.codeList = data;
-          console.log('/code : ');
-          console.log(data);
+          console.log(this.codeList);
         }
       });
   },

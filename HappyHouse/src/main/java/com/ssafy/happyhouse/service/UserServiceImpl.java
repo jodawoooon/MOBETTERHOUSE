@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
 	// F:\SSAFY\ssafy5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\BoardWebFileUpload\
 	
 	/* for eclipse development code */
-	String uploadPath = "D:/2021ssafy/java_eclipse/SSAFY/Boot/SpringBootMyBatisBoardFileUpload" 
+	String uploadPath = "C:\\Users\\asuspc\\AppData\\Roaming\\SPB_Data\\git\\13pairvue\\HappyHouse" 
 			+ File.separator + "src" 
 			+ File.separator + "main"
 			+ File.separator + "resources"

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-//import createPersistedState from 'vuex-persistedstate';
+// import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     userInfo: {
       // isLogin: true,
+
+      isKakao: false,
       isLogin: false,
       userEmail: '',
       userPassword: '',
@@ -43,6 +45,7 @@ export default new Vuex.Store({
     },
     SET_LOGOUT(state) {
       state.userInfo.isLogin = false;
+      state.userInfo.isKakao = false;
       state.userInfo.userPassword = '';
       state.userInfo.userName = '';
       state.userInfo.userEmail = '';
@@ -57,6 +60,9 @@ export default new Vuex.Store({
       state.userInfo.userMessage = payload.userMessage;
 
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
+    },
+    SET_KAKAO(state) {
+      state.userInfo.isKakao = true;
     },
   },
   actions: {},

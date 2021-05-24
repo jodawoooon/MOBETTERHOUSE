@@ -31,7 +31,19 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="userPassword">Password</label>
-                                    <input :value="this.$store.state.userInfo.userPassword" v-on:input="updatePassword" class="form-control" id="userPassword" type="password" placeholder="********" required>
+                                    <div v-if="this.$store.state.userInfo.isKakao">
+
+                                        <input :value="this.$store.state.userInfo.userPassword" v-on:input="updatePassword" class="form-control" 
+                                            id="userPassword" type="password" placeholder="********" readonly
+                                        >
+                                        <p>KAKAO LOGIN 상태입니다.</p>
+                                    </div>
+                                    <div v-if="this.$store.state.userInfo.isKakao==false">
+
+                                        <input :value="this.$store.state.userInfo.userPassword" v-on:input="updatePassword" class="form-control" 
+                                            id="userPassword" type="password" placeholder="********" required
+                                        >
+                                    </div>
                                 </div>
                             </div>
                             
@@ -319,7 +331,11 @@ export default {
               return (this.$store.state.userInfo.userProfileImageUrl)
             }
             else {
-                return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+                 try{
+                    return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
+                }catch(e){
+                    return require('../assets/img/noProfile.png')
+                }
             }
         }
     },
