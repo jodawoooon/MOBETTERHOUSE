@@ -16,7 +16,8 @@ public class CodeServiceImpl implements CodeService{
 	
 	@Override
 	public List<CodeDto> codeList(String groupCode) {
-		
+		System.out.println("groupCode : " + groupCode);
+		System.out.println("왜안대애애애애!!~~~~~~====================");
 		return codeDao.codeList(groupCode);
 	}
 }
