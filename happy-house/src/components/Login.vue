@@ -182,6 +182,8 @@ export default {
                                         userProfileImageUrl: data.userProfileImageUrl
                                     });
 
+                                this.$store.commit('SET_KAKAO');
+
                                 // home 로 이동
                                 this
                                     .$router
@@ -222,7 +224,7 @@ export default {
                                             this.$swal(
                                                 {icon: 'success', title: '로그인 성공', showConfirmButton: false, timer: 1500}
                                             );
-
+                                            this.$store.commit('SET_KAKAO');
                                             // home 로 이동
                                             this
                                                 .$router

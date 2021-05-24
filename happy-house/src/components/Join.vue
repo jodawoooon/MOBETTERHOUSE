@@ -403,8 +403,12 @@ export default {
           this.$router.push("/login")
         }else{
           this.codeList = data;
+
+          console.log(this.codeList);
         }
     });
+
+
   }
 };
 </script>

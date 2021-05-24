@@ -57,7 +57,9 @@
                                 <div class="col-3"></div>
                             </div> -->
                             <!-- searchBar end -->
-                            <p> {{latlngTestMsg}} </p>
+
+                            <p> ddddd {{latlngTestMsg}} </p>
+
                             <div v-if="totalSchoolCnt"><strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
                                 <div>
 
@@ -66,6 +68,10 @@
                                 검색결과
                                     <div v-for="(item, index) in schoolList" :key="index" >
                                         <p>{{ item.schoolName }}</p>
+                                        <p>{{item.schoolType}}</p>
+                                        <p> {{item.schoolAddress1}} + {{item.schoolAddress2}} </p>
+                                        <p> {{item.schoolPhone}}</p>
+                                        <p>{{item.schoolEstDate}}</p>
                                     </div>
 
                                 </div>
@@ -123,7 +129,7 @@
 
 
                     latlng : '',
-                    latlngTestMsg : '',
+                    latlngTestMsg : 'test',
                     markerPositions : [],
 
                     selectSidoList: [],
@@ -352,7 +358,8 @@
     
                    this.latlng = mouseEvent.latLng;
                     console.log("click latlng : "+mouseEvent.latLng);
-                    this.latlngTestMsg = '클릭한 위치의 위도는 ' + this.latlng.getLat() + ' 이고, 경도는 ' + this.latlng.getLng() + ' 입니다';
+                   
+                   this.latlngTestMsg = '클릭한 위치의 위도는 ' + this.latlng.getLat() + ' 이고, 경도는 ' + this.latlng.getLng() + ' 입니다';
                     console.log(this.latlngTestMsg);
 
                 });
