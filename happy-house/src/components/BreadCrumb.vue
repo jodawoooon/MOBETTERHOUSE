@@ -6,6 +6,7 @@
           <li class="breadcrumb-item">
             <a href="#"><font-awesome-icon :icon="['fas', 'home']"/></a>
           </li>
+        
           <li class="breadcrumb-item">
             <a href="#">{{ $store.state.breadCrumbInfo.title }}</a>
           </li>

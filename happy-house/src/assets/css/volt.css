@@ -1070,7 +1070,7 @@
   --bs-facebook: #3b5999;
   --bs-twitter: #1da1f2;
   --bs-github: #222222;
-  --bs-font-sans-serif: 'NEXON Lv1 Gothic OTF';
+  --bs-font-sans-serif: "NEXON Lv1 Gothic OTF";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -1090,7 +1090,7 @@
 
 body {
   margin: 0;
-  font-family: 'NEXON Lv1 Gothic OTF' !important; 
+  font-family: "NEXON Lv1 Gothic OTF" !important;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -8159,13 +8159,6 @@ fieldset:disabled .btn {
 
 .breadcrumb-item + .breadcrumb-item {
   padding-left: 0.5rem;
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-  float: left;
-  padding-right: 0.5rem;
-  color: #6b7280;
-  content: var(--bs-breadcrumb-divider, "/") /* rtl: var(--bs-breadcrumb-divider, "/") */;
 }
 
 .breadcrumb-item.active {
