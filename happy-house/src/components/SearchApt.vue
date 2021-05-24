@@ -23,11 +23,11 @@
           <!-- aptInfo start -->
           <div v-else>
             <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
-              <div class="col-8">
+              <div class="col-8 pb-3">
                 <h5>{{ house.aptName }}</h5>
                 <p class="m-0">거래금액: {{ house.dealAmount }}</p>
                 <p class="m-0">전용면적: {{ house.area }}</p>
-                <p class="m-0">등록일: {{ house.dealDate }}</p>
+                <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
               </div>
               <div class="col align-self-center" style="text-align: center">
                 <font-awesome-icon :icon="['far', 'star']" :id="'bookmarkStar' + (index + 1)" aria-hidden="true" style="color: rgb(255, 226, 95); font-size: 25px">
@@ -42,8 +42,10 @@
         <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
       </div>
     </div>
-    <div class="mt-4" v-if="loadingCount == 0">
+    <div id="paginationWrapper" class="mt-4">
+      <!-- <div class="mt-4" v-if="loadingCount == 0"> -->
       <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
+      <!-- </div> -->
     </div>
   </main>
 </template>
@@ -73,6 +75,7 @@ export default {
       listRowCount: 10,
       pageLinkCount: 10,
       currentPageIndex: 1,
+      pageHtml: '<pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>',
 
       searchWord: '',
     };
@@ -132,11 +135,14 @@ export default {
               this.houseList = data.list;
               this.houseListCount = data.count;
               this.kakaoMap();
+              // this.$refs.
             }
           });
       }
     },
     // pagination
+    makePage() {},
+
     movePage(pageIndex) {
       console.log('SearchDong.vue : movePage : pageIndex : ' + pageIndex);
       this.offset = (pageIndex - 1) * this.listRowCount;
@@ -151,6 +157,7 @@ export default {
         return year + '.' + (month < 10 ? '0' + month : month) + '.' + (day < 10 ? '0' + day : day);
       }
     },
+
     kakaoMap() {
       if (window.kakao && window.kakao.maps) {
         this.initMap();
