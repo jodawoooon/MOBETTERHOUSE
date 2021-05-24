@@ -74,6 +74,25 @@ public class HouseContoller {
 			} else {
 				result.setResult(0);
 			}
+		} else if (searchType.equals("apt")) {
+			System.out.println("/house searchApt!!!!");
+			param.setSearchWord(searchWord);
+			List<HouseDto> list = houseService.houseSearchApt(param);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.houseSearchAptTotalCount(searchWord);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
 		}
 		return result;
 	}
