@@ -29,7 +29,7 @@
                             </select>
                             </div>
                             <div class="col align-self-center">
-                            <input type="button" class="btn btn-warning ml-3" value="검색" @click="searchMap" :disabled="selectedDongName == 'empty'" />
+                            <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchByDong" :disabled="selectedDongName == 'empty'" />
                             </div>
                         </div>
                         </div>
@@ -58,33 +58,63 @@
                             </div> -->
                             <!-- searchBar end -->
 
-                            <p> ddddd {{latlngTestMsg}} {{latlng}}</p>
-                            <div v-if="totalSchoolCnt"  style="text-align:center" >
+                            
+                            <div v-if="totalSchoolCnt"  style="text-align:center; font-size:16pt" >
                                     <strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
-                                </div>  
-                            <div class="row"> 
-                                  
-                                    <div v-if="totalSchoolCnt" class="col-4">
-                                        <div style="overflow:scroll; height:400px;" >
+                            </div> 
+                            
 
-                                            결과를어떻게띄울까
-                                            test
-                                             검색결과
-                                            <div v-for="(item, index) in schoolList" :key="index" >
-                                                <p>학교명 : {{ item.schoolName }}</p>
-                                                <p>분류 : {{item.schoolType}}</p>
-                                                <p>도로명주소 : {{item.schoolAddress1}}</p>
-                                                <p>전화번호 : {{item.schoolPhone}}</p>
-                                                <p>설립일자 : {{item.schoolEstDate}}</p>
+                            <div v-if="selectPointSchoolCnt"  style="text-align:center; font-size:16pt" >
+                                <strong>{{selectPointAddress}}</strong><br>
+                                반경 1km 이내의 학교 검색 결과는 총 <strong>{{selectPointSchoolCnt}}</strong>건 입니다.
+                            </div> 
+                            <div class="row mt-3"> 
+                                  
+                                    <div v-if="totalSchoolCnt" class="col-4 m-2">
+                                       
+                                        <div scroll=auto style="overflow-x:hidden; height:550px; font-size:14pt" class="scroll_set" >
+
+                                            
+                                            
+                                            <div v-for="(item, index) in schoolList" :key="index" :id="item.schoolName">
+                                                
+                                                <p style="font-size:16pt;"><strong>{{ item.schoolName }}</strong></p>
+                                                <p class="m-0">도로명주소 : {{item.schoolAddress1}}</p>
+                                                <p class="m-0">전화번호 : {{item.schoolPhone}}</p>
+                                                <p class="m-0">설립일자 : {{item.schoolEstDate}}</p>
+                                                <div style="text-align:right;">
+                                                    <p class="m-0"> <a class="btn btn-secondary btn-sm" :href="item.schoolWebAdd">상세보기</a></p>
+                                                </div>
+                                                
+                                                
+                                                <hr>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div v-if="selectPointSchoolCnt" class="col-4 m-2">
+                                        
+                                        <div scroll=auto style="overflow-x:hidden; height:550px; font-size:14pt" class="scroll_set">
+
+                                            
+                                            
+                                            <div v-for="(item, index) in selectPointSchoolList" :key="index" :id="item.place_name" >
+                                                <p style="font-size:16pt;"><strong>{{ item.place_name }}</strong></p>
+                                                <p class="m-0">도로명주소 : {{item.road_address_name}}</p>
+                                                <p class="m-0">전화번호 : {{item.phone}}</p>
+                                                <div style="text-align:right;">
+                                                    <p class="m-0"> <a class="btn btn-secondary btn-sm" :href="item.place_url">상세보기</a></p>
+                                                </div>
                                                 <hr>
                                             </div>
                                         </div>
-                                </div>
+                                    </div>
                            
                                 
                                 
                                 
-                                <div id="map" class="map col border" @click="mapClick"></div>
+                                <div id="map" class="map col border mb-3" @click="searchByClick"></div>
                                 
                             </div>
                                 
@@ -131,19 +161,25 @@
 
                     totalSchoolCnt: '',
                     searchDong: '',
+                
+                    dongLat: '37.50141840988349',
+                    dongLng: '127.03965383784762',
                     
-                    dongLat: '37.566426542005416',
-                    dongLng: '126.9779060206625',
+                    circle : null,
                     map: null,
-                    marker: null,
+                    marker : null,
 
                     schoolList: [],
 
-
+                    selectPointAddress : '',
+                    selectPointDong : '',
+                    selectPointSchoolCnt : '',
+                    selectPointSchoolList : [],
                     latlng : '',
                     latlngTestMsg : 'test',
 
-                    markerPositions : [],
+                    markerList : [],
+                    circleList : [],
 
                     selectSidoList: [],
                     selectGugunList: [],
@@ -184,6 +220,10 @@
 
                 this.sidoList();
 
+                if(this.$store.state.userInfo.isLogin==false){
+                        this.$router.push('/');
+                    }
+
             },
             methods: {
                 initMap() {
@@ -192,7 +232,7 @@
                         center: new kakao
                             .maps
                             .LatLng(this.dongLat, this.dongLng),
-                        level: 10
+                        level: 5
                     };
 
                     
@@ -213,88 +253,61 @@
                     var zoomControl = new kakao.maps.ZoomControl();
                     this.map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-                    this.marker = new kakao
-                        .maps
-                        .Marker({
-                            position: this
-                                .map
-                                .getCenter()
-                        });
-
-                    this
-                        .marker
-                        .setMap(this.map);
 
                 },
-                // searchSchool(lat, lng) {
-                //     var url = '/v2/local/search/category.json?category_group_code=SC4&x=' + this.dongLng +
-                //             '&y=' + this.dongLat + '&radius=2000&sort=distance'
-                //     axios
-                //         .get(url, {
-                //             headers: {
-                //                 Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
-                //             }
-                //         })
-                //         .then((response) => {
-                //             console.log(response.data);
-                //         })
-                //         .catch((error) => {
-                //             this.$swal(
-                //                 {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '관심있는 지역의 동 이름을 입력해주세요'}
-                //             );
-                //             console.log(error);
-                //         });
-                // },
                 
-                searchMap() {
                 
+                searchByDong() {
+                    this.circleInit();
+                    this.markerInit();
 
-                this.searchDong = this.selectedDongName;
+                    this.searchDong = this.selectedDongName;
 
-                http
-                .get("/school/"+this.searchDong
-                )
-                .then(({data}) => {
-                    console.log("SchoolZone List - data : ");
-                    console.log(data);
+                    http
+                    .get("/school/"+this.searchDong
+                    )
+                    .then(({data}) => {
+                        console.log("SchoolZone List - data : ");
+                        console.log(data);
 
-                    if (data.result == 'login') {
-                        this.$router.push('/login');
-                    } else{
+                        if (data.result == 'login') {
+                            this.$router.push('/login');
+                        } else{
 
-                        this.totalSchoolCnt = data.cnt;
-                        this.schoolList = data.list;
+                            this.totalSchoolCnt = data.cnt;
+                            this.schoolList = data.list;
+                            this.selectPointSchoolCnt = '';
 
-                        console.log(this.schoolList);
+                            console.log(this.schoolList);
 
+                            this.$swal(
+                            {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : this.searchDong+' 검색결과 : '+this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
+
+                            
+                            
+                        
+                        );
+                        
+                        
+                        this.findLatLng();
+                        
+
+                        
+
+                        }})
+                    .catch((error) => {
+                        console.log("SchoolZone List - error : ");
+                        console.log(error);
+                        if (error.response.status == "404") {
                         this.$swal(
-                        {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : this.searchDong+' 검색결과 : '+this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
-
-                        
-                        
-                    
-                    );
-                    
-                    
-                    this.findLatLng();
-                    
-
-                    
-
-                    }})
-                .catch((error) => {
-                    console.log("SchoolZone List - error : ");
-                    console.log(error);
-                    if (error.response.status == "404") {
-                       this.$swal(
-                                {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '서울특별시 내의 정보만을 제공하고 있습니다.'}
-                             );
-                    } else {
-                        this
-                            .$alertify
-                            .error("Opps!! 서버에 문제가 발생했습니다.");
-                    }
-                });
+                                    {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '서울특별시 내의 정보만을 제공하고 있습니다.'}
+                                );
+                        } else {
+                            this
+                                .$alertify
+                                .error("Opps!! 서버에 문제가 발생했습니다.");
+                        }
+                    });
 
                 },
 
@@ -305,7 +318,7 @@
                     
                    
                     console.log($this.map);
-
+                   
                     $this.schoolList.forEach(function(school){
                             var address = school.schoolAddress1;
                             axios
@@ -325,13 +338,10 @@
                                 .documents[0]
                                 .x;
                             
-                            $this.markerPositions.push({
-                                school : school,
-                                lat : lat,
-                                lng : lng
-                            })
-                            $this.setMarker(school, lat, lng);
-                            console.log($this.markerPositions);
+                            
+                            
+                            $this.setMarker(school.schoolName, lat, lng);
+                            //console.log($this.markerPositions);
 
                             
 
@@ -353,31 +363,34 @@
 
                 setMarker(school,lat,lng){
                             var $this = this;
-                            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+                            var imageSrc = require('@/assets/img/school.png');
     
-
+                            
                             // 마커 이미지의 이미지 크기 입니다
                             var imageSize = new kakao.maps.Size(24, 35); 
                             
                             // 마커 이미지를 생성합니다    
                             var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
                             
+                            
                             // 마커를 생성합니다
                             var marker = new kakao.maps.Marker({
                             
                                 position: new kakao.maps.LatLng(lat,lng), // 마커를 표시할 위치
-                                title : school.schoolName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                                title : school, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                                 image : markerImage // 마커 이미지 
                             });
-
+                            
+                            $this.markerList.push(marker);
                             marker.setMap($this.map);
 
-                            var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+                            var infowindow = new kakao.maps.InfoWindow({zIndex:1, removable : true});
 
                             kakao.maps.event.addListener(marker, 'mouseover', function() {
                                 // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-                                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + 
-                                school.schoolName + '</div>');
+                                var windowDiv = '<div class="m-4">' + document.getElementById(school).innerHTML + "</div>";
+                                infowindow.setContent(windowDiv);
+                             
                                 infowindow.open($this.map, marker);
                             });
                             //this.setMarkers(school.schoolName, lat, lng);
@@ -392,11 +405,19 @@
                             // 지도 중심을 부드럽게 이동시킵니다
                             // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
                             $this.map.panTo(moveLatLon); 
+
+                            
                 },
                 
-                mapClick(){
+                searchByClick(){
                     
                     var $this = this;
+
+                    $this.circleInit();
+
+                    $this.markerInit();
+
+                   
 
                     
                     kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {        
@@ -404,30 +425,112 @@
                     $this.latlng = mouseEvent.latLng;
                     console.log("click latlng : "+mouseEvent.latLng);
                    
-                   
-                    $this.marker.setPosition($this.latlng);
+                    $this.map.panTo($this.latlng); 
 
-                    var container = document.getElementById('map');
-                    var options = {
-                        center: new kakao
-                            .maps
-                            .LatLng(this.dongLat, this.dongLng),
-                        level: 10
-                    };
-
-                    
-
-                    this.map = new kakao
+                    var marker = new kakao
                         .maps
-                        .Map(container, options);
+                        .Marker({
+                            position: $this.latlng
+                        });
+
+                    marker.setMap($this.map);
+                    $this.markerList.push(marker);
+                    
                     $this.latlngTestMsg = '클릭한 위치의 위도는 ' + $this.latlng.getLat() + ' 이고, 경도는 ' + $this.latlng.getLng() + ' 입니다';
                     console.log($this.latlngTestMsg);
 
+                    axios
+                        .get('/v2/local/geo/coord2regioncode.json?x=' + $this.latlng.getLng() + '&y=' +$this.latlng.getLat(), {
+                            headers: {
+                                Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
+                            }
+                        })
+                        .then((response) => {
+                            
+                            $this.selectPointAddress = response
+                                .data
+                                .documents[0].address_name;
+
+                            $this.selectPointDong = response
+                                .data
+                                .documents[0]
+                                .region_3depth_name;
+                            
+
+
+                            
+                            
+
+                        })
+                        .catch((error) => {
+                            
+                            console.log(error);
+                        });
+
+
+                    $this.searchSelectPointSchool($this.latlng.getLat(),$this.latlng.getLng());
                 });
 
                     
                     
 
+                },
+                searchSelectPointSchool(lat, lng) {
+                   
+                   
+                    var url = '/v2/local/search/category.json?category_group_code=SC4&x=' + lng +
+                            '&y=' + lat + '&radius=1000&sort=distance'
+                    axios
+                        .get(url, {
+                            headers: {
+                                Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
+                            }
+                        })
+                        .then((response) => {
+                            console.log(response.data.documents);
+                            this.selectPointSchoolList = response.data.documents;
+                            this.selectPointSchoolCnt = response.data.meta.total_count;
+                            this.totalSchoolCnt = '';
+
+                            //좌표 매핑
+                            var $this = this;
+
+                            
+
+                            this.selectPointSchoolList.forEach(function(school){
+                                
+                                var lng = school.x;
+                                var lat = school.y;
+                                console.log(school.place_name);
+
+                                $this.setMarker(school.place_name, lat, lng);
+                            });
+
+                            var circle = new kakao.maps.Circle({
+                                center: new kakao.maps.LatLng(lat, lng),
+                                radius: 1000, // 미터 단위의 원의 반지름입니다 
+                                strokeWeight: 1, // 선의 두께입니다 
+                                strokeColor: '#75B8FA', // 선의 색깔입니다
+                                strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                
+                                fillColor: '#CFE7FF', // 채우기 색깔입니다
+                                fillOpacity: 0.4  // 채우기 불투명도 입니다   
+                            }); 
+
+                            // 지도에 원을 표시합니다 
+                            
+                            circle.setMap($this.map); 
+                            $this.circleList.push(circle);
+                        })
+                        .catch((error) => {
+                            this.$swal(
+                                {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '관심있는 지역의 동 이름을 입력해주세요'}
+                            );
+                            console.log(error);
+                        });
+
+
+                        
                 },
 
                 
@@ -493,12 +596,34 @@
                 loadingCountDown() {
                     this.loadingCount--;
                 },
+                markerInit(){
+                    if(this.markerList.length!=0){
+                        this.markerList.forEach(function(e){
+                            e.setMap(null);
+                        });
+                    }
+                },
+                circleInit(){
+                     if(this.circleList.length!=0){
+                        this.circleList.forEach(function(e){
+                            e.setMap(null);
+                        });
+                    }
+                }
             }
         }
 </script>
 <style>
         .map {
             width: 100%;
-            height: 400px;
+            height: 550px;
         }
+
+        .scroll_set {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.scroll_set::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
 </style>

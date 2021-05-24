@@ -116,7 +116,10 @@ export default {
       desc: '정보 한눈에 볼 수 있는 페이지? + 우리 팀 소개',
     });
     this.$store.commit('SET_CUR_PAGE', 'Home');
-
+    
+    if(this.$store.state.userInfo.isLogin==false){
+        this.$router.push('/');
+    }
     console.log(this.$store.state.userInfo.userSeq);
     
 
