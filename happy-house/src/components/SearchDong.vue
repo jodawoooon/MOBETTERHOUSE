@@ -44,7 +44,13 @@
                 <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
               </div>
               <div class="col align-self-center" style="text-align: center">
-                <font-awesome-icon :icon="['far', 'star']" :id="'bookmarkStar' + (index + 1)" aria-hidden="true" style="color: rgb(255, 226, 95); font-size: 25px">
+                <font-awesome-icon
+                  :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
+                  @click="clickBookmark(house)"
+                  :id="'bookmarkStar' + (index + 1)"
+                  aria-hidden="true"
+                  style="color: rgb(255, 226, 95); font-size: 25px"
+                >
                   <input type="hidden" value="' + dealNo + '" />
                 </font-awesome-icon>
               </div>
@@ -67,6 +73,7 @@ import http from '@/common/axios.js';
 import router from '@/routers/routers.js';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import Pagination from './Pagination.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'SearchDong',
@@ -115,6 +122,7 @@ export default {
               offset: this.offset,
               searchWord: '',
               searchType: '',
+              userSeq: this.getUserSeq,
             },
           })
           .then(({ data }) => {
@@ -122,6 +130,7 @@ export default {
             console.log(data);
             this.loadingCountDown();
             if (data.result == 'login') {
+              console.log(data.result);
               router.push('/login');
             } else {
               this.houseList = data.list;
@@ -139,6 +148,7 @@ export default {
               offset: this.offset,
               searchWord: this.selectedDongCode,
               searchType: 'dong',
+              userSeq: this.getUserSeq,
             },
           })
           .then(({ data }) => {
@@ -154,6 +164,31 @@ export default {
             }
           });
       }
+    },
+
+    clickBookmark(house) {
+      if (house.bookmarked) {
+        http
+          .delete('/bookmark', {
+            userSeq: this.getUserSeq,
+            dealNo: house.no,
+          })
+          .then(({ data }) => {
+            console.log('deleteBookmark!!!!');
+            console.log(data);
+          });
+      } else {
+        http
+          .post('/bookmark', {
+            userSeq: this.getUserSeq,
+            dealNo: house.no,
+          })
+          .then(({ data }) => {
+            console.log('insertBookmark!!!!');
+            console.log(data);
+          });
+      }
+      house.bookmarked = !house.bookmarked;
     },
 
     sidoList() {
@@ -302,6 +337,10 @@ export default {
       }
     },
   },
+  computed: {
+    ...mapGetters(['getUserSeq']),
+  },
+
   created() {
     this.searchList();
     this.sidoList();

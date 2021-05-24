@@ -24,4 +24,8 @@ public interface HouseService {
 	public List<Map<String, String>> gugunList(String sidoCode);
 
 	public List<Map<String, String>> dongList(Map<String, String> map);
+	
+	public int insertBookmark(Map<String, Integer> map);
+	
+	public int deleteBookmark(Map<String, Integer> map);
 }

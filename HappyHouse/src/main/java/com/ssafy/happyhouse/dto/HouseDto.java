@@ -18,7 +18,7 @@ public class HouseDto {
 	private String lat;
 	private String lng;
 	private String img;
-	private String bookmarked;
+	private boolean bookmarked;
 
 	public int getNo() {
 		return no;
@@ -156,11 +156,11 @@ public class HouseDto {
 		this.img = img;
 	}
 
-	public String getBookmarked() {
+	public boolean getBookmarked() {
 		return bookmarked;
 	}
 
-	public void setBookmarked(String bookmarked) {
+	public void setBookmarked(boolean bookmarked) {
 		this.bookmarked = bookmarked;
 	}
 

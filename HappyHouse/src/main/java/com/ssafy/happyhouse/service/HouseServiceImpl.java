@@ -60,4 +60,19 @@ public class HouseServiceImpl implements HouseService {
 		return houseDao.dongList(map);
 	}
 
+	@Override
+	public int insertBookmark(Map<String, Integer> map) {
+		System.out.println("/insertBookmark!!!!");
+		int ret = houseDao.insertBookmark(map);
+		System.out.println("ret : " + ret);
+		return ret;
+	}
+
+	@Override
+	public int deleteBookmark(Map<String, Integer> map) {
+		System.out.println("/deleteBookmark!!!!");
+		int ret = houseDao.deleteBookmark(map);
+		System.out.println("ret : " + ret);
+		return ret;
+	}
 }

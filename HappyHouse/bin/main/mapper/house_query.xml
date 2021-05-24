@@ -64,4 +64,14 @@
 		  WHERE CITY_CODE=#{sidoCode} AND GUGUN_CODE=#{gugunCode}
 		  ORDER BY NAME ASC;
 	</select>
+	
+	<insert id="insertBookmark" parameterType="map">
+		INSERT INTO BOOKMARK
+		  VALUES(#{userSeq}, #{dealNo})
+	</insert>
+	
+	<delete id="deleteBookmark" parameterType="map">
+		DELETE FROM BOOKMARK
+		  WHERE USER_SEQ=#{userSeq} and DEAL_NO=#{dealNo}
+	</delete>
 </mapper>
