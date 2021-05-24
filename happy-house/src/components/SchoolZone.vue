@@ -59,35 +59,45 @@
                             <!-- searchBar end -->
 
                             <p> ddddd {{latlngTestMsg}} </p>
+                            <div v-if="totalSchoolCnt"  style="text-align:center" >
+                                    <strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
+                                </div>  
+                            <div class="row"> 
+                                  
+                                    <div v-if="totalSchoolCnt" class="col-4">
+                                        <div style="overflow:scroll; height:400px;" >
 
-                            <div v-if="totalSchoolCnt"><strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
-                                <div>
-
-                                결과를어떻게띄울까
-                                test
-                                검색결과
-                                    <div v-for="(item, index) in schoolList" :key="index" >
-                                        <p>{{ item.schoolName }}</p>
-                                        <p>{{item.schoolType}}</p>
-                                        <p> {{item.schoolAddress1}} + {{item.schoolAddress2}} </p>
-                                        <p> {{item.schoolPhone}}</p>
-                                        <p>{{item.schoolEstDate}}</p>
-                                        <hr>
-                                    </div>
-
+                                            결과를어떻게띄울까
+                                            test
+                                             검색결과
+                                            <div v-for="(item, index) in schoolList" :key="index" >
+                                                <p>학교명 : {{ item.schoolName }}</p>
+                                                <p>분류 : {{item.schoolType}}</p>
+                                                <p>도로명주소 : {{item.schoolAddress1}}</p>
+                                                <p>전화번호 : {{item.schoolPhone}}</p>
+                                                <p>설립일자 : {{item.schoolEstDate}}</p>
+                                                <hr>
+                                            </div>
+                                        </div>
                                 </div>
-                            
+                           
+                                
+                                
+                                
+                                <div id="map" class="map col border" @click="mapClick"></div>
+                                
                             </div>
+                                
                             
                             
-                            <div id="map" class="map" @click="mapClick"></div>
+                            
                             
                                 
                         </div>
 
                     </div>
-
                 </div>
+                
             </div>
         </main>
 </template>
@@ -248,7 +258,7 @@
                         console.log(this.schoolList);
 
                         this.$swal(
-                        {icon: 'success', title: '학군 정보 검색에 성공했습니다!', showConfirmButton: false, timer: 1500}
+                        {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : this.searchDong+' 검색결과 : '+this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
 
                         
                         
@@ -286,7 +296,7 @@
                         center: new kakao
                             .maps
                             .LatLng(this.dongLat, this.dongLng),
-                        level: 10
+                        level: 9
                     };
 
                     var map = new kakao
@@ -334,6 +344,14 @@
                             });
 
                             marker.setMap(map);
+
+                            var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+                            kakao.maps.event.addListener(marker, 'click', function() {
+                                // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+                                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + school.schoolName + '</div>');
+                                infowindow.open(map, marker);
+                            });
                             //this.setMarkers(school.schoolName, lat, lng);
                             
 
