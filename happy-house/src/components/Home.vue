@@ -2,8 +2,14 @@
   <main class="content">
 
      
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 mb-4">
+<div class="mb-4">
+    test IMG
+                                    <img src="@/assets/img/window_back_img.jpg">
+                                </div>
                             <div class="card border-light shadow-sm">
+
+                                
                                 <div class="card-header border-bottom border-light d-flex justify-content-between">
                                    <h2 class="h5 mb-0">Team members</h2>
                                     <a href="#" class="btn btn-sm btn-secondary">See all</a>
