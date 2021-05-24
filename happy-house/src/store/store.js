@@ -11,6 +11,7 @@ export default new Vuex.Store({
 
       isKakao: false,
       isLogin: true,
+      userSeq : 0,
       userEmail: 'daun@daun.net',
       userPassword: '1234',
       userName: 'dauen',
@@ -35,6 +36,7 @@ export default new Vuex.Store({
     },
     SET_LOGIN(state, payload) {
       state.userInfo.isLogin = true;
+      state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
@@ -44,6 +46,7 @@ export default new Vuex.Store({
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
     SET_LOGOUT(state) {
+      state.userInfo.userSeq = 0;
       state.userInfo.isLogin = false;
       state.userInfo.isKakao = false;
       state.userInfo.userPassword = '';
@@ -54,6 +57,7 @@ export default new Vuex.Store({
       state.userInfo.userProfileImageUrl = '';
     },
     SET_INFO(state, payload) {
+      state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;

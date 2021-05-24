@@ -58,7 +58,7 @@
                             </div> -->
                             <!-- searchBar end -->
 
-                            <p> ddddd {{latlngTestMsg}} </p>
+                            <p> ddddd {{latlngTestMsg}} {{latlng}}</p>
                             <div v-if="totalSchoolCnt"  style="text-align:center" >
                                     <strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
                                 </div>  
@@ -296,13 +296,23 @@
                         center: new kakao
                             .maps
                             .LatLng(this.dongLat, this.dongLng),
-                        level: 9
+                        level: 5
                     };
 
                     var map = new kakao
                         .maps
                         .Map(container, options);
                     
+                    // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+                    var mapTypeControl = new kakao.maps.MapTypeControl();
+
+                    // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+                    // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+                    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+                    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+                    var zoomControl = new kakao.maps.ZoomControl();
+                    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
                     console.log(map);
 
                     this.schoolList.forEach(function(school){
@@ -347,13 +357,24 @@
 
                             var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-                            kakao.maps.event.addListener(marker, 'click', function() {
+                            kakao.maps.event.addListener(marker, 'mouseover', function() {
                                 // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-                                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + school.schoolName + '</div>');
+                                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + 
+                                school.schoolName + '</div>');
                                 infowindow.open(map, marker);
                             });
                             //this.setMarkers(school.schoolName, lat, lng);
-                            
+                            // 마커에 마우스아웃 이벤트를 등록합니다
+                            kakao.maps.event.addListener(marker, 'mouseout', function() {
+                                // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+                                infowindow.close();
+                            });
+
+                            var moveLatLon = new kakao.maps.LatLng(lat, lng);
+    
+                            // 지도 중심을 부드럽게 이동시킵니다
+                            // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                            map.panTo(moveLatLon); 
 
                         })
                         .catch((error) => {
@@ -372,14 +393,16 @@
 
                 
                 mapClick(){
+                    
+                    var $this = this;
 
                     kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {        
     
-                   this.latlng = mouseEvent.latLng;
+                    $this.latlng = mouseEvent.latLng;
                     console.log("click latlng : "+mouseEvent.latLng);
                    
-                   this.latlngTestMsg = '클릭한 위치의 위도는 ' + this.latlng.getLat() + ' 이고, 경도는 ' + this.latlng.getLng() + ' 입니다';
-                    console.log(this.latlngTestMsg);
+                    $this.latlngTestMsg = '클릭한 위치의 위도는 ' + $this.latlng.getLat() + ' 이고, 경도는 ' + $this.latlng.getLng() + ' 입니다';
+                    console.log($this.latlngTestMsg);
 
                 });
 

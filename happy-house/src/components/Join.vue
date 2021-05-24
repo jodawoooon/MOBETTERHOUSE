@@ -238,6 +238,7 @@ export default {
           // join 성공 전달
           this.$store.commit('SET_LOGIN', {
             isLogin: true,
+             userSeq : data.userSeq,   
             userName: data.userName,
             userEmail: data.userEmail,
             userMessage: data.userMessage,
@@ -299,6 +300,7 @@ export default {
               // login 성공 전달
               this.$store.commit('SET_LOGIN', {
                 isLogin: true,
+                 userSeq : data.userSeq,   
                 userName: data.userName,
                 userEmail: data.userEmail,
                 userMessage: data.userMessage,
@@ -331,6 +333,7 @@ export default {
                     // join 성공 전달
                     this.$store.commit('SET_LOGIN', {
                       isLogin: true,
+                       userSeq : data.userSeq,   
                       userName: data.userName,
                       userEmail: data.userEmail,
                       userMessage: data.userMessage,
