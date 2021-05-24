@@ -7,32 +7,32 @@
 
 
                         <!-- selectbar start  -->
-                    <div class="d-flex justify-content-center mb-3" style=" height:100px;">
+                    <div class="d-flex justify-content-center mb-2" style=" height:100px;">
                             
                         <div class="row">
                             <div class="col align-self-center">
-                            <select v-model="selectedSidoCode" @change="gugunList" class="form-select" aria-label="시">
-                                <option value="empty" selected disabled>시/도</option>
-                                <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
-                            </select>
+                                <select v-model="selectedSidoCode" @change="gugunList" class="form-select select" aria-label="시" >
+                                    <option value="empty" selected disabled>시/도</option>
+                                    <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
+                                </select>
                             </div>
                             <div class="col align-self-center">
-                            <select v-model="selectedGugunCode" @change="dongList" class="form-select" aria-label="구">
-                                <option value="empty" selected disabled>구/군</option>
-                                <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
-                            </select>
+                                <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
+                                    <option value="empty" selected disabled>구/군</option>
+                                    <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
+                                </select>
                             </div>
                             <div class="col align-self-center">
-                            <select v-model="selectedDongName" class="form-select" aria-label="동">
-                                <option value="empty" selected disabled>동</option>
-                                <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_NAME">{{ dong.DONG_NAME }}</option>
-                            </select>
+                                <select v-model="selectedDongName" class="form-select select" aria-label="동">
+                                    <option value="empty" selected disabled>동</option>
+                                    <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_NAME">{{ dong.DONG_NAME }}</option>
+                                </select>
                             </div>
                             <div class="col align-self-center">
-                            <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchByDong" :disabled="selectedDongName == 'empty'" />
+                                <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchByDong" :disabled="selectedDongName == 'empty'" />
                             </div>
                         </div>
-                        </div>
+                    </div>
                         <!-- selectbar end  -->
                         
                         <!-- searchBar start -->
@@ -57,14 +57,17 @@
                                 <div class="col-3"></div>
                             </div> -->
                             <!-- searchBar end -->
+                            <div v-if="totalSchoolCnt==''&&selectPointSchoolCnt==''"  style="text-align:center; font-size:16pt" class="mt-1 mb-4">
+                                관심 있는 지역을 검색하거나, 지도 위에 마우스를 올려 클릭해보세요!
+                            </div>
 
                             
-                            <div v-if="totalSchoolCnt"  style="text-align:center; font-size:16pt" >
+                            <div v-if="totalSchoolCnt"  style="text-align:center; font-size:16pt" class="mt-1 mb-4">
                                     <strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
                             </div> 
                             
 
-                            <div v-if="selectPointSchoolCnt"  style="text-align:center; font-size:16pt" >
+                            <div v-if="selectPointSchoolCnt"  style="text-align:center; font-size:16pt" class="mt-1 mb-4">
                                 <strong>{{selectPointAddress}}</strong><br>
                                 반경 1km 이내의 학교 검색 결과는 총 <strong>{{selectPointSchoolCnt}}</strong>건 입니다.
                             </div> 
@@ -78,12 +81,12 @@
                                             
                                             <div v-for="(item, index) in schoolList" :key="index" :id="item.schoolName">
                                                 
-                                                <p style="font-size:16pt;"><strong>{{ item.schoolName }}</strong></p>
+                                                <h4><strong>{{ item.schoolName }}</strong></h4>
                                                 <p class="m-0">도로명주소 : {{item.schoolAddress1}}</p>
                                                 <p class="m-0">전화번호 : {{item.schoolPhone}}</p>
                                                 <p class="m-0">설립일자 : {{item.schoolEstDate}}</p>
                                                 <div style="text-align:right;">
-                                                    <p class="m-0"> <a class="btn btn-secondary btn-sm" :href="item.schoolWebAdd">상세보기</a></p>
+                                                    <p class="m-0"> <a class="btn btn-secondary btn" :href="item.schoolWebAdd">상세보기</a></p>
                                                 </div>
                                                 
                                                 
@@ -100,11 +103,11 @@
                                             
                                             
                                             <div v-for="(item, index) in selectPointSchoolList" :key="index" :id="item.place_name" >
-                                                <p style="font-size:16pt;"><strong>{{ item.place_name }}</strong></p>
+                                                <h4 style="font-size:16pt;"><strong>{{ item.place_name }}</strong></h4>
                                                 <p class="m-0">도로명주소 : {{item.road_address_name}}</p>
                                                 <p class="m-0">전화번호 : {{item.phone}}</p>
                                                 <div style="text-align:right;">
-                                                    <p class="m-0"> <a class="btn btn-secondary btn-sm" :href="item.place_url">상세보기</a></p>
+                                                    <p class="m-0"> <a class="btn btn-secondary btn" :href="item.place_url">상세보기</a></p>
                                                 </div>
                                                 <hr>
                                             </div>
@@ -198,7 +201,7 @@
                     .commit('SET_BREADCRUMB_INFO', {
                         title: 'SchoolZone',
                         subTitle: '주변 학군 정보',
-                        desc: '관심있는 동을 선택하거나, 원하는 지역을 지도에서 클릭해보세요!'
+                        desc: '서울특별시 내의 학교 정보를 확인해 보세요!'
                     });
                 this
                     .$store
@@ -623,7 +626,13 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
+
 .scroll_set::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
+}
+
+.select {
+    width:200px;
+    
 }
 </style>

@@ -109,7 +109,7 @@ export default {
     this.$store.commit('SET_BREADCRUMB_INFO', {
       title: 'Home',
       subTitle: 'Overview',
-      desc: '정보 한눈에 볼 수 있는 페이지? + 우리 팀 소개',
+      desc: '학군 정보가 궁금한 지역을 선택해 보세요! 마우스 클릭으로도 검색이 가능합니다!',
     });
     this.$store.commit('SET_CUR_PAGE', 'Home');
     

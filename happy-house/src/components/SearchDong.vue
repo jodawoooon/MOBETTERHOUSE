@@ -1,70 +1,79 @@
 <template>
   <main class="content">
-    <div class="main bg-light p-4">
-      <!-- selectbar start  -->
-      <div class="col row">
-        <div class="col"></div>
-        <div class="col">
-          <select v-model="selectedSidoCode" @change="gugunList" class="form-select form-select-sm" aria-label="시">
-            <option value="empty" selected disabled>시/도</option>
-            <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
-          </select>
-        </div>
-        <div class="col">
-          <select v-model="selectedGugunCode" @change="dongList" class="form-select form-select-sm" aria-label="구">
-            <option value="empty" selected disabled>구/군</option>
-            <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
-          </select>
-        </div>
-        <div class="col">
-          <select v-model="selectedDongCode" class="form-select form-select-sm" aria-label="동">
-            <option value="empty" selected disabled>동</option>
-            <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_CODE">{{ dong.DONG_NAME }}</option>
-          </select>
-        </div>
-        <div class="col">
-          <input type="button" class="btn btn-warning ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
-        </div>
-      </div>
-      <!-- selectbar end  -->
-
-      <div class="row m-1">
-        <div class="col-4" id="apartInfo">
-          <!-- pulseLoader -->
-          <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
-            <pulse-loader :loading="loadingCount != 0"></pulse-loader>
-          </div>
-          <!-- aptInfo start -->
-          <div v-else>
-            <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
-              <div class="col-8 pb-3">
-                <h5>{{ house.aptName }}</h5>
-                <p class="m-0">거래금액: {{ house.dealAmount }}</p>
-                <p class="m-0">전용면적: {{ house.area }}</p>
-                <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
-              </div>
-              <div class="col align-self-center" style="text-align: center">
-                <font-awesome-icon
-                  :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
-                  @click="clickBookmark(house)"
-                  :id="'bookmarkStar' + (index + 1)"
-                  aria-hidden="true"
-                  style="color: rgb(255, 226, 95); font-size: 25px"
-                >
-                  <input type="hidden" value="' + dealNo + '" />
-                </font-awesome-icon>
-              </div>
-              <hr />
+    <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card border-light shadow-sm ">
+                    <div class="card-body">
+                    <!-- selectbar start  -->
+                    
+                      <div class="d-flex justify-content-center mb-2" style="height:100px;">
+                      <div class="row">
+                        <div class="col align-self-center">
+                          <select v-model="selectedSidoCode" @change="gugunList" class="form-select select" aria-label="시">
+                            <option value="empty" selected disabled>시/도</option>
+                            <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
+                          </select>
+                        </div>
+                        <div class="col align-self-center">
+                          <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
+                            <option value="empty" selected disabled>구/군</option>
+                            <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
+                          </select>
+                        </div>
+                        <div class="col align-self-center">
+                          <select v-model="selectedDongCode" class="form-select select" aria-label="동">
+                            <option value="empty" selected disabled>동</option>
+                            <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_CODE">{{ dong.DONG_NAME }}</option>
+                          </select>
+                        </div>
+                        <div class="col align-self-center">
+                          <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
+                        </div>
+                    </div>
+                    
+                    </div>
+                  
+                    <!-- selectbar end  -->
+                    <div class="row m-1">
+                      <div class="col-4" id="apartInfo">
+                        <!-- pulseLoader -->
+                        <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
+                          <pulse-loader :loading="loadingCount != 0"></pulse-loader>
+                        </div>
+                        <!-- aptInfo start -->
+                        <div v-else>
+                          <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
+                            <div class="col-8 pb-3">
+                              <h5>{{ house.aptName }}</h5>
+                              <p class="m-0">거래금액: {{ house.dealAmount }}</p>
+                              <p class="m-0">전용면적: {{ house.area }}</p>
+                              <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
+                            </div>
+                            <div class="col align-self-center" style="text-align: center">
+                              <font-awesome-icon
+                                :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
+                                @click="clickBookmark(house)"
+                                :id="'bookmarkStar' + (index + 1)"
+                                aria-hidden="true"
+                                style="color: rgb(255, 226, 95); font-size: 25px"
+                              >
+                                <input type="hidden" value="' + dealNo + '" />
+                              </font-awesome-icon>
+                            </div>
+                            <hr />
+                          </div>
+                        </div>
+                        <!-- aptInfo end -->
+                      </div>
+                      <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
+                    </div>
+                  </div>
+                  <div class="mt-4" v-if="loadingCount == 0">
+                    <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
+                  </div>
+                  </div>
+                </div>
             </div>
-          </div>
-          <!-- aptInfo end -->
-        </div>
-        <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
-      </div>
-    </div>
-    <div class="mt-4" v-if="loadingCount == 0">
-      <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
-    </div>
   </main>
 </template>
 
@@ -372,5 +381,10 @@ export default {
 
 #apartInfo::-webkit-scrollbar-track {
   background-color: white;
+}
+
+.select {
+    width:200px;
+    
 }
 </style>
