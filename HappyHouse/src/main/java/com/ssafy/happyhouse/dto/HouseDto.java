@@ -18,6 +18,7 @@ public class HouseDto {
 	private String lat;
 	private String lng;
 	private String img;
+	private String bookmarked;
 
 	public int getNo() {
 		return no;
@@ -155,12 +156,21 @@ public class HouseDto {
 		this.img = img;
 	}
 
+	public String getBookmarked() {
+		return bookmarked;
+	}
+
+	public void setBookmarked(String bookmarked) {
+		this.bookmarked = bookmarked;
+	}
+
 	@Override
 	public String toString() {
 		return "HouseDto [no=" + no + ", aptName=" + aptName + ", gugunCode=" + gugunCode + ", dong=" + dong
 				+ ", dealAmount=" + dealAmount + ", buildYear=" + buildYear + ", dealYear=" + dealYear + ", dealMonth="
 				+ dealMonth + ", dealDay=" + dealDay + ", area=" + area + ", floor=" + floor + ", jibun=" + jibun
 				+ ", type=" + type + ", rentMoney=" + rentMoney + ", lat=" + lat + ", lng=" + lng + ", img=" + img
-				+ "]";
+				+ ", bookmarked=" + bookmarked + "]";
 	}
+
 }
