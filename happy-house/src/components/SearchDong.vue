@@ -3,6 +3,7 @@
     <div class="main bg-light p-4">
       <!-- selectbar start  -->
       <div class="col row">
+        <div class="col"></div>
         <div class="col">
           <select v-model="selectedSidoCode" @change="gugunList" class="form-select form-select-sm" aria-label="시">
             <option value="empty" selected disabled>시/도</option>
@@ -36,11 +37,11 @@
           <!-- aptInfo start -->
           <div v-else>
             <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
-              <div class="col-8">
+              <div class="col-8 pb-3">
                 <h5>{{ house.aptName }}</h5>
                 <p class="m-0">거래금액: {{ house.dealAmount }}</p>
                 <p class="m-0">전용면적: {{ house.area }}</p>
-                <p class="m-0">등록일: {{ house.dealDate }}</p>
+                <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
               </div>
               <div class="col align-self-center" style="text-align: center">
                 <font-awesome-icon :icon="['far', 'star']" :id="'bookmarkStar' + (index + 1)" aria-hidden="true" style="color: rgb(255, 226, 95); font-size: 25px">

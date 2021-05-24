@@ -71,5 +71,8 @@ export default {
       this.$emit('call-parent', pageIndex);
     },
   },
+  updated() {
+    console.log('Pagination updated!!!!');
+  },
 };
 </script>
