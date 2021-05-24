@@ -218,6 +218,13 @@ export default {
       this.searchList();
     },
 
+    makeDateStr(year, month, day, type) {
+      //2010.05.05
+      if (type == '.') {
+        return year + '.' + (month < 10 ? '0' + month : month) + '.' + (day < 10 ? '0' + day : day);
+      }
+    },
+
     // kakaoMap(list) {
     //   var mapContainer = document.querySelector('#map');
     //   var options = {
@@ -325,7 +332,14 @@ export default {
       var positions = [];
       for (var i = 0; i < this.houseList.length; i++) {
         positions.push({
-          content: 'content~',
+          content: `
+              <div class="col-8">
+                <h5>${this.houseList[i].aptName}</h5>
+                <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
+                <p class="m-0">전용면적: ${this.houseList[i].area}</p>
+                <p class="m-0">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
+              </div>
+          `,
           latlng: new kakao.maps.LatLng(this.houseList[i].lat, this.houseList[i].lng),
         });
       }

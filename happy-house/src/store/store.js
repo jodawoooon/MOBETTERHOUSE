@@ -10,14 +10,14 @@ export default new Vuex.Store({
       // isLogin: true,
 
       isKakao: false,
-      isLogin: false,
-      userEmail: '',
-      userPassword: '',
-      userName: '',
+      isLogin: true,
+      userEmail: 'daun@daun.net',
+      userPassword: '1234',
+      userName: 'dauen',
 
-      userMessage: '',
-      userRank: '',
-      userProfileImageUrl: '',
+      userMessage: 'hihi',
+      userRank: '1',
+      userProfileImageUrl: '/img/noProfile.png',
     },
     breadCrumbInfo: {
       title: 'Home',
