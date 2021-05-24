@@ -398,13 +398,28 @@
                     
                     var $this = this;
 
+                    
                     kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {        
     
                     $this.latlng = mouseEvent.latLng;
                     console.log("click latlng : "+mouseEvent.latLng);
                    
+                   
                     $this.marker.setPosition($this.latlng);
+
+                    var container = document.getElementById('map');
+                    var options = {
+                        center: new kakao
+                            .maps
+                            .LatLng(this.dongLat, this.dongLng),
+                        level: 10
+                    };
+
                     
+
+                    this.map = new kakao
+                        .maps
+                        .Map(container, options);
                     $this.latlngTestMsg = '클릭한 위치의 위도는 ' + $this.latlng.getLat() + ' 이고, 경도는 ' + $this.latlng.getLng() + ' 입니다';
                     console.log($this.latlngTestMsg);
 
