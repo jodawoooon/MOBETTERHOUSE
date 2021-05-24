@@ -7,7 +7,19 @@ public class SchoolDto {
 	private String schoolAddress1;
 	private String schoolAddress2;
 	private String schoolPhone;
+	private String schoolWebAdd;
 	private String schoolEstDate;
+	
+	
+	
+	
+	public String getSchoolWebAdd() {
+		return schoolWebAdd;
+	}
+	public void setSchoolWebAdd(String schoolWebAdd) {
+		this.schoolWebAdd = schoolWebAdd;
+	}
+	
 	public String getSchoolType() {
 		return schoolType;
 	}
