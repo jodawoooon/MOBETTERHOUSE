@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
+// import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
@@ -12,10 +12,10 @@ export default new Vuex.Store({
       userEmail: '',
       userPassword: '',
       userName: '',
-     
+
       userMessage: '',
       userRank: '',
-      userProfileImageUrl: ''
+      userProfileImageUrl: '',
     },
     breadCrumbInfo: {
       title: 'Home',
@@ -37,7 +37,7 @@ export default new Vuex.Store({
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
       state.userInfo.userMessage = payload.userMessage;
-      
+
       state.userInfo.userRank = payload.userRank;
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
@@ -47,7 +47,7 @@ export default new Vuex.Store({
       state.userInfo.userName = '';
       state.userInfo.userEmail = '';
       state.userInfo.userMessage = '';
-     
+
       state.userInfo.userProfileImageUrl = '';
     },
     SET_INFO(state, payload) {
@@ -55,7 +55,7 @@ export default new Vuex.Store({
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
       state.userInfo.userMessage = payload.userMessage;
-     
+
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
   },
@@ -69,5 +69,5 @@ export default new Vuex.Store({
     },
   },
   modules: {},
-  plugins: [createPersistedState()],
+  // plugins: [createPersistedState()],
 });
