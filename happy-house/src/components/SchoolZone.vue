@@ -57,7 +57,7 @@
                                 <div class="col-3"></div>
                             </div> -->
                             <!-- searchBar end -->
-                            
+                            <p> {{latlngTestMsg}} </p>
                             <div v-if="totalSchoolCnt"><strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
                                 <div>
 
@@ -73,9 +73,11 @@
                             </div>
                             
                             
-                            <div id="map" class="map"></div>
+                            <div id="map" class="map" @click="mapClick"></div>
+                            
                                 
                         </div>
+
                     </div>
 
                 </div>
@@ -119,6 +121,9 @@
                     marker: null,
                     schoolList: [],
 
+
+                    latlng : '',
+                    latlngTestMsg : '',
                     markerPositions : [],
 
                     selectSidoList: [],
@@ -138,8 +143,7 @@
                     .commit('SET_BREADCRUMB_INFO', {
                         title: 'SchoolZone',
                         subTitle: '주변 학군 정보',
-                        desc: '학교정보  -> 동이름 -> 위도경도변환 -> 반경 1km내의 학교 찾기 성공 //// 근데 반경 ~~~km는 가능한데 그 중심점이 애매해서' +
-                                ' 동의 범주를 넘어감 => 그냥 백엔드로 공공데이터 가져오기'
+                        desc: '관심있는 동을 선택하거나, 원하는 지역을 지도에서 클릭해보세요!'
                     });
                 this
                     .$store
@@ -281,6 +285,8 @@
                     var map = new kakao
                         .maps
                         .Map(container, options);
+                    
+                    console.log(map);
 
                     this.schoolList.forEach(function(school){
                             var address = school.schoolAddress1;
@@ -336,6 +342,24 @@
                     )
                     
                     
+                },
+
+
+                
+                mapClick(){
+
+                    kakao.maps.event.addListener(this.map, 'click', function(mouseEvent) {        
+    
+                   this.latlng = mouseEvent.latLng;
+                    console.log("click latlng : "+mouseEvent.latLng);
+                    this.latlngTestMsg = '클릭한 위치의 위도는 ' + this.latlng.getLat() + ' 이고, 경도는 ' + this.latlng.getLng() + ' 입니다';
+                    console.log(this.latlngTestMsg);
+
+                });
+
+                    
+                    
+
                 },
 
                 

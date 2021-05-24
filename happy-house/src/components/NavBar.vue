@@ -88,6 +88,10 @@ export default {
               return (this.$store.state.userInfo.userProfileImageUrl)
             }
             else{
+                // let url = '../assets' + this.$store.state.userInfo.userProfileImageUrl;
+                // let fs = require('fs');
+                // let res =  fs.existSync(url);
+                // console.log(res);
                 return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
             }
         }
