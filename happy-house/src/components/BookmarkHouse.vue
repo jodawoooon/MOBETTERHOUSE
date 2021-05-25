@@ -253,6 +253,7 @@ export default {
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
+      isHome : false,
       title: '관심 매물 모아 보기',
       subTitle: '관심 매물 모아 보기',
       desc: '관심 매물 정보를 확인해보세요.',

@@ -21,7 +21,6 @@
               <td colspan="2">
                 <div v-for="(file, index) in $store.state.board.fileList" :key="index">
                   <span class="fileName">{{ file.fileName }}</span>
-                    
                   <a type="button" class="btn btn-outline btn-default btn-xs" v-bind:href="file.fileUrl" download>내려받기</a>
                 </div>
               </td>
@@ -38,6 +37,7 @@
   </div>
 </div>
 </template>
+
 
 
 <script>

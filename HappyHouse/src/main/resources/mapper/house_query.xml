@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="houseSearchApt" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
-		SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG
+		SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG,
 		  (SELECT CASE WHEN EXISTS(
 				  SELECT 1 FROM USER u, BOOKMARK_HOUSE b WHERE u.USER_SEQ=#{userSeq} AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO)
 			  THEN true ELSE false END) BOOKMARKED

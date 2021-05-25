@@ -22,7 +22,12 @@
 <script>
 export default {
   name: 'Pagination',
-  props: ['listRowCount', 'pageLinkCount', 'currentPageIndex', 'houseListCount'],
+  props: ['listRowCount', 'pageLinkCount', 'currentPageIndex'],
+  data() {
+    return {
+      houseListCount: this.$parent.houseListCount,
+    };
+  },
   computed: {
     pageCount: function() {
       return Math.ceil(this.houseListCount / this.listRowCount);
@@ -57,6 +62,9 @@ export default {
       }
     },
     next: function() {
+      console.log('Pagination next');
+      console.log('this.houseListCount : ' + this.houseListCount);
+      console.log('$parent.houseListCount : ' + this.$parent.houseListCount);
       if (this.endPageIndex >= this.pageCount) {
         return false;
       } else {
@@ -71,8 +79,14 @@ export default {
       this.$emit('call-parent', pageIndex);
     },
   },
-  updated() {
-    console.log('Pagination updated!!!!');
+  watch: {
+    houseListCount() {
+      console.log('Pagination watch!!!');
+      console.log('houseListCount : ' + this.houseListCount);
+    },
+    updated() {
+      console.log('Pagination updated!!!!');
+    },
   },
 };
 </script>

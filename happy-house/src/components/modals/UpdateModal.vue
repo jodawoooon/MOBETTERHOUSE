@@ -24,8 +24,10 @@
           <label class="form-check-label" for="chkFileUploadUpdate">파일 추가</label>
         </div>
         <div class="mb-3" v-show="attachFile" id="imgFileUploadUpdateWrapper">
+
           <input @change,,,,,,,,,,,,,="changeFile" type="file" id="inputFileUploadUpdate" multiple>
           <div id="imgFileUploadUpdateThumbnail" class="thumbnail-wrapper">
+
             <img v-for="(file, index) in fileList" v-bind:src="file" v-bind:key="index">
           </div>
         </div>
@@ -37,7 +39,6 @@
   </div>
 </div>
 </template>
-
 
 <script>
 import Vue from 'vue';
@@ -52,8 +53,10 @@ import http from "@/common/axios.js";
 export default {
   name: 'UpdateModal',
   props: ['board'],
+
   data() {
         return {
+
           CKEditor: '',
           attachFile: false,
           fileList: [], // store 의 fileList 와 구분됨. 새로 첨부되는 파일을 위한.
@@ -106,10 +109,12 @@ export default {
             });
         },
         closeModal(){
+
           this.$emit('call-parent-update');
         }
     },
     mounted() {
+
       ClassicEditor
       .create(document.querySelector('#divEditorUpdate'))
       .then(editor => {
@@ -122,21 +127,26 @@ export default {
       // bootstrap modal show event hook
       // UpdateModal 이 보일 때 초기화
       let $this = this;
+
       this.$el.addEventListener('show.bs.modal', function () {
 
         $this.CKEditor.setData( $this.$store.state.board.content );
         // 첨부 파일 관련 초기화
+
         this.attachFile = false;
         this.fileList = [];
         document.querySelector("#inputFileUploadUpdate").value = '';
       })
 
     },
+
+
 }
 </script>
 
 
 <style>
+>>>>>>> 7f1eef7ac2b2a75aaf8589b8c4b0cccb458f2688
 .ck-editor__editable {
     min-height: 300px !important;
 }
@@ -149,5 +159,6 @@ export default {
     width: 100px !important;
     margin-right: 5px;
     max-width: 100%;
+
 }
 </style>
