@@ -21,6 +21,7 @@ export default new Vuex.Store({
       userProfileImageUrl: '',
     },
     breadCrumbInfo: {
+      isHome: false,
       title: 'Home',
       subTitle: '메인 페이지',
       desc: '뭔가 메인 페이지가 필요할 것 같다.',

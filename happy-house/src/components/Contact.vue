@@ -31,6 +31,7 @@ export default {
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
+      isHome : false,
       title: 'Contact',
       subTitle: '문의',
       desc: '자유롭게 문의하세요.',

@@ -422,7 +422,9 @@ export default {
     this.sidoList();
   },
   mounted() {
+    
     this.$store.commit('SET_BREADCRUMB_INFO', {
+      isHome : true,
       title: 'SearchDong',
       subTitle: '동으로 매물 / 거래정보 검색',
       desc: '원하는 지역의 매물정보를 확인해보세요.',

@@ -199,6 +199,7 @@
                 this
                     .$store
                     .commit('SET_BREADCRUMB_INFO', {
+                        isHome : true,
                         title: 'SchoolZone',
                         subTitle: '주변 학군 정보',
                         desc: '서울특별시 내의 학교 정보를 확인해 보세요!'

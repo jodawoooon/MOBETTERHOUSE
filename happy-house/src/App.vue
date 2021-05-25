@@ -8,7 +8,7 @@
     <side-bar v-if="getIsLogin"></side-bar>
 
     <nav-bar  v-if="getIsLogin" />
-    <bread-crumb  v-if="getIsLogin"></bread-crumb>
+    <bread-crumb  v-if="getIsLogin&&!this.$store.state.breadCrumbInfo.isHome" ></bread-crumb>
     <router-view></router-view>
   </div>
 </template>
