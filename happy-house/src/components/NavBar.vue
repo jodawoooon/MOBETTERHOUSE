@@ -30,7 +30,7 @@
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="media d-flex align-items-center">
-                <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="requireImg">
+                <img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="this.$store.state.userInfo.userProfileImageUrl">
                 <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                   <span class="mb-0 fw-bold"><strong>{{ $store.state.userInfo.userName }}({{ $store.state.userInfo.userEmail }})</strong></span>
                 </div>

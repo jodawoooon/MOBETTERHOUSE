@@ -26,6 +26,7 @@
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
                         style="color: rgb(255, 226, 95); font-size: 25px"
+                        class=" scale-up-5"
                       >
                         <input type="hidden" value="' + dealNo + '" />
                       </font-awesome-icon>
@@ -35,7 +36,7 @@
                 </div>
                 <!-- aptInfo end -->
               </div>
-              <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
+              <div id="map" class="col-8 " style="height: 550px"></div>
             </div>
           </div>
           <div class="mt-4" v-if="loadingCount == 0">
