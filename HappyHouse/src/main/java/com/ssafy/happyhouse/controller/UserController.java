@@ -59,6 +59,7 @@ public class UserController {
 		UserDto userDto = service.insertUserProfileImage(userEmail, request);
 		System.out.println(userDto);
 		UserDto resultDto = service.userInfo(userDto.getUserEmail());
+		System.out.println(resultDto);
 		if( resultDto != null ) {
 			session.setAttribute("userDto", resultDto);
 			return new ResponseEntity<UserDto>(resultDto, HttpStatus.OK);
@@ -71,8 +72,9 @@ public class UserController {
 	public ResponseEntity<UserResultDto> userSecession(@PathVariable String userEmail, HttpSession session){
 		
 		UserResultDto userResultDto = service.userSecession(userEmail);
-		
+		session.invalidate();
 		if( userResultDto.getResult() == SUCCESS ) {
+			
 			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<UserResultDto>(userResultDto, HttpStatus.INTERNAL_SERVER_ERROR);

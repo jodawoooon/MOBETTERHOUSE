@@ -20,6 +20,8 @@ import com.ssafy.happyhouse.dto.BoardResultDto;
 import com.ssafy.happyhouse.dto.UserDto;
 import com.ssafy.happyhouse.service.BoardService;
 
+
+
 // BoardFileUploadSpringBootMybatis 대비 @CrossOrign 추가 <-- vue cli mode 개발 대응
 @CrossOrigin(
 		origins = "http://localhost:5500", // allowCredentials = "true" 일 경우, orogins="*" 는 X
@@ -37,10 +39,11 @@ public class BoardController {
 	private static final int SUCCESS = 1;
 	
 	@GetMapping(value="/boards")
-	private ResponseEntity<BoardResultDto> boardList(BoardParamDto boardParamDto){
+	public ResponseEntity<BoardResultDto> boardList(BoardParamDto boardParamDto){
 		
-		BoardResultDto boardResultDto = new BoardResultDto();
-		System.out.println(boardParamDto);
+		BoardResultDto boardResultDto;
+		System.out.println(boardParamDto.getSearchWord());
+		System.out.println(service);
 		if( boardParamDto.getSearchWord().isEmpty() ) {
 			boardResultDto = service.boardList(boardParamDto);
 		}else {
@@ -56,7 +59,7 @@ public class BoardController {
 
 	
 	@GetMapping(value="/boards/{boardId}")
-	private ResponseEntity<BoardResultDto> boardDetail(@PathVariable int boardId, HttpSession session){
+	public ResponseEntity<BoardResultDto> boardDetail(@PathVariable int boardId, HttpSession session){
 
 		BoardParamDto boardParamDto = new BoardParamDto();
 		boardParamDto.setBoardId(boardId);
@@ -75,7 +78,7 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/boards")
-	private ResponseEntity<BoardResultDto> boardInsert(
+	public ResponseEntity<BoardResultDto> boardInsert(
 			BoardDto boardDto, 
 			MultipartHttpServletRequest request) {
 		
@@ -94,7 +97,7 @@ public class BoardController {
 	// PUT & DELETE methods are defined to be idempotent
 	
 	@PostMapping(value="/boards/{boardId}") 
-	private ResponseEntity<BoardResultDto> boardUpdate(
+	public ResponseEntity<BoardResultDto> boardUpdate(
 			BoardDto boardDto, 
 			MultipartHttpServletRequest request){
 
@@ -109,7 +112,7 @@ public class BoardController {
 	}
 	
 	@DeleteMapping(value="/boards/{boardId}") 
-	private ResponseEntity<BoardResultDto> boardDelete(@PathVariable(value="boardId") int boardId){
+	public ResponseEntity<BoardResultDto> boardDelete(@PathVariable(value="boardId") int boardId){
 		BoardResultDto boardResultDto = service.boardDelete(boardId);
 		
 		// CORS 이슈
