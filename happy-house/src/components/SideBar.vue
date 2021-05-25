@@ -2,13 +2,13 @@
   <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white " data-simplebar>
     <div class="sidebar-inner px-2 pt-3">
       <ul class="nav flex-column pt-3 pt-md-0">
-        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'Home' }">
+        <li class="nav-item mt-2 mb-3" :class="{ active: $store.state.curPage == 'Home' }">
           <router-link to="/home" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'home']"/></span>
             <span class="sidebar-text"> Home</span>
           </router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mb-2 mt-2">
           <div>
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
@@ -35,7 +35,7 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item mb-2 mt-2">
           <div>
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#bookmarkSub" aria-expanded="false" aria-controls="bookmarkSub">
               <span>
@@ -62,16 +62,16 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'info' }">
+        <li class="nav-item mb-2 mt-2" :class="{ active: $store.state.curPage == 'info' }">
           <router-link to="/info" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'info-circle']"/></span>
-            <span class="sidebar-text"> 지역별 정보</span>
+            <span class="sidebar-text"> 동네 검색 </span>
           </router-link>
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'schoolZone' }">
           <router-link to="/schoolZone" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'school']"/></span>
-            <span class="sidebar-text"> 학군 검색</span>
+            <span class="sidebar-text"> 학교 검색 </span>
           </router-link>
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'community' }">

@@ -5,7 +5,9 @@
         <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
           <div class="d-flex">
             <button id="btnSsafyLogo" class="navbar-brand btn">
+               <router-link to="/home">
               <img class="img-fluid" style="width: 80px; height: 80px" src="@/assets/img/ssafy_logo.png" alt="" />
+               </router-link>
             </button>
           </div>
 
