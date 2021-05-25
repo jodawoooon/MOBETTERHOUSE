@@ -13,7 +13,7 @@
 	</insert>
 	
 	<!-- reg_dt : LocalDateTime, check out BoardDto setter  -->
-	<select id="boardList" parameterType="com.ssafy.happyhouse.dto.BoardParamDto" resultType="com.ssafy.happyhouse.dto.BoardDto">
+	<select id="boardList" parameterType="map" resultType="com.ssafy.happyhouse.dto.BoardDto">
 		SELECT b.BOARD_ID, b.USER_SEQ, u.USER_NAME, u.USER_PROFILE_IMAGE_URL,
 		  	   b.TITLE, b.CONTENT, b.REG_DT, b.READ_COUNT
 		  FROM BOARD b, USER u

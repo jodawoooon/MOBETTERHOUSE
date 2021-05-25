@@ -30,17 +30,7 @@ import com.ssafy.happyhouse.dto.BoardResultDto;
 		// F:\SSAFY\ssafy5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\BoardWebFileUpload\
 		
 		/* for eclipse development code */
-		String uploadPath = "C:" + File.separator + "Users" + File.separator + "uj020"
-				+ File.separator + "OneDrive"
-				+ File.separator + "바탕 화면"
-				+ File.separator + "00.평가"
-				+ File.separator + "PJT관통플젝"
-				+ File.separator + "Pro"
-				+ File.separator + "HappyHouse" 
-				+ File.separator + "src" 
-				+ File.separator + "main"
-				+ File.separator + "resources"
-				+ File.separator + "static";
+		String uploadPath = "D:\\2021ssafy\\java_eclipse\\SSAFY\\Boot\\SpringBootVueBoardFileUploadMybatis\\src\\main\\resources\\static";
 	
 	
 	private static final int SUCCESS = 1;
@@ -235,8 +225,7 @@ import com.ssafy.happyhouse.dto.BoardResultDto;
 		
 		try {
 			List<BoardDto> list = dao.boardList(boardParamDto);
-			int count = dao.boardListTotalCount();
-			System.out.println(count);
+			int count = dao.boardListTotalCount();			
 			boardResultDto.setList(list);
 			boardResultDto.setCount(count);
 			boardResultDto.setResult(SUCCESS);
