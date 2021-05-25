@@ -37,6 +37,7 @@ export default new Vuex.Store({
       offset: 0,
       searchWord: '',
 
+
       // pagination
       listRowCount: 10,
       pageLinkCount: 10,
@@ -54,6 +55,7 @@ export default new Vuex.Store({
       fileList: [],
       isOwner: false
     },
+
     curPage: 'Home',
   },
   mutations: {
@@ -102,16 +104,21 @@ export default new Vuex.Store({
       state.board.list = list
     },
 
+    
     SET_BOARD_TOTAL_LIST_ITEM_COUNT(state, count){
       state.board.totalListItemCount = count
     },
+    
 
     SET_BOARD_MOVE_PAGE(state, pageIndex){
       state.board.offset = (pageIndex - 1) * state.board.listRowCount;
       state.board.currentPageIndex = pageIndex;
     },
+
+
     SET_BOARD_DETAIL(state, payload){
-      state.board.boardId = payload.boardId
+      state.board.boardId = payload.boardId;
+
       state.board.title = payload.title;
       state.board.content = payload.content;
       state.board.userName = payload.userName;
@@ -129,7 +136,10 @@ export default new Vuex.Store({
           params: {
             limit: this.state.board.limit,
             offset: this.state.board.offset,
-            searchWord: this.state.board.searchWord
+
+            searchWord: this.state.board.searchWord,
+            userSeq: this.state.userInfo.userSeq
+
           }
         })
         .then(({ data }) => {
@@ -143,6 +153,7 @@ export default new Vuex.Store({
           }
       });
     }
+
   },
   getters: {
     getIsLogin(state) {

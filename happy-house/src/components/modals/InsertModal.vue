@@ -21,7 +21,7 @@
         <div class="mb-3" v-show="attachFile" id="imgFileUploadInsertWrapper">
           <input @change="changeFile" type="file" id="inputFileUploadInsert" multiple>
           <div id="imgFileUploadInsertThumbnail" class="thumbnail-wrapper">
-            <!-- vue way img 를 만들어서 append 하지 않고, v-for 로 처리 -->
+
             <img v-for="(file, index) in fileList" v-bind:src="file" v-bind:key="index">
           </div>
         </div>
@@ -46,7 +46,7 @@ import http from "@/common/axios.js";
 
 export default {
   name: 'InsertModal',
-  // data 가 최초 발생하는 곳이므로 store 를 사용하지 않아도 됨.
+
   data() {
         return {
           title: '',
@@ -58,6 +58,13 @@ export default {
   methods: {
       // modal 초기화
       initUI(){
+
+          fileList: [],
+        }
+    },
+  methods: {
+        initUI(){
+
         this.title = '';
         this.CKEditor.setData('');
         this.attachFile = false;
@@ -108,7 +115,8 @@ export default {
           });
       },
       closeModal(){
-        this.$emit('call-parent-insert'); // no parameter
+        this.$emit('call-parent-insert'); 
+
       },
 
   },
@@ -122,7 +130,6 @@ export default {
         console.error(err.stack);
     });
 
-    // bootstrap modal show event hook
     // InsertModal 이 보일 때 초기화
     let $this = this;
     this.$el.addEventListener('show.bs.modal', function () {
@@ -133,19 +140,22 @@ export default {
 }
 </script>
 
+
 <style>
-/* CKEditor 는 vue 와 별개로 rendering 되어서 scope 를 넣으면 반영되지 않는다. */
+
 .ck-editor__editable {
     min-height: 300px !important;
 }
 
 .thumbnail-wrapper{
-	margin-top: 5px;
+
+    margin-top: 5px;
 }
 
 .thumbnail-wrapper img {
-	width: 100px !important;
-	margin-right: 5px;
-	max-width: 100%;
+    width: 100px !important;
+    margin-right: 5px;
+    max-width: 100%;
+
 }
 </style>
