@@ -101,7 +101,7 @@
                         <div class="card shadow-sm text-center p-0">
                             <div class="profile-cover rounded-top" :style="{ backgroundImage: 'url(' + require('@/assets/img/profile-cover.jpg') + ')'} "></div>
                             <div class="card-body pb-5">
-                                <img :src="requireImg" class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4" alt="Neil Portrait">
+                                <img :src="this.$store.state.userInfo.userProfileImageUrl" class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4" alt="Neil Portrait">
                                 <h4 class="h3">{{this.$store.state.userInfo.userName}}</h4>
                                 
                                 <p class="text-gray mb-4">{{this.$store.state.userInfo.userMessage}}</p>
@@ -227,6 +227,9 @@ export default {
                         this.$swal(
                             {icon: 'success', title: '성공적으로 등록되었습니다.', showConfirmButton: false, timer: 1500}
                         );
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
 
 
                     }
@@ -353,6 +356,16 @@ export default {
         this.secessionModal = new Modal(document.getElementById('secessionModal'));
 
         
+    },
+    watch : {
+        requireImg: function () {
+
+            if (this.$store.state.userInfo.userProfileImageUrl == '') {
+                return require('../assets/img/noProfile.png')
+            } else {
+                return '..'+ this.$store.state.userInfo.userProfileImageUrl;  
+            }
+        }
     }
 }
 </script>

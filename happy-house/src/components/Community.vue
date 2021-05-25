@@ -17,7 +17,7 @@
                 <tr>
                   <th>#</th>
                   <th>제목</th>
-                  <th>작성자</th>
+                  <th><img class="user-avatar md-avatar rounded-circle m-1" alt="Image placeholder" :src="this.$store.state.userInfo.userProfileImageUrl">작성자</th>
                   <th>작성일시</th>
                   <th>조회수</th>
                 </tr>

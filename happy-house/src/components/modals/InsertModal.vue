@@ -54,63 +54,6 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
-      // modal 초기화
-      initUI(){
-        this.title = '';
-        this.CKEditor.setData('');
-        this.attachFile = false;
-        this.fileList = [];
-        document.querySelector("#inputFileUploadInsert").value = '';
-      },
-      changeFile(fileEvent) {
-        if( fileEvent.target.files && fileEvent.target.files.length > 0 ){
-
-          for( var i=0; i<fileEvent.target.files.length; i++ ){
-            const file = fileEvent.target.files[i];
-            this.fileList.push(URL.createObjectURL(file));
-          }
-        }
-      },
-      boardInsert(){
-        var formData = new FormData();
-        formData.append("title", this.title);
-        formData.append("content", this.CKEditor.getData());
-
-        // file upload
-        var attachFiles = document.querySelector("#inputFileUploadInsert");
-        console.log("InsertModalVue: data 1 : ");
-        console.log(attachFiles);
-
-        var cnt = attachFiles.files.length;
-        for (var i = 0; i < cnt; i++) {
-          formData.append("file", attachFiles.files[i]);
-        }
-
-        http.post(
-          '/boards',
-          formData,
-          { headers: { 'Content-Type': 'multipart/form-data' } })
-          .then(({ data }) => {
-            console.log("InsertModalVue: data : ");
-            console.log(data);
-            if( data.result == 'login' ){
-              this.$router.push("/login")
-            }else{
-              this.$alertify.success('글이 등록되었습니다.');
-              this.closeModal();
-            }
-          })
-          .catch((error) => {
-            console.log("InsertModalVue: error ");
-            console.log(error);
-          });
-      },
-      closeModal(){
-        this.$emit('call-parent-insert'); // no parameter
-      },
-
-=======
     initUI() {
       this.title = '';
       this.CKEditor.setData('');
@@ -161,7 +104,6 @@ export default {
     closeModal() {
       this.$emit('call-parent-insert');
     },
->>>>>>> f23b13125493e8f8a80d9ab4c2c1fec11744c848
   },
   mounted() {
     ClassicEditor.create(document.querySelector('#divEditorInsert'))
@@ -183,24 +125,11 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
 /* CKEditor 는 vue 와 별개로 rendering 되어서 scope 를 넣으면 반영되지 않는다. */
-=======
->>>>>>> f23b13125493e8f8a80d9ab4c2c1fec11744c848
 .ck-editor__editable {
   min-height: 300px !important;
 }
 
-<<<<<<< HEAD
-.thumbnail-wrapper{
-	margin-top: 5px;
-}
-
-.thumbnail-wrapper img {
-	width: 100px !important;
-	margin-right: 5px;
-	max-width: 100%;
-=======
 .thumbnail-wrapper {
   margin-top: 5px;
 }
@@ -209,6 +138,5 @@ export default {
   width: 100px !important;
   margin-right: 5px;
   max-width: 100%;
->>>>>>> f23b13125493e8f8a80d9ab4c2c1fec11744c848
 }
 </style>

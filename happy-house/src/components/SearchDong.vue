@@ -63,6 +63,7 @@
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
                         style="color: rgb(255, 226, 95); font-size: 25px"
+                        class=" scale-up-5"
                       >
                         <input type="hidden" value="' + dealNo + '" />
                       </font-awesome-icon>
