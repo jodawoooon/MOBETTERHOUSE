@@ -97,5 +97,13 @@ public class HouseServiceImpl implements HouseService {
 		return houseDao.bookmarkHouseTotalCount(userSeq);
 	}
 	
-	
+	@Override
+	public List<HouseDto> bookmarkArea(int userSeq) {
+		return houseDao.bookmarkArea(userSeq);
+	}
+
+	@Override
+	public int bookmarkAreaTotalCount(int userSeq) {
+		return houseDao.bookmarkAreaTotalCount(userSeq);
+	}
 }

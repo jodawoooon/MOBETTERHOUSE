@@ -40,4 +40,8 @@ public interface HouseService {
 	public List<HouseDto> bookmarkHouse(int userSeq);
 
 	public int bookmarkHouseTotalCount(int userSeq);
+	
+	public List<HouseDto> bookmarkArea(int userSeq);
+
+	public int bookmarkAreaTotalCount(int userSeq);
 }

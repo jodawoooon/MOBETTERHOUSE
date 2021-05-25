@@ -8,10 +8,8 @@
             <span class="sidebar-text">Home</span>
           </router-link>
         </li>
-
         <li class="nav-item">
           <div>
-
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
                 <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
@@ -37,7 +35,6 @@
             </ul>
           </div>
         </li>
-
         <li class="nav-item">
           <div>
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#bookmarkSub" aria-expanded="false" aria-controls="bookmarkSub">
@@ -64,7 +61,6 @@
               </li>
             </ul>
           </div>
-
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'info' }">
           <router-link to="/info" class="nav-link">
@@ -102,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-span{
-  font-size:13pt;
+span {
+  font-size: 13pt;
 }
 </style>

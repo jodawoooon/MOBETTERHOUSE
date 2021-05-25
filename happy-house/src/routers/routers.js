@@ -13,9 +13,7 @@ import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
 import Index from '@/components/Index.vue';
 import SchoolZone from '@/components/SchoolZone.vue';
-
 import GuInfo from '@/components/GuInfo.vue';
-
 import BookmarkHouse from '@/components/BookmarkHouse.vue';
 import BookmarkArea from '@/components/BookmarkArea.vue';
 
@@ -63,11 +61,11 @@ export default new VueRouter({
     },
     {
       path: '/schoolZone',
-      component : SchoolZone,
+      component: SchoolZone,
     },
     {
       path: '/info',
-      component : GuInfo,
+      component: GuInfo,
     },
 
     {
@@ -78,6 +76,5 @@ export default new VueRouter({
       path: '/bookmarkArea',
       component: BookmarkArea,
     },
-
   ],
 });
