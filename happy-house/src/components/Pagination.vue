@@ -57,7 +57,7 @@ export default {
       }
     },
     next: function() {
-      if (this.endPageIndex > this.pageCount) {
+      if (this.endPageIndex >= this.pageCount) {
         return false;
       } else {
         return true;

@@ -1,64 +1,63 @@
 <template>
   <main class="content">
-   
-      <div class="row">
-            <div class="col-12 mb-4">
-                <div class="card border-light shadow-sm ">
-                    <div class="card-body">
-                        <!-- selectbar start  -->
-                      <div class="d-flex justify-content-center mb-2" style=" height:100px;">
-                          <div class="row">
-                          <div class="col align-self-center">
-                            <input type="text" v-model="searchWord" @keypress.enter="searchList" class="form-control" id="searchText" style="width:400px;"/>
-                          </div>
-                          <div class="col align-self-center">
-                            <input type="button" id="btnSearch" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="loadingCount != 0" />
-                          </div>    
-                          </div>
-                      </div>
-                     
-                      <!-- selectbar end  -->
-                     
-
-                      <div class="row m-1">
-                        <div class="col-4" id="apartInfo">
-                          <!-- pulseLoader -->
-                          <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
-                            <pulse-loader :loading="loadingCount != 0"></pulse-loader>
-                          </div>
-                          <!-- aptInfo start -->
-                          <div v-else>
-                            <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
-                              <div class="col-8 pb-3">
-                                <h5>{{ house.aptName }}</h5>
-                                <p class="m-0">거래금액: {{ house.dealAmount }}</p>
-                                <p class="m-0">전용면적: {{ house.area }}</p>
-                                <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
-                              </div>
-                              <div class="col align-self-center" style="text-align: center">
-                                <font-awesome-icon :icon="['far', 'star']" :id="'bookmarkStar' + (index + 1)" aria-hidden="true" style="color: rgb(255, 226, 95); font-size: 25px">
-                                  <input type="hidden" value="' + dealNo + '" />
-                                </font-awesome-icon>
-                              </div>
-                              <hr />
-                            </div>
-                          </div>
-                          <!-- aptInfo end -->
-                        </div>
-                        <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
-                      </div>
-
-                    </div>
-                  <div id="paginationWrapper" class="mt-4">
-                    <!-- <div class="mt-4" v-if="loadingCount == 0"> -->
-                    <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
-                    <!-- </div> -->
-                  </div>
-          
-                    </div>
+    <div class="row">
+      <div class="col-12 mb-4">
+        <div class="card border-light shadow-sm ">
+          <div class="card-body">
+            <!-- selectbar start  -->
+            <div class="d-flex justify-content-center mb-2" style=" height:100px;">
+              <div class="row">
+                <div class="col align-self-center">
+                  <input type="text" v-model="searchWord" @keypress.enter="searchList" class="form-control" id="searchText" style="width:400px;" />
                 </div>
-                
+                <div class="col align-self-center">
+                  <input type="button" id="btnSearch" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="loadingCount != 0" />
+                </div>
+              </div>
             </div>
+
+            <!-- selectbar end  -->
+
+            <div class="row m-1">
+              <div class="col-4" id="apartInfo">
+                <!-- pulseLoader -->
+                <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
+                  <pulse-loader :loading="loadingCount != 0"></pulse-loader>
+                </div>
+                <!-- aptInfo start -->
+                <div v-else>
+                  <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
+                    <div class="col-8 pb-3">
+                      <h5>{{ house.aptName }}</h5>
+                      <p class="m-0">거래금액: {{ house.dealAmount }}</p>
+                      <p class="m-0">전용면적: {{ house.area }}</p>
+                      <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
+                    </div>
+                    <div class="col align-self-center" style="text-align: center">
+                      <font-awesome-icon
+                        :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
+                        @click="clickBookmark(house)"
+                        :id="'bookmarkStar' + (index + 1)"
+                        aria-hidden="true"
+                        style="color: rgb(255, 226, 95); font-size: 25px"
+                      >
+                        <input type="hidden" value="' + dealNo + '" />
+                      </font-awesome-icon>
+                    </div>
+                    <hr />
+                  </div>
+                </div>
+                <!-- aptInfo end -->
+              </div>
+              <div id="map" class="col-8 border border-5" style="height: 550px">Map</div>
+            </div>
+          </div>
+          <div class="mt-4" v-if="loadingCount == 0">
+            <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -67,6 +66,7 @@ import http from '@/common/axios.js';
 import router from '@/routers/routers.js';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import Pagination from './Pagination.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   naem: 'SearchApt',
@@ -87,7 +87,6 @@ export default {
       listRowCount: 10,
       pageLinkCount: 10,
       currentPageIndex: 1,
-      pageHtml: '<pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>',
 
       searchWord: '',
     };
@@ -109,8 +108,8 @@ export default {
             params: {
               limit: this.limit,
               offset: this.offset,
-              searchWord: '',
-              searchType: '',
+              searchType: 'init',
+              userSeq: this.getUserSeq,
             },
           })
           .then(({ data }) => {
@@ -135,6 +134,7 @@ export default {
               offset: this.offset,
               searchWord: this.searchWord,
               searchType: 'apt',
+              userSeq: this.getUserSeq,
             },
           })
           .then(({ data }) => {
@@ -152,9 +152,51 @@ export default {
           });
       }
     },
-    // pagination
-    makePage() {},
 
+    clickBookmark(house) {
+      console.log('userSeq : ' + this.getUserSeq);
+      console.log('dealNo : ' + house.no);
+      if (house.bookmarked) {
+        console.log('house.bookmarked : ' + house.bookmarked);
+        http
+          .delete('/bookmark', {
+            params: {
+              userSeq: this.getUserSeq,
+              dealNo: house.no,
+            },
+          })
+          .then(({ data }) => {
+            console.log('deleteBookmark!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log('house.bookmarked : ' + house.bookmarked);
+        http
+          .post('/bookmark', {
+            userSeq: this.getUserSeq,
+            dealNo: house.no,
+          })
+          .then(({ data }) => {
+            console.log('insertBookmark!!!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      house.bookmarked = !house.bookmarked;
+    },
+
+    // pagination
     movePage(pageIndex) {
       console.log('SearchDong.vue : movePage : pageIndex : ' + pageIndex);
       this.offset = (pageIndex - 1) * this.listRowCount;
@@ -245,6 +287,11 @@ export default {
       }
     },
   },
+
+  computed: {
+    ...mapGetters(['getUserSeq']),
+  },
+
   created() {
     this.searchList();
   },
@@ -279,7 +326,6 @@ export default {
 }
 
 .select {
-    width:200px;
-    
+  width: 200px;
 }
 </style>

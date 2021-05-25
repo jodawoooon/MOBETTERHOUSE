@@ -8,9 +8,14 @@
             <span class="sidebar-text">Home</span>
           </router-link>
         </li>
+<<<<<<< HEAD
         
         <li class="nav-item  mt-2 mb-2">
           <div @click="changeIsSearch">
+=======
+        <li class="nav-item">
+          <div>
+>>>>>>> f044398afdf89f8c2107e6bea03d35edaed3ff29
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
                 <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
@@ -36,11 +41,40 @@
             </ul>
           </div>
         </li>
+<<<<<<< HEAD
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'bookmark' }">
           <router-link to="/bookmark" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'star']"/></span>
             <span class="sidebar-text">Bookmark</span>
           </router-link>
+=======
+        <li class="nav-item">
+          <div>
+            <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#bookmarkSub" aria-expanded="false" aria-controls="bookmarkSub">
+              <span>
+                <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'star']"/></span>
+                <span class="sidebar-text">Bookmark</span>
+              </span>
+              <span class="link-arrow"><font-awesome-icon :icon="['fas', 'chevron-right']"/></span>
+            </span>
+          </div>
+          <div class="multi-level collapse" id="bookmarkSub">
+            <ul class="flex-column nav">
+              <li class="nav-item" :class="{ active: $store.state.curPage == 'bookmarkArea' }">
+                <router-link to="/bookmarkArea" class="nav-link">
+                  <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'map-marked-alt']"/></span>
+                  <span class="sidebar-text">관심 지역 모아 보기</span>
+                </router-link>
+              </li>
+              <li class="nav-item" :class="{ active: $store.state.curPage == 'bookmarkHouse' }">
+                <router-link to="/bookmarkHouse" class="nav-link">
+                  <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'building']"/></span>
+                  <span class="sidebar-text">관심 매물 모아 보기</span>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+>>>>>>> f044398afdf89f8c2107e6bea03d35edaed3ff29
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'info' }">
           <router-link to="/info" class="nav-link">
@@ -74,16 +108,6 @@
 <script>
 export default {
   name: 'SideBar',
-  data() {
-    return {
-      isSearch: false,
-    };
-  },
-  methods: {
-    changeIsSearch() {
-      this.isSearch = !this.isSearch;
-    },
-  },
 };
 </script>
 
