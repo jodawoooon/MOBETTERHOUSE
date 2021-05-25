@@ -1,7 +1,8 @@
 /.metadata/
-HappyHouse/src/main/resources/config/mybatis-config.xml
-HappyHouse/src/main/resources/application.properties
-HappyHouse/src/main/resources/banner.txt
-HappyHouse/src/main/resources/log/*
-happy-house/node_modules
-happy-house/vue.config.js
+/HappyHouse/src/main/resources/config/mybatis-config.xml
+/HappyHouse/src/main/resources/application.properties
+/HappyHouse/src/main/resources/banner.txt
+/HappyHouse/src/main/resources/logback.xml
+/HappyHouse/src/main/resources/log/*
+/happy-house/node_modules
+/happy-house/vue.config.js

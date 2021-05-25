@@ -152,7 +152,7 @@ export default new Vuex.Store({
       return state.userInfo.isLogin;
     },
     getIsHome(state) {
-      return state.isHome;
+      return state.breadCrumbInfo.isHome;
     },
     getCurPage(state) {
       return state.curPage;
