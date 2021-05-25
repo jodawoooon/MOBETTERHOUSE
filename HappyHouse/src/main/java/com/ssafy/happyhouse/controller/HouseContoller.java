@@ -117,10 +117,10 @@ public class HouseContoller {
 			}
 		} else if (searchType.equals("bookmarkArea")) {
 			System.out.println("/house bookmarkArea");
-			List<HouseDto> list = houseService.bookmarkHouse(userSeq);
+			List<HouseDto> list = houseService.bookmarkArea(userSeq);
 			for (HouseDto dto : list)
 				System.out.println(dto);
-			int count = houseService.bookmarkHouseTotalCount(userSeq);
+			int count = houseService.bookmarkAreaTotalCount(userSeq);
 			if (list != null) {
 				result.setResult(1);
 				result.setList(list);

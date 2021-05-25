@@ -8,14 +8,8 @@
             <span class="sidebar-text">Home</span>
           </router-link>
         </li>
-<<<<<<< HEAD
-        
-        <li class="nav-item  mt-2 mb-2">
-          <div @click="changeIsSearch">
-=======
         <li class="nav-item">
           <div>
->>>>>>> f044398afdf89f8c2107e6bea03d35edaed3ff29
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
                 <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
@@ -41,13 +35,6 @@
             </ul>
           </div>
         </li>
-<<<<<<< HEAD
-        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'bookmark' }">
-          <router-link to="/bookmark" class="nav-link">
-            <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'star']"/></span>
-            <span class="sidebar-text">Bookmark</span>
-          </router-link>
-=======
         <li class="nav-item">
           <div>
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#bookmarkSub" aria-expanded="false" aria-controls="bookmarkSub">
@@ -74,7 +61,6 @@
               </li>
             </ul>
           </div>
->>>>>>> f044398afdf89f8c2107e6bea03d35edaed3ff29
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'info' }">
           <router-link to="/info" class="nav-link">
@@ -112,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-span{
-  font-size:13pt;
+span {
+  font-size: 13pt;
 }
 </style>

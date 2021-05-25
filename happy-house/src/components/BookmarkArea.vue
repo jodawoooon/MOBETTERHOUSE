@@ -4,45 +4,45 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
+            <!-- selectbar start  -->
+            <div class="d-flex justify-content-center mb-2" style="height:100px;">
+              <div class="row">
+                <div class="col align-self-center">
+                  <select v-model="selectedSidoCode" @change="gugunList" class="form-select select" aria-label="시">
+                    <option value="empty" selected disabled>시/도</option>
+                    <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
+                  </select>
+                </div>
+                <div class="col align-self-center">
+                  <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
+                    <option value="empty" selected disabled>구/군</option>
+                    <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
+                  </select>
+                </div>
+                <div class="col align-self-center">
+                  <select v-model="selectedDongCode" class="form-select select" aria-label="동">
+                    <option value="empty" selected disabled>동</option>
+                    <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_CODE">{{ dong.DONG_NAME }}</option>
+                  </select>
+                </div>
+                <div class="col align-self-center">
+                  <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
+                </div>
+                <div class="col align-self-center">
+                  <input
+                    type="button"
+                    value="관심 지역"
+                    class="btn ml-3"
+                    :class="isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
+                    @click="clickBookmarkArea"
+                    :disabled="selectedDongCode == 'empty'"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- selectbar end  -->
             <div class="row m-1">
               <div class="col-4" id="apartInfo">
-                <!-- selectbar start  -->
-                <div class="d-flex justify-content-center mb-2" style="height:100px;">
-                  <div class="row">
-                    <div class="col align-self-center">
-                      <select v-model="selectedSidoCode" @change="gugunList" class="form-select select" aria-label="시">
-                        <option value="empty" selected disabled>시/도</option>
-                        <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
-                      </select>
-                    </div>
-                    <div class="col align-self-center">
-                      <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
-                        <option value="empty" selected disabled>구/군</option>
-                        <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
-                      </select>
-                    </div>
-                    <div class="col align-self-center">
-                      <select v-model="selectedDongCode" class="form-select select" aria-label="동">
-                        <option value="empty" selected disabled>동</option>
-                        <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_CODE">{{ dong.DONG_NAME }}</option>
-                      </select>
-                    </div>
-                    <div class="col align-self-center">
-                      <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
-                    </div>
-                    <div class="col align-self-center">
-                      <input
-                        type="button"
-                        value="관심 지역"
-                        class="btn ml-3"
-                        :class="isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
-                        @click="clickBookmarkArea"
-                        :disabled="selectedDongCode == 'empty'"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <!-- selectbar end  -->
                 <!-- pulseLoader -->
                 <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
                   <pulse-loader :loading="loadingCount != 0"></pulse-loader>

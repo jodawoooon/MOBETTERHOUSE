@@ -13,12 +13,9 @@ import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
 import Index from '@/components/Index.vue';
 import SchoolZone from '@/components/SchoolZone.vue';
-<<<<<<< HEAD
 import GuInfo from '@/components/GuInfo.vue';
-=======
 import BookmarkHouse from '@/components/BookmarkHouse.vue';
 import BookmarkArea from '@/components/BookmarkArea.vue';
->>>>>>> f044398afdf89f8c2107e6bea03d35edaed3ff29
 
 export default new VueRouter({
   routes: [
@@ -64,15 +61,11 @@ export default new VueRouter({
     },
     {
       path: '/schoolZone',
-<<<<<<< HEAD
-      component : SchoolZone,
+      component: SchoolZone,
     },
     {
       path: '/info',
-      component : GuInfo,
-    }
-=======
-      component: SchoolZone,
+      component: GuInfo,
     },
     {
       path: '/bookmarkHouse',
@@ -82,6 +75,5 @@ export default new VueRouter({
       path: '/bookmarkArea',
       component: BookmarkArea,
     },
->>>>>>> f044398afdf89f8c2107e6bea03d35edaed3ff29
   ],
 });
