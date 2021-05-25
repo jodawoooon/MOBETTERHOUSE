@@ -436,6 +436,7 @@ export default {
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
+      isHome : false,
       title: '관심 지역 모아 보기',
       subTitle: '관심 지역 모아 보기',
       desc: '관심 지역의 매물을 확인하세요.',

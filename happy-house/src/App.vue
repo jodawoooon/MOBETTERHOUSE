@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <side-bar v-if="getIsLogin"></side-bar>
-
     <nav-bar v-if="getIsLogin" />
-    <bread-crumb v-if="getIsLogin"></bread-crumb>
+    <bread-crumb v-if="getIsLogin && !getIsHome"></bread-crumb>
     <router-view></router-view>
   </div>
 </template>
@@ -33,7 +32,7 @@ export default {
     BreadCrumb,
   },
   computed: {
-    ...mapGetters(['getIsLogin']),
+    ...mapGetters(['getIsLogin', 'getIsHome']),
   },
   watch: {
     getIsLogin() {

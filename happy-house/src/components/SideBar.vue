@@ -13,7 +13,7 @@
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
                 <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'search']"/></span>
-                <span class="sidebar-text">Search</span>
+                <span class="sidebar-text">매물 검색</span>
               </span>
               <span class="link-arrow"><font-awesome-icon :icon="['fas', 'chevron-right']"/></span>
             </span>
@@ -23,13 +23,13 @@
               <li class="nav-item" :class="{ active: $store.state.curPage == 'searchDong' }">
                 <router-link to="/searchDong" class="nav-link">
                   <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'map-marked-alt']"/></span>
-                  <span class="sidebar-text">SearchDong</span>
+                  <span class="sidebar-text">동별 검색</span>
                 </router-link>
               </li>
               <li class="nav-item" :class="{ active: $store.state.curPage == 'searchApt' }">
                 <router-link to="/searchApt" class="nav-link">
                   <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'building']"/></span>
-                  <span class="sidebar-text">SearchApt</span>
+                  <span class="sidebar-text">아파트명 검색</span>
                 </router-link>
               </li>
             </ul>
@@ -40,7 +40,7 @@
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#bookmarkSub" aria-expanded="false" aria-controls="bookmarkSub">
               <span>
                 <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'star']"/></span>
-                <span class="sidebar-text">Bookmark</span>
+                <span class="sidebar-text">즐겨찾기</span>
               </span>
               <span class="link-arrow"><font-awesome-icon :icon="['fas', 'chevron-right']"/></span>
             </span>
@@ -71,13 +71,13 @@
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'schoolZone' }">
           <router-link to="/schoolZone" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'school']"/></span>
-            <span class="sidebar-text">School Zone</span>
+            <span class="sidebar-text">학군 검색</span>
           </router-link>
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'community' }">
           <router-link to="/community" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'comment-dots']"/></span>
-            <span class="sidebar-text">Community</span>
+            <span class="sidebar-text">커뮤니티</span>
           </router-link>
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'contact' }">
