@@ -12,7 +12,7 @@
               <div class="text-center text-md-center mb-4 mt-md-0">
                 <h1 class="mb-0 h3">Sign in</h1>
               </div>
-              <form action="#" class="mt-4">
+              <div action="#" class="mt-4">
                 <!-- Form -->
                 <div class="form-group mb-4">
                   <label for="email">Email</label>
@@ -50,7 +50,7 @@
                                     
                                 </a> -->
                 </div>
-              </form>
+              </div>
 
               <div class="d-flex justify-content-center align-items-center mt-4">
                 <span class="fw-normal">

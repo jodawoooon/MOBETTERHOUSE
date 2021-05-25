@@ -12,7 +12,7 @@
               <div class="text-center text-md-center mb-4 mt-md-0">
                 <h1 class="mb-0 h3">Create account</h1>
               </div>
-              <form action="#">
+              <!-- <form action="#"> -->
                 <!-- Form -->
                 <div class="form-group mb-4">
                   <label for="userName">Name</label>
@@ -117,7 +117,7 @@
                                     
                                 </a> -->
                 </div>
-              </form>
+              <!-- </form> -->
 
               <div class="d-flex justify-content-center align-items-center mt-4">
                 <span class="fw-normal">
@@ -333,7 +333,7 @@ export default {
                     // join 성공 전달
                     this.$store.commit('SET_LOGIN', {
                       isLogin: true,
-                       userSeq : data.userSeq,   
+                      userSeq : data.userSeq,   
                       userName: data.userName,
                       userEmail: data.userEmail,
                       userMessage: data.userMessage,

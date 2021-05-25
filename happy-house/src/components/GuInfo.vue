@@ -6,7 +6,7 @@
                     <div class="card-body">
 
 
-                                <!-- selectbar start  -->
+                            <!-- selectbar start  -->
                             <div class="d-flex justify-content-center mb-2" style=" height:100px;">
                                     
                                 <div class="row">
@@ -29,38 +29,43 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div v-if="infoData" class="col-3 chartDiv">
+                                    <h3>인구수</h3>
+                                    <info-chart :chart-data="popCollection"></info-chart>
+                                </div>
+                                <div v-if="infoData" class="col-3 chartDiv">
+                                    <h3>인구밀도</h3>
+                                    <info-chart :chart-data="popDenCollection"></info-chart>
+                                </div>
+                                <div v-if="infoData" class="col-3 chartDiv">
+                                    <h3>시장</h3>
+                                    <info-chart :chart-data="storeCollection"></info-chart>
+                                </div>
+                                <div v-if="infoData" class="col-3 chartDiv">
+                                    <h3>보육시설</h3>
+                                    <info-chart :chart-data="nurCollection"></info-chart>
+                                </div>
+                                
                             
-                            <div v-if="infoData" class="col">
-                                <h3>인구수</h3>
-                                <info-chart :chart-data="popCollection"></info-chart>
                             </div>
-                            <div v-if="infoData" class="col">
-                                <h3>인구밀도</h3>
-                                <info-chart :chart-data="popDenCollection"></info-chart>
-                            </div>
-                            <div v-if="infoData" class="col">
-                                <h3>시장</h3>
-                                <info-chart :chart-data="storeCollection"></info-chart>
-                            </div>
-                            <div v-if="infoData" class="col">
-                                <h3>보육시설</h3>
-                                <info-chart :chart-data="nurCollection"></info-chart>
-                            </div>
-                            <div v-if="infoData" class="col">
-                                <h3>노인복지시설</h3>
-                                <info-chart :chart-data="careCollection"></info-chart>
-                            </div>
-                            <div v-if="infoData" class="col">
-                                <h3>공원</h3>
-                                <info-chart :chart-data="parkCollection"></info-chart>
-                            </div>
-                            <div v-if="infoData" class="col">
-                                <h3>공공도서관</h3>
-                                <info-chart :chart-data="libCollection"></info-chart>
-                            </div>
-                            <div v-if="infoData" class="col">
-                                <h3>주차장</h3>
-                                <info-chart :chart-data="parkingCollection"></info-chart>
+                            <div class="row">
+                                    <div v-if="infoData" class="col-3 chartDiv">
+                                        <h3>노인복지시설</h3>
+                                        <info-chart :chart-data="careCollection"></info-chart>
+                                    </div>
+                                    <div v-if="infoData" class="col-3 chartDiv">
+                                        <h3>공원</h3>
+                                        <info-chart :chart-data="parkCollection"></info-chart>
+                                    </div>
+                                    <div v-if="infoData" class="col-3 chartDiv">
+                                        <h3>공공도서관</h3>
+                                        <info-chart :chart-data="libCollection"></info-chart>
+                                    </div>
+                                    <div v-if="infoData" class="col-3 chartDiv">
+                                        <h3>주차장</h3>
+                                        <info-chart :chart-data="parkingCollection"></info-chart>
+                                    </div>
                             </div>
                             
                             
@@ -204,7 +209,7 @@ export default {
                 datasets : [
                     {
                         label: '인구 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.popNum, this.avgData.popNum],
                     }
                 ]
@@ -214,7 +219,7 @@ export default {
                 datasets : [
                     {
                         label: '인구밀도',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.popDensity, this.avgData.popDensity],
                     }
                 ]
@@ -224,7 +229,7 @@ export default {
                 datasets : [
                     {
                         label: '시장 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.storeNum, this.avgData.storeNum],
                     }
                 ]
@@ -234,7 +239,7 @@ export default {
                 datasets : [
                     {
                         label: '보육시설 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.nurseryNum, this.avgData.nurseryNum],
                     }
                 ]
@@ -244,7 +249,7 @@ export default {
                 datasets : [
                     {
                         label: '노인복지시설 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.careNum, this.avgData.careNum],
                     }
                 ]
@@ -255,7 +260,7 @@ export default {
                 datasets : [
                     {
                         label: '공원 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.parkNum, this.avgData.parkNum],
                     }
                 ]
@@ -265,7 +270,7 @@ export default {
                 datasets : [
                     {
                         label: '도서관 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.libNum, this.avgData.libNum],
                     }
                 ]
@@ -275,7 +280,7 @@ export default {
                 datasets : [
                     {
                         label: '주차장 수',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#262b40',
                         data : [this.infoData.parkingNum, this.avgData.parkingNum],
                     }
                 ]
@@ -288,7 +293,7 @@ export default {
                 datasets: [
                     {
                     label: '자치구별 정보',
-                    backgroundColor: '#f87979',
+                    backgroundColor: '#262b40',
                     // Data for the x-axis of the chart
                     data: [this.infoData.popNum, this.infoData.popDensity, this.infoData.storeNum, this.infoData.nurseryNum, this.infoData.careNum, this.infoData.parkNum, this.infoData.libNum, this.infoData.parkingNum],
 
@@ -301,5 +306,5 @@ export default {
 </script>
 
 <style>
-    
+
 </style>

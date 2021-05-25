@@ -481,13 +481,13 @@
 
                                 console.log($this.schoolList);
 
-                                $this.$swal(
-                                {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : $this.searchDong+' 검색결과 : '+$this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
+                            //     $this.$swal(
+                            //     {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : $this.searchDong+' 검색결과 : '+$this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
 
                                 
                                 
                             
-                            );
+                            // );
                             
                             
                             $this.findLatLng();

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
@@ -35,6 +35,7 @@ export default new Vuex.Store({
       state.curPage = curPage;
     },
     SET_LOGIN(state, payload) {
+      console.log("login success");
       state.userInfo.isLogin = true;
       state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;
@@ -82,5 +83,5 @@ export default new Vuex.Store({
     },
   },
   modules: {},
-  // plugins: [createPersistedState()],
+  plugins: [createPersistedState()],
 });
