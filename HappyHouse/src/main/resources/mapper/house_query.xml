@@ -5,8 +5,8 @@
 	<select id="houseList" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
 	SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG, 
 		(SELECT CASE WHEN EXISTS(
-			SELECT 1 FROM USER u, BOOKMARK b WHERE u.USER_SEQ=#{userSeq} AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO)
-        THEN true ELSE false END) BOOKMARKED
+			SELECT 1 FROM USER u, BOOKMARK_HOUSE b WHERE u.USER_SEQ=#{userSeq} AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO)
+          THEN true ELSE false END) BOOKMARKED
 		FROM HOUSEDEAL d, HOUSEINFO i
   		WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG
   		ORDER BY d.NO DESC
@@ -20,8 +20,8 @@
 	<select id="houseSearchDong" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
 		SELECT d.NO, d.APTNAME, d.CODE GUGUN_CODE, d.DONG, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG,
 			  (SELECT CASE WHEN EXISTS(
-				  SELECT 1 FROM USER u, BOOKMARK b WHERE u.USER_SEQ=#{userSeq} AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO)
-			  THEN true ELSE false END) BOOKMARKED
+				  SELECT 1 FROM USER u, BOOKMARK_HOUSE b WHERE u.USER_SEQ=#{userSeq} AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO)
+			  	THEN true ELSE false END) BOOKMARKED
 			  FROM HOUSEDEAL d, HOUSEINFO i, (SELECT NAME AS DONG_NAME, GUGUN_CODE FROM DONG_CODE WHERE CODE=#{searchWord}) c
 			  WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG AND d.DONG=c.DONG_NAME
 			  ORDER BY d.NO DESC
@@ -36,7 +36,9 @@
 	
 	<select id="houseSearchApt" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
 		SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG
-		  (SELECT 1 FROM USER u, BOOKMARK b where u.USER_SEQ=#{userSeq} and u.USER_SEQ=b.USER_SEQ and d.NO=b.DEAL_NO) BOOKMARKED
+		  (SELECT CASE WHEN EXISTS(
+				  SELECT 1 FROM USER u, BOOKMARK_HOUSE b WHERE u.USER_SEQ=#{userSeq} AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO)
+			  THEN true ELSE false END) BOOKMARKED
 		  FROM HOUSEDEAL d, HOUSEINFO i
 		  WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG AND d.APTNAME like CONCAT('%', #{searchWord}, '%')
 		  ORDER BY d.NO DESC
@@ -70,12 +72,28 @@
 	</select>
 	
 	<insert id="insertBookmark" parameterType="com.ssafy.happyhouse.dto.BookmarkDto">
-		INSERT INTO BOOKMARK
+		INSERT INTO BOOKMARK_HOUSE
 		  VALUES(#{userSeq}, #{dealNo})
 	</insert>
 	
 	<delete id="deleteBookmark" parameterType="com.ssafy.happyhouse.dto.BookmarkDto">
-		DELETE FROM BOOKMARK
+		DELETE FROM BOOKMARK_HOUSE
 		  WHERE USER_SEQ=#{userSeq} and DEAL_NO=#{dealNo}
 	</delete>
+	
+	<insert id="insertBookmarkArea" parameterType="com.ssafy.happyhouse.dto.BookmarkAreaDto">
+		INSERT INTO BOOKMARK_AREA
+		  VALUES(#{userSeq}, #{dongCode})
+	</insert>
+	
+	<delete id="deleteBookmarkArea" parameterType="com.ssafy.happyhouse.dto.BookmarkAreaDto">
+		DELETE FROM BOOKMARK_AREA
+		  WHERE USER_SEQ=#{userSeq} and DONG_CODE=#{dongCode}
+	</delete>
+	
+	<select id="getBookmarkArea" parameterType="com.ssafy.happyhouse.dto.BookmarkAreaDto" resultType="boolean">
+		SELECT CASE WHEN EXISTS(
+				  SELECT 1 FROM BOOKMARK_AREA b WHERE USER_SEQ=${userSeq} AND DONG_CODE=${dongCode})
+			  THEN true ELSE false END
+	</select>
 </mapper>

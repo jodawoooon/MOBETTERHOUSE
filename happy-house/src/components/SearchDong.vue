@@ -30,7 +30,14 @@
                   <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
                 </div>
                 <div class="col align-self-center">
-                  <input type="button" value="관심 지역" class="btn ml-3" :class="isBookmarked ? btn - warning : btn - outline - warning" />
+                  <input
+                    type="button"
+                    value="관심 지역"
+                    class="btn ml-3"
+                    :class="isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
+                    @click="clickBookmarkArea"
+                    :disabled="selectedDongCode == 'empty'"
+                  />
                 </div>
               </div>
             </div>
@@ -222,6 +229,47 @@ export default {
       house.bookmarked = !house.bookmarked;
     },
 
+    clickBookmarkArea() {
+      console.log('clickBookmarkArea()!!!!');
+      console.log('isBookmarked : ' + this.isBookmarked);
+      if (this.isBookmarked) {
+        http
+          .delete('/bookmarkArea', {
+            params: {
+              userSeq: this.getUserSeq,
+              dongCode: this.selectedDongCode,
+            },
+          })
+          .then(({ data }) => {
+            console.log('deleteBookmark!!!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        http
+          .post('/bookmarkArea', {
+            userSeq: this.getUserSeq,
+            dongCode: this.selectedDongCode,
+          })
+          .then(({ data }) => {
+            console.log('insertBookmark!!!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      this.isBookmarked = !this.isBookmarked;
+    },
+
     sidoList() {
       console.log('sidoList() is called!!!!!!');
       this.loadingCountUp();
@@ -385,7 +433,26 @@ export default {
     this.$store.commit('SET_CUR_PAGE', 'searchDong');
   },
   watch: {
-    selectedDongCode: {},
+    selectedDongCode() {
+      http
+        .get('/bookmarkArea', {
+          params: {
+            userSeq: this.getUserSeq,
+            dongCode: this.selectedDongCode,
+          },
+        })
+        .then(({ data }) => {
+          if (data.result == 'login') {
+            router.push('/login');
+          } else {
+            this.isBookmarked = data;
+            console.log('isBookmarked : ' + this.isBookmarked);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

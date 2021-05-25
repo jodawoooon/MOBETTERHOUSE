@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.service;
 import java.util.List;
 import java.util.Map;
 
+import com.ssafy.happyhouse.dto.BookmarkAreaDto;
 import com.ssafy.happyhouse.dto.BookmarkDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseParamDto;
@@ -29,4 +30,10 @@ public interface HouseService {
 	public int insertBookmark(BookmarkDto bookmarkDto);
 	
 	public int deleteBookmark(BookmarkDto bookmarkDto);
+	
+	public int insertBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
+	
+	public int deleteBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
+	
+	public boolean getBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
 }

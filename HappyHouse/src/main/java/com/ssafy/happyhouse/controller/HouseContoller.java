@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.dto.BookmarkAreaDto;
 import com.ssafy.happyhouse.dto.BookmarkDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseParamDto;
@@ -178,6 +179,49 @@ public class HouseContoller {
 		} else {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
 		}
+	}
 
+	@PostMapping("/bookmarkArea")
+	public ResponseEntity<Integer> insertBookmarkArea(@RequestBody BookmarkAreaDto bookmarkAreaDto) {
+		System.out.println("CREATE bookmarkArea!!!!");
+		System.out.println("userSeq : " + bookmarkAreaDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkAreaDto.getDongCode());
+
+		int ret = houseService.insertBookmarkArea(bookmarkAreaDto);
+		if (ret != 1) {
+			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
+		}
+	}
+
+	@DeleteMapping("/bookmarkArea")
+	public ResponseEntity<Integer> deleteBookmarkArea(int userSeq, int dongCode) {
+		System.out.println("DELETE bookmark!!!!");
+		BookmarkAreaDto bookmarkAreaDto = new BookmarkAreaDto();
+		bookmarkAreaDto.setUserSeq(userSeq);
+		bookmarkAreaDto.setDongCode(dongCode);
+		System.out.println("userSeq : " + bookmarkAreaDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkAreaDto.getDongCode());
+
+		int ret = houseService.deleteBookmarkArea(bookmarkAreaDto);
+		if (ret != 1) {
+			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping("/bookmarkArea")
+	public ResponseEntity<Boolean> getBookmarkArea(int userSeq, int dongCode) {
+		System.out.println("SELECT bookmark!!!!");
+		BookmarkAreaDto bookmarkAreaDto = new BookmarkAreaDto();
+		bookmarkAreaDto.setUserSeq(userSeq);
+		bookmarkAreaDto.setDongCode(dongCode);
+		System.out.println("userSeq : " + bookmarkAreaDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkAreaDto.getDongCode());
+
+		boolean ret = houseService.getBookmarkArea(bookmarkAreaDto);
+		return new ResponseEntity<Boolean>(ret, HttpStatus.OK);
 	}
 }
