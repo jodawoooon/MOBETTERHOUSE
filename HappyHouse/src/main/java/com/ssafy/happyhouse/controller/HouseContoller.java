@@ -24,7 +24,6 @@ import com.ssafy.happyhouse.service.HouseService;
 @CrossOrigin(origins = "http://localhost:5500", // allowCredentials = "true" 일 경우, orogins="*" 는 X
 		allowCredentials = "true", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST,
 				RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.HEAD, RequestMethod.OPTIONS })
-//@CrossOrigin // 이것만으로는 오류 발생 <-- allowCredentials = "true"
 @RestController
 public class HouseContoller {
 
@@ -162,9 +161,9 @@ public class HouseContoller {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
 		}
 	}
-	
+
 	@DeleteMapping("/bookmark")
-	public ResponseEntity<Integer> deleteBookmark(int userSeq, int dealNo){
+	public ResponseEntity<Integer> deleteBookmark(int userSeq, int dealNo) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("userSeq", userSeq);
 		map.put("dealNo", dealNo);
@@ -175,6 +174,6 @@ public class HouseContoller {
 		} else {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
 		}
-		
+
 	}
 }
