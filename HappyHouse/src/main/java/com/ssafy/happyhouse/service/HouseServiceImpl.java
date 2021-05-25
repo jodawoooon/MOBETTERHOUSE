@@ -88,8 +88,8 @@ public class HouseServiceImpl implements HouseService {
 	}
 	
 	@Override
-	public List<HouseDto> bookmarkHouse(int userSeq) {
-		return houseDao.bookmarkHouse(userSeq);
+	public List<HouseDto> bookmarkHouse(HouseParamDto param) {
+		return houseDao.bookmarkHouse(param);
 	}
 
 	@Override
@@ -98,12 +98,37 @@ public class HouseServiceImpl implements HouseService {
 	}
 	
 	@Override
-	public List<HouseDto> bookmarkArea(int userSeq) {
-		return houseDao.bookmarkArea(userSeq);
+	public List<HouseDto> bookmarkArea(HouseParamDto param) {
+		return houseDao.bookmarkArea(param);
 	}
 
 	@Override
-	public int bookmarkAreaTotalCount(int userSeq) {
-		return houseDao.bookmarkAreaTotalCount(userSeq);
+	public int bookmarkAreaTotalCount(HouseParamDto param) {
+		return houseDao.bookmarkAreaTotalCount(param);
+	}
+	
+	@Override
+	public List<HouseDto> bookmarkAreaInit(HouseParamDto param) {
+		return houseDao.bookmarkAreaInit(param);
+	}
+
+	@Override
+	public int bookmarkAreaInitTotalCount(int userSeq) {
+		return houseDao.bookmarkAreaInitTotalCount(userSeq);
+	}
+
+	@Override
+	public List<Map<String, String>> sidoListBookmarkArea(int userSeq) {
+		return houseDao.sidoListBookmarkArea(userSeq);
+	}
+
+	@Override
+	public List<Map<String, String>> gugunListBookmarkArea(Map<String, String> map) {
+		return houseDao.gugunListBookmarkArea(map);
+	}
+
+	@Override
+	public List<Map<String, String>> dongListBookmarkArea(Map<String, String> map) {
+		return houseDao.dongListBookmarkArea(map);
 	}
 }

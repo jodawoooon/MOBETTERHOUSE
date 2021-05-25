@@ -429,6 +429,7 @@ export default {
     });
     this.$store.commit('SET_CUR_PAGE', 'searchDong');
   },
+
   watch: {
     selectedDongCode() {
       http

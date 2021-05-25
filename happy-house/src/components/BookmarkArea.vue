@@ -110,6 +110,15 @@ export default {
       listRowCount: 10,
       pageLinkCount: 10,
       currentPageIndex: 1,
+
+      selectSidoList: [],
+      selectGugunList: [],
+      selectDongList: [],
+      selectedSidoCode: 'empty',
+      selectedGugunCode: 'empty',
+      selectedDongCode: 'empty',
+
+      isBookmarked: false,
     };
   },
   methods: {
@@ -121,32 +130,206 @@ export default {
     },
     searchList() {
       console.log('searchList() is called!!!!!!');
-      console.log('this.selectedDongCode is empty');
+      if (this.selectedDongCode == 'empty') {
+        console.log('this.selectedDongCode is empty');
+        this.loadingCountUp();
+        http
+          .get('/house', {
+            params: {
+              limit: this.limit,
+              offset: this.offset,
+              searchType: 'initBookmark',
+              userSeq: this.getUserSeq,
+            },
+          })
+          .then(({ data }) => {
+            console.log('searchList : ');
+            console.log(data);
+            this.loadingCountDown();
+            if (data.result == 'login') {
+              console.log(data.result);
+              router.push('/login');
+            } else {
+              this.houseList = data.list;
+              this.houseListCount = data.count;
+              this.kakaoMap();
+            }
+          });
+      } else {
+        console.log('this.selectedDongCode is not empty');
+        this.loadingCountUp();
+        http
+          .get('/house', {
+            params: {
+              limit: this.limit,
+              offset: this.offset,
+              searchWord: this.selectedDongCode,
+              searchType: 'dong',
+              userSeq: this.getUserSeq,
+            },
+          })
+          .then(({ data }) => {
+            console.log('searchList : ');
+            console.log(data);
+            this.loadingCountDown();
+            if (data.result == 'login') {
+              router.push('/login');
+            } else {
+              this.houseList = data.list;
+              this.houseListCount = data.count;
+              this.kakaoMap();
+            }
+          });
+      }
+    },
+
+    clickBookmark(house) {
+      console.log('userSeq : ' + this.getUserSeq);
+      console.log('dealNo : ' + house.no);
+      if (house.bookmarked) {
+        console.log('house.bookmarked : ' + house.bookmarked);
+        http
+          .delete('/bookmark', {
+            params: {
+              userSeq: this.getUserSeq,
+              dealNo: house.no,
+            },
+          })
+          .then(({ data }) => {
+            console.log('deleteBookmark!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log('house.bookmarked : ' + house.bookmarked);
+        http
+          .post('/bookmark', {
+            userSeq: this.getUserSeq,
+            dealNo: house.no,
+          })
+          .then(({ data }) => {
+            console.log('insertBookmark!!!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      house.bookmarked = !house.bookmarked;
+    },
+
+    clickBookmarkArea() {
+      console.log('clickBookmarkArea()!!!!');
+      console.log('isBookmarked : ' + this.isBookmarked);
+      if (this.isBookmarked) {
+        http
+          .delete('/bookmarkArea', {
+            params: {
+              userSeq: this.getUserSeq,
+              dongCode: this.selectedDongCode,
+            },
+          })
+          .then(({ data }) => {
+            console.log('deleteBookmark!!!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        http
+          .post('/bookmarkArea', {
+            userSeq: this.getUserSeq,
+            dongCode: this.selectedDongCode,
+          })
+          .then(({ data }) => {
+            console.log('insertBookmark!!!!!!');
+            console.log(data);
+            if (data.result == 'login') {
+              router.push('/login');
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      this.isBookmarked = !this.isBookmarked;
+    },
+
+    sidoList() {
+      console.log('sidoList() is called!!!!!!');
       this.loadingCountUp();
       http
-        .get('/house', {
+        .get('/sido', {
           params: {
-            limit: this.limit,
-            offset: this.offset,
-            searchType: 'bookmarkArea',
             userSeq: this.getUserSeq,
           },
         })
         .then(({ data }) => {
-          console.log('searchList : ');
+          console.log('sidoList : ');
           console.log(data);
           this.loadingCountDown();
           if (data.result == 'login') {
-            console.log(data.result);
             router.push('/login');
           } else {
-            this.houseList = data.list;
-            this.houseListCount = data.count;
-            this.kakaoMap();
+            this.selectSidoList = data;
           }
         });
     },
-
+    gugunList() {
+      console.log('gugunList() is called!!!!!!');
+      this.loadingCountUp();
+      http
+        .get('/gugun', {
+          params: {
+            sidoCode: this.selectedSidoCode,
+            userSeq: this.getUserSeq,
+          },
+        })
+        .then(({ data }) => {
+          console.log('gugunList : ');
+          console.log(data);
+          this.loadingCountDown();
+          if (data.result == 'login') {
+            router.push('/login');
+          } else {
+            this.selectGugunList = data;
+          }
+        });
+    },
+    dongList() {
+      console.log('dongList() is called!!!!!!!');
+      this.loadingCountUp();
+      http
+        .get('/dong', {
+          params: {
+            sidoCode: this.selectedSidoCode,
+            gugunCode: this.selectedGugunCode,
+            userSeq: this.getUserSeq,
+          },
+        })
+        .then(({ data }) => {
+          console.log('dongList : ');
+          console.log(data);
+          this.loadingCountDown();
+          if (data.result == 'login') {
+            router.push('/login');
+          } else {
+            this.selectDongList = data;
+          }
+        });
+    },
     // pagination
     movePage(pageIndex) {
       console.log('SearchDong.vue : movePage : pageIndex : ' + pageIndex);
@@ -244,6 +427,7 @@ export default {
 
   created() {
     this.searchList();
+    this.sidoList();
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
@@ -252,6 +436,29 @@ export default {
       desc: '관심 지역의 매물을 확인하세요.',
     });
     this.$store.commit('SET_CUR_PAGE', 'bookmarkArea');
+  },
+
+  watch: {
+    selectedDongCode() {
+      http
+        .get('/bookmarkArea', {
+          params: {
+            userSeq: this.getUserSeq,
+            dongCode: this.selectedDongCode,
+          },
+        })
+        .then(({ data }) => {
+          if (data.result == 'login') {
+            router.push('/login');
+          } else {
+            this.isBookmarked = data;
+            console.log('isBookmarked : ' + this.isBookmarked);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

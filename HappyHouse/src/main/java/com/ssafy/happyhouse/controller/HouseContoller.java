@@ -99,7 +99,7 @@ public class HouseContoller {
 			}
 		} else if (searchType.equals("bookmarkHouse")) {
 			System.out.println("/house bookmarkHouse!!!");
-			List<HouseDto> list = houseService.bookmarkHouse(userSeq);
+			List<HouseDto> list = houseService.bookmarkHouse(param);
 			for (HouseDto dto : list)
 				System.out.println(dto);
 			int count = houseService.bookmarkHouseTotalCount(userSeq);
@@ -116,11 +116,29 @@ public class HouseContoller {
 				result.setResult(0);
 			}
 		} else if (searchType.equals("bookmarkArea")) {
-			System.out.println("/house bookmarkArea");
-			List<HouseDto> list = houseService.bookmarkArea(userSeq);
+			System.out.println("/house bookmarkArea!!!!");
+			List<HouseDto> list = houseService.bookmarkArea(param);
 			for (HouseDto dto : list)
 				System.out.println(dto);
-			int count = houseService.bookmarkAreaTotalCount(userSeq);
+			int count = houseService.bookmarkAreaTotalCount(param);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
+		} else if(searchType.equals("initBookmark")) {
+			System.out.println("/house bookmarkArea init!!!!");
+			List<HouseDto> list = houseService.bookmarkAreaInit(param);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.bookmarkAreaInitTotalCount(userSeq);
 			if (list != null) {
 				result.setResult(1);
 				result.setList(list);
@@ -138,51 +156,94 @@ public class HouseContoller {
 	}
 
 	@GetMapping("/sido")
-	public ResponseEntity<List<Map<String, String>>> sidoList() {
+	public ResponseEntity<List<Map<String, String>>> sidoList(Integer userSeq) {
 		System.out.println("/sidoList!!!");
-		List<Map<String, String>> ret = houseService.sidoList();
-		if (ret.isEmpty() || ret == null) {
-			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			for (Map<String, String> sido : ret) {
-				System.out.println(sido);
+		System.out.println("userSeq : " + userSeq);
+		if (userSeq == null) {
+			List<Map<String, String>> ret = houseService.sidoList();
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> sido : ret) {
+					System.out.println(sido);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 			}
-			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		} else {
+			List<Map<String, String>> ret = houseService.sidoListBookmarkArea(userSeq);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> sido : ret) {
+					System.out.println(sido);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+			}
 		}
 	}
 
 	@GetMapping("/gugun")
-	public ResponseEntity<List<Map<String, String>>> gugunList(String sidoCode) {
+	public ResponseEntity<List<Map<String, String>>> gugunList(String sidoCode, Integer userSeq) {
 		System.out.println("/gugunList!!!!");
-		System.out.println(sidoCode);
-		List<Map<String, String>> ret = houseService.gugunList(sidoCode);
-		if (ret.isEmpty() || ret == null) {
-			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			for (Map<String, String> gugun : ret) {
-				System.out.println(gugun);
+		System.out.println("sidoCode : " + sidoCode);
+		System.out.println("userSeq : " + userSeq);
+
+		if (userSeq == null) {
+			List<Map<String, String>> ret = houseService.gugunList(sidoCode);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> gugun : ret) {
+					System.out.println(gugun);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 			}
-			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		} else {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("sidoCode", sidoCode);
+			map.put("userSeq", userSeq.toString());
+			List<Map<String, String>> ret = houseService.gugunListBookmarkArea(map);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> gugun : ret) {
+					System.out.println(gugun);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+			}
 		}
 	}
 
 	@GetMapping("/dong")
-	public ResponseEntity<List<Map<String, String>>> dongList(String sidoCode, String gugunCode) {
+	public ResponseEntity<List<Map<String, String>>> dongList(String sidoCode, String gugunCode, Integer userSeq) {
 		System.out.println("/dongList!!!!");
 		System.out.println(sidoCode + " / " + gugunCode);
+		System.out.println("userSeq : " + userSeq);
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("sidoCode", sidoCode);
 		map.put("gugunCode", gugunCode);
-
-		List<Map<String, String>> ret = houseService.dongList(map);
-		if (ret.isEmpty() || ret == null) {
-			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			for (Map<String, String> dong : ret) {
-				System.out.println(dong);
+		if (userSeq == null) {
+			List<Map<String, String>> ret = houseService.dongList(map);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> dong : ret) {
+					System.out.println(dong);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 			}
-			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		} else {
+			map.put("userSeq", userSeq.toString());
+			List<Map<String, String>> ret = houseService.dongListBookmarkArea(map);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> dong : ret) {
+					System.out.println(dong);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+			}
 		}
 	}
 

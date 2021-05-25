@@ -23,15 +23,21 @@ public class UserServiceImpl implements UserService{
 	String uploadFolder = "upload";
 
 	/* for production code */
-	//uploadPath = getServletContext().getRealPath("/");
+//	String uploadPath = getServletContext().getRealPath("/");
 	// F:\SSAFY\ssafy5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\BoardWebFileUpload\
 	
 	/* for eclipse development code */
-	String uploadPath = "C:\\Users\\asuspc\\AppData\\Roaming\\SPB_Data\\git\\13pairvue\\HappyHouse" 
-			+ File.separator + "src" 
-			+ File.separator + "main"
-			+ File.separator + "resources"
-			+ File.separator + "static";
+	String uploadPath = 
+			File.separator + "Users" + 
+			File.separator + "dongwoosohn" + 
+			File.separator + "SSAFY" + 
+			File.separator + "Pair" + 
+			File.separator + "13pairvue" +
+			File.separator + "HappyHouse" +
+			File.separator + "src" +
+			File.separator + "main" +
+			File.separator + "resources" +
+			File.separator + "static";
 	
 	private static final int SUCCESS = 1;
 	private static final int FAIL = -1;

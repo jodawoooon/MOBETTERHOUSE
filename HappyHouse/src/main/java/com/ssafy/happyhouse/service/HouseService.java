@@ -37,11 +37,21 @@ public interface HouseService {
 
 	public boolean getBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
 
-	public List<HouseDto> bookmarkHouse(int userSeq);
+	public List<HouseDto> bookmarkHouse(HouseParamDto param);
 
 	public int bookmarkHouseTotalCount(int userSeq);
-	
-	public List<HouseDto> bookmarkArea(int userSeq);
 
-	public int bookmarkAreaTotalCount(int userSeq);
+	public List<HouseDto> bookmarkArea(HouseParamDto param);
+
+	public int bookmarkAreaTotalCount(HouseParamDto param);
+	
+	public List<HouseDto> bookmarkAreaInit(HouseParamDto param);
+
+	public int bookmarkAreaInitTotalCount(int userSeq);
+
+	public List<Map<String, String>> sidoListBookmarkArea(int userSeq);
+
+	public List<Map<String, String>> gugunListBookmarkArea(Map<String, String> map);
+
+	public List<Map<String, String>> dongListBookmarkArea(Map<String, String> map);
 }
