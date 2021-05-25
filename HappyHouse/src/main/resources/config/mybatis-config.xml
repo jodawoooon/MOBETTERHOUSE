@@ -13,5 +13,6 @@
 		<mapper resource="mapper/login_query.xml" />
 		<mapper resource="mapper/code_query.xml" />
 		<mapper resource="mapper/school_query.xml" />
+		<mapper resource="mapper/info_query.xml" />
 	</mappers>
 </configuration>
