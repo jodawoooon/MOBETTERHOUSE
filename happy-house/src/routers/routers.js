@@ -67,6 +67,7 @@ export default new VueRouter({
       path: '/info',
       component: GuInfo,
     },
+
     {
       path: '/bookmarkHouse',
       component: BookmarkHouse,

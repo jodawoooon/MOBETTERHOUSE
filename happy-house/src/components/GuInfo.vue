@@ -46,10 +46,25 @@
                                 <h3>보육시설</h3>
                                 <info-chart :chart-data="nurCollection"></info-chart>
                             </div>
-                            노인복지시설
-                            공원
-                            공공도서관
-                            주차장
+                            <div v-if="infoData" class="col">
+                                <h3>노인복지시설</h3>
+                                <info-chart :chart-data="careCollection"></info-chart>
+                            </div>
+                            <div v-if="infoData" class="col">
+                                <h3>공원</h3>
+                                <info-chart :chart-data="parkCollection"></info-chart>
+                            </div>
+                            <div v-if="infoData" class="col">
+                                <h3>공공도서관</h3>
+                                <info-chart :chart-data="libCollection"></info-chart>
+                            </div>
+                            <div v-if="infoData" class="col">
+                                <h3>주차장</h3>
+                                <info-chart :chart-data="parkingCollection"></info-chart>
+                            </div>
+                            
+                            
+                            
                         </div>
 
                     </div>
@@ -223,7 +238,50 @@ export default {
                         data : [this.infoData.nurseryNum, this.avgData.nurseryNum],
                     }
                 ]
-            }
+            },
+            this.careCollection = {
+                labels : [this.selectedGugunName, '서울시 평균'],
+                datasets : [
+                    {
+                        label: '노인복지시설 수',
+                        backgroundColor: '#f87979',
+                        data : [this.infoData.careNum, this.avgData.careNum],
+                    }
+                ]
+            },
+
+            this.parkCollection = {
+                labels : [this.selectedGugunName, '서울시 평균'],
+                datasets : [
+                    {
+                        label: '공원 수',
+                        backgroundColor: '#f87979',
+                        data : [this.infoData.parkNum, this.avgData.parkNum],
+                    }
+                ]
+            },
+            this.libCollection = {
+                labels : [this.selectedGugunName, '서울시 평균'],
+                datasets : [
+                    {
+                        label: '도서관 수',
+                        backgroundColor: '#f87979',
+                        data : [this.infoData.libNum, this.avgData.libNum],
+                    }
+                ]
+            },
+            this.parkingCollection = {
+                labels : [this.selectedGugunName, '서울시 평균'],
+                datasets : [
+                    {
+                        label: '주차장 수',
+                        backgroundColor: '#f87979',
+                        data : [this.infoData.parkingNum, this.avgData.parkingNum],
+                    }
+                ]
+            },
+
+
             this.dataCollection = {
                 labels: ['인구 수', '인구 밀도', '시장 수', '보육 시설 수', '노인 복지시설 수', '공원 수', '도서관 수', '주차장 수', 
                     ],
