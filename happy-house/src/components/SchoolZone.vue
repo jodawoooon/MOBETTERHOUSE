@@ -19,7 +19,7 @@
                             <div class="col align-self-center">
                                 <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
                                     <option value="empty" selected disabled>구/군</option>
-                                    <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
+                                    <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE" >{{ gugun.GUGUN_NAME }}</option>
                                 </select>
                             </div>
                             <div class="col align-self-center">
@@ -63,24 +63,23 @@
 
                             
                             <div v-if="totalSchoolCnt"  style="text-align:center; font-size:16pt" class="mt-1 mb-4">
+                                    <strong>{{selectPointAddress}}</strong><br>
                                     <strong>{{searchDong}}</strong>의 학교 검색 결과는 총 <strong>{{totalSchoolCnt}}</strong>건 입니다.
                             </div> 
                             
 
                             <div v-if="selectPointSchoolCnt"  style="text-align:center; font-size:16pt" class="mt-1 mb-4">
-                                <strong>{{selectPointAddress}}</strong><br>
+                                
                                 반경 1km 이내의 학교 검색 결과는 총 <strong>{{selectPointSchoolCnt}}</strong>건 입니다.
                             </div> 
-                            <div class="row mt-3"> 
-                                  
+                            <div class="row mt-3">                                   
                                     <div v-if="totalSchoolCnt" class="col-4 m-2">
-                                       
+
                                         <div scroll=auto style="overflow-x:hidden; height:550px; font-size:14pt" class="scroll_set" >
 
                                             
                                             
-                                            <div v-for="(item, index) in schoolList" :key="index" :id="item.schoolName">
-                                                
+                                            <div v-for="(item, index) in schoolList" :key="index" :id="item.schoolName"> 
                                                 <h4><strong>{{ item.schoolName }}</strong></h4>
                                                 <p class="m-0">도로명주소 : {{item.schoolAddress1}}</p>
                                                 <p class="m-0">전화번호 : {{item.schoolPhone}}</p>
@@ -88,15 +87,12 @@
                                                 <div style="text-align:right;">
                                                     <p class="m-0"> <a class="btn btn-secondary btn" :href="item.schoolWebAdd">상세보기</a></p>
                                                 </div>
-                                                
-                                                
                                                 <hr>
-                                                
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div v-if="selectPointSchoolCnt" class="col-4 m-2">
+                                    <!-- <div v-if="selectPointSchoolCnt" class="col-4 m-2">
                                         
                                         <div scroll=auto style="overflow-x:hidden; height:550px; font-size:14pt" class="scroll_set">
 
@@ -112,7 +108,7 @@
                                                 <hr>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                            
                                 
                                 
@@ -161,7 +157,9 @@
             data() {
                 return {
                     loadingCount: 0,
+                    
 
+                    isMapClick : false,
                     totalSchoolCnt: '',
                     searchDong: '',
                 
@@ -189,6 +187,8 @@
                     selectDongList: [],
                     selectedSidoCode: 'empty',
                     selectedGugunCode: 'empty',
+                    selectedSidoName: 'empty',
+                    selectedGugunName: 'empty',
                     selectedDongName: 'empty',
 
 
@@ -199,6 +199,7 @@
                 this
                     .$store
                     .commit('SET_BREADCRUMB_INFO', {
+                        isHome : true,
                         title: 'SchoolZone',
                         subTitle: '주변 학군 정보',
                         desc: '서울특별시 내의 학교 정보를 확인해 보세요!'
@@ -261,10 +262,14 @@
                 
                 
                 searchByDong() {
-                    this.circleInit();
+                    //this.circleInit();
                     this.markerInit();
 
+                   
+                    this.selectPointAddress ='';
                     this.searchDong = this.selectedDongName;
+                    
+                    
 
                     http
                     .get("/school/"+this.searchDong
@@ -324,6 +329,7 @@
                    
                     $this.schoolList.forEach(function(school){
                             var address = school.schoolAddress1;
+
                             axios
                         .get('/v2/local/search/address.json?query=' + address, {
                             headers: {
@@ -416,8 +422,7 @@
                     
                     var $this = this;
 
-                    $this.circleInit();
-
+                    
                     $this.markerInit();
 
                    
@@ -454,13 +459,57 @@
                                 .data
                                 .documents[0].address_name;
 
-                            $this.selectPointDong = response
+                            $this.searchDong = response
                                 .data
                                 .documents[0]
                                 .region_3depth_name;
                             
 
+                            http
+                            .get("/school/"+$this.searchDong
+                            )
+                            .then(({data}) => {
+                                console.log("SchoolZone List - data : ");
+                                console.log(data);
 
+                            if (data.result == 'login') {
+                                $this.$router.push('/login');
+                            } else{
+
+                                $this.totalSchoolCnt = data.cnt;
+                                $this.schoolList = data.list;
+                                $this.selectPointSchoolCnt = '';
+
+                                console.log($this.schoolList);
+
+                            //     $this.$swal(
+                            //     {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : $this.searchDong+' 검색결과 : '+$this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
+
+                                
+                                
+                            
+                            // );
+                            
+                            
+                            $this.findLatLng();
+                            
+
+                            
+
+                            }})
+                            .catch((error) => {
+                                console.log("SchoolZone List - error : ");
+                                console.log(error);
+                                if (error.response.status == "404") {
+                                $this.$swal(
+                                            {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '서울특별시 내의 정보만을 제공하고 있습니다.'}
+                                        );
+                                } else {
+                                    $this
+                                        .$alertify
+                                        .error("Opps!! 서버에 문제가 발생했습니다.");
+                                }
+                            });
                             
                             
 
@@ -469,72 +518,74 @@
                             
                             console.log(error);
                         });
+                    
+                    
+                        
 
-
-                    $this.searchSelectPointSchool($this.latlng.getLat(),$this.latlng.getLng());
+                    //$this.searchSelectPointSchool($this.latlng.getLat(),$this.latlng.getLng());
                 });
 
                     
                     
 
                 },
-                searchSelectPointSchool(lat, lng) {
+                // searchSelectPointSchool(lat, lng) {
                    
                    
-                    var url = '/v2/local/search/category.json?category_group_code=SC4&x=' + lng +
-                            '&y=' + lat + '&radius=1000&sort=distance'
-                    axios
-                        .get(url, {
-                            headers: {
-                                Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
-                            }
-                        })
-                        .then((response) => {
-                            console.log(response.data.documents);
-                            this.selectPointSchoolList = response.data.documents;
-                            this.selectPointSchoolCnt = response.data.meta.total_count;
-                            this.totalSchoolCnt = '';
+                //     var url = '/v2/local/search/category.json?category_group_code=SC4&x=' + lng +
+                //             '&y=' + lat + '&radius=1000&sort=distance'
+                //     axios
+                //         .get(url, {
+                //             headers: {
+                //                 Authorization: 'KakaoAK f4c6ef3414193da426ed5d863808c7d4'
+                //             }
+                //         })
+                //         .then((response) => {
+                //             console.log(response.data.documents);
+                //             this.selectPointSchoolList = response.data.documents;
+                //             this.selectPointSchoolCnt = response.data.meta.total_count;
+                //             this.totalSchoolCnt = '';
 
-                            //좌표 매핑
-                            var $this = this;
+                //             //좌표 매핑
+                //             var $this = this;
 
                             
 
-                            this.selectPointSchoolList.forEach(function(school){
+                //             this.selectPointSchoolList.forEach(function(school){
                                 
-                                var lng = school.x;
-                                var lat = school.y;
-                                console.log(school.place_name);
+                //                 var lng = school.x;
+                //                 var lat = school.y;
+                //                 console.log(school.place_name);
 
-                                $this.setMarker(school.place_name, lat, lng);
-                            });
+                //                 $this.setMarker(school.place_name, lat, lng);
+                //             });
 
-                            var circle = new kakao.maps.Circle({
-                                center: new kakao.maps.LatLng(lat, lng),
-                                radius: 1000, // 미터 단위의 원의 반지름입니다 
-                                strokeWeight: 1, // 선의 두께입니다 
-                                strokeColor: '#75B8FA', // 선의 색깔입니다
-                                strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                //             var circle = new kakao.maps.Circle({
+                //                 center: new kakao.maps.LatLng(lat, lng),
+                //                 radius: 1000, // 미터 단위의 원의 반지름입니다 
+                //                 strokeWeight: 1, // 선의 두께입니다 
+                //                 strokeColor: '#75B8FA', // 선의 색깔입니다
+                //                 strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                                 
-                                fillColor: '#CFE7FF', // 채우기 색깔입니다
-                                fillOpacity: 0.4  // 채우기 불투명도 입니다   
-                            }); 
+                //                 fillColor: '#CFE7FF', // 채우기 색깔입니다
+                //                 fillOpacity: 0.4  // 채우기 불투명도 입니다   
+                //             }); 
 
-                            // 지도에 원을 표시합니다 
+                //             // 지도에 원을 표시합니다 
                             
-                            circle.setMap($this.map); 
-                            $this.circleList.push(circle);
-                        })
-                        .catch((error) => {
-                            this.$swal(
-                                {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '관심있는 지역의 동 이름을 입력해주세요'}
-                            );
-                            console.log(error);
-                        });
+                //             circle.setMap($this.map); 
+                //             $this.circleList.push(circle);
+                //         })
+                //         .catch((error) => {
+                //             this.$swal(
+                //                 {icon: 'error', title: '검색에 실패했습니다', text: '검색어를 확인해주세요.', footer: '관심있는 지역의 동 이름을 입력해주세요'}
+                //             );
+                //             console.log(error);
+                //         });
 
 
                         
-                },
+                // },
 
                 
 

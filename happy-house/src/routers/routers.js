@@ -6,7 +6,6 @@ Vue.use(VueRouter);
 import Home from '@/components/Home.vue';
 import SearchDong from '@/components/SearchDong.vue';
 import SearchApt from '@/components/SearchApt.vue';
-import Bookmark from '@/components/Bookmark.vue';
 import Community from '@/components/Community.vue';
 import Contact from '@/components/Contact.vue';
 import Login from '@/components/Login.vue';
@@ -14,6 +13,9 @@ import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
 import Index from '@/components/Index.vue';
 import SchoolZone from '@/components/SchoolZone.vue';
+import GuInfo from '@/components/GuInfo.vue';
+import BookmarkHouse from '@/components/BookmarkHouse.vue';
+import BookmarkArea from '@/components/BookmarkArea.vue';
 
 export default new VueRouter({
   routes: [
@@ -32,10 +34,6 @@ export default new VueRouter({
     {
       path: '/searchApt',
       component: SearchApt,
-    },
-    {
-      path: '/bookmark',
-      component: Bookmark,
     },
     {
       path: '/community',
@@ -59,11 +57,24 @@ export default new VueRouter({
     },
     {
       path: '/index',
-      component : Index,
+      component: Index,
     },
     {
       path: '/schoolZone',
-      component : SchoolZone,
-    }
+      component: SchoolZone,
+    },
+    {
+      path: '/info',
+      component: GuInfo,
+    },
+
+    {
+      path: '/bookmarkHouse',
+      component: BookmarkHouse,
+    },
+    {
+      path: '/bookmarkArea',
+      component: BookmarkArea,
+    },
   ],
 });

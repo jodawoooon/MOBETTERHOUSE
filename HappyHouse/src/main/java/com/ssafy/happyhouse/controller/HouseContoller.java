@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.dto.BookmarkAreaDto;
+import com.ssafy.happyhouse.dto.BookmarkDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseParamDto;
 import com.ssafy.happyhouse.dto.HouseResultDto;
@@ -39,7 +41,7 @@ public class HouseContoller {
 		param.setUserSeq(userSeq);
 
 		HouseResultDto result = new HouseResultDto();
-		if (searchWord.equals("")) {
+		if (searchType.equals("init")) {
 			System.out.println("/house2!!!!!!");
 			List<HouseDto> list = houseService.houseList(param);
 			for (HouseDto dto : list)
@@ -95,67 +97,164 @@ public class HouseContoller {
 			} else {
 				result.setResult(0);
 			}
+		} else if (searchType.equals("bookmarkHouse")) {
+			System.out.println("/house bookmarkHouse!!!");
+			List<HouseDto> list = houseService.bookmarkHouse(param);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.bookmarkHouseTotalCount(userSeq);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
+		} else if (searchType.equals("bookmarkArea")) {
+			System.out.println("/house bookmarkArea!!!!");
+			List<HouseDto> list = houseService.bookmarkArea(param);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.bookmarkAreaTotalCount(param);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
+		} else if(searchType.equals("initBookmark")) {
+			System.out.println("/house bookmarkArea init!!!!");
+			List<HouseDto> list = houseService.bookmarkAreaInit(param);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.bookmarkAreaInitTotalCount(userSeq);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
 		}
 		return result;
 	}
 
 	@GetMapping("/sido")
-	public ResponseEntity<List<Map<String, String>>> sidoList() {
+	public ResponseEntity<List<Map<String, String>>> sidoList(Integer userSeq) {
 		System.out.println("/sidoList!!!");
-		List<Map<String, String>> ret = houseService.sidoList();
-		if (ret.isEmpty() || ret == null) {
-			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			for (Map<String, String> sido : ret) {
-				System.out.println(sido);
+		System.out.println("userSeq : " + userSeq);
+		if (userSeq == null) {
+			List<Map<String, String>> ret = houseService.sidoList();
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> sido : ret) {
+					System.out.println(sido);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 			}
-			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		} else {
+			List<Map<String, String>> ret = houseService.sidoListBookmarkArea(userSeq);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> sido : ret) {
+					System.out.println(sido);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+			}
 		}
 	}
 
 	@GetMapping("/gugun")
-	public ResponseEntity<List<Map<String, String>>> gugunList(String sidoCode) {
+	public ResponseEntity<List<Map<String, String>>> gugunList(String sidoCode, Integer userSeq) {
 		System.out.println("/gugunList!!!!");
-		System.out.println(sidoCode);
-		List<Map<String, String>> ret = houseService.gugunList(sidoCode);
-		if (ret.isEmpty() || ret == null) {
-			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			for (Map<String, String> gugun : ret) {
-				System.out.println(gugun);
+		System.out.println("sidoCode : " + sidoCode);
+		System.out.println("userSeq : " + userSeq);
+
+		if (userSeq == null) {
+			List<Map<String, String>> ret = houseService.gugunList(sidoCode);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> gugun : ret) {
+					System.out.println(gugun);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 			}
-			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		} else {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("sidoCode", sidoCode);
+			map.put("userSeq", userSeq.toString());
+			List<Map<String, String>> ret = houseService.gugunListBookmarkArea(map);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> gugun : ret) {
+					System.out.println(gugun);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+			}
 		}
 	}
 
 	@GetMapping("/dong")
-	public ResponseEntity<List<Map<String, String>>> dongList(String sidoCode, String gugunCode) {
+	public ResponseEntity<List<Map<String, String>>> dongList(String sidoCode, String gugunCode, Integer userSeq) {
 		System.out.println("/dongList!!!!");
 		System.out.println(sidoCode + " / " + gugunCode);
+		System.out.println("userSeq : " + userSeq);
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("sidoCode", sidoCode);
 		map.put("gugunCode", gugunCode);
-
-		List<Map<String, String>> ret = houseService.dongList(map);
-		if (ret.isEmpty() || ret == null) {
-			return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
-		} else {
-			for (Map<String, String> dong : ret) {
-				System.out.println(dong);
+		if (userSeq == null) {
+			List<Map<String, String>> ret = houseService.dongList(map);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> dong : ret) {
+					System.out.println(dong);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
 			}
-			return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+		} else {
+			map.put("userSeq", userSeq.toString());
+			List<Map<String, String>> ret = houseService.dongListBookmarkArea(map);
+			if (ret.isEmpty() || ret == null) {
+				return new ResponseEntity<List<Map<String, String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				for (Map<String, String> dong : ret) {
+					System.out.println(dong);
+				}
+				return new ResponseEntity<List<Map<String, String>>>(ret, HttpStatus.OK);
+			}
 		}
 	}
 
 	@PostMapping("/bookmark")
-	public ResponseEntity<Integer> insertBookmark(int userSeq, int dealNo) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("userSeq", userSeq);
-		map.put("dealNo", dealNo);
+	public ResponseEntity<Integer> insertBookmark(@RequestBody BookmarkDto bookmarkDto) {
+		System.out.println("CREATE bookmark!!!!");
+		System.out.println("userSeq : " + bookmarkDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkDto.getDealNo());
 
-		int ret = houseService.insertBookmark(map);
-		if (ret != 0) {
+		int ret = houseService.insertBookmark(bookmarkDto);
+		if (ret != 1) {
 			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
@@ -164,16 +263,62 @@ public class HouseContoller {
 
 	@DeleteMapping("/bookmark")
 	public ResponseEntity<Integer> deleteBookmark(int userSeq, int dealNo) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("userSeq", userSeq);
-		map.put("dealNo", dealNo);
+		System.out.println("DELETE bookmark!!!!");
+		BookmarkDto bookmarkDto = new BookmarkDto();
+		bookmarkDto.setUserSeq(userSeq);
+		bookmarkDto.setDealNo(dealNo);
+		System.out.println("userSeq : " + bookmarkDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkDto.getDealNo());
 
-		int ret = houseService.deleteBookmark(map);
-		if (ret != 0) {
+		int ret = houseService.deleteBookmark(bookmarkDto);
+		if (ret != 1) {
 			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
 		}
+	}
 
+	@PostMapping("/bookmarkArea")
+	public ResponseEntity<Integer> insertBookmarkArea(@RequestBody BookmarkAreaDto bookmarkAreaDto) {
+		System.out.println("CREATE bookmarkArea!!!!");
+		System.out.println("userSeq : " + bookmarkAreaDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkAreaDto.getDongCode());
+
+		int ret = houseService.insertBookmarkArea(bookmarkAreaDto);
+		if (ret != 1) {
+			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
+		}
+	}
+
+	@DeleteMapping("/bookmarkArea")
+	public ResponseEntity<Integer> deleteBookmarkArea(int userSeq, int dongCode) {
+		System.out.println("DELETE bookmark!!!!");
+		BookmarkAreaDto bookmarkAreaDto = new BookmarkAreaDto();
+		bookmarkAreaDto.setUserSeq(userSeq);
+		bookmarkAreaDto.setDongCode(dongCode);
+		System.out.println("userSeq : " + bookmarkAreaDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkAreaDto.getDongCode());
+
+		int ret = houseService.deleteBookmarkArea(bookmarkAreaDto);
+		if (ret != 1) {
+			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
+		}
+	}
+
+	@GetMapping("/bookmarkArea")
+	public ResponseEntity<Boolean> getBookmarkArea(int userSeq, int dongCode) {
+		System.out.println("SELECT bookmark!!!!");
+		BookmarkAreaDto bookmarkAreaDto = new BookmarkAreaDto();
+		bookmarkAreaDto.setUserSeq(userSeq);
+		bookmarkAreaDto.setDongCode(dongCode);
+		System.out.println("userSeq : " + bookmarkAreaDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkAreaDto.getDongCode());
+
+		boolean ret = houseService.getBookmarkArea(bookmarkAreaDto);
+		return new ResponseEntity<Boolean>(ret, HttpStatus.OK);
 	}
 }

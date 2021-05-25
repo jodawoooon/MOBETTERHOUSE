@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.dao.HouseDao;
+import com.ssafy.happyhouse.dto.BookmarkAreaDto;
+import com.ssafy.happyhouse.dto.BookmarkDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseParamDto;
 
@@ -61,18 +63,72 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int insertBookmark(Map<String, Integer> map) {
-		System.out.println("/insertBookmark!!!!");
-		int ret = houseDao.insertBookmark(map);
-		System.out.println("ret : " + ret);
-		return ret;
+	public int insertBookmark(BookmarkDto bookmarkDto) {
+		return houseDao.insertBookmark(bookmarkDto);
 	}
 
 	@Override
-	public int deleteBookmark(Map<String, Integer> map) {
-		System.out.println("/deleteBookmark!!!!");
-		int ret = houseDao.deleteBookmark(map);
-		System.out.println("ret : " + ret);
-		return ret;
+	public int deleteBookmark(BookmarkDto bookmarkDto) {
+		return houseDao.deleteBookmark(bookmarkDto);
+	}
+	
+	@Override
+	public int insertBookmarkArea(BookmarkAreaDto bookmarkAreaDto) {
+		return houseDao.insertBookmarkArea(bookmarkAreaDto);
+	}
+
+	@Override
+	public int deleteBookmarkArea(BookmarkAreaDto bookmarkAreaDto) {
+		return houseDao.deleteBookmarkArea(bookmarkAreaDto);
+	}
+	
+	@Override
+	public boolean getBookmarkArea(BookmarkAreaDto bookmarkAreaDto) {
+		return houseDao.getBookmarkArea(bookmarkAreaDto);
+	}
+	
+	@Override
+	public List<HouseDto> bookmarkHouse(HouseParamDto param) {
+		return houseDao.bookmarkHouse(param);
+	}
+
+	@Override
+	public int bookmarkHouseTotalCount(int userSeq) {
+		return houseDao.bookmarkHouseTotalCount(userSeq);
+	}
+	
+	@Override
+	public List<HouseDto> bookmarkArea(HouseParamDto param) {
+		return houseDao.bookmarkArea(param);
+	}
+
+	@Override
+	public int bookmarkAreaTotalCount(HouseParamDto param) {
+		return houseDao.bookmarkAreaTotalCount(param);
+	}
+	
+	@Override
+	public List<HouseDto> bookmarkAreaInit(HouseParamDto param) {
+		return houseDao.bookmarkAreaInit(param);
+	}
+
+	@Override
+	public int bookmarkAreaInitTotalCount(int userSeq) {
+		return houseDao.bookmarkAreaInitTotalCount(userSeq);
+	}
+
+	@Override
+	public List<Map<String, String>> sidoListBookmarkArea(int userSeq) {
+		return houseDao.sidoListBookmarkArea(userSeq);
+	}
+
+	@Override
+	public List<Map<String, String>> gugunListBookmarkArea(Map<String, String> map) {
+		return houseDao.gugunListBookmarkArea(map);
+	}
+
+	@Override
+	public List<Map<String, String>> dongListBookmarkArea(Map<String, String> map) {
+		return houseDao.dongListBookmarkArea(map);
 	}
 }

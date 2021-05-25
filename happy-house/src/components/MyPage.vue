@@ -325,17 +325,8 @@ export default {
 
             if (this.$store.state.userInfo.userProfileImageUrl == '') {
                 return require('../assets/img/noProfile.png')
-            } else if (this.$store.state.userInfo.userProfileImageUrl == 'undefined') {
-                return require('../assets/img/noProfile.png')
-            } else if(this.$store.state.userInfo.userProfileImageUrl.indexOf("http://k.kakaocdn.net/") != -1){
-              return (this.$store.state.userInfo.userProfileImageUrl)
-            }
-            else {
-                 try{
-                    return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
-                }catch(e){
-                    return require('../assets/img/noProfile.png')
-                }
+            } else {
+                return this.$store.state.userInfo.userProfileImageUrl;  
             }
         }
     },
@@ -346,6 +337,7 @@ export default {
         this
             .$store
             .commit('SET_BREADCRUMB_INFO', {
+                isHome : true,
                 title: 'MyPage',
                 subTitle: '개인 정보 조회/수정/탈퇴',
                 desc: '개성있는 프로필 사진을 등록해보세요.'

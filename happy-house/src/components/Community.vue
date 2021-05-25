@@ -280,6 +280,7 @@ export default {
     this.updateModal = new Modal(document.getElementById('updateModal'));
 
     this.$store.commit('SET_BREADCRUMB_INFO', {
+      isHome : false,
       title: 'Community',
       subTitle: '커뮤니티',
       desc: '커뮤니티에서 자유롭게 소통하세요.',

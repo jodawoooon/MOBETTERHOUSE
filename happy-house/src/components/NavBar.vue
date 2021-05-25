@@ -80,25 +80,12 @@ export default {
         requireImg : function(){
             console.log(this.$store.state.userInfo.userProfileImageUrl);
 
-            if( this.$store.state.userInfo.userProfileImageUrl == ''  ) {
+           if (this.$store.state.userInfo.userProfileImageUrl == '') {
                 return require('../assets/img/noProfile.png')
-            }else if(this.$store.state.userInfo.userProfileImageUrl=='undefined'){
-              return require('../assets/img/noProfile.png')
-            }else if(this.$store.state.userInfo.userProfileImageUrl.indexOf("http://k.kakaocdn.net/") != -1){
-              return (this.$store.state.userInfo.userProfileImageUrl)
+            } else {
+                return this.$store.state.userInfo.userProfileImageUrl;  
             }
-            else{
-                // let url = '../assets' + this.$store.state.userInfo.userProfileImageUrl;
-                // let fs = require('fs');
-                // let res =  fs.existSync(url);
-                // console.log(res);
-                try{
-                    return require('../assets' + this.$store.state.userInfo.userProfileImageUrl);
-                }catch(e){
-                    return require('../assets/img/noProfile.png')
-                }
-                
-            }
+            
         }
             ,
         

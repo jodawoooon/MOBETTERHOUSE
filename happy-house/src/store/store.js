@@ -24,6 +24,7 @@ export default new Vuex.Store({
       userProfileImageUrl: '',
     },
     breadCrumbInfo: {
+      isHome: false,
       title: 'Home',
       subTitle: '메인 페이지',
       desc: '뭔가 메인 페이지가 필요할 것 같다.',
@@ -62,6 +63,7 @@ export default new Vuex.Store({
       state.curPage = curPage;
     },
     SET_LOGIN(state, payload) {
+      console.log("login success");
       state.userInfo.isLogin = true;
       state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;
