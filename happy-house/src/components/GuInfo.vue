@@ -107,6 +107,7 @@ export default {
         this
                     .$store
                     .commit('SET_BREADCRUMB_INFO', {
+                        isHome : false,
                         title: 'AreaInfo',
                         subTitle: '자치구별 정보',
                         desc: '서울특별시 각 자치구별 정보를 확인해 보세요!'
