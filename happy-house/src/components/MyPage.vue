@@ -229,7 +229,7 @@ export default {
                         );
                         setTimeout(function() {
                             window.location.reload();
-                        }, 1000);
+                        }, 2000);
 
 
                     }
