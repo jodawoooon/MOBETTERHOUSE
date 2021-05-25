@@ -196,6 +196,7 @@ export default {
         this
             .$store
             .commit('SET_CUR_PAGE', 'Home');
+            console.log(this.$store.state.userInfo.isLogin);
    
   },
 };

@@ -24,10 +24,9 @@
           <label class="form-check-label" for="chkFileUploadUpdate">파일 추가</label>
         </div>
         <div class="mb-3" v-show="attachFile" id="imgFileUploadUpdateWrapper">
-
-          <input @change,,,,,,,,,,,,,="changeFile" type="file" id="inputFileUploadUpdate" multiple>
+          <input @change="changeFile" type="file" id="inputFileUploadUpdate" multiple>
           <div id="imgFileUploadUpdateThumbnail" class="thumbnail-wrapper">
-
+            <!-- vue way img 를 만들어서 append 하지 않고, v-for 로 처리 -->
             <img v-for="(file, index) in fileList" v-bind:src="file" v-bind:key="index">
           </div>
         </div>
@@ -53,10 +52,11 @@ import http from "@/common/axios.js";
 export default {
   name: 'UpdateModal',
   props: ['board'],
-
+  // data 는 CKEditor, attachFile, fileList UI 관련 3개만
   data() {
         return {
-
+          // boardId: 0,
+          // title: '',
           CKEditor: '',
           attachFile: false,
           fileList: [], // store 의 fileList 와 구분됨. 새로 첨부되는 파일을 위한.
@@ -109,12 +109,11 @@ export default {
             });
         },
         closeModal(){
-
-          this.$emit('call-parent-update');
+          this.$emit('call-parent-update'); // no parameter
         }
     },
-    mounted() {
-
+    // modal.show() 이전에 이미 mounted() 호출됨
+    mounted() {      
       ClassicEditor
       .create(document.querySelector('#divEditorUpdate'))
       .then(editor => {
@@ -127,38 +126,53 @@ export default {
       // bootstrap modal show event hook
       // UpdateModal 이 보일 때 초기화
       let $this = this;
-
-      this.$el.addEventListener('show.bs.modal', function () {
+      this.$el.addEventListener('show.bs.modal', function () {     
 
         $this.CKEditor.setData( $this.$store.state.board.content );
         // 첨부 파일 관련 초기화
-
+        // 수정 또는 수정 전 첨부 파일을 선택하면 그대로 남아 있다.
         this.attachFile = false;
         this.fileList = [];
         document.querySelector("#inputFileUploadUpdate").value = '';
       })
 
     },
+    // watch 사용 X
+    // props 사용 X
+    // watch: {
+    //   board : function(){
+    //     // props --> data
+    //     this.boardId = this.board.boardId;
+    //     this.title = this.board.title;
+    //     this.CKEditor.setData( this.board.content );
+    //     // 아래의 내용을 추가하지 않음
+    //     // 기존 파일 내용은 props - board 를 이용
+    //     // fileList 는 신규 파일에 적용
+    //     //this.fileList = this.board.fileList;
 
+    //     // 첨부 파일 관련 초기화
+    //     // 수정 또는 수정 전 첨부 파일을 선택하면 그대로 남아 있다.
+    //     this.attachFile = false;
+    //     this.fileList = [];
+    //   }
+    // }
 
 }
 </script>
 
-
 <style>
->>>>>>> 7f1eef7ac2b2a75aaf8589b8c4b0cccb458f2688
+/* CKEditor 는 vue 와 별개로 rendering 되어서 scope 를 넣으면 반영되지 않는다. */
 .ck-editor__editable {
     min-height: 300px !important;
 }
 
 .thumbnail-wrapper{
-    margin-top: 5px;
+	margin-top: 5px;
 }
 
 .thumbnail-wrapper img {
-    width: 100px !important;
-    margin-right: 5px;
-    max-width: 100%;
-
+	width: 100px !important;
+	margin-right: 5px;
+	max-width: 100%;
 }
 </style>

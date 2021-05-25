@@ -67,13 +67,12 @@ export default new Vuex.Store({
     },
     SET_LOGIN(state, payload) {
       console.log("login success");
-      state.userInfo.isLogin = true;
+      state.userInfo.isLogin = payload.isLogin;
       state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;
       state.userInfo.userName = payload.userName;
       state.userInfo.userEmail = payload.userEmail;
       state.userInfo.userMessage = payload.userMessage;
-
       state.userInfo.userRank = payload.userRank;
       state.userInfo.userProfileImageUrl = payload.userProfileImageUrl;
     },
@@ -89,6 +88,7 @@ export default new Vuex.Store({
       state.userInfo.userProfileImageUrl = '';
     },
     SET_INFO(state, payload) {
+      
       state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;
       state.userInfo.userName = payload.userName;
@@ -99,6 +99,7 @@ export default new Vuex.Store({
     },
     SET_KAKAO(state) {
       state.userInfo.isKakao = true;
+      state.userInfo.isLogin = true;
     },
     SET_BOARD_LIST(state, list){
       state.board.list = list
