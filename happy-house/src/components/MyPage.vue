@@ -220,17 +220,22 @@ export default {
                                 userMessage: data.userMessage,
                                
                                 userProfileImageUrl: data.userProfileImageUrl
+
+                                
                             });
 
                         this.$swal(
                             {icon: 'success', title: '성공적으로 등록되었습니다.', showConfirmButton: false, timer: 1500}
                         );
+
+
                     }
                 })
                 .catch((error) => {
                     console.log("UserProfileImageSend: error ");
                     console.log(error);
                 });
+
 
         },
         onClickImageUpload() {
@@ -326,14 +331,11 @@ export default {
             if (this.$store.state.userInfo.userProfileImageUrl == '') {
                 return require('../assets/img/noProfile.png')
             } else {
-                return this.$store.state.userInfo.userProfileImageUrl;  
+                return '..'+ this.$store.state.userInfo.userProfileImageUrl;  
             }
         }
     },
-    mounted() {
-
-        this.secessionModal = new Modal(document.getElementById('secessionModal'));
-
+    created(){
         this
             .$store
             .commit('SET_BREADCRUMB_INFO', {
@@ -345,6 +347,12 @@ export default {
         this
             .$store
             .commit('SET_CUR_PAGE', 'MyPage');
+    },
+    mounted() {
+
+        this.secessionModal = new Modal(document.getElementById('secessionModal'));
+
+        
     }
 }
 </script>

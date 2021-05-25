@@ -28,11 +28,13 @@
                                 gridLines: {
                                     display: false
                                 }
+                                ,
+                                
                             }
                         ]
                     },
                     legend: {
-                        display: true
+                        display: false,
                     },
                     responsive: true,
                     maintainAspectRatio: false

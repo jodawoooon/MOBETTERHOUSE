@@ -184,13 +184,20 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.commit('SET_BREADCRUMB_INFO', {
-      isHome: true,
-      title: '',
-      subTitle: '',
-      desc: '',
-    });
-    this.$store.commit('SET_CUR_PAGE', 'Home');
+    
+      this
+            .$store
+            .commit('SET_BREADCRUMB_INFO', {
+                isHome : true,
+                title: '',
+                subTitle: '',
+                desc: ''
+            });
+        this
+            .$store
+            .commit('SET_CUR_PAGE', 'Home');
+            console.log(this.$store.state.userInfo.isLogin);
+   
   },
 };
 </script>
