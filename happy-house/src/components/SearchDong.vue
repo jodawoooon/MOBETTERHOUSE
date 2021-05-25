@@ -31,7 +31,7 @@
                 <div class="col align-self-center">
                   <input
                     type="button"
-                    value="관심 지역"
+                    :value="isBookmarked ? '관심 지역 해제' : '관심 지역 등록'"
                     class="btn ml-3"
                     :class="isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
                     @click="clickBookmarkArea"

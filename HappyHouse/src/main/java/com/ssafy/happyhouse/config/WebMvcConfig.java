@@ -41,6 +41,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
 				"/codes/**",
 				"/login/**", 
 				"/user/**",
-				"/bookmark/**"); // static folder
+				"/bookmark/**",
+				"/bookmarkArea/**"); // static folder
 	}
 }
