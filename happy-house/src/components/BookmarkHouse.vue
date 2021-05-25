@@ -4,20 +4,6 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <!-- selectbar start  -->
-            <div class="d-flex justify-content-center mb-2" style=" height:100px;">
-              <div class="row">
-                <div class="col align-self-center">
-                  <input type="text" v-model="searchWord" @keypress.enter="searchList" class="form-control" id="searchText" style="width:400px;" />
-                </div>
-                <div class="col align-self-center">
-                  <input type="button" id="btnSearch" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="loadingCount != 0" />
-                </div>
-              </div>
-            </div>
-
-            <!-- selectbar end  -->
-
             <div class="row m-1">
               <div class="col-4" id="apartInfo">
                 <!-- pulseLoader -->
@@ -69,7 +55,7 @@ import Pagination from './Pagination.vue';
 import { mapGetters } from 'vuex';
 
 export default {
-  naem: 'SearchApt',
+  name: 'BookmarkHouse',
   components: {
     PulseLoader,
     Pagination,
@@ -87,8 +73,6 @@ export default {
       listRowCount: 10,
       pageLinkCount: 10,
       currentPageIndex: 1,
-
-      searchWord: '',
     };
   },
   methods: {
@@ -100,57 +84,30 @@ export default {
     },
     searchList() {
       console.log('searchList() is called!!!!!!');
-      if (this.searchWord == '') {
-        console.log('this.searchWord is empty');
-        this.loadingCountUp();
-        http
-          .get('/house', {
-            params: {
-              limit: this.limit,
-              offset: this.offset,
-              searchType: 'init',
-              userSeq: this.getUserSeq,
-            },
-          })
-          .then(({ data }) => {
-            console.log('searchList : ');
-            console.log(data);
-            this.loadingCountDown();
-            if (data.result == 'login') {
-              router.push('/login');
-            } else {
-              this.houseList = data.list;
-              this.houseListCount = data.count;
-              this.kakaoMap();
-            }
-          });
-      } else {
-        console.log('this.selectedDongCode is not empty');
-        this.loadingCountUp();
-        http
-          .get('/house', {
-            params: {
-              limit: this.limit,
-              offset: this.offset,
-              searchWord: this.searchWord,
-              searchType: 'apt',
-              userSeq: this.getUserSeq,
-            },
-          })
-          .then(({ data }) => {
-            console.log('searchList : ');
-            console.log(data);
-            this.loadingCountDown();
-            if (data.result == 'login') {
-              router.push('/login');
-            } else {
-              this.houseList = data.list;
-              this.houseListCount = data.count;
-              this.kakaoMap();
-              // this.$refs.
-            }
-          });
-      }
+      this.loadingCountUp();
+      http
+        .get('/house', {
+          params: {
+            limit: this.limit,
+            offset: this.offset,
+            searchWord: '',
+            searchType: 'bookmarkHouse',
+            userSeq: this.getUserSeq,
+          },
+        })
+        .then(({ data }) => {
+          console.log('searchList : ');
+          console.log(data);
+          this.loadingCountDown();
+          if (data.result == 'login') {
+            console.log(data.result);
+            router.push('/login');
+          } else {
+            this.houseList = data.list;
+            this.houseListCount = data.count;
+            this.kakaoMap();
+          }
+        });
     },
 
     clickBookmark(house) {
@@ -287,7 +244,6 @@ export default {
       }
     },
   },
-
   computed: {
     ...mapGetters(['getUserSeq']),
   },
@@ -295,14 +251,13 @@ export default {
   created() {
     this.searchList();
   },
-
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
-      title: 'SearchApt',
-      subTitle: '아파트 이름으로 매물 / 거래정보 검색',
-      desc: '원하는 지역의 매물정보를 확인해보세요.',
+      title: '관심 매물 모아 보기',
+      subTitle: '관심 매물 모아 보기',
+      desc: '관심 매물 정보를 확인해보세요.',
     });
-    this.$store.commit('SET_CUR_PAGE', 'searchApt');
+    this.$store.commit('SET_CUR_PAGE', 'bookmarkHouse');
   },
 };
 </script>

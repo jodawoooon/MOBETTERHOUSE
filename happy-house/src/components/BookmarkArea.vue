@@ -4,22 +4,45 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <!-- selectbar start  -->
-            <div class="d-flex justify-content-center mb-2" style=" height:100px;">
-              <div class="row">
-                <div class="col align-self-center">
-                  <input type="text" v-model="searchWord" @keypress.enter="searchList" class="form-control" id="searchText" style="width:400px;" />
-                </div>
-                <div class="col align-self-center">
-                  <input type="button" id="btnSearch" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="loadingCount != 0" />
-                </div>
-              </div>
-            </div>
-
-            <!-- selectbar end  -->
-
             <div class="row m-1">
               <div class="col-4" id="apartInfo">
+                <!-- selectbar start  -->
+                <div class="d-flex justify-content-center mb-2" style="height:100px;">
+                  <div class="row">
+                    <div class="col align-self-center">
+                      <select v-model="selectedSidoCode" @change="gugunList" class="form-select select" aria-label="시">
+                        <option value="empty" selected disabled>시/도</option>
+                        <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
+                      </select>
+                    </div>
+                    <div class="col align-self-center">
+                      <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
+                        <option value="empty" selected disabled>구/군</option>
+                        <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
+                      </select>
+                    </div>
+                    <div class="col align-self-center">
+                      <select v-model="selectedDongCode" class="form-select select" aria-label="동">
+                        <option value="empty" selected disabled>동</option>
+                        <option v-for="(dong, index) in selectDongList" :key="index" :value="dong.DONG_CODE">{{ dong.DONG_NAME }}</option>
+                      </select>
+                    </div>
+                    <div class="col align-self-center">
+                      <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
+                    </div>
+                    <div class="col align-self-center">
+                      <input
+                        type="button"
+                        value="관심 지역"
+                        class="btn ml-3"
+                        :class="isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
+                        @click="clickBookmarkArea"
+                        :disabled="selectedDongCode == 'empty'"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!-- selectbar end  -->
                 <!-- pulseLoader -->
                 <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
                   <pulse-loader :loading="loadingCount != 0"></pulse-loader>
@@ -69,7 +92,7 @@ import Pagination from './Pagination.vue';
 import { mapGetters } from 'vuex';
 
 export default {
-  naem: 'SearchApt',
+  name: 'BookmarkArea',
   components: {
     PulseLoader,
     Pagination,
@@ -87,8 +110,6 @@ export default {
       listRowCount: 10,
       pageLinkCount: 10,
       currentPageIndex: 1,
-
-      searchWord: '',
     };
   },
   methods: {
@@ -100,100 +121,30 @@ export default {
     },
     searchList() {
       console.log('searchList() is called!!!!!!');
-      if (this.searchWord == '') {
-        console.log('this.searchWord is empty');
-        this.loadingCountUp();
-        http
-          .get('/house', {
-            params: {
-              limit: this.limit,
-              offset: this.offset,
-              searchType: 'init',
-              userSeq: this.getUserSeq,
-            },
-          })
-          .then(({ data }) => {
-            console.log('searchList : ');
-            console.log(data);
-            this.loadingCountDown();
-            if (data.result == 'login') {
-              router.push('/login');
-            } else {
-              this.houseList = data.list;
-              this.houseListCount = data.count;
-              this.kakaoMap();
-            }
-          });
-      } else {
-        console.log('this.selectedDongCode is not empty');
-        this.loadingCountUp();
-        http
-          .get('/house', {
-            params: {
-              limit: this.limit,
-              offset: this.offset,
-              searchWord: this.searchWord,
-              searchType: 'apt',
-              userSeq: this.getUserSeq,
-            },
-          })
-          .then(({ data }) => {
-            console.log('searchList : ');
-            console.log(data);
-            this.loadingCountDown();
-            if (data.result == 'login') {
-              router.push('/login');
-            } else {
-              this.houseList = data.list;
-              this.houseListCount = data.count;
-              this.kakaoMap();
-              // this.$refs.
-            }
-          });
-      }
-    },
-
-    clickBookmark(house) {
-      console.log('userSeq : ' + this.getUserSeq);
-      console.log('dealNo : ' + house.no);
-      if (house.bookmarked) {
-        console.log('house.bookmarked : ' + house.bookmarked);
-        http
-          .delete('/bookmark', {
-            params: {
-              userSeq: this.getUserSeq,
-              dealNo: house.no,
-            },
-          })
-          .then(({ data }) => {
-            console.log('deleteBookmark!!!!');
-            console.log(data);
-            if (data.result == 'login') {
-              router.push('/login');
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        console.log('house.bookmarked : ' + house.bookmarked);
-        http
-          .post('/bookmark', {
+      console.log('this.selectedDongCode is empty');
+      this.loadingCountUp();
+      http
+        .get('/house', {
+          params: {
+            limit: this.limit,
+            offset: this.offset,
+            searchType: 'bookmarkArea',
             userSeq: this.getUserSeq,
-            dealNo: house.no,
-          })
-          .then(({ data }) => {
-            console.log('insertBookmark!!!!!!');
-            console.log(data);
-            if (data.result == 'login') {
-              router.push('/login');
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-      house.bookmarked = !house.bookmarked;
+          },
+        })
+        .then(({ data }) => {
+          console.log('searchList : ');
+          console.log(data);
+          this.loadingCountDown();
+          if (data.result == 'login') {
+            console.log(data.result);
+            router.push('/login');
+          } else {
+            this.houseList = data.list;
+            this.houseListCount = data.count;
+            this.kakaoMap();
+          }
+        });
     },
 
     // pagination
@@ -287,7 +238,6 @@ export default {
       }
     },
   },
-
   computed: {
     ...mapGetters(['getUserSeq']),
   },
@@ -295,14 +245,13 @@ export default {
   created() {
     this.searchList();
   },
-
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
-      title: 'SearchApt',
-      subTitle: '아파트 이름으로 매물 / 거래정보 검색',
-      desc: '원하는 지역의 매물정보를 확인해보세요.',
+      title: '관심 지역 모아 보기',
+      subTitle: '관심 지역 모아 보기',
+      desc: '관심 지역의 매물을 확인하세요.',
     });
-    this.$store.commit('SET_CUR_PAGE', 'searchApt');
+    this.$store.commit('SET_CUR_PAGE', 'bookmarkArea');
   },
 };
 </script>

@@ -5,7 +5,6 @@
         <div class="card border-light shadow-sm ">
           <div class="card-body">
             <!-- selectbar start  -->
-
             <div class="d-flex justify-content-center mb-2" style="height:100px;">
               <div class="row">
                 <div class="col align-self-center">
@@ -41,7 +40,6 @@
                 </div>
               </div>
             </div>
-
             <!-- selectbar end  -->
             <div class="row m-1">
               <div class="col-4" id="apartInfo">
@@ -140,8 +138,7 @@ export default {
             params: {
               limit: this.limit,
               offset: this.offset,
-              searchWord: '',
-              searchType: '',
+              searchType: 'init',
               userSeq: this.getUserSeq,
             },
           })

@@ -39,4 +39,8 @@ public interface HouseDao {
 	public int deleteBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
 	
 	public boolean getBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
+	
+	public List<HouseDto> bookmarkHouse(int userSeq);
+
+	public int bookmarkHouseTotalCount(int userSeq);
 }

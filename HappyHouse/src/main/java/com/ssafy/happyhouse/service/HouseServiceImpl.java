@@ -64,41 +64,38 @@ public class HouseServiceImpl implements HouseService {
 
 	@Override
 	public int insertBookmark(BookmarkDto bookmarkDto) {
-		System.out.println("/insertBookmark!!!!");
-		int ret = houseDao.insertBookmark(bookmarkDto);
-		System.out.println("ret : " + ret);
-		return ret;
+		return houseDao.insertBookmark(bookmarkDto);
 	}
 
 	@Override
 	public int deleteBookmark(BookmarkDto bookmarkDto) {
-		System.out.println("/deleteBookmark!!!!");
-		int ret = houseDao.deleteBookmark(bookmarkDto);
-		System.out.println("ret : " + ret);
-		return ret;
+		return houseDao.deleteBookmark(bookmarkDto);
 	}
 	
 	@Override
 	public int insertBookmarkArea(BookmarkAreaDto bookmarkAreaDto) {
-		System.out.println("/insertBookmark!!!!");
-		int ret = houseDao.insertBookmarkArea(bookmarkAreaDto);
-		System.out.println("ret : " + ret);
-		return ret;
+		return houseDao.insertBookmarkArea(bookmarkAreaDto);
 	}
 
 	@Override
 	public int deleteBookmarkArea(BookmarkAreaDto bookmarkAreaDto) {
-		System.out.println("/deleteBookmark!!!!");
-		int ret = houseDao.deleteBookmarkArea(bookmarkAreaDto);
-		System.out.println("ret : " + ret);
-		return ret;
+		return houseDao.deleteBookmarkArea(bookmarkAreaDto);
 	}
 	
 	@Override
 	public boolean getBookmarkArea(BookmarkAreaDto bookmarkAreaDto) {
-		System.out.println("/getBookmark!!!!");
-		boolean ret = houseDao.getBookmarkArea(bookmarkAreaDto);
-		System.out.println("ret : " + ret);
-		return ret;
+		return houseDao.getBookmarkArea(bookmarkAreaDto);
 	}
+	
+	@Override
+	public List<HouseDto> bookmarkHouse(int userSeq) {
+		return houseDao.bookmarkHouse(userSeq);
+	}
+
+	@Override
+	public int bookmarkHouseTotalCount(int userSeq) {
+		return houseDao.bookmarkHouseTotalCount(userSeq);
+	}
+	
+	
 }

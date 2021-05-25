@@ -26,14 +26,18 @@ public interface HouseService {
 	public List<Map<String, String>> gugunList(String sidoCode);
 
 	public List<Map<String, String>> dongList(Map<String, String> map);
-	
+
 	public int insertBookmark(BookmarkDto bookmarkDto);
-	
+
 	public int deleteBookmark(BookmarkDto bookmarkDto);
-	
+
 	public int insertBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
-	
+
 	public int deleteBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
-	
+
 	public boolean getBookmarkArea(BookmarkAreaDto bookmarkAreaDto);
+
+	public List<HouseDto> bookmarkHouse(int userSeq);
+
+	public int bookmarkHouseTotalCount(int userSeq);
 }

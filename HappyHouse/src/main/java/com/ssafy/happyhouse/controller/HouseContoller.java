@@ -41,7 +41,7 @@ public class HouseContoller {
 		param.setUserSeq(userSeq);
 
 		HouseResultDto result = new HouseResultDto();
-		if (searchWord.equals("")) {
+		if (searchType.equals("init")) {
 			System.out.println("/house2!!!!!!");
 			List<HouseDto> list = houseService.houseList(param);
 			for (HouseDto dto : list)
@@ -85,6 +85,42 @@ public class HouseContoller {
 			for (HouseDto dto : list)
 				System.out.println(dto);
 			int count = houseService.houseSearchAptTotalCount(searchWord);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
+		} else if (searchType.equals("bookmarkHouse")) {
+			System.out.println("/house bookmarkHouse!!!");
+			List<HouseDto> list = houseService.bookmarkHouse(userSeq);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.bookmarkHouseTotalCount(userSeq);
+			if (list != null) {
+				result.setResult(1);
+				result.setList(list);
+				result.setCount(count);
+
+				for (HouseDto dto : list) {
+					System.out.println(dto);
+				}
+				System.out.println("count : " + count);
+			} else {
+				result.setResult(0);
+			}
+		} else if (searchType.equals("bookmarkArea")) {
+			System.out.println("/house bookmarkArea");
+			List<HouseDto> list = houseService.bookmarkHouse(userSeq);
+			for (HouseDto dto : list)
+				System.out.println(dto);
+			int count = houseService.bookmarkHouseTotalCount(userSeq);
 			if (list != null) {
 				result.setResult(1);
 				result.setList(list);

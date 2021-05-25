@@ -96,4 +96,16 @@
 				  SELECT 1 FROM BOOKMARK_AREA b WHERE USER_SEQ=${userSeq} AND DONG_CODE=${dongCode})
 			  THEN true ELSE false END
 	</select>
+	
+	<select id="bookmarkHouse" parameterType="int" resultType="com.ssafy.happyhouse.dto.HouseDto">
+		SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG, true bookmarked
+		  FROM HOUSEDEAL d, HOUSEINFO i, BOOKMARK_HOUSE b 
+    	  WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG and d.NO=b.DEAL_NO AND b.USER_SEQ=#{userSeq}
+		  ORDER BY d.NO DESC
+  		  LIMIT 10 OFFSET 0
+	</select>
+	
+	<select id="bookmarkHouseTotalCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM BOOKMARK_HOUSE WHERE USER_SEQ=#{userSeq}
+	</select>
 </mapper>
