@@ -14,6 +14,7 @@ import Join from '@/components/Join.vue';
 import MyPage from '@/components/MyPage.vue';
 import Index from '@/components/Index.vue';
 import SchoolZone from '@/components/SchoolZone.vue';
+import GuInfo from '@/components/GuInfo.vue';
 
 export default new VueRouter({
   routes: [
@@ -64,6 +65,10 @@ export default new VueRouter({
     {
       path: '/schoolZone',
       component : SchoolZone,
+    },
+    {
+      path: '/info',
+      component : GuInfo,
     }
   ],
 });

@@ -2,13 +2,14 @@
   <nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white " data-simplebar>
     <div class="sidebar-inner px-2 pt-3">
       <ul class="nav flex-column pt-3 pt-md-0">
-        <li class="nav-item" :class="{ active: $store.state.curPage == 'Home' }">
+        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'Home' }">
           <router-link to="/home" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'home']"/></span>
             <span class="sidebar-text">Home</span>
           </router-link>
         </li>
-        <li class="nav-item">
+        
+        <li class="nav-item  mt-2 mb-2">
           <div @click="changeIsSearch">
             <span class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#searchSub" aria-expanded="false" aria-controls="searchSub">
               <span>
@@ -35,25 +36,31 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item" :class="{ active: $store.state.curPage == 'bookmark' }">
+        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'bookmark' }">
           <router-link to="/bookmark" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'star']"/></span>
             <span class="sidebar-text">Bookmark</span>
           </router-link>
         </li>
-        <li class="nav-item" :class="{ active: $store.state.curPage == 'schoolZone' }">
+        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'info' }">
+          <router-link to="/info" class="nav-link">
+            <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'info-circle']"/></span>
+            <span class="sidebar-text">자치구별 정보</span>
+          </router-link>
+        </li>
+        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'schoolZone' }">
           <router-link to="/schoolZone" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'school']"/></span>
             <span class="sidebar-text">School Zone</span>
           </router-link>
         </li>
-        <li class="nav-item" :class="{ active: $store.state.curPage == 'community' }">
+        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'community' }">
           <router-link to="/community" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'comment-dots']"/></span>
             <span class="sidebar-text">Community</span>
           </router-link>
         </li>
-        <li class="nav-item" :class="{ active: $store.state.curPage == 'contact' }">
+        <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'contact' }">
           <router-link to="/contact" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'phone']"/></span>
             <span class="sidebar-text">Contact</span>
@@ -79,3 +86,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+span{
+  font-size:13pt;
+}
+</style>
