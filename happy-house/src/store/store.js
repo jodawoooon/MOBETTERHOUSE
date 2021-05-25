@@ -35,7 +35,7 @@ export default new Vuex.Store({
       state.curPage = curPage;
     },
     SET_LOGIN(state, payload) {
-      console.log("login success");
+      console.log('login success');
       state.userInfo.isLogin = true;
       state.userInfo.userSeq = payload.userSeq;
       state.userInfo.userPassword = payload.userPassword;

@@ -26,7 +26,7 @@
                   </select>
                 </div>
                 <div class="col align-self-center">
-                  <input type="button" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
+                  <input type="button" class="btn btn-secondary ml-3" value="검색" @click="btnSearchClick" :disabled="selectedDongCode == 'empty' || loadingCount != 0" />
                 </div>
                 <div class="col align-self-center">
                   <input
@@ -127,6 +127,11 @@ export default {
     },
     loadingCountDown() {
       this.loadingCount--;
+    },
+    btnSearchClick() {
+      this.currentPageIndex = 1;
+      this.offset = 0;
+      this.searchList();
     },
     searchList() {
       console.log('searchList() is called!!!!!!');
@@ -423,6 +428,7 @@ export default {
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
+      isHome: true,
       title: 'SearchDong',
       subTitle: '동으로 매물 / 거래정보 검색',
       desc: '원하는 지역의 매물정보를 확인해보세요.',

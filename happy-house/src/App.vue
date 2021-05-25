@@ -1,14 +1,9 @@
 <template>
   <div id="app">
-    <!-- <side-bar></side-bar>
-
-    <nav-bar />
-    <bread-crumb></bread-crumb> -->
-
     <side-bar v-if="getIsLogin"></side-bar>
 
-    <nav-bar  v-if="getIsLogin" />
-    <bread-crumb  v-if="getIsLogin"></bread-crumb>
+    <nav-bar v-if="getIsLogin" />
+    <bread-crumb v-if="getIsLogin"></bread-crumb>
     <router-view></router-view>
   </div>
 </template>
@@ -17,7 +12,6 @@
 import SideBar from './components/SideBar.vue';
 import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
-//import Index from './components/Index.vue';
 
 // for bootstrap 5
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,7 +22,9 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'App',
   data() {
-    return {};
+    return {
+      isLogin: false,
+    };
   },
   components: {
     //Index,
@@ -39,11 +35,14 @@ export default {
   computed: {
     ...mapGetters(['getIsLogin']),
   },
-  methods: {},
+  watch: {
+    getIsLogin() {
+      this.isLogin = this.getIsLogin;
+    },
+  },
 };
 </script>
 
 <style>
 @import './assets/css/volt.css';
-
 </style>

@@ -11,7 +11,7 @@
                   <input type="text" v-model="searchWord" @keypress.enter="searchList" class="form-control" id="searchText" style="width:400px;" />
                 </div>
                 <div class="col align-self-center">
-                  <input type="button" id="btnSearch" class="btn btn-secondary ml-3" value="검색" @click="searchList" :disabled="loadingCount != 0" />
+                  <input type="button" id="btnSearch" class="btn btn-secondary ml-3" value="검색" @click="btnSearchClick" :disabled="loadingCount != 0" />
                 </div>
               </div>
             </div>
@@ -98,6 +98,11 @@ export default {
     },
     loadingCountDown() {
       this.loadingCount--;
+    },
+    btnSearchClick() {
+      this.currentPageIndex = 1;
+      this.offset = 0;
+      this.searchList();
     },
     searchList() {
       console.log('searchList() is called!!!!!!');

@@ -112,7 +112,7 @@ export default {
       desc: '',
     });
     this.$store.commit('SET_CUR_PAGE', 'Home');
-   
+    console.log('getLoadingCount : ' + this.$store.getters.getLoadingCount);
   },
 };
 </script>
