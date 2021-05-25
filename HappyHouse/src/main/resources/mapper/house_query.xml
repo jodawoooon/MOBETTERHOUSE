@@ -69,12 +69,12 @@
 		  ORDER BY NAME ASC;
 	</select>
 	
-	<insert id="insertBookmark" parameterType="map">
+	<insert id="insertBookmark" parameterType="com.ssafy.happyhouse.dto.BookmarkDto">
 		INSERT INTO BOOKMARK
 		  VALUES(#{userSeq}, #{dealNo})
 	</insert>
 	
-	<delete id="deleteBookmark" parameterType="map">
+	<delete id="deleteBookmark" parameterType="com.ssafy.happyhouse.dto.BookmarkDto">
 		DELETE FROM BOOKMARK
 		  WHERE USER_SEQ=#{userSeq} and DEAL_NO=#{dealNo}
 	</delete>

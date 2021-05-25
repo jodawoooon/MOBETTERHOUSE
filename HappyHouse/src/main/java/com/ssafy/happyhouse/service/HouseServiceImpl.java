@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.dao.HouseDao;
+import com.ssafy.happyhouse.dto.BookmarkDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseParamDto;
 
@@ -61,17 +62,17 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public int insertBookmark(Map<String, Integer> map) {
+	public int insertBookmark(BookmarkDto bookmarkDto) {
 		System.out.println("/insertBookmark!!!!");
-		int ret = houseDao.insertBookmark(map);
+		int ret = houseDao.insertBookmark(bookmarkDto);
 		System.out.println("ret : " + ret);
 		return ret;
 	}
 
 	@Override
-	public int deleteBookmark(Map<String, Integer> map) {
+	public int deleteBookmark(BookmarkDto bookmarkDto) {
 		System.out.println("/deleteBookmark!!!!");
-		int ret = houseDao.deleteBookmark(map);
+		int ret = houseDao.deleteBookmark(bookmarkDto);
 		System.out.println("ret : " + ret);
 		return ret;
 	}

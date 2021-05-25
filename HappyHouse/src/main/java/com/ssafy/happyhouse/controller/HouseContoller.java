@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.dto.BookmarkDto;
 import com.ssafy.happyhouse.dto.HouseDto;
 import com.ssafy.happyhouse.dto.HouseParamDto;
 import com.ssafy.happyhouse.dto.HouseResultDto;
@@ -149,13 +150,13 @@ public class HouseContoller {
 	}
 
 	@PostMapping("/bookmark")
-	public ResponseEntity<Integer> insertBookmark(int userSeq, int dealNo) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("userSeq", userSeq);
-		map.put("dealNo", dealNo);
+	public ResponseEntity<Integer> insertBookmark(@RequestBody BookmarkDto bookmarkDto) {
+		System.out.println("CREATE bookmark!!!!");
+		System.out.println("userSeq : " + bookmarkDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkDto.getDealNo());
 
-		int ret = houseService.insertBookmark(map);
-		if (ret != 0) {
+		int ret = houseService.insertBookmark(bookmarkDto);
+		if (ret != 1) {
 			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
@@ -164,12 +165,15 @@ public class HouseContoller {
 
 	@DeleteMapping("/bookmark")
 	public ResponseEntity<Integer> deleteBookmark(int userSeq, int dealNo) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("userSeq", userSeq);
-		map.put("dealNo", dealNo);
+		System.out.println("DELETE bookmark!!!!");
+		BookmarkDto bookmarkDto = new BookmarkDto();
+		bookmarkDto.setUserSeq(userSeq);
+		bookmarkDto.setDealNo(dealNo);
+		System.out.println("userSeq : " + bookmarkDto.getUserSeq());
+		System.out.println("dealNo : " + bookmarkDto.getDealNo());
 
-		int ret = houseService.deleteBookmark(map);
-		if (ret != 0) {
+		int ret = houseService.deleteBookmark(bookmarkDto);
+		if (ret != 1) {
 			return new ResponseEntity<Integer>(HttpStatus.INTERNAL_SERVER_ERROR);
 		} else {
 			return new ResponseEntity<Integer>(ret, HttpStatus.OK);
