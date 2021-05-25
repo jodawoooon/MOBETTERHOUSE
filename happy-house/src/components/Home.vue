@@ -112,11 +112,7 @@ export default {
       desc: '',
     });
     this.$store.commit('SET_CUR_PAGE', 'Home');
-    
-    if(this.$store.state.userInfo.isLogin==false){
-        this.$router.push('/');
-    }
-    
+   
   },
 };
 </script>

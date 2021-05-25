@@ -1,5 +1,6 @@
 <script>
     //Importing Bar and mixins class from the vue-chartjs wrapper
+
     import {Bar, mixins} from 'vue-chartjs'
     //Getting the reactiveProp mixin from the mixins module.
     const {reactiveProp} = mixins
