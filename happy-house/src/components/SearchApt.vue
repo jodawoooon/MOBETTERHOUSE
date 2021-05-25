@@ -40,7 +40,6 @@
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
                         style="color: rgb(255, 226, 95); font-size: 25px"
-                        class="btn"
                       >
                         <input type="hidden" value="' + dealNo + '" />
                       </font-awesome-icon>
@@ -304,7 +303,7 @@ export default {
 
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
-      isHome : true,
+      isHome: true,
       title: 'SearchApt',
       subTitle: '아파트 이름으로 매물 / 거래정보 검색',
       desc: '원하는 지역의 매물정보를 확인해보세요.',

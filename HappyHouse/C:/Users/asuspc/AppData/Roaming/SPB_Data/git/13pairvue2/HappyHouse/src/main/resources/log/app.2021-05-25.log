@@ -1,0 +1,110 @@
+2021-05-25 22:32:48 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 47339 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-25 22:32:48 [restartedMain] DEBUG c.s.h.HappyHouseApplication - Running with Spring Boot v2.4.5, Spring v5.3.6 
+2021-05-25 22:32:48 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-25 22:32:48 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-25 22:32:48 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-25 22:32:48 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-25 22:32:48 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-25 22:32:48 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 299 ms 
+2021-05-25 22:32:48 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-25 22:32:48 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$dab45c84.addInterceptors() 
+2021-05-25 22:32:48 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$dab45c84.addInterceptors() 
+2021-05-25 22:32:48 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$dab45c84.addInterceptors() 
+2021-05-25 22:32:48 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$dab45c84.addInterceptors() 
+2021-05-25 22:32:48 [restartedMain] INFO o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html] 
+2021-05-25 22:32:49 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-25 22:32:49 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-25 22:32:49 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 0.962 seconds (JVM running for 4748.331) 
+2021-05-25 22:32:49 [restartedMain] INFO o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged 
+2021-05-25 22:33:44 [RMI TCP Connection(94)-127.0.0.1] INFO o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested. 
+2021-05-25 22:33:44 [RMI TCP Connection(94)-127.0.0.1] INFO o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor' 
+2021-05-25 22:33:46 [restartedMain] INFO c.s.h.HappyHouseApplication - Starting HappyHouseApplication using Java 1.8.0_271 on bungbungbalabalabungbung.local with PID 49626 (/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/bin/main started by dongwoosohn in /Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse) 
+2021-05-25 22:33:46 [restartedMain] DEBUG c.s.h.HappyHouseApplication - Running with Spring Boot v2.4.5, Spring v5.3.6 
+2021-05-25 22:33:46 [restartedMain] INFO c.s.h.HappyHouseApplication - No active profile set, falling back to default profiles: default 
+2021-05-25 22:33:46 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable 
+2021-05-25 22:33:46 [restartedMain] INFO o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG' 
+2021-05-25 22:33:47 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http) 
+2021-05-25 22:33:47 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"] 
+2021-05-25 22:33:47 [restartedMain] INFO o.a.c.c.StandardService - Starting service [Tomcat] 
+2021-05-25 22:33:47 [restartedMain] INFO o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.45] 
+2021-05-25 22:33:47 [restartedMain] INFO o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext 
+2021-05-25 22:33:47 [restartedMain] INFO o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1114 ms 
+2021-05-25 22:33:47 [restartedMain] INFO o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor' 
+2021-05-25 22:33:48 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a64ba36f.addInterceptors() 
+2021-05-25 22:33:48 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a64ba36f.addInterceptors() 
+2021-05-25 22:33:48 [restartedMain] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a64ba36f.addInterceptors() 
+2021-05-25 22:33:48 [restartedMain] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.config.WebMvcConfig$$EnhancerBySpringCGLIB$$a64ba36f.addInterceptors() 
+2021-05-25 22:33:48 [restartedMain] INFO o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html] 
+2021-05-25 22:33:48 [restartedMain] INFO o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729 
+2021-05-25 22:33:48 [restartedMain] INFO o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"] 
+2021-05-25 22:33:48 [restartedMain] INFO o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '' 
+2021-05-25 22:33:48 [restartedMain] INFO c.s.h.HappyHouseApplication - Started HappyHouseApplication in 2.585 seconds (JVM running for 3.3) 
+2021-05-25 22:33:58 [http-nio-8080-exec-1] INFO o.a.c.c.C.[.[.[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2021-05-25 22:33:58 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
+2021-05-25 22:33:58 [http-nio-8080-exec-1] INFO o.s.w.s.DispatcherServlet - Completed initialization in 1 ms 
+2021-05-25 22:33:58 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.controller.LoginController.login() 
+2021-05-25 22:33:58 [http-nio-8080-exec-2] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.controller.LoginController.login() 
+2021-05-25 22:33:58 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.LoginServiceImpl.login() 
+2021-05-25 22:33:58 [http-nio-8080-exec-2] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.LoginServiceImpl.login() 
+2021-05-25 22:33:58 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy84.login() 
+2021-05-25 22:33:58 [http-nio-8080-exec-2] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy84.login() 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-1 - Starting... 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] INFO c.z.h.HikariDataSource - HikariPool-1 - Start completed. 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] DEBUG c.s.h.d.L.login - ==>  Preparing: select user_seq, user_name, user_password, user_email, user_profile_image_url, user_register_date, user_message, user_rank, code_name from user, code where user_email = ? and group_code = '1' and code = user_rank 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] DEBUG c.s.h.d.L.login - ==> Parameters: daun@daun.net(String) 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] DEBUG c.s.h.d.L.login - <==      Total: 1 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy84.login() 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy84.login() 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.LoginServiceImpl.login() 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.LoginServiceImpl.login() 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.LoginController.login() 
+2021-05-25 22:33:59 [http-nio-8080-exec-2] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.controller.LoginController.login() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.common.LoginInterceptor.preHandle() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.controller.HouseContoller.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.controller.HouseContoller.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.controller.HouseContoller.houseList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.controller.HouseContoller.houseList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy80.houseList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy80.houseList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy80.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy80.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.d.H.houseList - ==>  Preparing: SELECT d.NO, d.APTNAME, d.CODE gugun_code, d.dong, d.DEALAMOUNT, d.BUILDYEAR, d.DEALYEAR, d.DEALMONTH, d.DEALDAY, d.AREA, d.FLOOR, d.JIBUN, d.TYPE, d.RENTMONEY, i.LAT, i.LNG, i.IMG, (SELECT CASE WHEN EXISTS( SELECT 1 FROM USER u, BOOKMARK_HOUSE b WHERE u.USER_SEQ=? AND u.USER_SEQ=b.USER_SEQ AND d.NO=b.DEAL_NO) THEN true ELSE false END) BOOKMARKED FROM HOUSEDEAL d, HOUSEINFO i WHERE d.APTNAME = i.APTNAME AND d.CODE = i.CODE AND d.DONG = i.DONG ORDER BY d.NO DESC LIMIT ? OFFSET ?; 
+2021-05-25 22:34:07 [http-nio-8080-exec-3] DEBUG c.s.h.d.H.houseList - ==> Parameters: 27(Integer), 10(Integer), 0(Integer) 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.d.H.sidoList - ==>  Preparing: SELECT CODE AS SIDO_CODE, NAME AS SIDO_NAME FROM SIDO_CODE ORDER BY NAME ASC 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.d.H.sidoList - ==> Parameters:  
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.d.H.sidoList - <==      Total: 17 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy80.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy80.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.HouseContoller.sidoList() 
+2021-05-25 22:34:07 [http-nio-8080-exec-4] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.controller.HouseContoller.sidoList() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.d.H.houseList - <==      Total: 10 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy80.houseList() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy80.houseList() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseList() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseList() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.ssafy.happyhouse.service.HouseServiceImpl.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : Before class com.sun.proxy.$Proxy80.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : Before Debug class com.sun.proxy.$Proxy80.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.d.H.houseListTotalCount - ==>  Preparing: SELECT COUNT(*) FROM HOUSEDEAL 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.d.H.houseListTotalCount - ==> Parameters:  
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.d.H.houseListTotalCount - <==      Total: 1 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.sun.proxy.$Proxy80.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.sun.proxy.$Proxy80.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.service.HouseServiceImpl.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.service.HouseServiceImpl.houseListTotalCount() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] INFO c.s.h.c.LoggerAspect - LoggerAspect : After class com.ssafy.happyhouse.controller.HouseContoller.houseList() 
+2021-05-25 22:34:08 [http-nio-8080-exec-3] DEBUG c.s.h.c.LoggerAspect - LoggerAspect : After Debug class com.ssafy.happyhouse.controller.HouseContoller.houseList() 
