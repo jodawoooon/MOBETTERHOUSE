@@ -84,8 +84,8 @@ export default {
     this.$store.commit('SET_BREADCRUMB_INFO', {
       isHome : false,
       title: 'Contact',
-      subTitle: '문의',
-      desc: '자유롭게 문의하세요.',
+      subTitle: 'Contact',
+      desc: '저희 HAPPY HOUSE를 이용해 주셔서 감사합니다!',
     });
     this.$store.commit('SET_CUR_PAGE', 'contact');
   },
