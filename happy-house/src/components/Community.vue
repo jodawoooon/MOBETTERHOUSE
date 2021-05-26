@@ -17,7 +17,9 @@
                   <button @click="boardList" class="btn btn-secondary" type="button">Search</button> </div>
               </div>
             </div>
-            
+            <div class="row"  style="float:right; margin-right:20px;">
+            <button class="btn mb-3 btn-secondary btn-rounded"
+              data-mdb-ripple-color="dark" @click="showInsertModal">글쓰기</button></div>
             <table class="table table-hover text-center">
               <thead class="bg-primary text-white">
                 <tr>
@@ -44,8 +46,7 @@
             </div>
             <pagination v-on:call-parent="movePage"></pagination>
 
-            <button class="btn btn-outline-secondary btn-rounded"
-  data-mdb-ripple-color="dark" @click="showInsertModal">글쓰기</button>
+            
 
             <insert-modal v-on:call-parent-insert="closeAfterInsert"></insert-modal>
             <!-- props 제거 -->
