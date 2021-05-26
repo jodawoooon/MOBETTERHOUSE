@@ -28,7 +28,7 @@
                 <div v-else>
                   <div v-for="(house, index) in houseList" :key="index" class="border-light apart" :id="'apartInfo' + (index + 1)">
                      <div class=" cust_box row p-3 pt-4 rounded" style=" margin-right:10px;">
-                       <div class="col-8 " @click="clickAptInfo(house)" style="cursor: pointer;">
+                       <div class="col-9 " @click="clickAptInfo(house)" style="cursor: pointer; padding-left:30px">
                         <h5>{{ house.aptName }}</h5>
                         <p class="m-0">거래금액: {{ house.dealAmount }}</p>
                         <p class="m-0">전용면적: {{ house.area }}</p>
