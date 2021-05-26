@@ -134,10 +134,8 @@
             <div class="col-12 mb-4">
               <div class="card shadow-sm text-center p-0">
                 <div
-                  class="profile-cover rounded-top"
-                  :style="{
-                    backgroundImage: 'url(' + require('@/assets/img/profile-cover.jpg') + ')',
-                  }"
+                  class="profile-cover rounded-top bg-secondary"
+                 
                 ></div>
                 <div class="card-body pb-5">
                   <img

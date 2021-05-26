@@ -39,6 +39,9 @@ import {
   faUpload,
   faSchool,
   faInfoCircle,
+  faSignInAlt,
+  faUserPlus,
+
 } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -69,7 +72,9 @@ library.add(
   faImage,
   faUpload,
   faSchool,
-  faInfoCircle
+  faInfoCircle,
+  faSignInAlt,
+  faUserPlus,
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

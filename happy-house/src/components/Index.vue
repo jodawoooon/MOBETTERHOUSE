@@ -23,8 +23,8 @@
 
             <!-- Button Modal -->
             <div class="d-flex align-items-center justify-content-center mb-5">
-              <router-link to="/login" class="btn btn-lg btn-secondary text-dark me-4"> <span class="fas fa-sign-in-alt"></span> sign in </router-link>
-              <router-link to="/join" class="btn btn-lg btn-secondary text-dark"> <span class="fas fa-user-plus"></span> sign up </router-link>
+              <router-link to="/login" class="btn btn-lg btn-secondary text-dark me-4 scale-up-2"><font-awesome-icon :icon="['fas', 'sign-in-alt']" /> sign in </router-link>
+              <router-link to="/join" class="btn btn-lg btn-secondary text-dark scale-up-2"> <font-awesome-icon :icon="['fas', 'user-plus']" /> sign up </router-link>
             </div>
           </div>
         </div>
