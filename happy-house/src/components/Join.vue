@@ -248,14 +248,11 @@ export default {
             userProfileImageUrl: data.userProfileImageUrl,
           });
 
-          this.$swal({
-            icon: 'success',
-            title: '회원가입 완료',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          this.$alertify
+                                .success(this.$store.state.userInfo.userName+"님 환영합니다");
 
           // home 로 이동
+
           this.$router.push('/home');
         })
         .catch((error) => {
@@ -264,7 +261,7 @@ export default {
           if (error.response.status == '404') {
             this.$alertify.error('회원가입에 실패했습니다.');
           } else {
-            this.$alertify.error('Opps!! 서버에 문제가 발생했습니다.');
+            this.$alertify.error('회원가입에 실패했습니다.');
           }
         });
     },
@@ -309,6 +306,8 @@ export default {
                 userRank: data.codeName,
                 userProfileImageUrl: data.userProfileImageUrl,
               });
+              this.$alertify
+                                .success(this.$store.state.userInfo.userName+"님 환영합니다");
 
               // home 로 이동
               this.$router.push('/home');
@@ -343,8 +342,8 @@ export default {
                       userProfileImageUrl: data.userProfileImageUrl,
                     });
 
-                    this.$swal({ icon: 'success', title: '로그인 성공', showConfirmButton: false, timer: 1500 });
-
+                    this.$alertify
+                                .success(this.$store.state.userInfo.userName+"님 환영합니다");
                     // home 로 이동
                     this.$router.push('/home');
                   })

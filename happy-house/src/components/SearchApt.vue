@@ -56,6 +56,7 @@
               </div>
               <div id="map" class="col" style=" width:100%; height: 100%"></div>
             </div>
+          
           </div>
           <div class="mt-4" v-if="loadingCount == 0">
             <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>

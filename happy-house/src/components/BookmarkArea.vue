@@ -65,6 +65,9 @@ export default {
             if (data.result == 'login') {
               router.push('/login');
             }
+            this
+          .$alertify
+           .error("관심지역이 해제되었습니다.");
           })
           .catch((error) => {
             console.log(error);
@@ -81,6 +84,9 @@ export default {
             if (data.result == 'login') {
               router.push('/login');
             }
+            this
+          .$alertify
+           .success("관심지역이 등록되었습니다.");
           })
           .catch((error) => {
             console.log(error);

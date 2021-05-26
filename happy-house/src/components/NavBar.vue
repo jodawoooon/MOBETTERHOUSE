@@ -73,8 +73,9 @@ export default {
       if (page === 'mypage') this.$emit('change-page', { page: page, breadCrumbInfo: this.mypageBreadCrumb });
     },
     logout(){
+      
       this.$store.commit('SET_LOGOUT');
-
+      
       this.$router.push("/");
     }
   },

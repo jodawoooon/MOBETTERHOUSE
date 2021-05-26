@@ -265,7 +265,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            } else this.$alertify.error('관심 지역을 삭제하였습니다.');
+            } else this.$alertify.error('관심 지역을 해제하였습니다.');
           })
           .catch((error) => {
             console.log(error);

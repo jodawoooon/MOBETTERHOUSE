@@ -264,6 +264,7 @@ export default {
             this.$router.push("/login");
           } else {
             // info 데이터 가져오기
+            
             this.$store.commit("SET_INFO", {
               userPassword: data.userPassword,
               userName: data.userName,
@@ -273,20 +274,20 @@ export default {
               userProfileImageUrl: data.userProfileImageUrl,
             });
 
-            this.$swal({
-              icon: "success",
-              title: "성공적으로 등록되었습니다.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            setTimeout(function() {
-              window.location.reload();
-            }, 2000);
+            this
+          .$alertify
+           .success("프로필 사진이 등록되었습니다.");
+
+            this.imageUrl=null;
+            
           }
         })
         .catch((error) => {
           console.log("UserProfileImageSend: error ");
           console.log(error);
+
+                 
+          
         });
     },
     onClickImageUpload() {
@@ -343,12 +344,10 @@ export default {
             userProfileImageUrl: data.userProfileImageUrl,
           });
 
-          this.$swal({
-            icon: "success",
-            title: "성공적으로 수정되었습니다.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          
+           this
+          .$alertify
+           .success("회원정보가 수정되었습니다.");
         })
         .catch((error) => {
           console.log("UserVue Info Edit - error : ");
@@ -362,15 +361,7 @@ export default {
     },
   },
 
-  computed: {
-    requireImg: function() {
-      if (this.$store.state.userInfo.userProfileImageUrl == "") {
-        return require("../assets/img/noProfile.png");
-      } else {
-        return ".." + this.$store.state.userInfo.userProfileImageUrl;
-      }
-    },
-  },
+ 
   created() {
     this.$store.commit("SET_BREADCRUMB_INFO", {
       isHome: false,
@@ -388,7 +379,10 @@ export default {
       if (this.$store.state.userInfo.userProfileImageUrl == "") {
         return require("../assets/img/noProfile.png");
       } else {
+        
         return ".." + this.$store.state.userInfo.userProfileImageUrl;
+        
+        
       }
     },
   },

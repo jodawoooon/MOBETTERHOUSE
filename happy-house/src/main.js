@@ -76,6 +76,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAlertify);
 Vue.use(VueSweetalert2);
 
+
+
 Vue.config.productionTip = false;
 
 new Vue({
