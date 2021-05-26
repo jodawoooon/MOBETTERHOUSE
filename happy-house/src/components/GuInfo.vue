@@ -29,11 +29,7 @@
                                 </div>
                             </div>
 
-                            <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                    <h3>인구수</h3>
-                                    <info-chart :chart-data="dataCollection"></info-chart>
-                                    
-                                </div>
+                            
                         <section class="section section-sm pt-0">
                         <div class="container">
                             <div class="row justify-content-center mb-5 mb-lg-6">

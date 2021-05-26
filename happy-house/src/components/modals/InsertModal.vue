@@ -125,6 +125,7 @@ export default {
 </script>
 
 <style>
+/* CKEditor 는 vue 와 별개로 rendering 되어서 scope 를 넣으면 반영되지 않는다. */
 .ck-editor__editable {
   min-height: 300px !important;
 }
