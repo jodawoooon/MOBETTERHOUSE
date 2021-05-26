@@ -25,7 +25,7 @@
                         @click="clickBookmark(house)"
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
-                        style="color: rgb(255, 226, 95); font-size: 25px"
+                        style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
                         class=" scale-up-5"
                       >
                         <input type="hidden" value="' + dealNo + '" />
@@ -254,7 +254,7 @@ export default {
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
-      isHome : false,
+      isHome: false,
       title: '관심 매물 모아 보기',
       subTitle: '관심 매물 모아 보기',
       desc: '관심 매물 정보를 확인해보세요.',

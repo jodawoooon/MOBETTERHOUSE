@@ -8,13 +8,13 @@
             <div class="d-flex justify-content-center mb-2" style="height:100px;">
               <div class="row">
                 <div class="col align-self-center">
-                  <select v-model="selectedSidoCode" @change="gugunList" class="form-select select" aria-label="시">
+                  <select v-model="selectedSidoCode" class="form-select select" aria-label="시">
                     <option value="empty" selected disabled>시/도</option>
                     <option v-for="(sido, index) in selectSidoList" :key="index" :value="sido.SIDO_CODE">{{ sido.SIDO_NAME }}</option>
                   </select>
                 </div>
                 <div class="col align-self-center">
-                  <select v-model="selectedGugunCode" @change="dongList" class="form-select select" aria-label="구">
+                  <select v-model="selectedGugunCode" class="form-select select" aria-label="구">
                     <option value="empty" selected disabled>구/군</option>
                     <option v-for="(gugun, index) in selectGugunList" :key="index" :value="gugun.GUGUN_CODE">{{ gugun.GUGUN_NAME }}</option>
                   </select>
@@ -62,7 +62,7 @@
                         @click="clickBookmark(house)"
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
-                        style="color: rgb(255, 226, 95); font-size: 25px"
+                        style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
                         class=" scale-up-5"
                       >
                         <input type="hidden" value="' + dealNo + '" />
@@ -118,6 +118,7 @@ export default {
       selectedSidoCode: 'empty',
       selectedGugunCode: 'empty',
       selectedDongCode: 'empty',
+      // selectedDongCode: this.$route.params.select == undefined ? 'empty' : this.$route.params.select.dong.DONG_CODE,
 
       isBookmarked: false,
     };
@@ -284,6 +285,9 @@ export default {
           router.push('/login');
         } else {
           this.selectSidoList = data;
+          if (this.$route.params.select != undefined) {
+            this.selectedSidoCode = this.$route.params.select.sido.SIDO_CODE;
+          }
         }
       });
     },
@@ -304,6 +308,9 @@ export default {
             router.push('/login');
           } else {
             this.selectGugunList = data;
+            if (this.$route.params.select != undefined) {
+              this.selectedGugunCode = this.$route.params.select.gugun.GUGUN_CODE;
+            }
           }
         });
     },
@@ -325,6 +332,10 @@ export default {
             router.push('/login');
           } else {
             this.selectDongList = data;
+            if (this.$route.params.select != undefined) {
+              this.selectedDongCode = this.$route.params.select.dong.DONG_CODE;
+              this.searchList();
+            }
           }
         });
     },
@@ -424,7 +435,7 @@ export default {
   },
 
   created() {
-    this.searchList();
+    if (this.$route.params.select == undefined) this.searchList();
     this.sidoList();
   },
   mounted() {
@@ -457,6 +468,12 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    selectedSidoCode() {
+      this.gugunList();
+    },
+    selectedGugunCode() {
+      this.dongList();
     },
   },
 };

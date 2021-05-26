@@ -3,7 +3,12 @@
     <div class="row">
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
-          <div class="card-body"></div>
+          <div class="card-body">
+            <a href="#" v-for="(select, index) in selectList" :key="index" @click="clickSelect(select)">
+              {{ select.sido.SIDO_NAME }} {{ select.gugun.GUGUN_NAME }} {{ select.dong.DONG_NAME }}
+              <hr />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -20,14 +25,10 @@ export default {
   components: {},
   data() {
     return {
-      houseList: [],
-      houseListCount: 0,
-      limit: 10,
-      offset: 0,
-
       selectSidoList: [],
       selectGugunList: [],
       selectDongList: [],
+      selectList: [],
     };
   },
   methods: {
@@ -87,16 +88,18 @@ export default {
             router.push('/login');
           } else {
             this.selectSidoList = data;
-            this.gugunList();
+            for (var i = 0; i < this.selectSidoList.length; i++) {
+              this.gugunList(this.selectSidoList[i]);
+            }
           }
         });
     },
-    gugunList() {
+    gugunList(sido) {
       console.log('gugunList() is called!!!!!!');
       http
         .get('/gugun', {
           params: {
-            sidoCode: this.selectedSidoCode,
+            sidoCode: sido.SIDO_CODE,
             userSeq: this.getUserSeq,
           },
         })
@@ -107,17 +110,19 @@ export default {
             router.push('/login');
           } else {
             this.selectGugunList = data;
-            this.dongList();
+            for (var i = 0; i < this.selectGugunList.length; i++) {
+              this.dongList(sido, this.selectGugunList[i]);
+            }
           }
         });
     },
-    dongList() {
+    dongList(sido, gugun) {
       console.log('dongList() is called!!!!!!!');
       http
         .get('/dong', {
           params: {
-            sidoCode: this.selectedSidoCode,
-            gugunCode: this.selectedGugunCode,
+            sidoCode: sido.SIDO_CODE,
+            gugunCode: gugun.GUGUN_CODE,
             userSeq: this.getUserSeq,
           },
         })
@@ -128,16 +133,28 @@ export default {
             router.push('/login');
           } else {
             this.selectDongList = data;
-            this.makeList();
+            for (var i = 0; i < this.selectDongList.length; i++) {
+              this.makeList(sido, gugun, this.selectDongList[i]);
+            }
           }
         });
     },
-    makeList() {
-      for (var i = 0; i < this.selectSidoList.length; i++) {
-        for (var j = 0; j < this.selectGugunList.length; j++) {
-          for (var k = 0; k < this.selectDongList.length; k++) {}
-        }
-      }
+    makeList(sido, gugun, dong) {
+      this.selectList.push({
+        sido: sido,
+        gugun: gugun,
+        dong: dong,
+      });
+    },
+    clickSelect(select) {
+      console.log('before push : ');
+      console.log(select.sido);
+      this.$router.push({
+        name: 'SearchDong',
+        params: {
+          select: select,
+        },
+      });
     },
   },
   computed: {

@@ -4,7 +4,7 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <!-- selectbar start  -->
+            <!-- searchbar start  -->
             <div class="d-flex justify-content-center mb-2" style=" height:100px;">
               <div class="row">
                 <div class="col align-self-center">
@@ -16,7 +16,7 @@
               </div>
             </div>
 
-            <!-- selectbar end  -->
+            <!-- searchbar end  -->
 
             <div class="row m-1">
               <div class="col-4" id="apartInfo">
@@ -39,7 +39,7 @@
                         @click="clickBookmark(house)"
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
-                        style="color: rgb(255, 226, 95); font-size: 25px"
+                        style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
                         class=" scale-up-5"
                       >
                         <input type="hidden" value="' + dealNo + '" />
