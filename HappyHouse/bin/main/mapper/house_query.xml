@@ -134,7 +134,7 @@
 		  FROM HOUSEDEAL d, HOUSEINFO i, (SELECT NAME DONG_NAME FROM DONG_CODE dong, BOOKMARK_AREA b WHERE dong.CODE=b.DONG_CODE AND b.DONG_CODE=${searchWord} AND b.USER_SEQ=${userSeq}) dong_name
     	  WHERE d.APTNAME=i.APTNAME AND d.CODE=i.CODE AND d.DONG=i.DONG AND dong_name.DONG_NAME=d.DONG
 		  ORDER BY d.NO DESC
-  		  LIMIT ${limit} OFFSET ${offset};
+  		  LIMIT #{limit} OFFSET #{offset};
 	</select>
 	
 	<select id="bookmarkAreaTotalCount" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="int">
@@ -152,7 +152,7 @@
 	<select id="gugunListBookmarkArea" parameterType="map" resultType="map">
 		SELECT DISTINCT GUGUN_CODE, GUGUN_NAME
 		  FROM DONG_CODE d, BOOKMARK_AREA b
-		  WHERE b.DONG_CODE=d.CODE AND d.CITY_CODE=${sidoCode} AND b.USER_SEQ=${userSeq};
+		  WHERE b.DONG_CODE=d.CODE AND d.CITY_CODE=#{sidoCode} AND b.USER_SEQ=#{userSeq};
 	</select>
 	
 	<select id="dongListBookmarkArea" parameterType="map" resultType="map">
