@@ -288,7 +288,7 @@ export default {
               userName: kakao_account.profile.nickname,
               userEmail: kakao_account.email,
               userProfileImageUrl: kakao_account.profile.profile_image_url,
-              userRank: this.userRank,
+              userRank : this.userRank,
               userPassword: 'kakao',
             })
             .then(({ data }) => {
@@ -305,6 +305,7 @@ export default {
                 userPassword: data.userPassword,
                 userPhone: data.userPhone,
                 userRank: data.codeName,
+                
                 userProfileImageUrl: data.userProfileImageUrl,
               });
               this.$alertify
@@ -324,7 +325,7 @@ export default {
                     userName: kakao_account.profile.nickname,
                     userEmail: kakao_account.email,
                     userProfileImageUrl: kakao_account.profile.profile_image_url,
-                    userRank: this.userRank,
+                    userRank : this.userRank,
                     userPassword: 'kakao',
                   })
                   .then(({ data }) => {

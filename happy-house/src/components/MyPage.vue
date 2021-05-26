@@ -141,7 +141,7 @@
                 ></div>
                 <div class="card-body pb-5">
                   <img
-                    :src="this.$store.state.userInfo.userProfileImageUrl"
+                    :src="this.getUserProfileImageUrl + new Date().getTime()"
                     class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4"
                     alt="Neil Portrait"
                   />
@@ -235,6 +235,7 @@ export default {
       message: this.$store.state.userInfo.userMessage,
       file: "",
       imageUrl: null,
+      getUserProfileImageUrl : "",
     };
   },
   methods: {
@@ -344,6 +345,7 @@ export default {
             userProfileImageUrl: data.userProfileImageUrl,
           });
 
+          this.getUserProfileImageUrl = data.userProfileImageUrl;
           
            this
           .$alertify
@@ -374,17 +376,25 @@ export default {
   mounted() {
     this.secessionModal = new Modal(document.getElementById("secessionModal"));
   },
+  computed:{
+     requireImg() {
+        if (this.$store.state.userInfo.userProfileImageUrl == "") {
+          return require("../assets/img/noProfile.png");
+        } else {
+          
+          return ".." + this.$store.state.userInfo.userProfileImageUrl;
+          
+          
+        }
+    }
+    ,setImg(){
+      return this.$store.state.userInfo.userProfileImageUrl;
+    }
+  },
   watch: {
-    requireImg: function() {
-      if (this.$store.state.userInfo.userProfileImageUrl == "") {
-        return require("../assets/img/noProfile.png");
-      } else {
-        
-        return ".." + this.$store.state.userInfo.userProfileImageUrl;
-        
-        
-      }
-    },
+    setImg(val){
+      this.getUserProfileImageUrl = val;
+    }
   },
 };
 </script>
