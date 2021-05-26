@@ -32,7 +32,7 @@
                             
                         
                         
-                           
+                          
                                 <div v-if="selectedGuName!='empty'" class="text-center">
                                   
                                     <p class="lead px-lg-10"><span class="bg-secondary"><strong>{{selectedGugunName}}</strong></span>의 정보 검색 결과입니다.</p>
@@ -44,52 +44,54 @@
                                     <p style="font-size:15pt;">자치구별 <strong>인구, 인구밀도, 시장, 보육시설, 노인복지시설, 공원, 공공도서관, 주차장, 의료시설</strong> 통계 정보를 제공합니다.</p>
                                 </div>
 
-                            <div class="mt-7 mb-7">
-                            <div style="text-align:center; display:flex; justify-content:space-between;">
-                                <div v-if="infoData" class="scale-up-2 child">
+                           
+
+
+
+                            
+                            <div style="text-align:center; " class="p-3 mt-0">
+                                <div class="row mt-0" style="display:flex; justify-content:center;">
+                                    <div v-if="infoData" class="col-2 scale-up-2 child">
                                         <h3>인구수</h3>
                                         <info-chart :chart-data="popCollection"></info-chart>
                                         
                                     </div>
-                                    <div v-if="infoData" class="scale-up-2 child">
+                                    <div v-if="infoData" class="col-2 scale-up-2 child">
                                         <h3>인구밀도</h3>
                                         <info-chart :chart-data="popDenCollection"></info-chart>
                                     </div>
-                                    <div v-if="infoData" class="scale-up-2 child">
+                                    <div v-if="infoData" class="col-2 scale-up-2 child">
                                         <h3>시장</h3>
                                         <info-chart :chart-data="storeCollection"></info-chart>
                                     </div>
-                                    <div v-if="infoData" class="scale-up-2 child">
+                                    <div v-if="infoData" class="col-2 scale-up-2 child">
                                         <h3>보육시설</h3>
                                         <info-chart :chart-data="nurCollection"></info-chart>
                                     </div>
-                                    <div v-if="infoData" class="scale-up-2 child">
+                                    
+                                </div>
+                                
+                                <div class="row mt-4" style="display:flex; justify-content:center;">
+                                    <div v-if="infoData" class="col-2 scale-up-2 child">
                                             <h3>노인복지시설</h3>
                                             <info-chart :chart-data="careCollection"></info-chart>
                                         </div>
-                                        <div v-if="infoData" class="scale-up-2 child">
+                                        <div v-if="infoData" class="col-2 scale-up-2 child">
                                             <h3>공원</h3>
                                             <info-chart :chart-data="parkCollection"></info-chart>
                                         </div>
-                                        <div v-if="infoData" class="scale-up-2 child">
+                                        <div v-if="infoData" class="col-2 scale-up-2 child">
                                             <h3>공공도서관</h3>
                                             <info-chart :chart-data="libCollection"></info-chart>
                                         </div>
-                                        <div v-if="infoData" class=" scale-up-2 child">
-                                            <h3>주차장</h3>
-                                            <info-chart :chart-data="parkingCollection"></info-chart>
-                                        </div>
-                                        <div v-if="infoData" class="scale-up-2 child">
+                                        
+                                        <div v-if="infoData" class="col-2 scale-up-2 child">
                                             <h3>의료시설</h3>
                                             <info-chart :chart-data="hospitalCollection"></info-chart>
                                         </div>
-                                </div>
-                            
                             </div>
-                        
-                          
-                        </div>
-
+                           </div>
+                    </div>
                     </div>
                 </div>
                 
@@ -359,12 +361,6 @@ export default {
 </script>
 
 <style scoped>
-
-.child{
-   float:left;
-   width:200px;
-   
-}
 
 
 

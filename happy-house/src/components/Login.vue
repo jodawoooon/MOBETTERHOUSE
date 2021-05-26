@@ -85,7 +85,7 @@ export default {
       userPassword: '1234',
       userName: '',
       userProfileImageUrl: '',
-      userRank: '3', // 일반회원 default
+      userRank: '4', // 일반회원 default
     };
   },
   methods: {
