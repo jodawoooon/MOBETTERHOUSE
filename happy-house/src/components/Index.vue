@@ -45,7 +45,6 @@ export default {
     if (this.$store.state.userInfo.userEmail != '') {
       this.$router.push('/home');
     }
-    console.log('getLoadingCount : ' + this.$store.getters.getLoadingCount);
   },
 };
 </script>

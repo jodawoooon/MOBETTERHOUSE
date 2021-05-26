@@ -30,7 +30,7 @@ import com.ssafy.happyhouse.dto.BoardResultDto;
 		// F:\SSAFY\ssafy5\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\BoardWebFileUpload\
 		
 		/* for eclipse development code */
-		String uploadPath = "D:\\2021ssafy\\java_eclipse\\SSAFY\\Boot\\SpringBootVueBoardFileUploadMybatis\\src\\main\\resources\\static";
+		String uploadPath = "/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/src/main/resources/static/";
 	
 	
 	private static final int SUCCESS = 1;

@@ -168,8 +168,13 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
+          })
+          .catch((error) => {
+            console.log(error);
           });
       } else {
         console.log('this.selectedDongCode is not empty');
@@ -193,7 +198,9 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
           });
       }
@@ -216,7 +223,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.error('관심 매물을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -233,7 +240,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.success('관심 매물을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -258,7 +265,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.error('관심 지역을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -274,7 +281,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.success('관심 지역을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -401,11 +408,19 @@ export default {
           //   <p class="m-0">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
           // </div>`,
           content: `<div class="m-4 mt-4" style="width:200px">
+<<<<<<< HEAD
                 <h5>${this.houseList[i].aptName}</h5>
                 <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
                 <p class="m-0">전용면적: ${this.houseList[i].area}</p>
                 <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
               </div>`,
+=======
+                      <h5>${this.houseList[i].aptName}</h5>
+                      <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
+                      <p class="m-0">전용면적: ${this.houseList[i].area}</p>
+                      <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
+                    </div>`,
+>>>>>>> bf901162c8e9de518052a722e42e36a0d59cd892
           latlng: new kakao.maps.LatLng(this.houseList[i].lat, this.houseList[i].lng),
         });
       }

@@ -210,15 +210,12 @@ export default {
       var positions = [];
       for (var i = 0; i < this.houseList.length; i++) {
         positions.push({
-          content: `
-                           
-              <div class="m-4 mt-4" style="width:200px">
-                <h5>${this.houseList[i].aptName}</h5>
-                <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
-                <p class="m-0">전용면적: ${this.houseList[i].area}</p>
-                <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
-              </div>
-          `,
+          content: `<div class="m-4 mt-4" style="width:200px">
+                      <h5>${this.houseList[i].aptName}</h5>
+                      <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
+                      <p class="m-0">전용면적: ${this.houseList[i].area}</p>
+                      <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
+                    </div>`,
           latlng: new kakao.maps.LatLng(this.houseList[i].lat, this.houseList[i].lng),
         });
       }

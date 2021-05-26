@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService{
 //			File.separator + "resources" +
 //			File.separator + "static";
 	
-	String uploadPath = "C:\\Users\\asuspc\\AppData\\Roaming\\SPB_Data\\git\\13pairvue2\\HappyHouse\\src\\main\\resources\\static";
+	String uploadPath = "/Users/dongwoosohn/SSAFY/Pair/13pairvue/HappyHouse/src/main/resources/static";
 	
 	private static final int SUCCESS = 1;
 	private static final int FAIL = -1;

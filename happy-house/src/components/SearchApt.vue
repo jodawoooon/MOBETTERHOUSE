@@ -54,9 +54,13 @@
                 <!-- aptInfo end -->
                 
               </div>
+<<<<<<< HEAD
               <div id="map" class="col" style=" width:100%; height: 550px"></div>
               
               
+=======
+              <div id="map" class="col" style=" width:100%; height: 100%"></div>
+>>>>>>> bf901162c8e9de518052a722e42e36a0d59cd892
             </div>
           </div>
           <div class="mt-4" v-if="loadingCount == 0">
@@ -135,7 +139,9 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
           });
       } else {
@@ -160,8 +166,9 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
-              // this.$refs.
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
           });
       }
@@ -184,7 +191,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.error('관심 매물을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -201,7 +208,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.success('관심 매물을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -260,8 +267,7 @@ export default {
       var positions = [];
       for (var i = 0; i < this.houseList.length; i++) {
         positions.push({
-          content: `
-                           
+          content: `            
               <div class="m-4 mt-4" style="width:200px">
                 <h5>${this.houseList[i].aptName}</h5>
                 <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
