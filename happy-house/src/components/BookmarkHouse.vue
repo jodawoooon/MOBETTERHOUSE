@@ -4,7 +4,7 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <div class="row m-1">
+            <div class="row mt-4">
               <div class="col-4" id="apartInfo">
                 <!-- pulseLoader -->
                 <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
@@ -12,26 +12,34 @@
                 </div>
                 <!-- aptInfo start -->
                 <div v-else>
-                  <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
-                    <div class="col-8 pb-3" @click="clickAptInfo(house)" style="cursor: pointer;">
-                      <h5>{{ house.aptName }}</h5>
-                      <p class="m-0">거래금액: {{ house.dealAmount }}</p>
-                      <p class="m-0">전용면적: {{ house.area }}</p>
-                      <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
-                    </div>
-                    <div class="col align-self-center" style="text-align: center">
-                      <font-awesome-icon
-                        :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
-                        @click="clickBookmark(house)"
-                        :id="'bookmarkStar' + (index + 1)"
-                        aria-hidden="true"
-                        style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
-                        class=" scale-up-5"
-                      >
-                        <input type="hidden" value="' + dealNo + '" />
-                      </font-awesome-icon>
-                    </div>
-                    <hr />
+                  <div v-for="(house, index) in houseList" :key="index" class="border-light apart" :id="'apartInfo' + (index + 1)">
+                     <div class=" cust_box row p-3 pt-4 rounded" style=" margin-right:10px;">
+                       <div class="col-9 " @click="clickAptInfo(house)" style="cursor: pointer; padding-left:30px">
+                        <h5>{{ house.aptName }}</h5>
+                        <p class="m-0">거래금액: {{ house.dealAmount }}</p>
+                        <p class="m-0">전용면적: {{ house.area }}</p>
+                        <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
+                      </div>
+                      <div class="col-3 align-self-center" style="text-align: center;">
+                        <font-awesome-icon
+                          :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
+                          @click="clickBookmark(house)"
+                          :id="'bookmarkStar' + (index + 1)"
+                          aria-hidden="true"
+                          style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
+                          class=" scale-up-5"
+                        >
+                          <input type="hidden" value="' + dealNo + '" />
+                        </font-awesome-icon>
+                      </div>
+                      
+                      <div class="text-center rounded-bottom" @click="clickAptInfo(house)" style="cursor: pointer;">
+                        <h6 class="m-0 text-center text-white">move</h6>
+                      </div>
+                      
+                     </div>
+                     <hr style="margin-top:0px; margin-left:30px; margin-right:20px; margin-bottom:0px;">
+                    
                   </div>
                 </div>
                 <!-- aptInfo end -->
@@ -39,7 +47,7 @@
               <div id="map" class="col-8 " style="height: 550px"></div>
             </div>
           </div>
-          <div class="mt-4" v-if="loadingCount == 0">
+          <div class="mt-4 mb-4" v-if="loadingCount == 0">
             <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>
           </div>
         </div>
@@ -207,11 +215,12 @@ export default {
       for (var i = 0; i < this.houseList.length; i++) {
         positions.push({
           content: `
-              <div class="col-8">
+                           
+              <div class="m-4 mt-4" style="width:200px">
                 <h5>${this.houseList[i].aptName}</h5>
                 <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
                 <p class="m-0">전용면적: ${this.houseList[i].area}</p>
-                <p class="m-0">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
+                <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
               </div>
           `,
           latlng: new kakao.maps.LatLng(this.houseList[i].lat, this.houseList[i].lng),
@@ -290,4 +299,10 @@ export default {
 .select {
   width: 200px;
 }
+
+.cust_box:hover{
+  background-color: #f3b773;
+
+}
+
 </style>

@@ -1,22 +1,28 @@
 <template>
   <main class="content">
-    <div class="row">
-      <div class="col-12 mb-4">
+    <div class="row ">
+      <div class="col-8 mt-4 mb-4" style="margin:auto;">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <div v-for="(select, index) in selectList" :key="index" class="row" style="cursor: pointer;">
-              <div class="col text-underline" @click="clickSelect(select)">{{ select.sido.SIDO_NAME }} {{ select.gugun.GUGUN_NAME }} {{ select.dong.DONG_NAME }}</div>
-              <div class="col align-self-center mb-3">
+            <hr class="m-0">
+            <div v-for="(select, index) in selectList" :key="index" class="row cust_box" style="cursor: pointer;">
+              
+              <div class="col-8 p-2 mt-3 align-self-center  " style="text-align:center;">
+                <h5>{{ select.sido.SIDO_NAME }} {{ select.gugun.GUGUN_NAME }} {{ select.dong.DONG_NAME }}</h5>
+                </div>
+              <div class="col p-2 align-self-center">
+                <button class="btn btn-secondary mr-3 scale-up-2" style="margin-right:10px;"
+                 @click="clickSelect(select)" >매물 보러 가기</button>
                 <input
                   type="button"
-                  :value="select.isBookmarked ? '관심 지역 해제' : '관심 지역 등록'"
-                  class="btn btn-sm"
-                  :class="select.isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
+                  :value="select.isBookmarked ? '해제' : '재등록'"
+                  class="btn scale-up-2"
+                  :class="select.isBookmarked ? 'btn-danger' : 'btn-outline-danger'"
                   @click="clickBookmarkArea(select)"
                 />
               </div>
-              <div class="col-6"></div>
-              <hr />
+             <hr class="m-0">
+             
             </div>
           </div>
         </div>
@@ -180,7 +186,7 @@ export default {
       isHome: false,
       title: '관심 지역 모아 보기',
       subTitle: '관심 지역 모아 보기',
-      desc: '관심 지역의 매물을 확인하세요.',
+      desc: '등록한 관심지역의 매물들을 비교해 보세요!',
     });
     this.$store.commit('SET_CUR_PAGE', 'bookmarkArea');
   },
@@ -207,5 +213,9 @@ export default {
 
 .select {
   width: 200px;
+}
+
+.cust_box:hover{
+  background-color: #f1f1f1
 }
 </style>

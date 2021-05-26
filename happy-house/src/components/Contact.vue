@@ -24,7 +24,7 @@
     <div class="row m-8 p-3 mt-2" style="text-align:center; justify-content:space-between;">
                               
                         
-                <div class="card col p-2 border-light shadow-sm cust_box  page-preview scale-up-2">
+                <div class="card col p-2 border-light page-preview shadow-sm cust_box  page-preview scale-up-2">
                                 <div class="card-body pb-3">
                                     <img src="../assets/img/team/sonProfile.jpeg" class="user-avatar scale-up-2 mt-5 large-avatar rounded-circle mx-auto mb-4" alt="Neil Portrait">
                                     <h4 class="h2">손동우</h4>
@@ -84,8 +84,8 @@ export default {
     this.$store.commit('SET_BREADCRUMB_INFO', {
       isHome : false,
       title: 'Contact',
-      subTitle: '문의',
-      desc: '자유롭게 문의하세요.',
+      subTitle: 'Contact',
+      desc: '저희 HAPPY HOUSE를 이용해 주셔서 감사합니다!',
     });
     this.$store.commit('SET_CUR_PAGE', 'contact');
   },
