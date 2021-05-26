@@ -141,7 +141,7 @@
                 ></div>
                 <div class="card-body pb-5">
                   <img
-                    :src="this.getUserProfileImageUrl + new Date().getTime()"
+                    :src="this.getUserProfileImageUrl"
                     class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4"
                     alt="Neil Portrait"
                   />

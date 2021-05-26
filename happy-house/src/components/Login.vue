@@ -148,7 +148,7 @@ export default {
 
           http
             .post('/login', {
-              userName: kakao_account.profile.nickname + '(' + res.id + ')',
+              userName: kakao_account.profile.nickname,
               userEmail: kakao_account.email,
               userProfileImageUrl: kakao_account.profile.profile_image_url,
               userPassword: 'kakao',
@@ -185,7 +185,7 @@ export default {
 
                 http
                   .post('/user', {
-                    userName: kakao_account.profile.nickname + '(' + res.id + ')',
+                    userName: kakao_account.profile.nickname,
                     userEmail: kakao_account.email,
                     userProfileImageUrl: kakao_account.profile.profile_image_url,
                     userPassword: 'kakao',
