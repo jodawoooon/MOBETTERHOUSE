@@ -283,11 +283,9 @@ export default {
 
     sidoList() {
       console.log('sidoList() is called!!!!!!');
-      this.loadingCountUp();
       http.get('/sido').then(({ data }) => {
         console.log('sidoList : ');
         console.log(data);
-        this.loadingCountDown();
         if (data.result == 'login') {
           router.push('/login');
         } else {
@@ -300,7 +298,6 @@ export default {
     },
     gugunList() {
       console.log('gugunList() is called!!!!!!');
-      this.loadingCountUp();
       http
         .get('/gugun', {
           params: {
@@ -310,7 +307,6 @@ export default {
         .then(({ data }) => {
           console.log('gugunList : ');
           console.log(data);
-          this.loadingCountDown();
           if (data.result == 'login') {
             router.push('/login');
           } else {
@@ -323,7 +319,6 @@ export default {
     },
     dongList() {
       console.log('dongList() is called!!!!!!!');
-      this.loadingCountUp();
       http
         .get('/dong', {
           params: {
@@ -334,7 +329,6 @@ export default {
         .then(({ data }) => {
           console.log('dongList : ');
           console.log(data);
-          this.loadingCountDown();
           if (data.result == 'login') {
             router.push('/login');
           } else {
