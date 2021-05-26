@@ -4,14 +4,15 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <div class="row mt-4">
-              <div class="col-4" id="apartInfo">
-                <!-- pulseLoader -->
+           <div class="row mt-4">
+              <!-- pulseLoader -->
                 <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
                   <pulse-loader :loading="loadingCount != 0"></pulse-loader>
                 </div>
+
+              <div v-if="loadingCount == 0" class="col-4" id="apartInfo">
                 <!-- aptInfo start -->
-                <div v-else>
+                <div v-if="loadingCount == 0">
                   <div v-for="(house, index) in houseList" :key="index" class="border-light apart" :id="'apartInfo' + (index + 1)">
                      <div class=" cust_box row p-3 pt-4 rounded" style=" margin-right:10px;">
                        <div class="col-9 " @click="clickAptInfo(house)" style="cursor: pointer; padding-left:30px">
@@ -44,7 +45,7 @@
                 </div>
                 <!-- aptInfo end -->
               </div>
-              <div id="map" class="col-8 " style="height: 550px"></div>
+              <div id="map" class="col" style=" width:100%; height: 550px"></div>
             </div>
           </div>
           <div class="mt-4 mb-4" v-if="loadingCount == 0">
