@@ -30,69 +30,64 @@
                             </div>
 
                             
-                        <section class="section section-sm pt-0">
-                        <div class="container">
-                            <div class="row justify-content-center mb-5 ">
-                                <div v-if="selectedGuName!='empty'" class="col-12 text-center">
+                        
+                        
+                           
+                                <div v-if="selectedGuName!='empty'" class="text-center">
                                   
                                     <p class="lead px-lg-10"><span class="bg-secondary"><strong>{{selectedGugunName}}</strong></span>의 정보 검색 결과입니다.</p>
                                 </div>
                                 
-                                </div>
-                                <div v-if="selectedGuName=='empty'" class="col-12 text-center mt-10 mb-8">
+                               
+                                <div v-if="selectedGuName=='empty'" class="text-center mt-10 mb-8">
                                     
                                     <p style="font-size:15pt;">자치구별 <strong>인구, 인구밀도, 시장, 보육시설, 노인복지시설, 공원, 공공도서관, 주차장, 의료시설</strong> 통계 정보를 제공합니다.</p>
                                 </div>
 
-                            <div class="col-12 text-center">
-                                <div class="row p-3" style="text-align:center; justify-content:space-between">
-                                <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                            <div class="mt-7 mb-7">
+                            <div style="text-align:center; display:flex; justify-content:space-between;">
+                                <div v-if="infoData" class="scale-up-2 child">
                                         <h3>인구수</h3>
                                         <info-chart :chart-data="popCollection"></info-chart>
                                         
                                     </div>
-                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                    <div v-if="infoData" class="scale-up-2 child">
                                         <h3>인구밀도</h3>
                                         <info-chart :chart-data="popDenCollection"></info-chart>
                                     </div>
-                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                    <div v-if="infoData" class="scale-up-2 child">
                                         <h3>시장</h3>
                                         <info-chart :chart-data="storeCollection"></info-chart>
                                     </div>
-                                </div>
-                                <div class="row p-3" style="text-align:center; justify-content:space-between">
-                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                    <div v-if="infoData" class="scale-up-2 child">
                                         <h3>보육시설</h3>
                                         <info-chart :chart-data="nurCollection"></info-chart>
                                     </div>
-                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                    <div v-if="infoData" class="scale-up-2 child">
                                             <h3>노인복지시설</h3>
                                             <info-chart :chart-data="careCollection"></info-chart>
                                         </div>
-                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <div v-if="infoData" class="scale-up-2 child">
                                             <h3>공원</h3>
                                             <info-chart :chart-data="parkCollection"></info-chart>
                                         </div>
-                                </div>
-                                <div class="row p-3" style="text-align:center; justify-content:space-between">       
-                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <div v-if="infoData" class="scale-up-2 child">
                                             <h3>공공도서관</h3>
                                             <info-chart :chart-data="libCollection"></info-chart>
                                         </div>
-                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <div v-if="infoData" class=" scale-up-2 child">
                                             <h3>주차장</h3>
                                             <info-chart :chart-data="parkingCollection"></info-chart>
                                         </div>
-                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <div v-if="infoData" class="scale-up-2 child">
                                             <h3>의료시설</h3>
                                             <info-chart :chart-data="hospitalCollection"></info-chart>
                                         </div>
                                 </div>
-                           </div>
-                        </div>
-                           </section>
                             
-                            
+                            </div>
+                        
+                          
                         </div>
 
                     </div>
@@ -212,7 +207,9 @@ export default {
 
                             this.fillData();
     
-                        
+                            this
+                                .$alertify
+                                .success(this.selectedGuName+ " 정보 검색 성공");
 
                         }})
                     .catch((error) => {
@@ -361,10 +358,14 @@ export default {
 }
 </script>
 
-<style>
-.justify-content-space-between{
-    justify-content:  space-between;
+<style scoped>
+
+.child{
+   float:left;
+   width:200px;
+   
 }
+
 
 
 </style>

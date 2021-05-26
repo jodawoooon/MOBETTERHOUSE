@@ -176,6 +176,7 @@ export default {
 
       this.updateModal.hide();
       this.boardList();
+
     },
 
     changeToDelete() {
@@ -188,6 +189,9 @@ export default {
         function() {
           // board.boardId 사용 X
           $this.boardDelete(); // $this 사용
+          $this
+          .$alertify
+           .error("글이 삭제되었습니다.");
         },
         function() {
           console.log('cancel');
@@ -206,6 +210,7 @@ export default {
             this.$router.push('/login');
           } else {
             this.boardList();
+            
           }
         })
         .catch((error) => {

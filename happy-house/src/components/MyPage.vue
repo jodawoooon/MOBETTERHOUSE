@@ -273,12 +273,10 @@ export default {
               userProfileImageUrl: data.userProfileImageUrl,
             });
 
-            this.$swal({
-              icon: "success",
-              title: "성공적으로 등록되었습니다.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            this
+          .$alertify
+           .success("프로필 사진이 등록되었습니다.");
+
             setTimeout(function() {
               window.location.reload();
             }, 2000);
@@ -343,12 +341,10 @@ export default {
             userProfileImageUrl: data.userProfileImageUrl,
           });
 
-          this.$swal({
-            icon: "success",
-            title: "성공적으로 수정되었습니다.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          
+           this
+          .$alertify
+           .success("회원정보가 수정되었습니다.");
         })
         .catch((error) => {
           console.log("UserVue Info Edit - error : ");

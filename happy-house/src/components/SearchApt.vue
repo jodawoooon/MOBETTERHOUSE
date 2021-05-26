@@ -54,14 +54,9 @@
                 <!-- aptInfo end -->
                 
               </div>
-<<<<<<< HEAD
-              <div id="map" class="col" style=" width:100%; height: 550px"></div>
-              
-              
-=======
               <div id="map" class="col" style=" width:100%; height: 100%"></div>
->>>>>>> bf901162c8e9de518052a722e42e36a0d59cd892
             </div>
+          
           </div>
           <div class="mt-4" v-if="loadingCount == 0">
             <pagination :listRowCount="listRowCount" :pageLinkCount="pageLinkCount" :currentPageIndex="currentPageIndex" :houseListcount="houseListCount" @call-parent="movePage"></pagination>

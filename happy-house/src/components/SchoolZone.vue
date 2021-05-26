@@ -191,10 +191,13 @@
                     selectedGugunName: 'empty',
                     selectedDongName: 'empty',
 
-
-
+                   
                 }
             },
+            created(){
+               
+                },
+            
             mounted() {
                 this
                     .$store
@@ -288,14 +291,17 @@
 
                             console.log(this.schoolList);
 
-                            this.$swal(
-                            {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : this.searchDong+' 검색결과 : '+this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
-
-                            
-                            
-                        
-                        );
-                        
+                            // this.$swal(
+                            // {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : this.searchDong+' 검색결과 : '+this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
+                            // this.$notify({
+                                
+                            //     group: 'foo',
+                            //     title: 'Important message',
+                            //     text: 'Hello user! This is a notification!'
+                            //     });
+                            this
+                                .$alertify
+                                .success(this.searchDong+ " 학군정보 검색 성공");
                         
                         this.findLatLng();
                         
@@ -351,7 +357,7 @@
                             
                             $this.setMarker(school.schoolName, lat, lng);
                             //console.log($this.markerPositions);
-
+                            
                             
 
                         })
@@ -485,16 +491,13 @@
                             //     $this.$swal(
                             //     {icon: 'success', title: '학군 정보 검색에 성공했습니다!', text : $this.searchDong+' 검색결과 : '+$this.totalSchoolCnt+'개', showConfirmButton: false, timer: 1500}
 
-                                
-                                
+                                   
                             
                             // );
                             
                             
                             $this.findLatLng();
-                            
 
-                            
 
                             }})
                             .catch((error) => {
@@ -510,6 +513,7 @@
                                         .error("Opps!! 서버에 문제가 발생했습니다.");
                                 }
                             });
+                            
                             
                             
 

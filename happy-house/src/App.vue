@@ -6,6 +6,7 @@
     
     <router-view></router-view>
     <footer-bar v-if="getIsLogin"></footer-bar>
+
   </div>
 </template>
 
@@ -48,4 +49,7 @@ export default {
 
 <style>
 @import './assets/css/volt.css';
+
+
+
 </style>
