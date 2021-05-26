@@ -17,9 +17,8 @@
             </div>
 
             <!-- searchbar end  -->
-
             <div class="row m-1" style="height:550px;">
-              <!-- pulseLoader -->
+              <!-- RingLoader -->
               <div v-if="loadingCount != 0" class="d-flex align-items-center  justify-content-center" style="height:100%;">
                 <ring-loader :loading="loadingCount != 0" color="#f3b773"></ring-loader>
               </div>
@@ -81,7 +80,7 @@ export default {
   },
   data() {
     return {
-      loadingCount: 1,
+      loadingCount: 0,
 
       houseList: [],
       houseListCount: 0,
