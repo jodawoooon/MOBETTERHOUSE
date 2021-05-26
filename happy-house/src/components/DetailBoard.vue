@@ -7,24 +7,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table class="table table-hover mt-2 mb-2">
+        <table class="table table-hover">
           <tbody>
-            <tr style="height:55px;"><td class="bg-primary text-white" style="width:150px;">글번호</td><td>{{ $store.state.board.boardId }}</td></tr>
-            <tr style="height:55px;"><td class="bg-primary text-white" style="width:150px;">제목</td><td>{{ $store.state.board.title }}</td></tr>
-            <tr style="height:250px;"><td class="bg-primary text-white" style="width:150px;">내용</td><td v-html="$store.state.board.content"></td></tr>
-            <tr style="height:55px;"><td class="bg-primary text-white" style="width:150px;">작성자</td><td>{{ $store.state.board.userName }}</td></tr>
+            <tr><td>글번호</td><td>{{ $store.state.board.boardId }}</td></tr>
+            <tr><td>제목</td><td>{{ $store.state.board.title }}</td></tr>
+            <tr><td>내용</td><td v-html="$store.state.board.content"></td></tr>
+            <tr><td>작성자</td><td>{{ $store.state.board.userName }}</td></tr>
             <!-- 아래 코드는 오류 발생 초기 생성 시점에 regDt = {} -->
             <!-- <tr><td>작성일시</td><td>{{ makeDateStr(regDt.date.year, regDt.date.month, regDt.date.day, '.') }}</td></tr> -->
-            <tr style="height:55px;"><td class="bg-primary text-white" style="width:150px;">작성일시</td><td>{{ $store.state.board.regDt }}</td></tr>
-            <tr style="height:55px;"><td class="bg-primary text-white" style="width:150px;">조회수</td><td>{{ $store.state.board.readCount }}</td></tr>
+            <tr><td>작성일시</td><td>{{ $store.state.board.regDt }}</td></tr>
+            <tr><td>조회수</td><td>{{ $store.state.board.readCount }}</td></tr>
             <!-- New for FileUpload -->
-            <tr style="height:55px;"><td class="bg-primary text-white" style="width:150px;" colspan="2">첨부파일</td></tr>
+            <tr><td colspan="2">첨부파일</td></tr>
             <tr>
               <td colspan="2">
                 <div v-for="(file, index) in $store.state.board.fileList" :key="index">
                   
-                  <span class="fileName etc"   style="width:100px;">{{ file.fileName }}</span>
+                  <div  class="fileName etc" style="width:100px; "> {{file.fileName}}</div>
                   &nbsp;&nbsp;
+                  
                   <a type="button" class="btn btn-outline btn-default btn-xs" v-bind:href="file.fileUrl" download>내려받기</a>
                 </div>
               </td>
@@ -159,36 +160,9 @@ export default {
 </script>
 
 <style scoped>
-
-.modal.in{
-padding-right: 0 !important;
-}
-.modal-dialog {
-width: 100%;
-max-width:1000px;
-
-padding: 0;
-
-}
-
-.modal-content {
-
-overflow:auto;
-}
-
-.modal-header{
-margin-bottom:-60px;
-position:relative;
-z-index:10;
-}
-.modal-body {
-padding-top:70px;
-height: 100%;
-}
-
-.modal-body .in-content{
-border-width:0;
-width:100%;
-overflow:auto;
-}
+.etc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>

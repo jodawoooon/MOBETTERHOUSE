@@ -2,16 +2,17 @@
   <div class="modal" tabindex="-1" id="insertModal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          
+        <div class="modal-header mt-3 ">
+          <h5 class="modal-title">글 쓰기</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
             <input v-model="title" type="text" class="form-control" placeholder="제목" />
           </div>
-          <div class="mb-3">
+          <div class="mb-3" >
             <div id="divEditorInsert"></div>
+
           </div>
           <div class="form-check mb-3">
             <input v-model="attachFile" class="form-check-input" type="checkbox" value="" id="chkFileUploadInsert" />
@@ -124,7 +125,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* CKEditor 는 vue 와 별개로 rendering 되어서 scope 를 넣으면 반영되지 않는다. */
 .ck-editor__editable {
   min-height: 300px !important;
@@ -139,4 +140,37 @@ export default {
   margin-right: 5px;
   max-width: 100%;
 }
+
+.modal.in{
+padding-right: 0 !important;
+}
+.modal-dialog {
+width: 100%;
+max-width:1000px;
+
+padding: 0;
+
+}
+
+.modal-content {
+
+overflow:auto;
+}
+
+.modal-header{
+margin-bottom:-60px;
+position:relative;
+z-index:10;
+}
+.modal-body {
+padding-top:70px;
+height: 100%;
+}
+
+.modal-body .in-content{
+border-width:0;
+width:100%;
+overflow:auto;
+}
+
 </style>

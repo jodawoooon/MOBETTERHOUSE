@@ -5,19 +5,24 @@
         <div class="card border-light shadow-sm ">
           <div class="card-body">
             <!-- <h1>This is Community.vue</h1> -->
-            <div class = "container">
             
-            <div class="input-group mb-3">
-              <!-- store 사용 -->
-              <!-- <input v-model="searchWord" @keydown.enter="boardList" type="text" class="form-control"> -->
-              <input v-model="$store.state.board.searchWord" @keydown.enter="boardList" type="text" class="form-control" />
-              <button @click="boardList" class="btn btn-success" type="button">Search</button>
+            <div  class="mt-3 mb-3" style="margin-left:50px; margin-right:50px">
+              <!-- searchbar start  -->
+            <div class="d-flex justify-content-center mb-2" style=" height:100px;">
+              <div class="row">
+                <div class="col align-self-center">
+                  <input type="text" v-model="searchWord" @keypress.enter="searchList" placeholder="검색어를 입력하세요" class="form-control" id="searchText" style="width:400px;" />
+                </div>
+                <div class="col align-self-center">
+                  <button @click="boardList" class="btn btn-secondary" type="button">Search</button> </div>
+              </div>
             </div>
+            
             <table class="table table-hover text-center">
-              <thead>
+              <thead class="bg-primary text-white">
                 <tr>
                   <th>글번호</th>
-                  <th>제목</th>
+                  <th style="width:700px;">제목</th>
                   <th>작성자</th>
                   <th>작성일시</th>
                   <th>조회수</th>
