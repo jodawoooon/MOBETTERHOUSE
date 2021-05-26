@@ -3,7 +3,9 @@
     <side-bar v-if="getIsLogin"></side-bar>
     <nav-bar v-if="getIsLogin" />
     <bread-crumb v-if="getIsLogin && !getIsHome"></bread-crumb>
+    
     <router-view></router-view>
+    <footer-bar v-if="getIsLogin"></footer-bar>
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 import SideBar from './components/SideBar.vue';
 import NavBar from './components/NavBar.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
+import FooterBar from './components/FooterBar.vue';
 
 // for bootstrap 5
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,6 +33,7 @@ export default {
     SideBar,
     NavBar,
     BreadCrumb,
+    FooterBar,
   },
   computed: {
     ...mapGetters(['getIsLogin', 'getIsHome']),
