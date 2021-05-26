@@ -81,8 +81,9 @@
                   </div>
                 </div>
                 <!-- aptInfo end -->
+                <div id="map" class="col" style=" width:100%; height: 550px"></div>
               </div>
-              <div id="map" class="col" style=" width:100%; height: 550px"></div>
+              
             </div>
           </div>
           <div class="mt-4" v-if="loadingCount == 0">
