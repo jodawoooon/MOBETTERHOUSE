@@ -131,7 +131,9 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
           });
       } else {
@@ -156,8 +158,9 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
-              // this.$refs.
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
           });
       }
@@ -180,7 +183,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.error('관심 매물을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -197,7 +200,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.success('관심 매물을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);

@@ -263,7 +263,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            } else this.$alertify.error('관심 매물을 삭제하였습니다.');
+            } else this.$alertify.error('관심 지역을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -279,7 +279,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            } else this.$alertify.success('관심 매물을 추가하였습니다.');
+            } else this.$alertify.success('관심 지역을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);
