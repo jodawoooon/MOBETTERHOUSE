@@ -10,7 +10,8 @@ public class InfoDto {
 	private int parkNum;
 	private int libNum;
 	private int parkingNum;
-	
+	private int hospitalNum;
+
 	public String getGuName() {
 		return guName;
 	}
@@ -83,13 +84,19 @@ public class InfoDto {
 		this.parkingNum = parkingNum;
 	}
 
+	public int getHospitalNum() {
+		return hospitalNum;
+	}
+
+	public void setHospitalNum(int hospitalNum) {
+		this.hospitalNum = hospitalNum;
+	}
+
 	@Override
 	public String toString() {
 		return "InfoDto [guName=" + guName + ", popNum=" + popNum + ", popDensity=" + popDensity + ", storeNum="
 				+ storeNum + ", nurseryNum=" + nurseryNum + ", careNum=" + careNum + ", parkNum=" + parkNum
-				+ ", libNum=" + libNum + ", parkingNum=" + parkingNum + "]";
+				+ ", libNum=" + libNum + ", parkingNum=" + parkingNum + ", hospitalNum=" + hospitalNum + "]";
 	}
-	
-	
-	
+
 }

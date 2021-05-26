@@ -22,18 +22,22 @@ export default new VueRouter({
     {
       path: '/',
       component: Index,
+      name: 'Index',
     },
     {
       path: '/home',
       component: Home,
+      name: 'Home',
     },
     {
       path: '/searchDong',
       component: SearchDong,
+      name: 'SearchDong',
     },
     {
       path: '/searchApt',
       component: SearchApt,
+      name: 'SearchApt',
     },
     {
       path: '/community',
@@ -67,14 +71,15 @@ export default new VueRouter({
       path: '/info',
       component: GuInfo,
     },
-
     {
       path: '/bookmarkHouse',
       component: BookmarkHouse,
+      name: 'BookmarkHouse',
     },
     {
       path: '/bookmarkArea',
       component: BookmarkArea,
+      name: 'BookmarkArea',
     },
   ],
 });
