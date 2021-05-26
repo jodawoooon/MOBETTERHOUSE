@@ -408,19 +408,11 @@ export default {
           //   <p class="m-0">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
           // </div>`,
           content: `<div class="m-4 mt-4" style="width:200px">
-<<<<<<< HEAD
-                <h5>${this.houseList[i].aptName}</h5>
-                <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
-                <p class="m-0">전용면적: ${this.houseList[i].area}</p>
-                <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
-              </div>`,
-=======
                       <h5>${this.houseList[i].aptName}</h5>
                       <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
                       <p class="m-0">전용면적: ${this.houseList[i].area}</p>
                       <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
                     </div>`,
->>>>>>> bf901162c8e9de518052a722e42e36a0d59cd892
           latlng: new kakao.maps.LatLng(this.houseList[i].lat, this.houseList[i].lng),
         });
       }
