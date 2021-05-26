@@ -48,7 +48,7 @@
                       </div>
                       
                       <div class="text-center rounded-bottom" @click="clickAptInfo(house)" style="cursor: pointer;">
-                        <p class="m-0 text-center text-white">move</p>
+                        <h6 class="m-0 text-center text-white">move</h6>
                       </div>
                       
                      </div>
@@ -352,9 +352,7 @@ export default {
 
 .cust_box:hover{
   background-color: #f3b773;
-  border: 2px solid;
-  border-color: #96979b;
-}
 
+}
 
 </style>
