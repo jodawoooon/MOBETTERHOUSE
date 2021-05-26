@@ -27,14 +27,14 @@
                 <!-- aptInfo start -->
                 <div v-else>
                   <div v-for="(house, index) in houseList" :key="index" class="border-light apart" :id="'apartInfo' + (index + 1)">
-                     <div class=" cust_box row p-3 pt-4 rounded">
-                       <div class="col-9 " @click="clickAptInfo(house)" style="cursor: pointer;">
+                     <div class=" cust_box row p-3 pt-4 rounded" style=" margin-right:10px;">
+                       <div class="col-8 " @click="clickAptInfo(house)" style="cursor: pointer;">
                         <h5>{{ house.aptName }}</h5>
                         <p class="m-0">거래금액: {{ house.dealAmount }}</p>
                         <p class="m-0">전용면적: {{ house.area }}</p>
                         <p class="m-0">등록일: {{ makeDateStr(house.dealYear, house.dealMonth, house.dealDay, '.') }}</p>
                       </div>
-                      <div class="col-3 align-self-center" style="text-align: center">
+                      <div class="col-3 align-self-center" style="text-align: center;">
                         <font-awesome-icon
                           :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
                           @click="clickBookmark(house)"
@@ -52,7 +52,7 @@
                       </div>
                       
                      </div>
-                     <hr class="m-0">
+                     <hr style="margin-top:0px; margin-left:30px; margin-right:20px; margin-bottom:0px;">
                     
                   </div>
                 </div>
@@ -351,7 +351,9 @@ export default {
 }
 
 .cust_box:hover{
-  background-color: #f3b773
+  background-color: #f3b773;
+  border: 2px solid;
+  border-color: #96979b;
 }
 
 
