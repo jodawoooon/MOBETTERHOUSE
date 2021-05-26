@@ -389,6 +389,7 @@ export default {
       var positions = [];
       for (var i = 0; i < this.houseList.length; i++) {
         positions.push({
+          // var windowDiv = '<div class="m-4">' + document.getElementById(school).innerHTML + "</div>";
           content: `
               <div class="col-8">
                 <h5>${this.houseList[i].aptName}</h5>
