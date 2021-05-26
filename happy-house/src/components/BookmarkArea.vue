@@ -135,7 +135,9 @@ export default {
     makeList() {
       for (var i = 0; i < this.selectSidoList.length; i++) {
         for (var j = 0; j < this.selectGugunList.length; j++) {
-          for (var k = 0; k < this.selectDongList.length; k++) {}
+          for (var k = 0; k < this.selectDongList.length; k++) {
+            
+          }
         }
       }
     },

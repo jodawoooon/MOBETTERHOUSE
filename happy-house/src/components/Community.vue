@@ -5,6 +5,7 @@
         <div class="card border-light shadow-sm ">
           <div class="card-body">
             <!-- <h1>This is Community.vue</h1> -->
+            <div class = "container">
             <h4 class="text-center">게시판 - Community</h4>
             <div class="input-group mb-3">
               <!-- store 사용 -->
@@ -23,31 +24,23 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- store 사용 -->
-
-                <!-- 직접 store 에 접근해도 된다. -->
-                <!-- <tr v-for="(board, index) in $store.state.board.list" @click="boardDetail(board.boardId)" v-bind:key="index"> -->
-
-                <!-- getters 를 이용하는 코드 -->
-                <!-- computed - listGetters - getBoardList  -->
+                
                 <tr v-for="(board, index) in listGetters" @click="boardDetail(board.boardId)" v-bind:key="index">
                   <td>{{ board.boardId }}</td>
                   <td>{{ board.title }}</td>
                   <td>{{ board.userName }}</td>
-
-                  <!-- function 을 바로 사용하는 경우 -->
-                  <!-- <td>{{ makeDateStr(board.regDt.date.year, board.regDt.date.month, board.regDt.date.day, '.') }}</td> -->
-
-                  <!-- computed + index 를 사용하는 경우 -->
+                  
                   <td>{{ formatDate[index] }}</td>
 
                   <td>{{ board.readCount }}</td>
                 </tr>
               </tbody>
             </table>
+            </div>
             <pagination v-on:call-parent="movePage"></pagination>
 
-            <button class="btn btn-sm btn-primary" @click="showInsertModal">글쓰기</button>
+            <button class="btn btn-outline-secondary btn-rounded"
+  data-mdb-ripple-color="dark" @click="showInsertModal">글쓰기</button>
 
             <insert-modal v-on:call-parent-insert="closeAfterInsert"></insert-modal>
             <!-- props 제거 -->
@@ -92,30 +85,7 @@ export default {
         subTitle: '커뮤니티',
         desc: '커뮤니티에서 자유롭게 소통하세요.',
       },
-      // 아래 data 사용 X
-      // // list
-      // list: [],
-      // limit: 10,
-      // offset: 0,
-      // searchWord: '',
-
-      // // pagination
-      // listRowCount: 10,
-      // pageLinkCount: 10,
-      // currentPageIndex: 1,
-
-      // totalListItemCount: 0,
-
-      // // detail
-      // boardId: 0,
-
-      // // update
-      // board: {
-      //   boardId: 0,
-      //   title: '',
-      //   content: '',
-      //   fileList: []
-      // }
+      
     };
   },
   computed: {
@@ -132,9 +102,7 @@ export default {
     },
   },
   methods: {
-    // list
-    // store actions 에 구현
-    // 가능한 한 가지 방법
+    
     boardList() {
       this.$store.dispatch('boardList');
       console.log(this.$store.boardList);
@@ -143,9 +111,6 @@ export default {
     movePage(pageIndex) {
       console.log('BoardMainVue : movePage : pageIndex : ' + pageIndex);
 
-      // store commit 으로 변경
-      // this.offset = (pageIndex - 1) * this.listRowCount;
-      // this.currentPageIndex = pageIndex;
       this.$store.commit('SET_BOARD_MOVE_PAGE', pageIndex);
 
       this.boardList();
@@ -163,15 +128,9 @@ export default {
       this.boardList();
     },
 
-    // detail
-    // board-vue 와 다르게 구현해 봄
-    // Detail Component 에서 Server 요청을 하지 않고 이곳에서 수행 후에 Detail 보여줌
     boardDetail(boardId) {
-      // store 변경
-      // this.boardId = boardId;
-      // this.$store.commit('mutateSetBoardBoardId', boardId);
 
-      http
+        http
         .get(
           '/boards/' + boardId // props variable
         )
@@ -201,32 +160,18 @@ export default {
         });
     },
 
-    // update
-    // Detail 에서 board data 를 직접 변경
-    // changeToUpdate( board ){
-    //   this.board = board;
-    //   this.detailModal.hide();
-    //   this.updateModal.show();
-    // },
     changeToUpdate() {
-      // board parameter 필요 없음.
-      // data update 사용 X
-      // this.board = board;
+
       this.detailModal.hide();
       this.updateModal.show();
     },
 
     closeAfterUpdate() {
-      // boardId 초기화 필요 X watch 사용 X
-      //this.boardId = 0;
 
       this.updateModal.hide();
       this.boardList();
     },
 
-    // delete
-    // $emit board 사용 X
-    // changeToDelete(board){
     changeToDelete() {
       this.detailModal.hide();
 
@@ -281,4 +226,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
