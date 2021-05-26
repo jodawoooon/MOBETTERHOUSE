@@ -29,67 +29,67 @@
                                 </div>
                             </div>
 
-                            <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                    <h3>인구수</h3>
-                                    <info-chart :chart-data="dataCollection"></info-chart>
-                                    
-                                </div>
+                            
                         <section class="section section-sm pt-0">
                         <div class="container">
-                            <div class="row justify-content-center mb-5 mb-lg-6">
+                            <div class="row justify-content-center mb-5 ">
                                 <div v-if="selectedGuName!='empty'" class="col-12 text-center">
                                   
-                                    <p class="lead px-lg-10"><strong>{{selectedGugunName}}</strong>의 정보 검색 결과입니다.</p>
+                                    <p class="lead px-lg-10"><span class="bg-secondary"><strong>{{selectedGugunName}}</strong></span>의 정보 검색 결과입니다.</p>
                                 </div>
                                 
-                            </div>
-                            <div class="row mb-5" style="text-align:center;">
-                              <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                    <h3>인구수</h3>
-                                    <info-chart :chart-data="popCollection"></info-chart>
+                                </div>
+                                <div v-if="selectedGuName=='empty'" class="col-12 text-center mt-10 mb-8">
                                     
+                                    <p style="font-size:15pt;">자치구별 <strong>인구, 인구밀도, 시장, 보육시설, 노인복지시설, 공원, 공공도서관, 주차장, 의료시설</strong> 통계 정보를 제공합니다.</p>
                                 </div>
-                                <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                    <h3>인구밀도</h3>
-                                    <info-chart :chart-data="popDenCollection"></info-chart>
+
+                            <div class="col-12 text-center">
+                                <div class="row p-3" style="text-align:center; justify-content:space-between">
+                                <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <h3>인구수</h3>
+                                        <info-chart :chart-data="popCollection"></info-chart>
+                                        
+                                    </div>
+                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <h3>인구밀도</h3>
+                                        <info-chart :chart-data="popDenCollection"></info-chart>
+                                    </div>
+                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <h3>시장</h3>
+                                        <info-chart :chart-data="storeCollection"></info-chart>
+                                    </div>
                                 </div>
-                                <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                    <h3>시장</h3>
-                                    <info-chart :chart-data="storeCollection"></info-chart>
+                                <div class="row p-3" style="text-align:center; justify-content:space-between">
+                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                        <h3>보육시설</h3>
+                                        <info-chart :chart-data="nurCollection"></info-chart>
+                                    </div>
+                                    <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                            <h3>노인복지시설</h3>
+                                            <info-chart :chart-data="careCollection"></info-chart>
+                                        </div>
+                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                            <h3>공원</h3>
+                                            <info-chart :chart-data="parkCollection"></info-chart>
+                                        </div>
                                 </div>
-                                <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                    <h3>보육시설</h3>
-                                    <info-chart :chart-data="nurCollection"></info-chart>
+                                <div class="row p-3" style="text-align:center; justify-content:space-between">       
+                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                            <h3>공공도서관</h3>
+                                            <info-chart :chart-data="libCollection"></info-chart>
+                                        </div>
+                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                            <h3>주차장</h3>
+                                            <info-chart :chart-data="parkingCollection"></info-chart>
+                                        </div>
+                                        <div v-if="infoData" class="col-3 page-preview scale-up-2">
+                                            <h3>의료시설</h3>
+                                            <info-chart :chart-data="hospitalCollection"></info-chart>
+                                        </div>
                                 </div>
-                              
-                            
-                            
-                             <div v-if="selectedGuName=='empty'" class="col-12 text-center">
-                                  
-                                    <p>자치구별 <strong>인구, 인구밀도, 시장, 보육시설, 노인복지시설, 공원, 공공도서관, 주차장, 의료시설</strong> 통계 정보를 제공합니다.</p>
-                                </div>
-                                     <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                        <h3>노인복지시설</h3>
-                                        <info-chart :chart-data="careCollection"></info-chart>
-                                    </div>
-                                    <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                        <h3>공원</h3>
-                                        <info-chart :chart-data="parkCollection"></info-chart>
-                                    </div>
-                                    <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                        <h3>공공도서관</h3>
-                                        <info-chart :chart-data="libCollection"></info-chart>
-                                    </div>
-                                    <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                        <h3>주차장</h3>
-                                        <info-chart :chart-data="parkingCollection"></info-chart>
-                                    </div>
-                                    <div v-if="infoData" class="col-4 mb-5 page-preview scale-up-2">
-                                        <h3>의료시설</h3>
-                                        <info-chart :chart-data="hospitalCollection"></info-chart>
-                                    </div>
-                            </div>
                            </div>
+                        </div>
                            </section>
                             
                             
@@ -134,8 +134,8 @@ export default {
                     .$store
                     .commit('SET_BREADCRUMB_INFO', {
                         isHome : false,
-                        title: 'AreaInfo',
-                        subTitle: '자치구별 정보',
+                        title: '지역별 정보',
+                        subTitle: '지역별 정보',
                         desc: '서울특별시 각 자치구별 정보를 확인해 보세요!'
                     });
                 this
@@ -234,8 +234,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                       
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                       borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.popNum, this.avgData.popNum],
                     }
                 ]
@@ -244,8 +245,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                        borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.popDensity, this.avgData.popDensity],
                     }
                 ]
@@ -254,8 +256,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                       
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                       borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.storeNum, this.avgData.storeNum],
                     }
                 ]
@@ -264,8 +267,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                        borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.nurseryNum, this.avgData.nurseryNum],
                     }
                 ]
@@ -274,8 +278,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                        borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.careNum, this.avgData.careNum],
                     }
                 ]
@@ -285,8 +290,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                        borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.parkNum, this.avgData.parkNum],
                     }
                 ]
@@ -295,9 +301,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        backgroundColor: ['#f3b773','#BDBDBD'],
                         borderColor: ['#f3b773','#BDBDBD'],
-                     
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.libNum, this.avgData.libNum],
                     }
                 ]
@@ -306,8 +312,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                        borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.parkingNum, this.avgData.parkingNum],
                     }
                 ]
@@ -316,8 +323,9 @@ export default {
                 labels : [this.selectedGugunName, '서울시 평균'],
                 datasets : [
                     {
-                        
-                        backgroundColor: ['#f3b773','#BDBDBD'],
+                        borderColor: ['#f3b773','#BDBDBD'],
+                        backgroundColor: ['rgba(243,183,115,0.5)','rgba(189,189,189,0.5)'],
+                        borderWidth : 5,
                         data : [this.infoData.hospitalNum, this.avgData.hospitalNum],
                     }
                 ]
