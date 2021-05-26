@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-center mb-2" style=" height:100px;">
               <div class="row">
                 <div class="col align-self-center">
-                  <input type="text" v-model="searchWord" @keypress.enter="searchList" placeholder="검색어를 입력하세요" class="form-control" id="searchText" style="width:400px;" />
+                  <input type="text" v-model="$store.state.board.searchWord" @keydown.enter="boardList" placeholder="검색어를 입력하세요" class="form-control" id="searchText" style="width:400px;" />
                 </div>
                 <div class="col align-self-center">
                   <button @click="boardList" class="btn btn-secondary" type="button">Search</button> </div>
