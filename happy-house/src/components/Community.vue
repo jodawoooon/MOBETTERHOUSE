@@ -6,7 +6,7 @@
           <div class="card-body">
             <!-- <h1>This is Community.vue</h1> -->
             <div class = "container">
-            <h4 class="text-center">게시판 - Community</h4>
+            
             <div class="input-group mb-3">
               <!-- store 사용 -->
               <!-- <input v-model="searchWord" @keydown.enter="boardList" type="text" class="form-control"> -->
