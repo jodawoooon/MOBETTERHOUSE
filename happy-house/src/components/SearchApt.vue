@@ -52,8 +52,7 @@
                   <hr style="margin-top:0px; margin-left:30px; margin-right:20px; margin-bottom:0px;" />
                 </div>
               </div>
-              <!-- aptInfo end -->
-              <div id="map" class="col map" style="height: 550px"></div>
+              <div id="map" class="col" style=" width:100%; height: 550px"></div>
             </div>
           </div>
           <div class="mt-4" v-if="loadingCount == 0">

@@ -40,7 +40,7 @@
                 </div>
                 <!-- aptInfo end -->
               </div>
-              <div id="map" class="col-8 " style="height: 550px"></div>
+              <div id="map" class="col" style=" width:100%; height: 550px"></div>
             </div>
           </div>
           <div class="mt-4 mb-4" v-if="loadingCount == 0">
