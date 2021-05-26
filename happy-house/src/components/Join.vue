@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <main>
     <!-- Section -->
-    <section class="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+    <section class="d-flex align-items-center my-5 mt-lg-8 mb-lg-5">
       <div class="container">
         <p class="text-center">
           <router-link to="/" class="text-gray-700"><font-awesome-icon :icon="['fas', 'angle-left']" /> 이전 페이지로</router-link>
@@ -132,7 +132,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </main>
 </template>
 
 <script>

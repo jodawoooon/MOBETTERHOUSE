@@ -39,7 +39,7 @@
                                 </div>
                                 
                                
-                                <div v-if="selectedGuName=='empty'" class="text-center mt-10 mb-8">
+                                <div v-if="selectedGuName=='empty'" class="text-center mt-12 mb-10">
                                     
                                     <p style="font-size:15pt;">자치구별 <strong>인구, 인구밀도, 시장, 보육시설, 노인복지시설, 공원, 공공도서관, 의료시설</strong> 통계 정보를 제공합니다.</p>
                                 </div>

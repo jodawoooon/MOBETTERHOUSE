@@ -1,5 +1,5 @@
 <template>
-<footer class="content py-5 @@classes mt-5 text-muted" >
+<footer class="content py-5 @@classes text-muted" >
     <div class="container">
         
         <div class="row">

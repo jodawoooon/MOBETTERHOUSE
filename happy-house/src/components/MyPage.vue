@@ -134,12 +134,12 @@
             <div class="col-12 mb-4">
               <div class="card shadow-sm text-center p-0">
                 <div
-                  class="profile-cover rounded-top bg-secondary"
-                 
+                  class="profile-cover rounded-top"
+                  style="background: linear-gradient(to bottom, #262b40, #FFFFFF)"
                 ></div>
                 <div class="card-body pb-5">
                   <img
-                    :src="this.getUserProfileImageUrl"
+                    :src="this.$store.state.userInfo.userProfileImageUrl"
                     class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4"
                     alt="Neil Portrait"
                   />
@@ -278,6 +278,10 @@ export default {
            .success("프로필 사진이 등록되었습니다.");
 
             this.imageUrl=null;
+
+            setTimeout(function(){
+              window.location.reload();
+            },2000);
             
           }
         })
@@ -391,7 +395,8 @@ export default {
   },
   watch: {
     setImg(val){
-      this.getUserProfileImageUrl = val;
+      this.$store.state.userInfo.userProfileImageUrl = val;
+      console.log('watch!');
     }
   },
 };
