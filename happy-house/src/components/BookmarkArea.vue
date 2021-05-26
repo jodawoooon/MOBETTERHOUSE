@@ -4,10 +4,20 @@
       <div class="col-12 mb-4">
         <div class="card border-light shadow-sm ">
           <div class="card-body">
-            <a href="#" v-for="(select, index) in selectList" :key="index" @click="clickSelect(select)">
-              {{ select.sido.SIDO_NAME }} {{ select.gugun.GUGUN_NAME }} {{ select.dong.DONG_NAME }}
+            <div v-for="(select, index) in selectList" :key="index" class="row" style="cursor: pointer;">
+              <div class="col text-underline" @click="clickSelect(select)">{{ select.sido.SIDO_NAME }} {{ select.gugun.GUGUN_NAME }} {{ select.dong.DONG_NAME }}</div>
+              <div class="col align-self-center mb-3">
+                <input
+                  type="button"
+                  :value="select.isBookmarked ? '관심 지역 해제' : '관심 지역 등록'"
+                  class="btn btn-sm"
+                  :class="select.isBookmarked ? 'btn-warning' : 'btn-outline-warning'"
+                  @click="clickBookmarkArea(select)"
+                />
+              </div>
+              <div class="col-6"></div>
               <hr />
-            </a>
+            </div>
           </div>
         </div>
       </div>
@@ -32,15 +42,15 @@ export default {
     };
   },
   methods: {
-    clickBookmarkArea() {
+    clickBookmarkArea(select) {
       console.log('clickBookmarkArea()!!!!');
-      console.log('isBookmarked : ' + this.isBookmarked);
-      if (this.isBookmarked) {
+      console.log('isBookmarked : ' + select.isBookmarked);
+      if (select.isBookmarked) {
         http
           .delete('/bookmarkArea', {
             params: {
               userSeq: this.getUserSeq,
-              dongCode: this.selectedDongCode,
+              dongCode: select.dong.DONG_CODE,
             },
           })
           .then(({ data }) => {
@@ -57,7 +67,7 @@ export default {
         http
           .post('/bookmarkArea', {
             userSeq: this.getUserSeq,
-            dongCode: this.selectedDongCode,
+            dongCode: select.dong.DONG_CODE,
           })
           .then(({ data }) => {
             console.log('insertBookmark!!!!!!');
@@ -70,7 +80,7 @@ export default {
             console.log(error);
           });
       }
-      this.isBookmarked = !this.isBookmarked;
+      select.isBookmarked = !select.isBookmarked;
     },
 
     sidoList() {
@@ -144,6 +154,7 @@ export default {
         sido: sido,
         gugun: gugun,
         dong: dong,
+        isBookmarked: true,
       });
     },
     clickSelect(select) {
