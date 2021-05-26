@@ -263,8 +263,8 @@ export default {
           if (data.result == "login") {
             this.$router.push("/login");
           } else {
-            console.log(data);
             // info 데이터 가져오기
+            
             this.$store.commit("SET_INFO", {
               userPassword: data.userPassword,
               userName: data.userName,
@@ -278,12 +278,16 @@ export default {
           .$alertify
            .success("프로필 사진이 등록되었습니다.");
 
+            this.imageUrl=null;
             
           }
         })
         .catch((error) => {
           console.log("UserProfileImageSend: error ");
           console.log(error);
+
+                 
+          
         });
     },
     onClickImageUpload() {
@@ -357,15 +361,7 @@ export default {
     },
   },
 
-  computed: {
-    requireImg: function() {
-      if (this.$store.state.userInfo.userProfileImageUrl == "") {
-        return require("../assets/img/noProfile.png");
-      } else {
-        return ".." + this.$store.state.userInfo.userProfileImageUrl;
-      }
-    },
-  },
+ 
   created() {
     this.$store.commit("SET_BREADCRUMB_INFO", {
       isHome: false,
@@ -383,7 +379,10 @@ export default {
       if (this.$store.state.userInfo.userProfileImageUrl == "") {
         return require("../assets/img/noProfile.png");
       } else {
+        
         return ".." + this.$store.state.userInfo.userProfileImageUrl;
+        
+        
       }
     },
   },

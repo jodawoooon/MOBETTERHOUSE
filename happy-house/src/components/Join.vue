@@ -261,7 +261,7 @@ export default {
           if (error.response.status == '404') {
             this.$alertify.error('회원가입에 실패했습니다.');
           } else {
-            this.$alertify.error('Opps!! 서버에 문제가 발생했습니다.');
+            this.$alertify.error('회원가입에 실패했습니다.');
           }
         });
     },
