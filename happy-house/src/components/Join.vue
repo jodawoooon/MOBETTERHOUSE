@@ -168,7 +168,7 @@ export default {
       // 회원 구분
       groupCode: '1',
       codeList: [],
-      userRank: '3', // 일반회원 default
+      userRank: '4', // 일반회원 default
     };
   },
   computed: {
@@ -288,6 +288,7 @@ export default {
               userName: kakao_account.profile.nickname,
               userEmail: kakao_account.email,
               userProfileImageUrl: kakao_account.profile.profile_image_url,
+              userRank: this.userRank,
               userPassword: 'kakao',
             })
             .then(({ data }) => {
@@ -297,7 +298,7 @@ export default {
               // login 성공 전달
               this.$store.commit('SET_LOGIN', {
                 isLogin: true,
-                 userSeq : data.userSeq,   
+                userSeq : data.userSeq,   
                 userName: data.userName,
                 userEmail: data.userEmail,
                 userMessage: data.userMessage,
@@ -323,6 +324,7 @@ export default {
                     userName: kakao_account.profile.nickname,
                     userEmail: kakao_account.email,
                     userProfileImageUrl: kakao_account.profile.profile_image_url,
+                    userRank: this.userRank,
                     userPassword: 'kakao',
                   })
                   .then(({ data }) => {
