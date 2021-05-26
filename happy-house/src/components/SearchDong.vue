@@ -46,8 +46,8 @@
                 <div v-if="loadingCount != 0" class="d-flex align-items-center justify-content-center" style="height:500px;">
                   <pulse-loader :loading="loadingCount != 0"></pulse-loader>
                 </div>
+
               <div v-if="loadingCount == 0" class="col-4" id="apartInfo">
-                
                 <!-- aptInfo start -->
                 <div v-if="loadingCount == 0">
                   <div v-for="(house, index) in houseList" :key="index" class="border-light apart" :id="'apartInfo' + (index + 1)">
