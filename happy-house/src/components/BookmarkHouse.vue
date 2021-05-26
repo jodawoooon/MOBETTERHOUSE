@@ -13,7 +13,7 @@
                 <!-- aptInfo start -->
                 <div v-else>
                   <div v-for="(house, index) in houseList" :key="index" class="apart row" :id="'apartInfo' + (index + 1)">
-                    <div class="col-8 pb-3">
+                    <div class="col-8 pb-3" @click="clickAptInfo(house)" style="cursor: pointer;">
                       <h5>{{ house.aptName }}</h5>
                       <p class="m-0">거래금액: {{ house.dealAmount }}</p>
                       <p class="m-0">전용면적: {{ house.area }}</p>
@@ -25,7 +25,7 @@
                         @click="clickBookmark(house)"
                         :id="'bookmarkStar' + (index + 1)"
                         aria-hidden="true"
-                        style="color: rgb(255, 226, 95); font-size: 25px"
+                        style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
                         class=" scale-up-5"
                       >
                         <input type="hidden" value="' + dealNo + '" />
@@ -74,6 +74,8 @@ export default {
       listRowCount: 10,
       pageLinkCount: 10,
       currentPageIndex: 1,
+
+      map: '',
     };
   },
   methods: {
@@ -189,17 +191,17 @@ export default {
           level: 4, // 지도의 확대 레벨
         };
 
-      var map = new kakao.maps.Map(mapContainer, mapOption);
+      this.map = new kakao.maps.Map(mapContainer, mapOption);
       // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
       var mapTypeControl = new kakao.maps.MapTypeControl();
 
       // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
       // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-      map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+      this.map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       var zoomControl = new kakao.maps.ZoomControl();
-      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+      this.map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
       var positions = [];
       for (var i = 0; i < this.houseList.length; i++) {
@@ -218,7 +220,7 @@ export default {
 
       for (var j = 0; j < positions.length; j++) {
         var marker = new kakao.maps.Marker({
-          map: map,
+          map: this.map,
           position: positions[j].latlng, // 마커를 표시할 위치
         });
 
@@ -226,7 +228,7 @@ export default {
           content: positions[j].content, // 인포윈도우에 표시할 내용
         });
 
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(this.map, marker, infowindow));
         kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
       }
 
@@ -244,6 +246,9 @@ export default {
         };
       }
     },
+    clickAptInfo(house) {
+      this.map.setCenter(new kakao.maps.LatLng(house.lat, house.lng));
+    },
   },
   computed: {
     ...mapGetters(['getUserSeq']),
@@ -254,7 +259,7 @@ export default {
   },
   mounted() {
     this.$store.commit('SET_BREADCRUMB_INFO', {
-      isHome : false,
+      isHome: false,
       title: '관심 매물 모아 보기',
       subTitle: '관심 매물 모아 보기',
       desc: '관심 매물 정보를 확인해보세요.',

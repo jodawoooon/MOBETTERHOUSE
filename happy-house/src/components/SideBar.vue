@@ -65,13 +65,13 @@
         <li class="nav-item mb-2 mt-2" :class="{ active: $store.state.curPage == 'info' }">
           <router-link to="/info" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'info-circle']"/></span>
-            <span class="sidebar-text"> 동네 검색 </span>
+            <span class="sidebar-text"> 지역 정보 검색 </span>
           </router-link>
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'schoolZone' }">
           <router-link to="/schoolZone" class="nav-link">
             <span class="sidebar-icon"><font-awesome-icon :icon="['fas', 'school']"/></span>
-            <span class="sidebar-text"> 학교 검색 </span>
+            <span class="sidebar-text"> 주변 학군 검색 </span>
           </router-link>
         </li>
         <li class="nav-item mt-2 mb-2" :class="{ active: $store.state.curPage == 'community' }">
