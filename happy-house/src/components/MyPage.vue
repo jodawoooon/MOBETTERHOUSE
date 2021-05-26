@@ -263,6 +263,7 @@ export default {
           if (data.result == "login") {
             this.$router.push("/login");
           } else {
+            console.log(data);
             // info 데이터 가져오기
             this.$store.commit("SET_INFO", {
               userPassword: data.userPassword,
@@ -277,9 +278,7 @@ export default {
           .$alertify
            .success("프로필 사진이 등록되었습니다.");
 
-            setTimeout(function() {
-              window.location.reload();
-            }, 2000);
+            
           }
         })
         .catch((error) => {

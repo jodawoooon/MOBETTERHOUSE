@@ -113,6 +113,8 @@ export default {
           });
 
           // home 로 이동
+          this.$alertify
+                                .success(this.$store.state.userInfo.userName+"님 환영합니다");
           this.$router.push('/home');
         })
         .catch((error) => {
@@ -170,7 +172,8 @@ export default {
               });
 
               this.$store.commit('SET_KAKAO');
-
+              this.$alertify
+                                .success(this.$store.state.userInfo.userName+"님 환영합니다");
               // home 로 이동
               this.$router.push('/home');
             })
@@ -205,8 +208,10 @@ export default {
                       userProfileImageUrl: data.userProfileImageUrl,
                     });
 
-                    this.$swal({ icon: 'success', title: '로그인 성공', showConfirmButton: false, timer: 1500 });
+                    
                     this.$store.commit('SET_KAKAO');
+                    this.$alertify
+                                .success(this.$store.state.userInfo.userName+"님 환영합니다");
                     // home 로 이동
                     this.$router.push('/home');
                   })
