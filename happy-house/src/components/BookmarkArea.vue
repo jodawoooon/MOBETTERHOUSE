@@ -139,14 +139,6 @@ export default {
           }
         });
     },
-<<<<<<< HEAD
-    makeList() {
-      // for (var i = 0; i < this.selectSidoList.length; i++) {
-      //   for (var j = 0; j < this.selectGugunList.length; j++) {
-      //     for (var k = 0; k < this.selectDongList.length; k++) {}
-      //   }
-      // }
-=======
     makeList(sido, gugun, dong) {
       this.selectList.push({
         sido: sido,
@@ -163,7 +155,6 @@ export default {
           select: select,
         },
       });
->>>>>>> d31a795ca4c506f5fb291a804aab93991635efc2
     },
   },
   computed: {
