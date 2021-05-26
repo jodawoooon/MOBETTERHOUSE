@@ -2,21 +2,10 @@
   <main class="content">
     <div class="col-12 mb-4">
       <div class="row justify-content-center mb-5 mb-lg-6">
-        
-                  
-         <div class="text-center bg-primary shadow-lg rounded scale mt-8 mb-8" style="padding:40px;  border-radius:200px; width:650px;
-         
-           ">
-             
-                        <span class="lead fw-bolder text-muted display-5">똑똑한 내 집 마련의 시작</span><br>
-                            <span class="lead fw-bolder text-white display-1">
-                              Happy<br>House </span>
-                          </div>
-               
-          <div class="row mb-7">
-                
-         
-          <div class="col-6 col-md-3 text-center mb-4 ">
+        <div class="text-center bg-primary shadow-lg rounded scale mt-8 mb-8" style="padding:40px;  border-radius:200px; width:550px;">
+          <span class="lead fw-bolder text-muted display-5">똑똑한 내 집 마련의 시작</span><br />
+          <span class="lead fw-bolder text-white display-1"> Happy House </span>
+        </div>
 
         <div class="row mb-7">
           <div class="col-6 col-md-3 text-center mb-4 ">
