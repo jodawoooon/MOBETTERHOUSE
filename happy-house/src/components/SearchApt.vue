@@ -52,7 +52,7 @@
                   <hr style="margin-top:0px; margin-left:30px; margin-right:20px; margin-bottom:0px;" />
                 </div>
               </div>
-              <div id="map" class="col" style=" width:100%; height: 550px"></div>
+              <div id="map" class="col" style=" width:100%; height: 100%"></div>
             </div>
           </div>
           <div class="mt-4" v-if="loadingCount == 0">
@@ -256,8 +256,7 @@ export default {
       var positions = [];
       for (var i = 0; i < this.houseList.length; i++) {
         positions.push({
-          content: `
-                           
+          content: `            
               <div class="m-4 mt-4" style="width:200px">
                 <h5>${this.houseList[i].aptName}</h5>
                 <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>

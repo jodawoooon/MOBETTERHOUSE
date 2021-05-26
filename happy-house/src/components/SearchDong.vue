@@ -166,8 +166,13 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
+          })
+          .catch((error) => {
+            console.log(error);
           });
       } else {
         console.log('this.selectedDongCode is not empty');
@@ -191,7 +196,9 @@ export default {
             } else {
               this.houseList = data.list;
               this.houseListCount = data.count;
-              this.kakaoMap();
+              if (this.houseListCount == 0) {
+                this.$alertify.warning('검색 결과가 없습니다.');
+              } else this.kakaoMap();
             }
           });
       }
@@ -214,7 +221,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.error('관심 매물을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -231,7 +238,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.success('관심 매물을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -256,7 +263,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.error('관심 매물을 삭제하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -272,7 +279,7 @@ export default {
             console.log(data);
             if (data.result == 'login') {
               router.push('/login');
-            }
+            } else this.$alertify.success('관심 매물을 추가하였습니다.');
           })
           .catch((error) => {
             console.log(error);
@@ -398,26 +405,11 @@ export default {
           //   <p class="m-0">전용면적: ${this.houseList[i].area}</p>
           //   <p class="m-0">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
           // </div>`,
-          content: `<div class="row">
-                      <div class="col-8 pb-3" @click="clickAptInfo(house)" style="cursor: pointer;">
-                        <h5>${this.houseList[i].aptName}</h5>
-                        <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
-                        <p class="m-0">전용면적: ${this.houseList[i].area}</p>
-                        <p class="m-0">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
-                      </div>
-                      <div class="col align-self-center" style="text-align: center">
-                        <font-awesome-icon
-                          :icon="[house.bookmarked ? 'fas' : 'far', 'star']"
-                          @click="clickBookmark(house)"
-                          :id="'bookmarkStar' + (index + 1)"
-                          aria-hidden="true"
-                          style="color: rgb(255, 226, 95); font-size: 25px; cursor: pointer;"
-                          class=" scale-up-5"
-                        >
-                          <input type="hidden" value="' + dealNo + '" />
-                        </font-awesome-icon>
-                      </div>
-                      <hr />
+          content: `<div class="m-4 mt-4" style="width:200px">
+                      <h5>${this.houseList[i].aptName}</h5>
+                      <p class="m-0">거래금액: ${this.houseList[i].dealAmount}</p>
+                      <p class="m-0">전용면적: ${this.houseList[i].area}</p>
+                      <p class="">등록일: ${this.makeDateStr(this.houseList[i].dealYear, this.houseList[i].dealMonth, this.houseList[i].dealDay, '.')}</p>
                     </div>`,
           latlng: new kakao.maps.LatLng(this.houseList[i].lat, this.houseList[i].lng),
         });
