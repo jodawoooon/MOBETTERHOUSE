@@ -13,10 +13,10 @@
               <input v-model="$store.state.board.searchWord" @keydown.enter="boardList" type="text" class="form-control" />
               <button @click="boardList" class="btn btn-success" type="button">Search</button>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover text-center">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>글번호</th>
                   <th>제목</th>
                   <th>작성자</th>
                   <th>작성일시</th>
