@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="houseListTotalCount" resultType="int">
-		SELECT COUNT(*) FROM HOUSEDEAL
+		SELECT COUNT(*) FROM HOUSEDEAL d, HOUSEINFO i WHERE d.CODE=i.CODE AND d.DONG=i.DONG AND d.APTNAME=i.APTNAME
 	</select>
 	
 	<select id="houseSearchDong" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
@@ -30,8 +30,8 @@
 	
 	<select id="houseSearchDongTotalCount" parameterType="string" resultType="int">
 		SELECT count(*)
-			FROM HOUSEDEAL d, (SELECT NAME AS DONG_NAME, GUGUN_CODE FROM DONG_CODE WHERE CODE=#{searchWord}) c
-			WHERE d.dong = c.dong_name
+			FROM HOUSEDEAL d, HOUSEINFO i, (SELECT NAME AS DONG_NAME, GUGUN_CODE FROM DONG_CODE WHERE CODE=${dongCode}) c
+			WHERE d.DONG=i.DONG AND d.CODE=i.CODE AND d.APTNAME=i.APTNAME AND d.DONG=c.DONG_NAME;
 	</select>
 	
 	<select id="houseSearchApt" parameterType="com.ssafy.happyhouse.dto.HouseParamDto" resultType="com.ssafy.happyhouse.dto.HouseDto">
