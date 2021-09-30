@@ -1,5 +1,0 @@
-CREATE TABLE `bookmark_area` (
-  `USER_SEQ` int NOT NULL,
-  `DONG_CODE` varchar(10) NOT NULL,
-  PRIMARY KEY (`USER_SEQ`,`DONG_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
